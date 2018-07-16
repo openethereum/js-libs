@@ -22,6 +22,7 @@
     "test": "jest"
   },
   "devDependencies": {
+    "@types/jest": "^23.1.6",
     "jest": "^23.4.1",
     "lerna": "^2.11.0",
     "ts-jest": "^23.0.0",
