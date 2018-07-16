@@ -1,0 +1,12 @@
+{
+  "name": "js-libs",
+  "description": "A collection of JavaScript libraries for dapp development.",
+  "repository": "https://github.com/paritytech/js-libs",
+  "homepage": "https://github.com/paritytech/js-libs",
+  "author": "Parity Team <admin@parity.io>",
+  "license": "MIT",
+  "private": true,
+  "devDependencies": {
+    "lerna": "^2.11.0"
+  }
+}
