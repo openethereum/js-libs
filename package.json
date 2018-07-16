@@ -1,12 +1,26 @@
 {
   "name": "js-libs",
   "description": "A collection of JavaScript libraries for dapp development.",
-  "repository": "https://github.com/paritytech/js-libs",
-  "homepage": "https://github.com/paritytech/js-libs",
   "author": "Parity Team <admin@parity.io>",
+  "maintainers": [
+    "Amaury Martiny"
+  ],
   "license": "MIT",
   "private": true,
+  "repository": "https://github.com/paritytech/js-libs",
+  "homepage": "https://github.com/paritytech/js-libs",
+  "bugs": {
+    "url": "https://github.com/paritytech/js-libs/issues"
+  },
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ]
+  },
   "devDependencies": {
-    "lerna": "^2.11.0"
+    "lerna": "^2.11.0",
+    "tslint": "^5.10.0",
+    "tslint-config-semistandard": "^7.0.0",
+    "typescript": "^2.9.2"
   }
 }

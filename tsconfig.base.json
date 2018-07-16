@@ -1,0 +1,8 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "lib": ["es2015", "dom"],
+    "noImplicitAny": true,
+    "target": "es5"
+  }
+}
