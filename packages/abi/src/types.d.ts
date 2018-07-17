@@ -7,12 +7,7 @@ import BigNumber from 'bignumber.js';
 
 export type Bytes = number[];
 
-export type Param = {
-  length?: number;
-  type: ParamType;
-};
-
-export type ParamType =
+export type ParamTypeEnum =
   | 'address'
   | 'bool'
   | 'bytes'

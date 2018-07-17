@@ -1,10 +1,9 @@
-// Copyright 2015-2017 Parity Technologies (UK) Ltd.
 // Copyright 2015-2018 Parity Technologies (UK) Ltd.
 // This file is part of Parity.
 //
 // SPDX-License-Identifier: MIT
 
-import { ParamType } from '../types';
+import { ParamTypeEnum } from '../types';
 import Token from './token';
 
 describe('token/token', () => {
@@ -46,13 +45,15 @@ describe('token/token', () => {
     });
 
     it('throws an error on invalid types', () => {
-      expect(() => Token.validateType(<ParamType>'noMatch')).toThrow(/noMatch/);
+      expect(() => Token.validateType(<ParamTypeEnum>'noMatch')).toThrow(
+        /noMatch/
+      );
     });
   });
 
   describe('constructor', () => {
     it('throws an error on invalid types', () => {
-      expect(() => new Token(<ParamType>'noMatch', '1')).toThrow(/noMatch/);
+      expect(() => new Token(<ParamTypeEnum>'noMatch', '1')).toThrow(/noMatch/);
     });
 
     it('sets the type of the object', () => {
