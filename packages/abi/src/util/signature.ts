@@ -6,12 +6,12 @@
 import { keccak_256 } from 'js-sha3';
 
 import { fromParamType } from '../spec/paramType/format';
-import { Param } from '../types';
+import ParamType from '../spec/paramType';
 
 /**
  * Get event signature.
  */
-export const eventSignature = (eventName: string, params: Param[]) => {
+export const eventSignature = (eventName: string, params: ParamType[]) => {
   const { strName, name } = parseName(eventName);
   const types = (params || []).map(fromParamType).join(',');
   const id = `${strName}(${types})`;
@@ -26,7 +26,7 @@ export const eventSignature = (eventName: string, params: Param[]) => {
  * @param methodName - The method name.
  * @param params - The list of params
  */
-export const methodSignature = (methodName: string, params: Param[]) => {
+export const methodSignature = (methodName: string, params: ParamType[]) => {
   const { id, name, signature } = eventSignature(methodName, params);
 
   return { id, name, signature: signature.substr(0, 8) };

@@ -4,6 +4,7 @@
 // SPDX-License-Identifier: MIT
 
 import { eventSignature, methodSignature } from './signature';
+import ParamType from '../spec/paramType';
 
 describe('util/signature', () => {
   describe('eventSignature', () => {
@@ -17,7 +18,7 @@ describe('util/signature', () => {
     });
 
     it('encodes signature baz(uint32) correctly', () => {
-      expect(eventSignature('baz', [{ type: 'uint', length: 32 }])).toEqual({
+      expect(eventSignature('baz', [new ParamType('uint', null, 32)])).toEqual({
         id: 'baz(uint32)',
         name: 'baz',
         signature:
@@ -27,7 +28,10 @@ describe('util/signature', () => {
 
     it('encodes signature baz(uint32, bool) correctly', () => {
       expect(
-        eventSignature('baz', [{ type: 'uint', length: 32 }, { type: 'bool' }])
+        eventSignature('baz', [
+          new ParamType('uint', null, 32),
+          new ParamType('bool')
+        ])
       ).toEqual({
         id: 'baz(uint32,bool)',
         name: 'baz',
@@ -63,16 +67,21 @@ describe('util/signature', () => {
     });
 
     it('encodes signature baz(uint32) correctly', () => {
-      expect(methodSignature('baz', [{ type: 'uint', length: 32 }])).toEqual({
-        id: 'baz(uint32)',
-        name: 'baz',
-        signature: '7d68785e'
-      });
+      expect(methodSignature('baz', [new ParamType('uint', null, 32)])).toEqual(
+        {
+          id: 'baz(uint32)',
+          name: 'baz',
+          signature: '7d68785e'
+        }
+      );
     });
 
     it('encodes signature baz(uint32, bool) correctly', () => {
       expect(
-        methodSignature('baz', [{ type: 'uint', length: 32 }, { type: 'bool' }])
+        methodSignature('baz', [
+          new ParamType('uint', null, 32),
+          new ParamType('bool')
+        ])
       ).toEqual({
         id: 'baz(uint32,bool)',
         name: 'baz',
@@ -83,8 +92,8 @@ describe('util/signature', () => {
     it('encodes signature in name correctly', () => {
       expect(
         methodSignature('baz(uint32,bool)', [
-          { type: 'uint', length: 32 },
-          { type: 'bool' }
+          new ParamType('uint', null, 32),
+          new ParamType('bool')
         ])
       ).toEqual({
         id: 'baz(uint32,bool)',
