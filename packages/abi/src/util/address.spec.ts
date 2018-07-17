@@ -26,6 +26,9 @@ describe('util/address', () => {
       .join('');
   const invalidhex = '0x01234567890123456789012345678901234567gh';
 
+  /**
+   * @test {isChecksumValid}
+   */
   describe('isChecksumValid', () => {
     it('returns false when fully lowercase', () => {
       expect(isChecksumValid(lowercase)).toBe(false);
@@ -44,6 +47,9 @@ describe('util/address', () => {
     });
   });
 
+  /**
+   * @test {isAddress}
+   */
   describe('isAddress', () => {
     it('returns true when fully lowercase', () => {
       expect(isAddress(lowercase)).toBe(true);
@@ -66,6 +72,9 @@ describe('util/address', () => {
     });
   });
 
+  /**
+   * @test {toChecksumAddress}
+   */
   describe('toChecksumAddress', () => {
     it('returns empty when no address specified', () => {
       expect(toChecksumAddress(undefined)).toEqual('');
