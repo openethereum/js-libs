@@ -3,6 +3,7 @@
   "description": "A collection of JavaScript libraries for dapp development.",
   "author": "Parity Team <admin@parity.io>",
   "maintainers": [
+    "Jaco Greeff",
     "Amaury Martiny"
   ],
   "license": "MIT",

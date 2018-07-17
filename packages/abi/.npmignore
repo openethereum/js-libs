@@ -1,0 +1,11 @@
+coverage
+scripts
+src
+test
+.babelrc
+.coveralls.yml
+.editorconfig
+.eslintrc.json
+.gitignore
+.istanbul.yml
+.travis.yml

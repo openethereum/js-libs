@@ -1,0 +1,28 @@
+{
+  "name": "@parity/abi",
+  "description": "Ethereum ABI encoder and decoder",
+  "version": "3.0.0",
+  "author": "Parity Team <admin@parity.io>",
+  "license": "MIT",
+  "repository": "https://github.com/paritytech/js-libs/packages/abi",
+  "main": "lib/index.js",
+  "keywords": [
+    "Ethereum",
+    "ABI",
+    "Parity"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "rimraf lib && tsc"
+  },
+  "devDependencies": {
+    "rimraf": "^2.6.2"
+  },
+  "dependencies": {
+    "bignumber.js": "4.1.0",
+    "js-sha3": "0.5.5",
+    "utf8": "^2.1.2"
+  }
+}
