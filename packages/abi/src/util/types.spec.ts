@@ -4,7 +4,7 @@
 // SPDX-License-Identifier: MIT
 
 import { isArray, isString, isInstanceOf } from './types';
-const Token = require('../token');
+import Token from '../token';
 
 describe('util/types', () => {
   describe('isArray', () => {
@@ -37,7 +37,7 @@ describe('util/types', () => {
 
   describe('isInstanceOf', () => {
     it('correctly identifies build-in instanceof', () => {
-      expect(isInstanceOf(new String('123'), String)).toBe(true); // eslint-disable-line no-new-wrappers
+      expect(isInstanceOf(new String('123'), String)).toBe(true);
     });
 
     it('correctly identifies own instanceof', () => {

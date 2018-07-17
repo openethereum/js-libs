@@ -3,7 +3,7 @@
 //
 // SPDX-License-Identifier: MIT
 
-const { padAddress } = require('./pad');
+import { padAddress } from './pad';
 
 /**
  * Slice data.

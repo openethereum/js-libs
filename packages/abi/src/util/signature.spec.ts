@@ -3,7 +3,7 @@
 //
 // SPDX-License-Identifier: MIT
 
-const { eventSignature, methodSignature } = require('./signature');
+import { eventSignature, methodSignature } from './signature';
 
 describe('util/signature', () => {
   describe('eventSignature', () => {

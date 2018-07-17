@@ -3,7 +3,7 @@
 //
 // SPDX-License-Identifier: MIT
 
-const { sliceData } = require('./slice');
+import { sliceData } from './slice';
 
 describe('util/slice', () => {
   describe('sliceData', () => {
