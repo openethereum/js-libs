@@ -2,7 +2,8 @@
 
 A collection of JavaScript libraries for dapp development.
 
-## Packages
+Packages
+--------
 
 This repository is a monorepo that we manage using [Lerna](https://lernajs.io). That means that we actually publish [several packages](/packages) to npm from the same codebase, including:
 
@@ -16,6 +17,7 @@ This repository is a monorepo that we manage using [Lerna](https://lernajs.io). 
 | [`@parity/contracts`](/packages/contracts)           | TODO    | TODO | Parity's [contracts](https://github.com/parity-contracts) as ES6 classes.                          |
 | [`@parity/electron`](/packages/electron)             | TODO    | TODO | Control the Parity Ethereum node from Electron.                                                    |
 
-## License
+License
+-------
 
 [MIT](/LICENSE)
