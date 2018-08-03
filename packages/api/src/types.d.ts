@@ -11,3 +11,16 @@ export type BlockNumber =
   | 'pending'
   | number
   | BigNumber;
+
+export type EtherDenomination =
+  | 'wei'
+  | 'ada'
+  | 'babbage'
+  | 'shannon'
+  | 'szabo'
+  | 'finney'
+  | 'ether'
+  | 'kether'
+  | 'mether'
+  | 'gether'
+  | 'tether';
