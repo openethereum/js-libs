@@ -7,7 +7,9 @@ import BigNumber from 'bignumber.js';
 
 export type Bytes = number[];
 
-export type ParamTypeEnum =
+export type MediateType = 'raw' | 'prefixed' | 'fixedArray' | 'array';
+
+export type TokenTypeEnum =
   | 'address'
   | 'bool'
   | 'bytes'
@@ -18,4 +20,11 @@ export type ParamTypeEnum =
   | 'fixedArray'
   | 'array';
 
-export type Value = string | number | BigNumber;
+export type TokenValue =
+  | boolean
+  | string
+  | number
+  | BigNumber
+  | string[]
+  | number[]
+  | BigNumber[];

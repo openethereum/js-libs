@@ -59,17 +59,17 @@ export const padU32 = (input: string | number | BigNumber) => {
  */
 export const stringToBytes = (input: string | Bytes) => {
   if (isArray(input)) {
-    return <Bytes>input;
-  } else if ((<string>input).startsWith('0x')) {
+    return input as Bytes;
+  } else if ((input as string).startsWith('0x')) {
     const matches =
-      (<string>input)
+      (input as string)
         .substr(2)
         .toLowerCase()
         .match(/.{1,2}/g) || [];
 
     return matches.map(value => parseInt(value, 16));
   } else {
-    return (<string>input).split('').map(char => char.charCodeAt(0));
+    return (input as string).split('').map(char => char.charCodeAt(0));
   }
 };
 

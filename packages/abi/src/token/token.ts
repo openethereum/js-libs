@@ -3,21 +3,21 @@
 //
 // SPDX-License-Identifier: MIT
 
-import { ParamTypeEnum, Value } from '../types';
+import { TokenTypeEnum, TokenValue } from '../types';
 import TYPES from '../spec/paramType/types';
 
 class Token {
-  private _type: ParamTypeEnum;
-  private _value: Value;
+  private _type: TokenTypeEnum;
+  private _value: TokenValue;
 
-  constructor(type: ParamTypeEnum, value: Value) {
+  constructor(type: TokenTypeEnum, value?: TokenValue) {
     Token.validateType(type);
 
     this._type = type;
     this._value = value;
   }
 
-  static validateType(type: ParamTypeEnum) {
+  static validateType(type: TokenTypeEnum) {
     if (TYPES.some(_type => type === _type)) {
       return true;
     }

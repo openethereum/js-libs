@@ -3,17 +3,17 @@
 //
 // SPDX-License-Identifier: MIT
 
-import { ParamTypeEnum } from '../../types';
+import { TokenTypeEnum } from '../../types';
 import TYPES from './types';
 
 class ParamType {
   private _indexed?: boolean;
   private _length?: number;
   private _subtype?: ParamType;
-  private _type: ParamTypeEnum;
+  private _type: TokenTypeEnum;
 
   constructor(
-    type: ParamTypeEnum,
+    type: TokenTypeEnum,
     subtype: ParamType = null,
     length = 0,
     indexed = false
@@ -26,7 +26,7 @@ class ParamType {
     this._indexed = indexed;
   }
 
-  static validateType(type: ParamTypeEnum) {
+  static validateType(type: TokenTypeEnum) {
     if (TYPES.some(_type => type === _type)) {
       return true;
     }

@@ -3,9 +3,9 @@
 //
 // SPDX-License-Identifier: MIT
 
-import { ParamTypeEnum } from '../../types';
+import { TokenTypeEnum } from '../../types';
 
-const TYPES: ParamTypeEnum[] = [
+const TYPES: TokenTypeEnum[] = [
   'address',
   'bytes',
   'int',

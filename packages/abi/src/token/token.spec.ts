@@ -3,7 +3,7 @@
 //
 // SPDX-License-Identifier: MIT
 
-import { ParamTypeEnum } from '../types';
+import { TokenTypeEnum } from '../types';
 import Token from './token';
 
 describe('token/token', () => {
@@ -45,7 +45,7 @@ describe('token/token', () => {
     });
 
     it('throws an error on invalid types', () => {
-      expect(() => Token.validateType(<ParamTypeEnum>'noMatch')).toThrow(
+      expect(() => Token.validateType('noMatch' as TokenTypeEnum)).toThrow(
         /noMatch/
       );
     });
@@ -53,7 +53,9 @@ describe('token/token', () => {
 
   describe('constructor', () => {
     it('throws an error on invalid types', () => {
-      expect(() => new Token(<ParamTypeEnum>'noMatch', '1')).toThrow(/noMatch/);
+      expect(() => new Token('noMatch' as TokenTypeEnum, '1')).toThrow(
+        /noMatch/
+      );
     });
 
     it('sets the type of the object', () => {

@@ -4,7 +4,7 @@
 // SPDX-License-Identifier: MIT
 
 import ParamType from './paramType';
-import { ParamTypeEnum } from '../../types';
+import { TokenTypeEnum } from '../../types';
 
 describe('spec/paramType/ParamType', () => {
   describe('validateType', () => {
@@ -45,7 +45,7 @@ describe('spec/paramType/ParamType', () => {
     });
 
     it('throws an error on invalid types', () => {
-      expect(() => ParamType.validateType(<ParamTypeEnum>'noMatch')).toThrow(
+      expect(() => ParamType.validateType('noMatch' as TokenTypeEnum)).toThrow(
         /noMatch/
       );
     });
@@ -53,7 +53,9 @@ describe('spec/paramType/ParamType', () => {
 
   describe('constructor', () => {
     it('throws an error on invalid types', () => {
-      expect(() => new ParamType(<ParamTypeEnum>'noMatch')).toThrow(/noMatch/);
+      expect(() => new ParamType('noMatch' as TokenTypeEnum)).toThrow(
+        /noMatch/
+      );
     });
 
     it('sets the type of the object', () => {

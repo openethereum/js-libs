@@ -4,7 +4,7 @@
 // SPDX-License-Identifier: MIT
 
 import ParamType from './paramType';
-import { ParamTypeEnum } from '../../types';
+import { TokenTypeEnum } from '../../types';
 
 /**
  * Convert a string to a ParamType.
@@ -16,7 +16,7 @@ export const toParamType = (type: string, indexed?: boolean): ParamType => {
   if (type[type.length - 1] === ']') {
     const last = type.lastIndexOf('[');
     const length = type.substr(last + 1, type.length - last - 2);
-    const subtype = toParamType(<ParamTypeEnum>type.substr(0, last));
+    const subtype = toParamType(type.substr(0, last) as TokenTypeEnum);
 
     if (length.length === 0) {
       return new ParamType('array', subtype, 0, indexed);
