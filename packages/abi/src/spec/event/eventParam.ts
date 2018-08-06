@@ -3,22 +3,36 @@
 //
 // SPDX-License-Identifier: MIT
 
+import Param from '../param';
 import ParamType from '../paramType';
-import { ParamTypeEnum } from '../../types';
+import { TokenTypeEnum } from '../../types';
 import { toParamType } from '../paramType/format';
+
+interface SimplifiedParam {
+  indexed?: boolean;
+  name: string;
+  type: TokenTypeEnum;
+}
 
 class EventParam {
   private _indexed: boolean;
   private _kind: ParamType;
   private _name: string;
 
-  static toEventParams(params: ParamType[]) {
+  static toEventParams(params: (Param | SimplifiedParam)[]) {
     return params.map(
-      param => new EventParam(param.name, param.type, param.indexed)
+      param =>
+        new EventParam(
+          param.name,
+          (param as Param).kind
+            ? (param as Param).kind.type
+            : (param as SimplifiedParam).type,
+          (param as SimplifiedParam).indexed
+        )
     );
   }
 
-  constructor(name: string, type: ParamTypeEnum, indexed = false) {
+  constructor(name: string, type: TokenTypeEnum, indexed = false) {
     this._name = name;
     this._indexed = indexed;
     this._kind = toParamType(type, indexed);

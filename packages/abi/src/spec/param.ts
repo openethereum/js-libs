@@ -4,7 +4,7 @@
 // SPDX-License-Identifier: MIT
 
 import ParamType from './paramType';
-import { ParamTypeEnum } from '../types';
+import { TokenTypeEnum } from '../types';
 import { toParamType } from './paramType/format';
 
 class Param {
@@ -16,7 +16,7 @@ class Param {
     this._kind = toParamType(type);
   }
 
-  static toParams(params: (Param | { name: string; type: ParamTypeEnum })[]) {
+  static toParams(params: (Param | { name: string; type: TokenTypeEnum })[]) {
     return params.map(param => {
       if (param instanceof Param) {
         return param;

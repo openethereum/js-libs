@@ -14,7 +14,15 @@ import {
 import Mediate from './mediate';
 import Token from '../token/token';
 import { isArray, isInstanceOf } from '../util/types';
-import { TokenValue } from '../types';
+import {
+  AddressValue,
+  BoolValue,
+  BytesValue,
+  FixedBytesValue,
+  IntValue,
+  StringValue,
+  TokenValue
+} from '../types';
 
 class Encoder {
   static encode(tokens: Token[]) {
@@ -37,7 +45,7 @@ class Encoder {
     return `${inits}${closings}`;
   }
 
-  static encodeToken(token: Token, index = 0) {
+  static encodeToken(token: Token, index = 0): Mediate {
     if (!isInstanceOf(token, Token)) {
       throw new Error('token should be instanceof Token');
     }
@@ -45,31 +53,33 @@ class Encoder {
     try {
       switch (token.type) {
         case 'address':
-          return new Mediate('raw', padAddress(token.value as string));
+          return new Mediate('raw', padAddress(token.value as AddressValue));
 
         case 'int':
         case 'uint':
-          return new Mediate('raw', padU32(token.value as string));
+          return new Mediate('raw', padU32(token.value as IntValue));
 
         case 'bool':
-          return new Mediate('raw', padBool(token.value as boolean));
+          return new Mediate('raw', padBool(token.value as BoolValue));
 
         case 'fixedBytes':
-          return new Mediate('raw', padFixedBytes(token.value as any[]));
+          return new Mediate(
+            'raw',
+            padFixedBytes(token.value as FixedBytesValue)
+          );
 
         case 'bytes':
-          return new Mediate('prefixed', padBytes(token.value as any[]));
+          return new Mediate('prefixed', padBytes(token.value as BytesValue));
 
         case 'string':
-          return new Mediate('prefixed', padString(token.value as string));
+          return new Mediate('prefixed', padString(token.value as StringValue));
 
         case 'fixedArray':
         case 'array':
           return new Mediate(
             token.type,
-            (token.value as TokenValue[]).map(token =>
-              Encoder.encodeToken(token)
-            )
+            // TODO token.value as Token[] seems weird.
+            (token.value as Token[]).map(token => Encoder.encodeToken(token))
           );
       }
     } catch (e) {

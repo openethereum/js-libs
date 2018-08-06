@@ -6,7 +6,13 @@
 import BigNumber from 'bignumber.js';
 import { encode } from 'utf8';
 
-import { Bytes } from '../types';
+import {
+  AddressValue,
+  BoolValue,
+  BytesValue,
+  IntValue,
+  UintValue
+} from '../types';
 import { isArray } from './types';
 
 const ZERO_64 =
@@ -17,7 +23,7 @@ const ZERO_64 =
  *
  * @param input - The input address to pad.
  */
-export const padAddress = (input: string) => {
+export const padAddress = (input: AddressValue) => {
   const inputWithout0x = input.startsWith('0x') ? input.substr(2) : input;
 
   return `${ZERO_64}${inputWithout0x}`.slice(-64);
@@ -28,7 +34,7 @@ export const padAddress = (input: string) => {
  *
  * @param input - The input address to pad.
  */
-export const padBool = (input: boolean) => {
+export const padBool = (input: BoolValue) => {
   return `${ZERO_64}${input ? '1' : '0'}`.slice(-64);
 };
 
@@ -37,7 +43,7 @@ export const padBool = (input: boolean) => {
  *
  * @param input - The input address to pad.
  */
-export const padU32 = (input: string | number | BigNumber) => {
+export const padU32 = (input: IntValue | UintValue) => {
   let bn = new BigNumber(input);
 
   if (bn.isLessThan(0)) {
@@ -57,9 +63,9 @@ export const padU32 = (input: string | number | BigNumber) => {
  *
  * @param input - The input string to convert.
  */
-export const stringToBytes = (input: string | Bytes) => {
+export const stringToBytes = (input: BytesValue) => {
   if (isArray(input)) {
-    return input as Bytes;
+    return input as number[];
   } else if ((input as string).startsWith('0x')) {
     const matches =
       (input as string)
@@ -78,7 +84,7 @@ export const stringToBytes = (input: string | Bytes) => {
  *
  * @param input - The input bytes to pad.
  */
-export const padBytes = (input: string | Bytes) => {
+export const padBytes = (input: BytesValue) => {
   const inputBytes = stringToBytes(input);
 
   return `${padU32(inputBytes.length)}${padFixedBytes(inputBytes)}`;
@@ -89,7 +95,7 @@ export const padBytes = (input: string | Bytes) => {
  *
  * @param input - Input bytes to pad.
  */
-export const padFixedBytes = (input: string | Bytes) => {
+export const padFixedBytes = (input: BytesValue) => {
   const inputBytes = stringToBytes(input);
   const sinput = inputBytes
     .map(code => `0${code.toString(16)}`.slice(-2))

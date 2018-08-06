@@ -3,14 +3,12 @@
 //
 // SPDX-License-Identifier: MIT
 
-import { MediateType } from '../types';
+import { MediateType, TokenValue } from '../types';
 import { padU32 } from '../util/pad';
 
 const TYPES: MediateType[] = ['raw', 'prefixed', 'fixedArray', 'array'];
 
-type RawValue = number | string;
-type ArrayValue = RawValue[] | Mediate[];
-type MediateValue = RawValue | ArrayValue;
+type MediateValue = TokenValue | Mediate[];
 
 class Mediate {
   private _type: MediateType;

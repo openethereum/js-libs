@@ -5,10 +5,11 @@
 
 import BigNumber from 'bignumber.js';
 
-export type Bytes = number[];
+import Token from './token';
 
 export type MediateType = 'raw' | 'prefixed' | 'fixedArray' | 'array';
 
+// Elementary types
 export type TokenTypeEnum =
   | 'address'
   | 'bool'
@@ -20,11 +21,24 @@ export type TokenTypeEnum =
   | 'fixedArray'
   | 'array';
 
+// TS types for each of the above type's values
+export type AddressValue = string; // '0x123...'
+export type BoolValue = boolean | string; // true or '1'
+export type BytesValue = string | number[]; // '0x123' or [34, 35, 36]
+export type StringValue = string; // 'foo'
+export type IntValue = number | string | BigNumber; // -1
+export type UintValue = IntValue; // 1
+export type FixedBytesValue = BytesValue; // '0x123'
+export type FixedArrayValue = (boolean | string | number | BigNumber | Token)[];
+export type ArrayValue = FixedArrayValue;
+
 export type TokenValue =
-  | boolean
-  | string
-  | number
-  | BigNumber
-  | string[]
-  | number[]
-  | BigNumber[];
+  | AddressValue
+  | Boolean
+  | BytesValue
+  | StringValue
+  | IntValue
+  | UintValue
+  | FixedBytesValue
+  | FixedArrayValue
+  | ArrayValue;

@@ -87,23 +87,25 @@ describe('encoder/Encoder', () => {
     it('throws an Error on invalid tokens', () => {
       const token = new Token('address');
 
+      // @ts-ignore We uglily set the Token type here.
       token._type = 'noMatch';
 
-      expect(() => Encoder.encodeToken(token)).to.throw(/noMatch/);
+      expect(() => Encoder.encodeToken(token)).toThrow(/noMatch/);
     });
 
     it('throws and error on invalid value tokens', () => {
       const token = new Token('uint');
 
+      // @ts-ignore We uglily set the Token value here.
       token._value = 'invalidNumber';
 
-      expect(() => Encoder.encodeToken(token)).to.throw(/Cannot encode/);
+      expect(() => Encoder.encodeToken(token)).toThrow(/Cannot encode/);
     });
   });
 
   describe('encode', () => {
     it('requires tokens array', () => {
-      expect(() => Encoder.encode()).to.throw(/array/);
+      expect(() => Encoder.encode(undefined)).toThrow(/array/);
     });
 
     describe('addresses', () => {
