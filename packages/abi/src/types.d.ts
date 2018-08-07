@@ -7,6 +7,14 @@ import BigNumber from 'bignumber.js';
 
 import Token from './token';
 
+export interface AbiInput {
+  indexed?: boolean;
+  name: string;
+  type: TokenTypeEnum;
+}
+
+export type AbiItemType = 'function' | 'event' | 'constructor' | 'fallback';
+
 export type MediateType = 'raw' | 'prefixed' | 'fixedArray' | 'array';
 
 // Elementary types
@@ -42,3 +50,15 @@ export type TokenValue =
   | FixedBytesValue
   | FixedArrayValue
   | ArrayValue;
+
+export interface AbiItem {
+  anonymous?: boolean;
+  constant?: boolean;
+  inputs: AbiInput[];
+  name?: string;
+  payable?: boolean;
+  outputs?: AbiInput[];
+  type: AbiItemType;
+}
+
+export type AbiObject = AbiItem[];

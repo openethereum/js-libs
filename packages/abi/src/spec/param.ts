@@ -3,8 +3,8 @@
 //
 // SPDX-License-Identifier: MIT
 
+import { AbiInput, TokenTypeEnum } from '../types';
 import ParamType from './paramType';
-import { TokenTypeEnum } from '../types';
 import { toParamType } from './paramType/format';
 
 class Param {
@@ -16,7 +16,7 @@ class Param {
     this._kind = toParamType(type);
   }
 
-  static toParams(params: (Param | { name: string; type: TokenTypeEnum })[]) {
+  static toParams(params: (Param | AbiInput)[]) {
     return params.map(param => {
       if (param instanceof Param) {
         return param;
