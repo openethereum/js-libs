@@ -99,6 +99,7 @@ describe('encoder/Encoder', () => {
       // @ts-ignore We uglily set the Token value here.
       token._value = 'invalidNumber';
 
+      console.log('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA');
       expect(() => Encoder.encodeToken(token)).toThrow(/Cannot encode/);
     });
   });

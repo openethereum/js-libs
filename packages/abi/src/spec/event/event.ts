@@ -3,21 +3,23 @@
 //
 // SPDX-License-Identifier: MIT
 
-const Decoder = require('../../decoder/decoder');
-const DecodedLog = require('./decodedLog');
-const DecodedLogParam = require('./decodedLogParam');
-const EventParam = require('./eventParam');
-const { asAddress } = require('../../util/sliceAs');
-const { eventSignature } = require('../../util/signature');
+import { AbiItem } from '../../types';
+import { asAddress } from '../../util/sliceAs';
+import Decoder from '../../decoder/decoder';
+import DecodedLog from './decodedLog';
+import DecodedLogParam from './decodedLogParam';
+import EventParam from './eventParam';
+import { eventSignature } from '../../util/signature';
+import Token from '../../token';
 
 class Event {
   private _anonymous: boolean;
   private _id: string;
-  private _inputs: any;
+  private _inputs: EventParam[];
   private _name: string;
   private _signature: string;
 
-  constructor(abi) {
+  constructor(abi: AbiItem) {
     this._inputs = EventParam.toEventParams(abi.inputs || []);
     this._anonymous = !!abi.anonymous;
 
@@ -59,16 +61,16 @@ class Event {
     return this._inputs.map(input => input.name);
   }
 
-  indexedParams(indexed) {
+  indexedParams(indexed: boolean) {
     return this._inputs.filter(input => input.indexed === indexed);
   }
 
-  decodeLog(topics, data) {
+  decodeLog(topics: string[], data: string) {
     const topicParams = this.indexedParams(true);
     const dataParams = this.indexedParams(false);
 
     let address;
-    let toSkip;
+    let toSkip: number;
 
     if (!this.anonymous) {
       address = asAddress(topics[0]);
@@ -93,7 +95,7 @@ class Event {
     const dataTypes = dataParams.map(param => param.kind);
     const dataTokens = Decoder.decode(dataTypes, data);
 
-    const namedTokens = {};
+    const namedTokens: { [key: string]: Token } = {};
 
     topicParams.forEach((param, index) => {
       namedTokens[param.name || index] = topicTokens[index];

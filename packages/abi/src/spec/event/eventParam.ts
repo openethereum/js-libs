@@ -3,31 +3,26 @@
 //
 // SPDX-License-Identifier: MIT
 
+import { AbiInput } from '../../types';
 import Param from '../param';
 import ParamType from '../paramType';
 import { TokenTypeEnum } from '../../types';
 import { toParamType } from '../paramType/format';
-
-interface SimplifiedParam {
-  indexed?: boolean;
-  name: string;
-  type: TokenTypeEnum;
-}
 
 class EventParam {
   private _indexed: boolean;
   private _kind: ParamType;
   private _name: string;
 
-  static toEventParams(params: (Param | SimplifiedParam)[]) {
+  static toEventParams(params: (Param | AbiInput)[]) {
     return params.map(
       param =>
         new EventParam(
           param.name,
           (param as Param).kind
             ? (param as Param).kind.type
-            : (param as SimplifiedParam).type,
-          (param as SimplifiedParam).indexed
+            : ((param as AbiInput).type as TokenTypeEnum),
+          (param as AbiInput).indexed
         )
     );
   }

@@ -4,13 +4,14 @@
 // SPDX-License-Identifier: MIT
 
 import DecodedLog from './decodedLog';
+import DecodedLogParam from './decodedLogParam';
 
-const log = new DecodedLog('someParams', 'someAddress');
+const log = new DecodedLog([new DecodedLogParam('someParams')], 'someAddress');
 
 describe('spec/event/DecodedLog', () => {
   describe('constructor', () => {
     it('sets internal state', () => {
-      expect(log.params).toEqual('someParams');
+      expect(log.params).toEqual([log]);
       expect(log.address).toEqual('someAddress');
     });
   });

@@ -5,7 +5,7 @@
 
 import { fromParamType, toParamType } from './format';
 import ParamType from './paramType';
-import { ParamTypeEnum } from '../../types';
+import { TokenTypeEnum } from '../../types';
 
 describe('spec/paramType/format', () => {
   describe('fromParamType', () => {
@@ -99,7 +99,7 @@ describe('spec/paramType/format', () => {
 
   describe('toParamType', () => {
     it('errors on invalid types', () => {
-      expect(() => toParamType(<ParamTypeEnum>'noMatch')).toThrow(/noMatch/);
+      expect(() => toParamType('noMatch' as TokenTypeEnum)).toThrow(/noMatch/);
     });
 
     describe('simple mapping', () => {

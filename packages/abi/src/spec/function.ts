@@ -3,13 +3,24 @@
 //
 // SPDX-License-Identifier: MIT
 
+import { AbiItem } from '../types';
 import Decoder from '../decoder/decoder';
 import Encoder from '../encoder/encoder';
-import Param from './param';
 import { methodSignature } from '../util/signature';
+import Param from './param';
+import Token from '../token';
 
 class Func {
-  constructor(abi) {
+  private _abi: AbiItem;
+  private _constant: boolean;
+  private _id: string;
+  private _inputs: Param[];
+  private _name: string;
+  private _outputs: Param[];
+  private _payable: boolean;
+  private _signature: string;
+
+  constructor(abi: AbiItem) {
     this._abi = abi;
     this._constant = !!abi.constant;
     this._payable = abi.payable;
@@ -58,15 +69,15 @@ class Func {
     return this._signature;
   }
 
-  decodeInput(data) {
+  decodeInput(data: string) {
     return Decoder.decode(this.inputParamTypes(), data);
   }
 
-  decodeOutput(data) {
+  decodeOutput(data: string) {
     return Decoder.decode(this.outputParamTypes(), data);
   }
 
-  encodeCall(tokens) {
+  encodeCall(tokens: Token[]) {
     return `${this._signature}${Encoder.encode(tokens)}`;
   }
 
@@ -79,4 +90,4 @@ class Func {
   }
 }
 
-module.exports = Func;
+export default Func;

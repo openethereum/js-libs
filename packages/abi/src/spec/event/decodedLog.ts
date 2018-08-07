@@ -3,11 +3,13 @@
 //
 // SPDX-License-Identifier: MIT
 
+import DecodedLogParam from './decodedLogParam';
+
 class DecodedLog {
   private _address: string;
-  private _params: string;
+  private _params: DecodedLogParam[];
 
-  constructor(params: string, address: string) {
+  constructor(params: DecodedLogParam[], address: string) {
     this._params = params;
     this._address = address;
   }

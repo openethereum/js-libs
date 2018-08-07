@@ -3,12 +3,12 @@
 //
 // SPDX-License-Identifier: MIT
 
-const BigNumber = require('bignumber.js');
+import BigNumber from 'bignumber.js';
 
-const Decoder = require('./decoder');
-const ParamType = require('../spec/paramType');
-const Token = require('../token');
-const { padU32 } = require('../util/pad');
+import Decoder from './decoder';
+import ParamType from '../spec/paramType';
+import Token from '../token';
+import { padU32 } from '../util/pad';
 
 describe('decoder/Decoder', () => {
   const stringToBytes = function(str: string) {
@@ -118,15 +118,20 @@ describe('decoder/Decoder', () => {
 
   describe('decodeParam', () => {
     it('throws an error on non ParamType param', () => {
-      expect(() => Decoder.decodeParam({})).toThrow(/ParamType/);
+      expect(() => Decoder.decodeParam({} as ParamType, undefined, undefined)).toThrow(
+        /ParamType/
+      );
     });
 
     it('throws an error on invalid param type', () => {
       const pt = new ParamType('address');
 
+      // @ts-ignore We uglily set the type here.
       pt._type = 'noMatch';
 
-      expect(() => Decoder.decodeParam(pt)).toThrow(/noMatch/);
+      expect(() => Decoder.decodeParam(pt, undefined, undefined)).toThrow(
+        /noMatch/
+      );
     });
 
     it('decodes an address', () => {

@@ -10,7 +10,7 @@ import Token from './token';
 export interface AbiInput {
   indexed?: boolean;
   name: string;
-  type: TokenTypeEnum;
+  type: string;
 }
 
 export type AbiItemType = 'function' | 'event' | 'constructor' | 'fallback';

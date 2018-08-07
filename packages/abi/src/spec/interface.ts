@@ -18,11 +18,13 @@ class Interface {
   }
 
   static encodeTokens(paramTypes: ParamType[], values: TokenValue[]) {
-    const createToken = function(paramType: ParamType, value: TokenValue) {
+    const createToken = (paramType: ParamType, value: TokenValue): Token => {
       if (paramType.subtype) {
         return new Token(
           paramType.type,
-          value.map(entry => createToken(paramType.subtype, entry))
+          (value as TokenValue[]).map(entry =>
+            createToken(paramType.subtype, entry)
+          )
         );
       }
 
@@ -69,7 +71,7 @@ class Interface {
     return this._interface.filter(item => item instanceof Func);
   }
 
-  encodeTokens(paramTypes: ParamType[], values) {
+  encodeTokens(paramTypes: ParamType[], values: TokenValue[]) {
     return Interface.encodeTokens(paramTypes, values);
   }
 }

@@ -46,6 +46,10 @@ export const padBool = (input: BoolValue) => {
 export const padU32 = (input: IntValue | UintValue) => {
   let bn = new BigNumber(input);
 
+  if (bn.isNaN()) {
+    throw new Error('Input is not a valid number.');
+  }
+
   if (bn.isLessThan(0)) {
     bn = new BigNumber(
       'ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff',
