@@ -12,7 +12,7 @@ class DecodedLogParam {
   private _name: string;
   private _token: Token;
 
-  constructor(name: string, kind?: ParamType, token?: Token) {
+  constructor(name: string, kind: ParamType, token: Token) {
     if (!isInstanceOf(kind, ParamType)) {
       throw new Error('kind not instanceof ParamType');
     } else if (!isInstanceOf(token, Token)) {

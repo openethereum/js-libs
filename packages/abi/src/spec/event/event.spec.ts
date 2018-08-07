@@ -17,7 +17,7 @@ describe('spec/event/Event', () => {
     { name: 'a', type: 'bool' },
     { name: 'b', type: 'uint', indexed: true }
   ];
-  console.log(EventParam);
+
   const inputs = [
     new EventParam('a', 'bool', false),
     new EventParam('b', 'uint', true)

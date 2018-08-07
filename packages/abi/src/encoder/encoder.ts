@@ -49,7 +49,6 @@ class Encoder {
       throw new Error('token should be instanceof Token');
     }
 
-    console.log('encodeToken', token.type);
     try {
       switch (token.type) {
         case 'address':

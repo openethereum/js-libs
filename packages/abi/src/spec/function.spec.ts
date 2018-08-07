@@ -143,8 +143,8 @@ describe('spec/Function', () => {
         '1111111111111111111111111111111111111111111111111111111111111111'
       );
 
-      // TODO .toString(16)?
-      expect(result[0].value.toString()).toEqual(
+      // @ts-ignore toString doesn't take any args
+      expect(result[0].value.toString(16)).toEqual(
         '1111111111111111111111111111111111111111111111111111111111111111'
       );
     });
