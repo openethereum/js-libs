@@ -17,7 +17,8 @@
     "access": "public"
   },
   "scripts": {
-    "build": "rimraf lib && tsc"
+    "build": "rimraf lib && tsc",
+    "test": "jest --config=../../jest.config.js"
   },
   "devDependencies": {
     "@types/lodash": "^4.14.112",
