@@ -16,7 +16,8 @@
     "access": "public"
   },
   "scripts": {
-    "build": "rimraf lib && tsc"
+    "build": "rimraf lib && tsc",
+    "test": "jest"
   },
   "devDependencies": {
     "@types/utf8": "^2.1.6",
