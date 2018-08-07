@@ -4,10 +4,10 @@
 // SPDX-License-Identifier: MIT
 
 class BytesTaken {
-  private _bytes: number;
+  private _bytes: number[];
   private _newOffset: number;
 
-  constructor(bytes: number, newOffset: number) {
+  constructor(bytes: number[], newOffset: number) {
     this._bytes = bytes;
     this._newOffset = newOffset;
   }

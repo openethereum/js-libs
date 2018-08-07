@@ -3,11 +3,13 @@
 //
 // SPDX-License-Identifier: MIT
 
+import Token from '../token';
+
 class DecodeResult {
-  _token: string;
+  _token: Token;
   _newOffset: number;
 
-  constructor(token: string, newOffset: number) {
+  constructor(token: Token, newOffset: number) {
     this._token = token;
     this._newOffset = newOffset;
   }
