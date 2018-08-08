@@ -13,3 +13,4 @@ node_js:
 script:
   - yarn lint
   - yarn test --coverage
+  - yarn coveralls
