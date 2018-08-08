@@ -2,6 +2,9 @@ cache:
   yarn: true
   directories:
     - node_modules
+before_install:
+  - curl -o- -L https://yarnpkg.com/install.sh | bash # Travis's default version is 1.3.2, we need 1.4.2 for nohoist
+  - export PATH=$HOME/.yarn/bin:$PATH
 install:
   - yarn install
 language: node_js
