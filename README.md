@@ -2,8 +2,11 @@
 
 A collection of JavaScript libraries for dapp development.
 
-Packages
---------
+[![Build Status](https://travis-ci.org/paritytech/js-libs.svg?branch=master)](https://travis-ci.org/paritytech/js-libs)
+[![Gitter: Parity.js](https://img.shields.io/badge/gitter-parity.js-4AB495.svg)](https://gitter.im/paritytech/parity.js)
+[![Riot: +Parity](https://img.shields.io/badge/riot-%2Bparity%3Amatrix.parity.io-orange.svg)](https://riot.im/app/#/group/+parity:matrix.parity.io)
+
+## Packages
 
 This repository is a monorepo that we manage using [Lerna](https://lernajs.io). That means that we actually publish [several packages](/packages) to npm from the same codebase, including:
 
@@ -17,7 +20,6 @@ This repository is a monorepo that we manage using [Lerna](https://lernajs.io). 
 | [`@parity/contracts`](/packages/contracts)           | TODO    | TODO | Parity's [contracts](https://github.com/parity-contracts) as ES6 classes.                          |
 | [`@parity/electron`](/packages/electron)             | TODO    | TODO | Control the Parity Ethereum node from Electron.                                                    |
 
-License
--------
+## License
 
 [MIT](/LICENSE)
