@@ -13,5 +13,4 @@ node_js:
   - "10"
 script:
   - yarn lint
-  - yarn test --coverage
-  - coveralls
+  - yarn test --coverage --coverageReporters=text-lcov | coveralls
