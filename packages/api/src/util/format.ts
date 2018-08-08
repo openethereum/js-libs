@@ -31,12 +31,9 @@ export const cleanupValue = (
   if (value instanceof Array && type.match(/bytes[0-9]+/)) {
     // figure out if it's an ASCII string hiding in there:
     let ascii = '';
+    let ended = false;
 
-    for (
-      let index = 0, ended = false;
-      index < value.length && ascii !== null;
-      ++index
-    ) {
+    for (let index = 0; index < value.length && ascii !== null; ++index) {
       const val = value[index];
 
       if (val === 0) {
@@ -102,11 +99,11 @@ export const bytesToAscii = (bytes: number[]) => {
  *
  * @param string - The ASCII string to convert.
  */
-export const asciiToHex = (string: string) => {
+export const asciiToHex = (baseString: string) => {
   let result = '0x';
 
-  for (let i = 0; i < string.length; ++i) {
-    result += ('0' + string.charCodeAt(i).toString(16)).substr(-2);
+  for (let i = 0; i < baseString.length; ++i) {
+    result += ('0' + baseString.charCodeAt(i).toString(16)).substr(-2);
   }
 
   return result;

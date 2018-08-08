@@ -102,18 +102,18 @@ export const inFilter = options => {
 
 export const inHex = (str: string) => toHex(str);
 
-export const inNumber10 = (number: BlockNumber) => {
-  if (isInstanceOf(number, BigNumber)) {
-    return (number as BigNumber).toNumber();
+export const inNumber10 = (n: BlockNumber) => {
+  if (isInstanceOf(n, BigNumber)) {
+    return (n as BigNumber).toNumber();
   }
 
-  return new BigNumber(number || 0).toNumber();
+  return new BigNumber(n || 0).toNumber();
 };
 
-export const inNumber16 = (number: BlockNumber) => {
-  const bn = isInstanceOf(number, BigNumber)
-    ? number as BigNumber
-    : new BigNumber(number || 0);
+export const inNumber16 = (n: BlockNumber) => {
+  const bn = isInstanceOf(n, BigNumber)
+    ? n as BigNumber
+    : new BigNumber(n || 0);
 
   if (!bn.isInteger()) {
     throw new Error(
