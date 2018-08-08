@@ -1,0 +1,12 @@
+cache:
+  yarn: true
+  directories:
+    - node_modules
+install:
+  - yarn install
+language: node_js
+node_js:
+  - '10'
+script:
+  - yarn lint
+  - yarn test
