@@ -19,7 +19,7 @@
     ]
   },
   "scripts": {
-    "coveralls": "coveralls",
+    "build": "lerna run build",
     "lint": "tslint 'packages/**/*.ts'",
     "test": "jest"
   },
