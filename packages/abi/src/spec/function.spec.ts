@@ -17,8 +17,8 @@ describe('spec/Function', () => {
 
   const uint = new Param('output', 'uint');
   const bool = new Param('boolin', 'bool');
-  const string = new Param('stringin', 'string');
-  const inputs = [bool, string];
+  const baseString = new Param('stringin', 'string');
+  const inputs = [bool, baseString];
   const outputs = [uint];
 
   const func = new Func({
@@ -108,7 +108,7 @@ describe('spec/Function', () => {
 
   describe('inputParamTypes', () => {
     it('retrieves the input types as received', () => {
-      expect(func.inputParamTypes()).toEqual([bool.kind, string.kind]);
+      expect(func.inputParamTypes()).toEqual([bool.kind, baseString.kind]);
     });
   });
 

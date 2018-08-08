@@ -262,12 +262,12 @@ describe('encoder/Encoder', () => {
 
     describe('string', () => {
       it('encodes a string', () => {
-        const string = 'gavofyork';
+        const baseString = 'gavofyork';
         const stringEnc = padFixedBytes('0x6761766f66796f726b');
-        const token = new Token('string', string);
+        const token = new Token('string', baseString);
 
         expect(Encoder.encode([token])).toEqual(
-          `${padU32(0x20)}${padU32(string.length.toString(16))}${stringEnc}`
+          `${padU32(0x20)}${padU32(baseString.length.toString(16))}${stringEnc}`
         );
       });
     });

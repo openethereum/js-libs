@@ -12,7 +12,7 @@ class ParamType {
   private _subtype?: ParamType;
   private _type: TokenTypeEnum;
 
-  constructor(
+  constructor (
     type: TokenTypeEnum,
     subtype: ParamType = null,
     length = 0,
@@ -26,7 +26,7 @@ class ParamType {
     this._indexed = indexed;
   }
 
-  static validateType(type: TokenTypeEnum) {
+  static validateType (type: TokenTypeEnum) {
     if (TYPES.some(_type => type === _type)) {
       return true;
     }
@@ -34,19 +34,19 @@ class ParamType {
     throw new Error(`Invalid type ${type} received for ParamType`);
   }
 
-  get type() {
+  get type () {
     return this._type;
   }
 
-  get subtype() {
+  get subtype () {
     return this._subtype;
   }
 
-  get length() {
+  get length () {
     return this._length;
   }
 
-  get indexed() {
+  get indexed () {
     return this._indexed;
   }
 }

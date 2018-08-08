@@ -13,13 +13,13 @@ describe('spec/event/DecodedLogParam', () => {
     const tk = new Token('bool');
 
     it('disallows kind not instanceof ParamType', () => {
-      expect(() => new DecodedLogParam('test', <any>'param')).toThrow(
+      expect(() => new DecodedLogParam('test', 'param' as any)).toThrow(
         /ParamType/
       );
     });
 
     it('disallows token not instanceof Token', () => {
-      expect(() => new DecodedLogParam('test', pt, <any>'token')).toThrow(
+      expect(() => new DecodedLogParam('test', pt, 'token' as any)).toThrow(
         /Token/
       );
     });

@@ -13,11 +13,11 @@ import Token from '../token';
 class Interface {
   private _interface: (Constructor | Event | Func)[];
 
-  constructor(abi: AbiObject) {
+  constructor (abi: AbiObject) {
     this._interface = Interface.parseABI(abi);
   }
 
-  static encodeTokens(paramTypes: ParamType[], values: TokenValue[]) {
+  static encodeTokens (paramTypes: ParamType[], values: TokenValue[]) {
     const createToken = (paramType: ParamType, value: TokenValue): Token => {
       if (paramType.subtype) {
         return new Token(
@@ -36,7 +36,7 @@ class Interface {
     );
   }
 
-  static parseABI(abi: AbiObject) {
+  static parseABI (abi: AbiObject) {
     return abi.map(item => {
       switch (item.type) {
         case 'constructor':
@@ -55,23 +55,23 @@ class Interface {
     });
   }
 
-  get interface() {
+  get interface () {
     return this._interface;
   }
 
-  get constructors() {
+  get constructors () {
     return this._interface.filter(item => item instanceof Constructor);
   }
 
-  get events() {
+  get events () {
     return this._interface.filter(item => item instanceof Event);
   }
 
-  get functions() {
+  get functions () {
     return this._interface.filter(item => item instanceof Func);
   }
 
-  encodeTokens(paramTypes: ParamType[], values: TokenValue[]) {
+  encodeTokens (paramTypes: ParamType[], values: TokenValue[]) {
     return Interface.encodeTokens(paramTypes, values);
   }
 }

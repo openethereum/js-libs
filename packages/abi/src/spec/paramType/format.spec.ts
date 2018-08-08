@@ -11,9 +11,9 @@ describe('spec/paramType/format', () => {
   describe('fromParamType', () => {
     it('errors on invalid types', () => {
       expect(() =>
-        fromParamType(<any>{
+        fromParamType({
           type: 'noMatch'
-        })
+        } as any)
       ).toThrow(/noMatch/);
     });
 

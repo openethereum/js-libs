@@ -10,14 +10,14 @@ class Token {
   private _type: TokenTypeEnum;
   private _value: TokenValue;
 
-  constructor(type: TokenTypeEnum, value?: TokenValue) {
+  constructor (type: TokenTypeEnum, value?: TokenValue) {
     Token.validateType(type);
 
     this._type = type;
     this._value = value;
   }
 
-  static validateType(type: TokenTypeEnum) {
+  static validateType (type: TokenTypeEnum) {
     if (TYPES.some(_type => type === _type)) {
       return true;
     }
@@ -25,11 +25,11 @@ class Token {
     throw new Error(`Invalid type ${type} received for Token`);
   }
 
-  get type() {
+  get type () {
     return this._type;
   }
 
-  get value() {
+  get value () {
     return this._value;
   }
 }

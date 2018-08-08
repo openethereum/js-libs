@@ -3,10 +3,9 @@
 //
 // SPDX-License-Identifier: MIT
 
-import { AbiInput } from '../../types';
+import { AbiInput, TokenTypeEnum } from '../../types';
 import Param from '../param';
 import ParamType from '../paramType';
-import { TokenTypeEnum } from '../../types';
 import { toParamType } from '../paramType/format';
 
 class EventParam {
@@ -14,7 +13,7 @@ class EventParam {
   private _kind: ParamType;
   private _name: string;
 
-  static toEventParams(params: (Param | AbiInput)[]) {
+  static toEventParams (params: (Param | AbiInput)[]) {
     return params.map(
       param =>
         new EventParam(
@@ -27,21 +26,21 @@ class EventParam {
     );
   }
 
-  constructor(name: string, type: TokenTypeEnum, indexed = false) {
+  constructor (name: string, type: TokenTypeEnum, indexed = false) {
     this._name = name;
     this._indexed = indexed;
     this._kind = toParamType(type, indexed);
   }
 
-  get name() {
+  get name () {
     return this._name;
   }
 
-  get kind() {
+  get kind () {
     return this._kind;
   }
 
-  get indexed() {
+  get indexed () {
     return this._indexed;
   }
 }

@@ -9,16 +9,16 @@ class DecodedLog {
   private _address: string;
   private _params: DecodedLogParam[];
 
-  constructor(params: DecodedLogParam[], address: string) {
+  constructor (params: DecodedLogParam[], address: string) {
     this._params = params;
     this._address = address;
   }
 
-  get address() {
+  get address () {
     return this._address;
   }
 
-  get params() {
+  get params () {
     return this._params;
   }
 }

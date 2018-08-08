@@ -14,14 +14,14 @@ class Mediate {
   private _type: MediateType;
   private _value: MediateValue;
 
-  constructor(type: MediateType, value: MediateValue) {
+  constructor (type: MediateType, value: MediateValue) {
     Mediate.validateType(type);
 
     this._type = type;
     this._value = value;
   }
 
-  static offsetFor(mediates: Mediate[], position: number) {
+  static offsetFor (mediates: Mediate[], position: number) {
     if (position < 0 || position >= mediates.length) {
       throw new Error(
         `Invalid position ${position} specified for Mediate.offsetFor`
@@ -37,7 +37,7 @@ class Mediate {
     }, initLength);
   }
 
-  static validateType(type: MediateType) {
+  static validateType (type: MediateType) {
     if (TYPES.filter(_type => type === _type).length) {
       return true;
     }
@@ -45,7 +45,7 @@ class Mediate {
     throw new Error(`Invalid type ${type} received for Mediate.validateType`);
   }
 
-  initLength(): number {
+  initLength (): number {
     switch (this._type) {
       case 'raw':
         return (this._value as string).length / 2;
@@ -61,7 +61,7 @@ class Mediate {
     }
   }
 
-  closingLength(): number {
+  closingLength (): number {
     switch (this._type) {
       case 'raw':
         return 0;
@@ -81,7 +81,7 @@ class Mediate {
     }
   }
 
-  init(suffixOffset: number): string {
+  init (suffixOffset: number): string {
     switch (this._type) {
       case 'raw':
         return this._value as string;
@@ -102,7 +102,7 @@ class Mediate {
     }
   }
 
-  closing(offset: number): string {
+  closing (offset: number): string {
     switch (this._type) {
       case 'raw':
         return '';
@@ -147,11 +147,11 @@ class Mediate {
     }
   }
 
-  get type() {
+  get type () {
     return this._type;
   }
 
-  get value() {
+  get value () {
     return this._value;
   }
 }

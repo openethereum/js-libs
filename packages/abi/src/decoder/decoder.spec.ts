@@ -11,7 +11,7 @@ import Token from '../token';
 import { padU32 } from '../util/pad';
 
 describe('decoder/Decoder', () => {
-  const stringToBytes = function(str: string) {
+  const stringToBytes = function (str: string) {
     return str.match(/.{1,2}/g).map(code => parseInt(code, 16));
   };
 

@@ -9,16 +9,16 @@ class DecodeResult {
   _token: Token;
   _newOffset: number;
 
-  constructor(token: Token, newOffset: number) {
+  constructor (token: Token, newOffset: number) {
     this._token = token;
     this._newOffset = newOffset;
   }
 
-  get token() {
+  get token () {
     return this._token;
   }
 
-  get newOffset() {
+  get newOffset () {
     return this._newOffset;
   }
 }

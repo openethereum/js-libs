@@ -35,7 +35,7 @@ describe('util/wei', () => {
     });
 
     it('throws an error on invalid units', () => {
-      expect(() => _getUnitMultiplier(<EtherDenomination>'invalid')).toThrow(
+      expect(() => _getUnitMultiplier('invalid' as EtherDenomination)).toThrow(
         /passed to wei formatter/
       );
     });

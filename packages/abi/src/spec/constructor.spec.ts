@@ -14,9 +14,9 @@ describe('spec/Constructor', () => {
     { name: 'stringin', type: 'string' }
   ];
   const bool = new Param('boolin', 'bool');
-  const string = new Param('stringin', 'string');
+  const baseString = new Param('stringin', 'string');
 
-  const inputs = [bool, string];
+  const inputs = [bool, baseString];
   const cr = new Constructor({ inputs: inputsArr, type: 'constructor' });
 
   describe('constructor', () => {
@@ -31,7 +31,7 @@ describe('spec/Constructor', () => {
 
   describe('inputParamTypes', () => {
     it('retrieves the input types as received', () => {
-      expect(cr.inputParamTypes()).toEqual([bool.kind, string.kind]);
+      expect(cr.inputParamTypes()).toEqual([bool.kind, baseString.kind]);
     });
   });
 

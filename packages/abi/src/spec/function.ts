@@ -20,7 +20,7 @@ class Func {
   private _payable: boolean;
   private _signature: string;
 
-  constructor(abi: AbiItem) {
+  constructor (abi: AbiItem) {
     this._abi = abi;
     this._constant = !!abi.constant;
     this._payable = abi.payable;
@@ -37,55 +37,55 @@ class Func {
     this._signature = signature;
   }
 
-  get abi() {
+  get abi () {
     return this._abi;
   }
 
-  get constant() {
+  get constant () {
     return this._constant;
   }
 
-  get id() {
+  get id () {
     return this._id;
   }
 
-  get inputs() {
+  get inputs () {
     return this._inputs;
   }
 
-  get name() {
+  get name () {
     return this._name;
   }
 
-  get outputs() {
+  get outputs () {
     return this._outputs;
   }
 
-  get payable() {
+  get payable () {
     return !!this._payable;
   }
 
-  get signature() {
+  get signature () {
     return this._signature;
   }
 
-  decodeInput(data: string) {
+  decodeInput (data: string) {
     return Decoder.decode(this.inputParamTypes(), data);
   }
 
-  decodeOutput(data: string) {
+  decodeOutput (data: string) {
     return Decoder.decode(this.outputParamTypes(), data);
   }
 
-  encodeCall(tokens: Token[]) {
+  encodeCall (tokens: Token[]) {
     return `${this._signature}${Encoder.encode(tokens)}`;
   }
 
-  inputParamTypes() {
+  inputParamTypes () {
     return this._inputs.map(input => input.kind);
   }
 
-  outputParamTypes() {
+  outputParamTypes () {
     return this._outputs.map(output => output.kind);
   }
 }

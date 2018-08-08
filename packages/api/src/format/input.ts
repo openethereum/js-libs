@@ -104,7 +104,7 @@ export const inHex = (str: string) => toHex(str);
 
 export const inNumber10 = (number: BlockNumber) => {
   if (isInstanceOf(number, BigNumber)) {
-    return (<BigNumber>number).toNumber();
+    return (number as BigNumber).toNumber();
   }
 
   return new BigNumber(number || 0).toNumber();
@@ -112,7 +112,7 @@ export const inNumber10 = (number: BlockNumber) => {
 
 export const inNumber16 = (number: BlockNumber) => {
   const bn = isInstanceOf(number, BigNumber)
-    ? <BigNumber>number
+    ? number as BigNumber
     : new BigNumber(number || 0);
 
   if (!bn.isInteger()) {

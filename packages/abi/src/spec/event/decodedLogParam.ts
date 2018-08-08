@@ -12,7 +12,7 @@ class DecodedLogParam {
   private _name: string;
   private _token: Token;
 
-  constructor(name: string, kind: ParamType, token: Token) {
+  constructor (name: string, kind: ParamType, token: Token) {
     if (!isInstanceOf(kind, ParamType)) {
       throw new Error('kind not instanceof ParamType');
     } else if (!isInstanceOf(token, Token)) {
@@ -24,15 +24,15 @@ class DecodedLogParam {
     this._token = token;
   }
 
-  get name() {
+  get name () {
     return this._name;
   }
 
-  get kind() {
+  get kind () {
     return this._kind;
   }
 
-  get token() {
+  get token () {
     return this._token;
   }
 }

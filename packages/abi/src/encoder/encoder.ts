@@ -24,7 +24,7 @@ import {
 } from '../types';
 
 class Encoder {
-  static encode(tokens: Token[]) {
+  static encode (tokens: Token[]) {
     if (!isArray(tokens)) {
       throw new Error('tokens should be array of Token');
     }
@@ -44,7 +44,7 @@ class Encoder {
     return `${inits}${closings}`;
   }
 
-  static encodeToken(token: Token, index = 0): Mediate {
+  static encodeToken (token: Token, index = 0): Mediate {
     if (!isInstanceOf(token, Token)) {
       throw new Error('token should be instanceof Token');
     }

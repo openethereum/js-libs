@@ -11,12 +11,12 @@ class Param {
   private _kind: ParamType;
   private _name: string;
 
-  constructor(name: string, type: string) {
+  constructor (name: string, type: string) {
     this._name = name;
     this._kind = toParamType(type);
   }
 
-  static toParams(params: (Param | AbiInput)[]) {
+  static toParams (params: (Param | AbiInput)[]) {
     return params.map(param => {
       if (param instanceof Param) {
         return param;
@@ -26,11 +26,11 @@ class Param {
     });
   }
 
-  get name() {
+  get name () {
     return this._name;
   }
 
-  get kind() {
+  get kind () {
     return this._kind;
   }
 }

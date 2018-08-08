@@ -19,7 +19,7 @@ class Event {
   private _name: string;
   private _signature: string;
 
-  constructor(abi: AbiItem) {
+  constructor (abi: AbiItem) {
     this._inputs = EventParam.toEventParams(abi.inputs || []);
     this._anonymous = !!abi.anonymous;
 
@@ -33,39 +33,39 @@ class Event {
     this._signature = signature;
   }
 
-  get anonymous() {
+  get anonymous () {
     return this._anonymous;
   }
 
-  get id() {
+  get id () {
     return this._id;
   }
 
-  get inputs() {
+  get inputs () {
     return this._inputs;
   }
 
-  get name() {
+  get name () {
     return this._name;
   }
 
-  get signature() {
+  get signature () {
     return this._signature;
   }
 
-  inputParamTypes() {
+  inputParamTypes () {
     return this._inputs.map(input => input.kind);
   }
 
-  inputParamNames() {
+  inputParamNames () {
     return this._inputs.map(input => input.name);
   }
 
-  indexedParams(indexed: boolean) {
+  indexedParams (indexed: boolean) {
     return this._inputs.filter(input => input.indexed === indexed);
   }
 
-  decodeLog(topics: string[], data: string) {
+  decodeLog (topics: string[], data: string) {
     const topicParams = this.indexedParams(true);
     const dataParams = this.indexedParams(false);
 

@@ -17,7 +17,7 @@ import { TokenValue } from '../types';
 const NULL = '0000000000000000000000000000000000000000000000000000000000000000';
 
 class Decoder {
-  static decode(params: ParamType[], data: string) {
+  static decode (params: ParamType[], data: string) {
     if (!isArray(params)) {
       throw new Error('Parameters should be array of ParamType');
     }
@@ -33,7 +33,7 @@ class Decoder {
     });
   }
 
-  static peek(slices: string[], position: number) {
+  static peek (slices: string[], position: number) {
     if (!slices || !slices[position]) {
       return NULL;
     }
@@ -41,7 +41,7 @@ class Decoder {
     return slices[position];
   }
 
-  static takeBytes(slices: string[], position: number, length: number) {
+  static takeBytes (slices: string[], position: number, length: number) {
     const slicesLength = Math.floor((length + 31) / 32);
     let bytesStr = '';
 
@@ -56,7 +56,7 @@ class Decoder {
     return new BytesTaken(bytes, position + slicesLength);
   }
 
-  static decodeParam(
+  static decodeParam (
     param: ParamType,
     slices: string[],
     offset: number
