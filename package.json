@@ -20,7 +20,7 @@
   },
   "scripts": {
     "lint": "tslint 'packages/**/*.ts'",
-    "test": "lerna exec yarn test"
+    "test": "jest"
   },
   "devDependencies": {
     "@types/jest": "^23.1.6",
