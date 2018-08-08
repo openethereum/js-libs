@@ -5,6 +5,4 @@
 
 import Abi from './abi';
 
-export * from './util';
-
 export default Abi;
