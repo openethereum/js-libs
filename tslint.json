@@ -1,5 +1,5 @@
 {
-  "extends": "tslint-config-semistandard",
+  "extends": ["tslint-config-semistandard", "tslint-config-prettier"],
   "linterOptions": {
     "exclude": ["**/node_modules/**/*"]
   }

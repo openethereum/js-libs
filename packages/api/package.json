@@ -18,10 +18,10 @@
   },
   "scripts": {
     "build": "rimraf lib",
-    "test": "jest --config=../../jest.config.js"
+    "test": "jest"
   },
   "devDependencies": {
-    "@types/lodash": "^4.14.112",
+    "@types/lodash-es": "^4.17.1",
     "@types/node": "^10.5.2",
     "rimraf": "^2.6.2"
   },
