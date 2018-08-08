@@ -17,7 +17,7 @@
   },
   "scripts": {
     "build": "rimraf lib && tsc",
-    "test": "jest --config=../../jest.config.js"
+    "test": "jest"
   },
   "devDependencies": {
     "@types/utf8": "^2.1.6",

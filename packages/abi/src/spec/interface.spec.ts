@@ -48,7 +48,7 @@ describe('spec/Interface', () => {
     });
 
     it('creates functions', () => {
-      const parsed = Interface.parseABI([event])[0] as Func;
+      const parsed = Interface.parseABI([func])[0] as Func;
       expect(parsed.name).toEqual('foo');
     });
 
