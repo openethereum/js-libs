@@ -14,4 +14,4 @@ node_js:
 script:
   - yarn lint
   - yarn build
-  - yarn test --coverage --coverageReporters=text-lcov | coveralls
+  - yarn test --coverage --coverageReporters=text-lcov | coveralls ; test ${PIPESTATUS[0]} -eq 0
