@@ -4,6 +4,8 @@
 // SPDX-License-Identifier: MIT
 
 import { AbiItem, AbiItemType } from '../types';
+import Event from './event';
+import Func from './function';
 import Interface from './interface';
 import ParamType from './paramType';
 import Token from '../token';
@@ -13,7 +15,7 @@ describe('spec/Interface', () => {
     type: 'constructor',
     inputs: []
   };
-  const event = {
+  const event: AbiItem = {
     type: 'event',
     name: 'Event2',
     anonymous: false,
@@ -41,11 +43,13 @@ describe('spec/Interface', () => {
     });
 
     it('creates events', () => {
-      expect(Interface.parseABI([event])[0].name).toEqual('Event2');
+      const parsed = Interface.parseABI([event])[0] as Event;
+      expect(parsed.name).toEqual('Event2');
     });
 
     it('creates functions', () => {
-      expect(Interface.parseABI([func])[0].name).toEqual('foo');
+      const parsed = Interface.parseABI([event])[0] as Func;
+      expect(parsed.name).toEqual('foo');
     });
 
     it('parse complex interfaces', () => {

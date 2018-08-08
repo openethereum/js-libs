@@ -11,19 +11,19 @@ import Token from '../token';
 class Constructor {
   private _inputs: Param[];
 
-  constructor (abi: AbiItem) {
+  constructor(abi: AbiItem) {
     this._inputs = Param.toParams(abi.inputs || []);
   }
 
-  get inputs () {
+  get inputs() {
     return this._inputs;
   }
 
-  inputParamTypes () {
+  inputParamTypes() {
     return this._inputs.map(input => input.kind);
   }
 
-  encodeCall (tokens: Token[]) {
+  encodeCall(tokens: Token[]) {
     return Encoder.encode(tokens);
   }
 }

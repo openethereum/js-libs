@@ -38,7 +38,7 @@ export type IntValue = number | string | BigNumber; // -1
 export type UintValue = IntValue; // 1
 export type FixedBytesValue = BytesValue; // '0x123'
 export type FixedArrayValue = (boolean | string | number | BigNumber | Token)[];
-export type ArrayValue = FixedArrayValue;
+export type ArrayValue = FixedArrayValue[];
 
 export type TokenValue =
   | AddressValue
