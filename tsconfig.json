@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "allowJs": true,
+    "declaration": true,
     "lib": ["dom", "es2015", "es2017"],
     "moduleResolution": "node",
     "noImplicitAny": true,

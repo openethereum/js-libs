@@ -6,7 +6,7 @@
   "license": "MIT",
   "repository": "https://github.com/paritytech/js-libs/packages/abi",
   "main": "lib/index.js",
-  "types": "src/types.d.ts",
+  "types": "lib/types.d.ts",
   "keywords": [
     "Ethereum",
     "ABI",
