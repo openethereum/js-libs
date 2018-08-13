@@ -9,7 +9,7 @@ import {
   abiSignature,
   encodeMethodCallAbi
 } from './encode';
-import { AbiItem } from '@parity/abi/src/types';
+import { AbiItem } from '@parity/abi';
 
 const ABI: AbiItem = {
   type: 'function',

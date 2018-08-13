@@ -3,13 +3,17 @@
 //
 // SPDX-License-Identifier: MIT
 
-import Abi, { AbiItem, TokenTypeEnum, TokenValue } from '@parity/abi';
+import Abi, {
+  AbiItem,
+  AbiObject,
+  TokenTypeEnum,
+  TokenValue
+} from '@parity/abi';
 import Func from '@parity/abi/lib/spec/function';
 
 import { abiDecode } from './decode';
 import { cleanupValue } from './format';
 import { sha3 } from './sha3';
-import { AbiObject } from '../../../../node_modules/@parity/abi/src/types';
 
 /**
  * Encode a method call.
