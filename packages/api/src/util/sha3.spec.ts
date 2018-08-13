@@ -30,6 +30,7 @@ describe('util/sha3', () => {
       expect(sha3('01020304', { encoding: 'hex' })).toEqual(
         '0xa6885b3731702da62e8e4a8f584ac46a7f6822f4e2ba50fba902f67b1588d23b'
       );
+      // @ts-ignore TODO Add Uint8Array as Bytes type too
       expect(sha3(Uint8Array.from([1, 2, 3, 4]))).toEqual(
         '0xa6885b3731702da62e8e4a8f584ac46a7f6822f4e2ba50fba902f67b1588d23b'
       );

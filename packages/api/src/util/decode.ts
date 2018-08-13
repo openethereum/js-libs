@@ -3,6 +3,7 @@
 //
 // SPDX-License-Identifier: MIT
 
+import { AbiItem, TokenTypeEnum, TokenValue } from '@parity/abi';
 import {
   fromParamType,
   toParamType
@@ -43,11 +44,15 @@ export const decodeCallData = (
 };
 
 /**
+ * Decode the method inputs.
  *
- * @param methodAbi -
- * @param paramdata
+ * @param methodAbi - The ABI of the method.
+ * @param paramdata -
  */
-export const decodeMethodInput = (methodAbi: any, paramdata: string): any => {
+export const decodeMethodInput = (
+  methodAbi: AbiItem,
+  paramdata: string
+): TokenValue[] => {
   if (!methodAbi) {
     throw new Error(
       'decodeMethodInput should receive valid method-specific ABI'
@@ -66,7 +71,7 @@ export const decodeMethodInput = (methodAbi: any, paramdata: string): any => {
 
   return new Func(methodAbi)
     .decodeInput(paramdata)
-    .map((decoded: { value: string }) => decoded.value);
+    .map(decoded => decoded.value);
 };
 
 /**
@@ -106,7 +111,13 @@ export const methodToAbi = (method: string) => {
   return { type: 'function', name, inputs };
 };
 
-export const abiDecode = (inputTypes, data) => {
+/**
+ * Decode fata from an ABI.
+ *
+ * @param inputTypes - The types of the inputs.
+ * @param data - The data passed to this ABI.
+ */
+export const abiDecode = (inputTypes: TokenTypeEnum[], data: string) => {
   return decodeMethodInput(
     {
       inputs: inputTypes.map(type => {

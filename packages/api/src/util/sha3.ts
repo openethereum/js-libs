@@ -11,6 +11,12 @@ import { Bytes } from '../types';
 
 type Encoding = 'hex' | 'raw';
 
+/**
+ *
+ * @param value - The value to hash
+ * @param options - Set the encoding in the options, encoding can be `'hex'`
+ * or `'raw'`.
+ */
 export const sha3 = (
   value: string | Bytes,
   options?: { encoding: Encoding }

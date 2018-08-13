@@ -3,22 +3,43 @@
 //
 // SPDX-License-Identifier: MIT
 
-const Abi = require('@parity/abi');
-const Func = require('@parity/abi/lib/spec/function');
+import Abi, { AbiItem, TokenTypeEnum, TokenValue } from '@parity/abi';
+import Func from '@parity/abi/lib/spec/function';
 
-const { abiDecode } = require('./decode');
-const { cleanupValue } = require('./format');
-const { sha3 } = require('./sha3');
+import { abiDecode } from './decode';
+import { cleanupValue } from './format';
+import { sha3 } from './sha3';
+import { AbiObject } from '../../../../node_modules/@parity/abi/src/types';
 
-function encodeMethodCallAbi(methodAbi = {}, values = []) {
+/**
+ * Encode a method call.
+ *
+ * @param methodAbi - The method's ABI.
+ * @param values - The values that are passed to this method.
+ */
+export const encodeMethodCallAbi = (
+  methodAbi: AbiItem = {},
+  values: TokenValue[] = []
+) => {
   const func = new Func(methodAbi);
   const tokens = Abi.encodeTokens(func.inputParamTypes(), values);
   const call = func.encodeCall(tokens);
 
   return `0x${call}`;
-}
+};
 
-function abiEncode(methodName, inputTypes, data) {
+/**
+ * Formats correctly a method call to be passed to {@link encodeMethodCallAbi}.
+ *
+ * @param methodName - The method name to encode.
+ * @param inputTypes - The method's inputs types.
+ * @param data - The data that is passed to this method.
+ */
+export const abiEncode = (
+  methodName: string,
+  inputTypes: TokenTypeEnum[],
+  data: TokenValue[]
+) => {
   const result = encodeMethodCallAbi(
     {
       name: methodName || '',
@@ -31,9 +52,15 @@ function abiEncode(methodName, inputTypes, data) {
   );
 
   return result;
-}
+};
 
-function abiUnencode(abi, data) {
+/**
+ * Unencode a method.
+ *
+ * @param abi - The Abi to unencode.
+ * @param data - The data passed to this method.
+ */
+export const abiUnencode = (abi: AbiObject, data: string) => {
   const callsig = data.substr(2, 8);
   const op = abi.find(field => {
     return (
@@ -50,26 +77,28 @@ function abiUnencode(abi, data) {
     return null;
   }
 
-  let argsByIndex = abiDecode(
+  const argsByIndex = abiDecode(
     op.inputs.map(field => field.type),
     '0x' + data.substr(10)
-  ).map((value, index) => cleanupValue(value, op.inputs[index].type));
-  const argsByName = op.inputs.reduce((result, field, index) => {
-    result[field.name] = argsByIndex[index];
+  ).map((value, index) => cleanupValue(value as string, op.inputs[index].type));
+  const argsByName = op.inputs.reduce(
+    (result, field, index) => {
+      result[field.name] = argsByIndex[index];
 
-    return result;
-  }, {});
+      return result;
+    },
+    {} as { [index: string]: TokenValue }
+  );
 
   return [op.name, argsByName, argsByIndex];
-}
+};
 
-function abiSignature(name, inputs) {
+/**
+ * Get the signature of an Abi method.
+ *
+ * @param name - The name of the method.
+ * @param inputs - The inputs' types of this method.
+ */
+export const abiSignature = (name: string, inputs: string[]) => {
   return sha3(`${name}(${inputs.join()})`);
-}
-
-module.exports = {
-  abiEncode,
-  abiSignature,
-  abiUnencode,
-  encodeMethodCallAbi
 };
