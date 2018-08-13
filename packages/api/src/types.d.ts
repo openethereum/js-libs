@@ -5,6 +5,8 @@
 
 import BigNumber from 'bignumber.js';
 
+export type Bytes = number[];
+
 export type BlockNumber =
   | 'earliest'
   | 'latest'

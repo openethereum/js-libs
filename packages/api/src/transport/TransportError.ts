@@ -3,8 +3,6 @@
 //
 // SPDX-License-Identifier: MIT
 
-import ExtendableError from 'es6-error';
-
 const ERROR_CODES: { [index: string]: number } = {
   UNSUPPORTED_REQUEST: -32000,
   NO_WORK: -32001,
@@ -34,7 +32,7 @@ const ERROR_CODES: { [index: string]: number } = {
 /**
  * Class which represents an error that occurs on the transport level.
  */
-class TransportError extends ExtendableError {
+class TransportError extends Error {
   /**
    * The error code.
    */

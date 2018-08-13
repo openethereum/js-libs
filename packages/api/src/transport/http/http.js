@@ -16,7 +16,7 @@
 
 const { Logging } = require('../../subscriptions');
 const JsonRpcBase = require('../jsonRpcBase');
-const TransportError = require('../error');
+const TransportError = require('../TransportError');
 
 /* global fetch */
 class Http extends JsonRpcBase {

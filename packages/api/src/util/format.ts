@@ -3,6 +3,7 @@
 //
 // SPDX-License-Identifier: MIT
 
+import { Bytes } from '../types';
 import { range } from 'lodash';
 
 /**
@@ -10,7 +11,7 @@ import { range } from 'lodash';
  *
  * @param bytes - The bytes array to convert to hexadecimal.
  */
-export const bytesToHex = (bytes: number[]) => {
+export const bytesToHex = (bytes: Bytes) => {
   return '0x' + Buffer.from(bytes).toString('hex');
 };
 
@@ -23,10 +24,7 @@ export const bytesToHex = (bytes: number[]) => {
  * @param value - The value to clean.
  * @param type - The type of the value.
  */
-export const cleanupValue = (
-  value: string | number | number[],
-  type: string
-) => {
+export const cleanupValue = (value: string | number | Bytes, type: string) => {
   // TODO: make work with arbitrary depth arrays
   if (value instanceof Array && type.match(/bytes[0-9]+/)) {
     // figure out if it's an ASCII string hiding in there:
@@ -90,9 +88,8 @@ export const hexToAscii = (hex: string) => {
  *
  * @param bytes - The bytes array to convert.
  */
-export const bytesToAscii = (bytes: number[]) => {
-  return bytes.map(b => String.fromCharCode(b % 512)).join('');
-};
+export const bytesToAscii = (bytes: Bytes) =>
+  bytes.map(b => String.fromCharCode(b % 512)).join('');
 
 /**
  * Convert an ASCII string to a hexadecimal string.

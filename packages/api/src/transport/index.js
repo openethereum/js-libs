@@ -17,7 +17,7 @@
 const Ws = require('./ws');
 
 const Http = require('./http');
-const TransportError = require('./error');
+const TransportError = require('./TransportError');
 const Middleware = require('./middleware');
 
 const WsSecure = Ws;
