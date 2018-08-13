@@ -22,33 +22,36 @@ const HEXDIGITS = [
   'f'
 ];
 
-export const isArray = (test: any): test is Array<any> => Array.isArray(test);
+export const isArray = (input: any): input is Array<any> =>
+  Array.isArray(input);
 
-export const isError = (test: any): test is Error => test instanceof Error;
+export const isError = (input: any): input is Error => input instanceof Error;
 
-export const isFunction = (test: any): test is Function =>
-  typeof test === 'function';
+export const isFunction = (input: any): input is Function =>
+  typeof input === 'function';
 
-export const isHex = (test: any): boolean => {
-  if (!isString(test)) {
+export const isHex = (input: any): boolean => {
+  if (!isString(input)) {
     return false;
   }
 
-  if (test.substr(0, 2) === '0x') {
-    return isHex(test.slice(2));
+  if (input.substr(0, 2) === '0x') {
+    return isHex(input.slice(2));
   }
 
-  const lowerCaseTest = test.toLowerCase();
+  const lowerCaseInput = input.toLowerCase();
   let hex = true;
 
-  for (let index = 0; hex && index < test.length; index++) {
-    hex = HEXDIGITS.includes(lowerCaseTest[index]);
+  for (let index = 0; hex && index < input.length; index++) {
+    hex = HEXDIGITS.includes(lowerCaseInput[index]);
   }
 
   return hex;
 };
-export const isObject = (test: any): test is object => typeof test === 'object';
+export const isObject = (input: any): input is object =>
+  Object.prototype.toString.call(input) === '[object Object]';
 
-export const isString = (test: any): test is string => typeof test === 'string';
+export const isString = (input: any): input is string =>
+  typeof input === 'string';
 
-export const isInstanceOf = (test: any, clazz: any) => test instanceof clazz;
+export const isInstanceOf = (input: any, clazz: any) => input instanceof clazz;
