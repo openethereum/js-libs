@@ -1,0 +1,35 @@
+{
+  "name": "@parity/light.js",
+  "description": "A high-level reactive JS library optimized for light clients",
+  "version": "1.0.0",
+  "author": "Parity Team <admin@parity.io>",
+  "license": "MIT",
+  "repository": "https://github.com/paritytech/js-libs/packages/api",
+  "main": "lib/index.js",
+  "keywords": [
+    "API",
+    "Ethereum",
+    "Light",
+    "Light Client",
+    "Observable",
+    "Parity",
+    "Reactive",
+    "RxJS"
+  ],
+  "scripts": {
+    "build": "rimraf lib && tsc",
+    "test": "jest"
+  },
+  "dependencies": {
+    "@parity/api": "^2.1.23",
+    "json-prune": "^1.1.0",
+    "memoizee": "^0.4.12"
+  },
+  "devDependencies": {
+    "rimraf": "^2.6.2",
+    "rxjs": "^6.2.1"
+  },
+  "peerDependencies": {
+    "rxjs": "^6.2.1"
+  }
+}
