@@ -16,7 +16,8 @@ import { switchMapPromise } from '../../utils/operators';
  * accessed by user concerning accounts.
  */
 export const accountsInfo$ = createRpc$<AccountsInfo, AccountsInfo>({
-  frequency: [onAccountsInfoChanged$]
+  frequency: [onAccountsInfoChanged$],
+  name: 'accountsInfo$'
 });
 
 /**
@@ -28,5 +29,6 @@ export const accountsInfo$ = createRpc$<AccountsInfo, AccountsInfo>({
 export const chainName$ = createRpc$<any, string>({
   calls: ['parity_netChain'],
   frequency: [onStartup$],
+  name: 'chainName$',
   pipes: () => [switchMapPromise(() => api().parity.netChain())]
 });

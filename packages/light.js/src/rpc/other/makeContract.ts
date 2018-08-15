@@ -75,6 +75,7 @@ export const makeContract = memoizee(
         if (method.constant) {
           return createRpc({
             frequency: [onEveryBlock$],
+            name,
             pipes: () => [
               switchMapPromise(() =>
                 contract.instance[name].call(options, args)

@@ -65,7 +65,7 @@ if (typeof window !== 'undefined') {
 
       // We add all dependsOn of this RpcObservable
       if (rpc$.metadata.dependsOn) {
-        overview[key].dependsOn = rpc$.metadata.dependsOn.toString();
+        overview[key].dependsOn = rpc$.metadata.dependsOn.metadata.name;
       }
 
       // We add a human-readable version of `frequency` field

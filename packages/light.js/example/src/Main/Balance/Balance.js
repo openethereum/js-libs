@@ -12,7 +12,7 @@ import {
   chainName$,
   defaultAccount$,
   blockNumber$,
-  syncing$
+  syncStatus$
 } from '../../light.js';
 import api from '../../api';
 import light from '../../hoc';
@@ -35,7 +35,7 @@ import './Balance.css';
   //   ),
   defaultAccount: defaultAccount$,
   blockNumber: blockNumber$,
-  syncing: syncing$
+  syncStatus: syncStatus$
 })
 class Balance extends Component {
   handleChange = ({ target: { value } }) => {
@@ -49,14 +49,14 @@ class Balance extends Component {
       blockNumber,
       chainName,
       defaultAccount,
-      syncing
+      syncStatus
     } = this.props;
     return (
       <div className="Balance-container">
         <h3>This is the Balance component.</h3>
         <p>
           Chain: {chainName}. Block: {+blockNumber}. My Account:{' '}
-          {defaultAccount}. Syncing: {JSON.stringify(syncing)}.
+          {defaultAccount}. syncStatus: {JSON.stringify(syncStatus)}.
         </p>
         {accounts && (
           <select onChange={this.handleChange} value={defaultAccount}>

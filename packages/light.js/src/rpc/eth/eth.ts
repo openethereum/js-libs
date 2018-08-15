@@ -28,7 +28,8 @@ import { switchMapPromise } from '../../utils/operators';
  * @return - An Observable containing the list of public addresses.
  */
 export const accounts$ = createRpc$<Address[], Address[]>({
-  frequency: [onAccountsChanged$]
+  frequency: [onAccountsChanged$],
+  name: 'accounts$'
 });
 
 /**
@@ -40,6 +41,7 @@ export const accounts$ = createRpc$<Address[], Address[]>({
 export const balanceOf$ = createRpc$<any, BigNumber>({
   calls: ['eth_getBalance'],
   frequency: [onEveryBlock$, onStartup$],
+  name: 'balanceof$',
   pipes: (address: Address) => [
     switchMapPromise(() => api().eth.getBalance(address))
   ]
@@ -53,6 +55,7 @@ export const balanceOf$ = createRpc$<any, BigNumber>({
  */
 export const defaultAccount$ = createRpc$<Address[], Address>({
   dependsOn: accounts$,
+  name: 'defaultAccount$',
   pipes: () => [map(accounts => accounts[0])]
 });
 
@@ -62,7 +65,8 @@ export const defaultAccount$ = createRpc$<Address[], Address>({
  * @return {Observable<Number>} - An Observable containing the block height.
  */
 export const blockNumber$ = createRpc$<BigNumber, BigNumber>({
-  frequency: [onEveryBlock$]
+  frequency: [onEveryBlock$],
+  name: 'blockNumber$'
 });
 
 /**
@@ -71,6 +75,7 @@ export const blockNumber$ = createRpc$<BigNumber, BigNumber>({
 export const myBalance$ = createRpc$<Address, BigNumber>({
   calls: [`eth_getBalance`],
   dependsOn: defaultAccount$,
+  name: 'myBalance$',
   pipes: () => [
     switchMap(
       defaultAccount =>
@@ -82,10 +87,11 @@ export const myBalance$ = createRpc$<Address, BigNumber>({
 });
 
 /**
- * Get the syncing state.
+ * Get the syncStatus state.
  *
  * @return - An Observable containing the syncing state object, or false.
  */
-export const syncing$ = createRpc$<object | boolean, object | boolean>({
-  frequency: [onSyncingChanged$]
+export const syncStatus$ = createRpc$<object | boolean, object | boolean>({
+  frequency: [onSyncingChanged$],
+  name: 'syncStatus$'
 });

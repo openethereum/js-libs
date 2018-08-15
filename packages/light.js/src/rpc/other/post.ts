@@ -66,5 +66,6 @@ post$.metadata = {
     'parity_postTransaction',
     'parity_checkRequest',
     'eth_getTransactionReceipt'
-  ]
+  ],
+  name: 'post$'
 };

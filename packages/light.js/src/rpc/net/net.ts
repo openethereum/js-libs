@@ -20,5 +20,6 @@ import { switchMapPromise } from '../../utils/operators';
 export const peerCount$ = createRpc$<number, BigNumber>({
   calls: ['net_peerCount'],
   frequency: [onEvery5Seconds$],
+  name: 'peerCount$',
   pipes: () => [switchMapPromise(() => api().net.peerCount())]
 });
