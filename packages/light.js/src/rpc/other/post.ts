@@ -3,7 +3,7 @@
 //
 // SPDX-License-Identifier: MIT
 
-import { Observable } from 'rxjs';
+import { Observable, Observer } from 'rxjs';
 
 import api from '../../api';
 import { distinctReplayRefCount } from '../../utils/operators';
@@ -23,7 +23,7 @@ export const post$: RpcObservable<TxStatus> = (
   tx: Tx,
   options: { estimate?: boolean } = {}
 ) => {
-  const source$ = Observable.create(async observer => {
+  const source$ = Observable.create(async (observer: Observer<TxStatus>) => {
     try {
       if (options.estimate) {
         observer.next({ estimating: true });
@@ -43,8 +43,9 @@ export const post$: RpcObservable<TxStatus> = (
         const receipt = await api().pollMethod(
           'eth_getTransactionReceipt',
           transactionHash,
-          receipt =>
-            receipt && receipt.blockNumber && !receipt.blockNumber.eq(0)
+          (
+            receipt: any // TODO Receipt use @parity/api type
+          ) => receipt && receipt.blockNumber && !receipt.blockNumber.eq(0)
         );
         observer.next({ confirmed: receipt });
       }

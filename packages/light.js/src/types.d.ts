@@ -3,6 +3,7 @@
 //
 // SPDX-License-Identifier: MIT
 
+import BigNumber from 'bignumber.js';
 import { Observable } from 'rxjs';
 
 declare global {
@@ -33,7 +34,7 @@ export type Metadata = {
 };
 
 export interface FrequencyObservable<T> extends Observable<T> {
-  metadata: { name: string };
+  metadata: { calls?: string[]; name: string };
 }
 
 export interface RpcObservable<T> {
@@ -50,9 +51,11 @@ export type Tx = {
 };
 
 export interface TxStatus {
-  confirmed: any; // TODO Receipt from @parity/api
+  confirmed?: any; // TODO Receipt from @parity/api
   estimating?: boolean;
-  estimated?: any; // BigNumber
+  estimated?: BigNumber;
+  failed?: Error;
   requested?: string;
+  schedule?: any;
   signed?: string;
 }

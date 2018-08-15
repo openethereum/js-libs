@@ -85,7 +85,7 @@ export const makeContract = memoizee(
             to: address,
             data: abiEncode(
               method.name,
-              method.inputs.map(({ kind: { type } }) => type),
+              method.inputs.map(({ kind: { type } }: any) => type), // TODO Use @parity/api types
               args
             ),
             ...options

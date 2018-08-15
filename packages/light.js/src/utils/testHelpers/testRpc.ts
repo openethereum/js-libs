@@ -4,13 +4,14 @@
 // SPDX-License-Identifier: MIT
 
 import isObservable from '../isObservable';
+import { RpcObservable } from '../../types';
 
 /**
  * Helper function to make basic tests for RpcObservables.
  *
  * @ignore
  */
-const testRpc = (name, rpc$) =>
+const testRpc = (name: string, rpc$: RpcObservable<any>) =>
   describe(`${name} rpc`, () => {
     it('should be a function', () => {
       expect(typeof rpc$).toBe('function');

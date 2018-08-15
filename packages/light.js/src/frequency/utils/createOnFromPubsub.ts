@@ -4,7 +4,7 @@
 // SPDX-License-Identifier: MIT
 
 import { FrequencyObservable } from '../../types';
-import { Observable, timer } from 'rxjs';
+import { Observable, Observer, timer } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 
 import { distinctReplayRefCount } from '../../utils/operators/distinctReplayRefCount';
@@ -17,7 +17,7 @@ import { distinctReplayRefCount } from '../../utils/operators/distinctReplayRefC
  */
 const createOnFromPubsub = <T>(
   pubsub: string,
-  api: any
+  api: any // TODO @parity/api
 ): FrequencyObservable<T> => {
   const [namespace, method] = pubsub.split('_');
 
@@ -30,16 +30,18 @@ const createOnFromPubsub = <T>(
     ) as FrequencyObservable<T>;
   }
 
-  return Observable.create(observer => {
-    const subscription = api().pubsub[namespace][method]((error, result) => {
-      if (error) {
-        observer.error(error);
-      } else {
-        observer.next(result);
+  return Observable.create((observer: Observer<T>) => {
+    const subscription = api().pubsub[namespace][method](
+      (error: Error, result: any) => {
+        if (error) {
+          observer.error(error);
+        } else {
+          observer.next(result);
+        }
       }
-    });
+    );
     return () =>
-      subscription.then(subscriptionId =>
+      subscription.then((subscriptionId: string) =>
         api().pubsub.unsubscribe(subscriptionId)
       );
   }).pipe(distinctReplayRefCount());

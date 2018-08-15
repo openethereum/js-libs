@@ -6,4 +6,4 @@
 import * as blocks from './blocks';
 import testFrequency from '../utils/testHelpers/testFrequency';
 
-Object.keys(blocks).forEach(key => testFrequency(key, blocks[key]));
+Object.keys(blocks).forEach(key => testFrequency(key, (blocks as any)[key]));

@@ -5,7 +5,7 @@
 
 import * as memoizee from 'memoizee';
 import { isObject } from '@parity/api/lib/util/types';
-import { merge, ReplaySubject, Observable } from 'rxjs';
+import { merge, ReplaySubject, Observable, OperatorFunction } from 'rxjs';
 import { multicast, refCount } from 'rxjs/operators';
 import * as prune from 'json-prune';
 

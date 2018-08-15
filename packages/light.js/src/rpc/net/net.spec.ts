@@ -6,4 +6,4 @@
 import * as net from './net';
 import testRpc from '../../utils/testHelpers/testRpc';
 
-Object.keys(net).forEach(key => testRpc(key, net[key]));
+Object.keys(net).forEach(key => testRpc(key, (net as any)[key]));

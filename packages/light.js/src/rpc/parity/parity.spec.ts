@@ -6,4 +6,4 @@
 import * as parity from './parity';
 import testRpc from '../../utils/testHelpers/testRpc';
 
-Object.keys(parity).forEach(key => testRpc(key, parity[key]));
+Object.keys(parity).forEach(key => testRpc(key, (parity as any)[key]));

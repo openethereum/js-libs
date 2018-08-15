@@ -6,4 +6,4 @@
 import * as other from './other';
 import testFrequency from '../utils/testHelpers/testFrequency';
 
-Object.keys(other).forEach(key => testFrequency(key, other[key]));
+Object.keys(other).forEach(key => testFrequency(key, (other as any)[key]));

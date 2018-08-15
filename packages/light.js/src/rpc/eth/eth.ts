@@ -53,7 +53,7 @@ export const balanceOf$ = createRpc$<BigNumber>({
  */
 export const defaultAccount$ = createRpc$<Address>({
   dependsOn: accounts$,
-  pipes: () => [map(accounts => accounts[0])]
+  pipes: () => [map((accounts: Address[]) => accounts[0])]
 });
 
 /**

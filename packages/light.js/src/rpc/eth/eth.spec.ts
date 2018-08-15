@@ -6,4 +6,4 @@
 import * as eth from './eth';
 import testRpc from '../../utils/testHelpers/testRpc';
 
-Object.keys(eth).forEach(key => testRpc(key, eth[key]));
+Object.keys(eth).forEach(key => testRpc(key, (eth as any)[key]));

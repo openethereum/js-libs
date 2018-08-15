@@ -6,4 +6,6 @@
 import * as accounts from './accounts';
 import testFrequency from '../utils/testHelpers/testFrequency';
 
-Object.keys(accounts).forEach(key => testFrequency(key, accounts[key]));
+Object.keys(accounts).forEach(key =>
+  testFrequency(key, (accounts as any)[key])
+);
