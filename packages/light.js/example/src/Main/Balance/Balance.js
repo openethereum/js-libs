@@ -11,7 +11,7 @@ import {
   balanceOf$,
   chainName$,
   defaultAccount$,
-  height$,
+  blockNumber$,
   syncing$
 } from '../../light.js';
 import api from '../../api';
@@ -34,7 +34,7 @@ import './Balance.css';
   //     map(_ => +_)
   //   ),
   defaultAccount: defaultAccount$,
-  height: height$,
+  blockNumber: blockNumber$,
   syncing: syncing$
 })
 class Balance extends Component {
@@ -46,22 +46,21 @@ class Balance extends Component {
     const {
       accounts,
       balance,
+      blockNumber,
       chainName,
       defaultAccount,
-
-      height,
       syncing
     } = this.props;
     return (
       <div className="Balance-container">
         <h3>This is the Balance component.</h3>
         <p>
-          Chain: {chainName}. Block: {height}. My Account: {defaultAccount}.
-          Syncing: {JSON.stringify(syncing)}.
+          Chain: {chainName}. Block: {+blockNumber}. My Account:{' '}
+          {defaultAccount}. Syncing: {JSON.stringify(syncing)}.
         </p>
         {accounts && (
           <select onChange={this.handleChange} value={defaultAccount}>
-            {accounts.map((account, index) => (
+            {accounts.map(account => (
               <option key={account} value={account}>
                 {account}
               </option>
@@ -69,7 +68,11 @@ class Balance extends Component {
           </select>
         )}
         <p>
-          My Balance: <strong>{balance}wei.</strong>
+          My Balance:{' '}
+          <strong>
+            {balance}
+            wei.
+          </strong>
         </p>
       </div>
     );

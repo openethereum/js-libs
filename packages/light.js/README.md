@@ -132,10 +132,6 @@ To see an overview of all currently active Observables, type `window.parity.rpcO
     frequency: ['onEveryBlock$'],
     subscribersCount: 2
   },
-  me$: {
-    dependsOn: ['defaultAccount$'],
-    subscribersCount: 1
-  },
   syncing$: {
     frequency: ['onSyncingChanged$'],
     subscribersCount: 1
