@@ -3,7 +3,7 @@
 //
 // SPDX-License-Identifier: MIT
 
-import { of, timer } from 'rxjs';
+import { timer } from 'rxjs';
 
 import createRpc from '../../rpc/utils/createRpc';
 

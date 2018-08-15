@@ -4,6 +4,23 @@
 // SPDX-License-Identifier: MIT
 
 import * as rpc from '../rpc';
+import { RpcObservable } from '../types';
+
+interface CalledWithArgsItem {
+  currentValue: any;
+  subscribersCount: number;
+}
+
+interface Overview {
+  [index: string]: {
+    calledWithArgs?: {
+      [key: string]: CalledWithArgsItem;
+    };
+    calls?: string[];
+    dependsOn?: string;
+    frequency?: string[];
+  };
+}
 
 /**
  * Add a property on window, so that the subscribed object can be viewed in the
@@ -16,15 +33,32 @@ if (typeof window !== 'undefined') {
   }
 
   window.parity.rpcOverview = () => {
-    const overview = {};
+    const overview: Overview = {};
     Object.keys(rpc).forEach(key => {
-      const rpc$ = rpc[key];
+      console.log(key);
+      // This one's more complex, we leave it for later
+      if (key === 'makeContract') {
+        return;
+      }
 
-      // If there are subscribers, then we add
-      overview[key] = { ...rpc$.metadata };
+      const rpc$: RpcObservable<any, any> = (rpc as any)[key];
+
+      overview[key] = {};
+
+      // We add all calls of this RpcObservable
+      if (rpc$.metadata.calls) {
+        overview[key].calls = rpc$.metadata.calls;
+      }
+
+      // We add all dependsOn of this RpcObservable
+      if (rpc$.metadata.dependsOn) {
+        overview[key].dependsOn = rpc$.metadata.dependsOn.toString();
+      }
 
       // We make the `calledWithArgs` field human-readable
       if (rpc$.metadata.calledWithArgs) {
+        overview[key].calledWithArgs = {};
+
         Object.keys(rpc$.metadata.calledWithArgs).map(calledWithArgsKey => {
           const subject$ = rpc$.metadata.calledWithArgs[calledWithArgsKey];
           overview[key].calledWithArgs[calledWithArgsKey] = {
@@ -34,7 +68,7 @@ if (typeof window !== 'undefined') {
         });
       }
 
-      // We make the `frequency` field human-readable
+      // We add a human-readable version of `frequency` field
       if (rpc$.metadata.frequency) {
         overview[key].frequency = rpc$.metadata.frequency.map(
           frequency$ => frequency$.metadata.name
@@ -43,16 +77,16 @@ if (typeof window !== 'undefined') {
 
       // We remove all the metadata keys that are null, empty or functions,
       // for clarity while console.logging it.
-      Object.keys(overview[key]).forEach(innerKey => {
-        if (
-          !overview[key][innerKey] ||
-          (Array.isArray(overview[key][innerKey]) &&
-            !overview[key][innerKey].length) ||
-          typeof overview[key][innerKey] === 'function'
-        ) {
-          delete overview[key][innerKey];
-        }
-      });
+      // Object.keys(overview[key]).forEach(innerKey => {
+      //   if (
+      //     !overview[key][innerKey] ||
+      //     (Array.isArray(overview[key][innerKey]) &&
+      //       !overview[key][innerKey].length) ||
+      //     typeof overview[key][innerKey] === 'function'
+      //   ) {
+      //     delete overview[key][innerKey];
+      //   }
+      // });
     });
 
     return overview;

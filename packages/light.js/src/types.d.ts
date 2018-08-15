@@ -28,13 +28,13 @@ export type Metadata<Source, Out> = {
   };
   calls?: string[];
   dependsOn?: RpcObservable<any, Source>;
-  frequency?: Observable<Source>[];
+  frequency?: FrequencyObservable<Source>[];
   name?: string;
   pipes?: (...args: any[]) => OperatorFunction<any, any>[];
 };
 
 export interface FrequencyObservable<T> extends Observable<T> {
-  metadata: { calls?: string[]; name: string };
+  metadata?: { calls?: string[]; name: string };
 }
 
 export interface RpcObservable<Source, Out> {
