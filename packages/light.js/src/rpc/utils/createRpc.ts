@@ -4,16 +4,20 @@
 // SPDX-License-Identifier: MIT
 
 import * as memoizee from 'memoizee';
+import { isObject } from '@parity/api/lib/util/types';
+import { merge, ReplaySubject, Observable } from 'rxjs';
 import { multicast, refCount } from 'rxjs/operators';
 import * as prune from 'json-prune';
-import { ReplaySubject, Observable } from 'rxjs';
 
 import { Metadata, RpcObservable } from '../../types';
 import { withoutLoading } from '../../utils/operators';
 
+interface RpcObservableWithoutMetadata<T> {
+  (...args: any[]): Observable<T>;
+}
+
 /**
- * Mixins (aka. interface in Java or trait in Rust) that are added into an rpc$
- * Observable.
+ * Mixins that are added into an RpcObservable.
  *
  * @ignore
  */
@@ -21,13 +25,12 @@ const frequencyMixins = {
   /**
    * Change the frequency of a RPC Observable.
    *
-   * @param {Array<Observable>} frequency - An array of frequency Observables.
-   * @return {Null}
+   * @param frequency - An array of frequency Observables.
    * @example
    * balanceOf$.setFrequency([onEverySecond$, onStartup$]); // Will fetch
    * balance once on startup, and then every second.
    */
-  setFrequency (frequency: Observable<any>[]) {
+  setFrequency(frequency: Observable<any>[]) {
     // TODO Check that frequency is well-formed
 
     this.metadata.frequency = frequency;
@@ -40,27 +43,38 @@ const frequencyMixins = {
 };
 
 /**
- * Add metadata to an rpc$ Observable, and transform it into a ReplaySubject(1).
+ * Add metadata to an RpcObservable, and transform it into a ReplaySubject(1).
  *
  * @ignore
- * @param {Object} metadata - The metadata to add.
- * @return {Observable} - The original rpc$ Observable with patched metadata.
+ * @param metadata - The metadata to add.
+ * @return - The original RpcObservable with patched metadata.
  */
-const createRpc = <T>(metadata: Metadata = {}) => (
-  source$: (...args: any[]) => Observable<T>
-) => {
-  const rpc$ = (...args) => {
+const createRpc = <T>(metadata: Metadata): RpcObservable<T> => {
+  // rpc$ will hold the RpcObservable minus its metadata
+  const rpc$: RpcObservableWithoutMetadata<T> = (...args: any[]) => {
+    // The source Observable can either be another RpcObservable (in the
+    // `dependsOn` field), or anObservable built by merging all the
+    // FrequencyObservables
+    const source$ = metadata.dependsOn
+      ? metadata.dependsOn(...args)
+      : merge(...metadata.frequency);
+
     // The last arguments is an options, if it's an object
     // TODO What if we pass a single object as argument, which is not options?
-    const options =
-      args && args.length && typeof args[args.length - 1] === 'object'
-        ? args.pop()
-        : {};
+    const options: { withoutLoading?: boolean } =
+      args && args.length && isObject(args[args.length - 1]) ? args.pop() : {};
 
+    // A RpcObservable is a source$ Observable, a single subject$ that
+    // subscribesthis source, and this subject$ multicasts the fired values to
+    // all Observers.
     const subject$ = new ReplaySubject(1);
 
-    // The pipes to add, from the options
-    const pipes = [multicast(() => subject$), refCount()];
+    // The pipes to add
+    const pipes = [];
+    if (metadata.pipes && metadata.pipes.length) {
+      pipes.push(metadata.pipes(...args));
+    }
+    pipes.push(multicast(() => subject$), refCount());
     if (options.withoutLoading === true) {
       pipes.push(withoutLoading());
     }
@@ -73,14 +87,16 @@ const createRpc = <T>(metadata: Metadata = {}) => (
     }
     metadata.calledWithArgs[prune(args)] = subject$;
 
-    return source$(...args).pipe(...pipes);
+    return source$.pipe(...pipes);
   };
 
-  const result$: RpcObservable<T> = memoizee(rpc$, { length: false });
+  let memoizedRpc$ = memoizee<RpcObservableWithoutMetadata<T>>(rpc$, {
+    length: false
+  });
 
-  Object.assign(result$, frequencyMixins, { metadata });
+  Object.assign(memoizedRpc$, frequencyMixins, { metadata });
 
-  return result$;
+  return memoizedRpc$ as RpcObservable<T>;
 };
 
 export default createRpc;

@@ -7,15 +7,19 @@ import * as Abi from '@parity/abi';
 import { abiEncode } from '@parity/api/lib/util/encode';
 import * as memoizee from 'memoizee';
 
-import { Abi as AbiType, Address } from '../../types';
-import {
-  distinctReplayRefCount,
-  switchMapPromise
-} from '../../utils/operators';
+import { Abi as AbiType, Address, RpcObservable } from '../../types';
+import createRpc from '../utils/createRpc';
+import { switchMapPromise } from '../../utils/operators';
 import api from '../../api';
-import getFrequency from '../utils/getFrequency';
 import { onEveryBlock$ } from '../../frequency';
 import { post$ } from './post';
+
+interface MakeContract {
+  abi: Abi;
+  address: string;
+  readonly contractObject: any; // TODO from @parity/api
+  [index: string]: string | ((...args: any[]) => any);
+}
 
 /**
  * Cache contracts, so that they are:
@@ -23,9 +27,9 @@ import { post$ } from './post';
  * - further calls/transactions to the same contract doesn't recreate the
  *   contract
  *
- * @param {String} address - The contract address.
- * @param {Array<Object>} abiJson - The contract abi.
- * @return {Object} - The contract object as defined in @parity/api.
+ * @param address - The contract address.
+ * @param abiJson - The contract abi.
+ * @return - The contract object as defined in @parity/api.
  */
 const getContract = memoizee(
   (address: Address, abiJson: AbiType) => api().newContract(abiJson, address),
@@ -35,20 +39,20 @@ const getContract = memoizee(
 /**
  * Create a contract.
  *
- * @param {Object} address - The contract address.
- * @param {Array<Object>} - The contract abi.
- * @return {Object} - An object whose keys are all the functions of the
+ * @param address - The contract address.
+ * @param - The contract abi.
+ * @return - An object whose keys are all the functions of the
  * contract, and each function return an Observable which will fire when the
  * function resolves.
  */
 export const makeContract = memoizee(
-  (address: Address, abiJson: AbiType) => {
+  (address: Address, abiJson: AbiType): MakeContract => {
     const abi = new Abi(abiJson);
     // Variable result will hold the final object to return
     const result = {
-      abi: abi,
-      address: address,
-      get contractObject () {
+      abi,
+      address,
+      get contractObject() {
         return getContract(address, abiJson);
       }
     };
@@ -68,10 +72,14 @@ export const makeContract = memoizee(
           args.length === method.inputs.length + 1 ? args.pop() : {};
 
         if (method.constant) {
-          return getFrequency(makeContract).pipe(
-            switchMapPromise(() => contract.instance[name].call(options, args)),
-            distinctReplayRefCount()
-          );
+          return createRpc({
+            frequency: [onEveryBlock$],
+            pipes: () => [
+              switchMapPromise(() =>
+                contract.instance[name].call(options, args)
+              )
+            ]
+          })(...args);
         } else {
           return post$({
             to: address,
@@ -90,7 +98,3 @@ export const makeContract = memoizee(
   },
   { length: 1 } // Only memoize by address
 );
-makeContract.metadata = {
-  calls: [],
-  frequency: [onEveryBlock$]
-};

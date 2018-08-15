@@ -26,9 +26,10 @@ export type Metadata = {
     [key: string]: any;
   };
   calls?: string[];
-  dependsOn?: string[];
+  dependsOn?: RpcObservable<any>;
   frequency?: Observable<any>[];
   name?: string;
+  pipes?: (...args: any[]) => (<T>(source$: Observable<T>) => Observable<T>)[];
 };
 
 export interface FrequencyObservable<T> extends Observable<T> {
@@ -37,7 +38,7 @@ export interface FrequencyObservable<T> extends Observable<T> {
 
 export interface RpcObservable<T> {
   (...args: any[]): Observable<T>;
-  metadata?: Metadata; // TODO All RpcObservables should have metadata?
+  metadata?: Metadata;
   setFrequency?(frequency: Observable<any>[]): void; // post$, makeContract... don't have setFrequency
 }
 

@@ -8,12 +8,10 @@ import { of, timer } from 'rxjs';
 import createRpc from '../../rpc/utils/createRpc';
 
 /**
- * Create a fake rpc$ Observable.
+ * Create a fake RpcObservable.
  *
  * @ignore
  */
-const mockRpc$ = createRpc({ frequency: [timer(0, 1000)] })(() =>
-  of('mockRpc')
-);
+const mockRpc$ = createRpc({ frequency: [timer(0, 1000)] });
 
 export default mockRpc$;

@@ -11,5 +11,6 @@ import createOnFromPubsub from './utils/createOnFromPubsub';
  */
 export const onSyncingChanged$ = createOnFromPubsub('eth_syncing', api);
 onSyncingChanged$.metadata = {
+  calls: ['eth_syncing'],
   name: 'onSyncingChanged$'
 };

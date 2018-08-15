@@ -16,8 +16,8 @@ import { RpcObservable, Tx, TxStatus } from '../../types';
  * `parity_checkRequest` and `eth_getTransactionReceipt` to get the status of
  * the transaction.
  *
- * @param {Object} options? - Options to pass.
- * @return {Observable<Object>} - The status of the transaction.
+ * @param options? - Options to pass.
+ * @return - The status of the transaction.
  */
 export const post$: RpcObservable<TxStatus> = (
   tx: Tx,

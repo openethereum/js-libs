@@ -23,7 +23,7 @@ import './Balance.css';
   balance: ownProps =>
     balanceOf$(ownProps.address, { withoutLoading: true }).pipe(map(_ => +_)),
   chainName: chainName$,
-  // Example of using RxJS operators for manipulating rpc$ observables
+  // Example of using RxJS operators for manipulating RpcObservables
   // gavBalance: () =>
   //   combineLatest(chainName$(), defaultAccount$()).pipe(
   //     switchMap(([chainName, defaultAccount]) =>

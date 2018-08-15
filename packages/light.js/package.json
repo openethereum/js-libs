@@ -26,10 +26,12 @@
     "memoizee": "^0.4.12"
   },
   "devDependencies": {
+    "@types/memoizee": "^0.4.2",
     "rimraf": "^2.6.2",
     "rxjs": "^6.2.1"
   },
   "peerDependencies": {
+    "bignumber.js": "^7.2.1",
     "rxjs": "^6.2.1"
   }
 }

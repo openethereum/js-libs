@@ -6,7 +6,7 @@
 import isObservable from '../isObservable';
 
 /**
- * Helper function to make basic tests for rpc$ observables.
+ * Helper function to make basic tests for RpcObservables.
  *
  * @ignore
  */

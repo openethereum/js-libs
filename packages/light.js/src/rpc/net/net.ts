@@ -3,20 +3,22 @@
 //
 // SPDX-License-Identifier: MIT
 
+import BigNumber from 'bignumber.js';
+
 import api from '../../api';
 import createRpc$ from '../utils/createRpc';
-import getFrequency from '../utils/getFrequency';
 import { onEvery5Seconds$ } from '../../frequency';
 import { switchMapPromise } from '../../utils/operators';
 
 /**
- * Get the amount of peers. Calls `net_peerCount`
+ * Get the amount of peers.
  *
- * @return {Observable<Number>} - An Observable containing the number.
+ * Calls `net_peerCount`
+ *
+ * @return - An Observable containing the number.
  */
-export const peerCount$ = createRpc$<Number>({
+export const peerCount$ = createRpc$<BigNumber>({
   calls: ['net_peerCount'],
-  frequency: [onEvery5Seconds$]
-})(() =>
-  getFrequency(peerCount$).pipe(switchMapPromise(() => api().net.peerCount()))
-);
+  frequency: [onEvery5Seconds$],
+  pipes: () => [switchMapPromise(() => api().net.peerCount())]
+});

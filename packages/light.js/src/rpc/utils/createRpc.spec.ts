@@ -6,29 +6,28 @@
 import { timer } from 'rxjs';
 
 import createRpc from './createRpc';
-import mockRpc$ from '../../utils/testHelpers/mockRpc';
 
 it('should return a function', () => {
-  expect(typeof createRpc()).toBe('function');
+  expect(typeof createRpc({})).toBe('function');
 });
 
 it('should add empty metadata by default', () => {
-  expect(createRpc()(mockRpc$).metadata).toEqual({});
+  expect(createRpc({}).metadata).toEqual({});
 });
 
 it('should append input metadata', () => {
-  expect(createRpc({ name: 'bar' })(mockRpc$).metadata).toEqual({
+  expect(createRpc({ name: 'bar' }).metadata).toEqual({
     name: 'bar'
   });
 });
 
 it('should contain frequencyMixins', () => {
-  expect(typeof createRpc()(mockRpc$).setFrequency).toBe('function');
+  expect(typeof createRpc({}).setFrequency).toBe('function');
 });
 
 it('should set correct frequency', () => {
   const frequency = timer(0, 1000);
-  const rpc$ = createRpc()(mockRpc$);
+  const rpc$ = createRpc({});
   rpc$.setFrequency([frequency]);
   expect(rpc$.metadata.frequency).toEqual([frequency]);
 });
