@@ -15,7 +15,7 @@ import { switchMapPromise } from '../../utils/operators';
  * @return - An Observable containing all info that can be
  * accessed by user concerning accounts.
  */
-export const accountsInfo$ = createRpc$<AccountsInfo>({
+export const accountsInfo$ = createRpc$<AccountsInfo, AccountsInfo>({
   frequency: [onAccountsInfoChanged$]
 });
 
@@ -25,7 +25,7 @@ export const accountsInfo$ = createRpc$<AccountsInfo>({
  * @return - An Observable containing the name of the
  * current chain.
  */
-export const chainName$ = createRpc$<string>({
+export const chainName$ = createRpc$<any, string>({
   calls: ['parity_netChain'],
   frequency: [onStartup$],
   pipes: () => [switchMapPromise(() => api().parity.netChain())]

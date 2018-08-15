@@ -19,7 +19,7 @@ import { RpcObservable, Tx, TxStatus } from '../../types';
  * @param options? - Options to pass.
  * @return - The status of the transaction.
  */
-export const post$: RpcObservable<TxStatus> = (
+export const post$: RpcObservable<any, TxStatus> = (
   tx: Tx,
   options: { estimate?: boolean } = {}
 ) => {

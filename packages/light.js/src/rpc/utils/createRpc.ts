@@ -4,7 +4,7 @@
 // SPDX-License-Identifier: MIT
 
 import * as memoizee from 'memoizee';
-import { isObject } from '@parity/api/lib/util/types';
+import { isFunction, isObject } from '@parity/api/lib/util/types';
 import { merge, ReplaySubject, Observable, OperatorFunction } from 'rxjs';
 import { multicast, refCount } from 'rxjs/operators';
 import * as prune from 'json-prune';
@@ -12,8 +12,8 @@ import * as prune from 'json-prune';
 import { Metadata, RpcObservable } from '../../types';
 import { withoutLoading } from '../../utils/operators';
 
-interface RpcObservableWithoutMetadata<T> {
-  (...args: any[]): Observable<T>;
+interface RpcObservableWithoutMetadata<_, Out> {
+  (...args: any[]): Observable<Out>;
 }
 
 /**
@@ -49,9 +49,11 @@ const frequencyMixins = {
  * @param metadata - The metadata to add.
  * @return - The original RpcObservable with patched metadata.
  */
-const createRpc = <T>(metadata: Metadata): RpcObservable<T> => {
+const createRpc = <Source, Out>(
+  metadata: Metadata<Source, Out>
+): RpcObservable<Source, Out> => {
   // rpc$ will hold the RpcObservable minus its metadata
-  const rpc$: RpcObservableWithoutMetadata<T> = (...args: any[]) => {
+  const rpc$: RpcObservableWithoutMetadata<Source, Out> = (...args: any[]) => {
     // The source Observable can either be another RpcObservable (in the
     // `dependsOn` field), or anObservable built by merging all the
     // FrequencyObservables
@@ -70,9 +72,9 @@ const createRpc = <T>(metadata: Metadata): RpcObservable<T> => {
     const subject$ = new ReplaySubject(1);
 
     // The pipes to add
-    const pipes = [];
-    if (metadata.pipes && metadata.pipes.length) {
-      pipes.push(metadata.pipes(...args));
+    const pipes: OperatorFunction<any, any>[] = [];
+    if (metadata.pipes && isFunction(metadata.pipes)) {
+      pipes.concat(metadata.pipes(...args));
     }
     pipes.push(multicast(() => subject$), refCount());
     if (options.withoutLoading === true) {
@@ -90,13 +92,13 @@ const createRpc = <T>(metadata: Metadata): RpcObservable<T> => {
     return source$.pipe(...pipes);
   };
 
-  let memoizedRpc$ = memoizee<RpcObservableWithoutMetadata<T>>(rpc$, {
+  let memoizedRpc$ = memoizee<RpcObservableWithoutMetadata<Source, Out>>(rpc$, {
     length: false
   });
 
   Object.assign(memoizedRpc$, frequencyMixins, { metadata });
 
-  return memoizedRpc$ as RpcObservable<T>;
+  return memoizedRpc$ as RpcObservable<Source, Out>;
 };
 
 export default createRpc;

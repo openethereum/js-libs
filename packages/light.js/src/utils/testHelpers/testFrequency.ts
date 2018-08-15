@@ -3,6 +3,7 @@
 //
 // SPDX-License-Identifier: MIT
 
+import { FrequencyObservable } from '../../types';
 import isObservable from '../isObservable';
 
 /**
@@ -10,7 +11,7 @@ import isObservable from '../isObservable';
  *
  * @ignore
  */
-const testFrequency = (name, frequency$) =>
+const testFrequency = (name: string, frequency$: FrequencyObservable<any>) =>
   describe(`${name} rpc`, () => {
     it('should be an Observable', () => {
       expect(isObservable(frequency$)).toBe(true);

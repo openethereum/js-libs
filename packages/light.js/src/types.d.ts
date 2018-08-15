@@ -4,7 +4,7 @@
 // SPDX-License-Identifier: MIT
 
 import BigNumber from 'bignumber.js';
-import { Observable } from 'rxjs';
+import { Observable, OperatorFunction } from 'rxjs';
 
 declare global {
   interface Window {
@@ -22,24 +22,24 @@ export type AccountsInfo = {
 // TODO This should be on @parity/api
 export type Address = string;
 
-export type Metadata = {
+export type Metadata<Source, Out> = {
   calledWithArgs?: {
     [key: string]: any;
   };
   calls?: string[];
-  dependsOn?: RpcObservable<any>;
-  frequency?: Observable<any>[];
+  dependsOn?: RpcObservable<any, Source>;
+  frequency?: Observable<Source>[];
   name?: string;
-  pipes?: (...args: any[]) => (<T>(source$: Observable<T>) => Observable<T>)[];
+  pipes?: (...args: any[]) => OperatorFunction<any, any>[];
 };
 
 export interface FrequencyObservable<T> extends Observable<T> {
   metadata: { calls?: string[]; name: string };
 }
 
-export interface RpcObservable<T> {
-  (...args: any[]): Observable<T>;
-  metadata?: Metadata;
+export interface RpcObservable<Source, Out> {
+  (...args: any[]): Observable<Out>;
+  metadata?: Metadata<Source, Out>;
   setFrequency?(frequency: Observable<any>[]): void; // post$, makeContract... don't have setFrequency
 }
 

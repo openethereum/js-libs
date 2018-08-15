@@ -3,7 +3,8 @@
 //
 // SPDX-License-Identifier: MIT
 
-import * as Abi from '@parity/abi';
+import Abi from '@parity/abi';
+import Func from '@parity/abi/lib/spec/function';
 import { abiEncode } from '@parity/api/lib/util/encode';
 import * as memoizee from 'memoizee';
 
@@ -18,7 +19,7 @@ interface MakeContract {
   abi: Abi;
   address: string;
   readonly contractObject: any; // TODO from @parity/api
-  [index: string]: string | ((...args: any[]) => any);
+  [index: string]: Abi | string | ((...args: any[]) => any);
 }
 
 /**
@@ -46,10 +47,10 @@ const getContract = memoizee(
  * function resolves.
  */
 export const makeContract = memoizee(
-  (address: Address, abiJson: AbiType): MakeContract => {
+  (address: Address, abiJson: AbiType) => {
     const abi = new Abi(abiJson);
     // Variable result will hold the final object to return
-    const result = {
+    const result: MakeContract = {
       abi,
       address,
       get contractObject() {
@@ -59,8 +60,8 @@ export const makeContract = memoizee(
 
     // We then copy every key inside contract.instance into our `result` object,
     // replacing each the value by an Observable instead of a Promise.
-    abi.functions.forEach(({ name }) => {
-      result[`${name}$`] = (...args) => {
+    abi.functions.forEach(({ name }: Func) => {
+      result[`${name}$`] = (...args: any[]) => {
         // We only get the contract when the function is called for the 1st
         // time. Note: getContract is memoized, won't create contract on each
         // call.

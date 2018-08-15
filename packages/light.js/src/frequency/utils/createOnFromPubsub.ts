@@ -33,6 +33,7 @@ const createOnFromPubsub = <T>(
   return Observable.create((observer: Observer<T>) => {
     const subscription = api().pubsub[namespace][method](
       (error: Error, result: any) => {
+        // TODO use @parity/api type for result
         if (error) {
           observer.error(error);
         } else {

@@ -21,6 +21,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "@parity/abi": "^3.0.0",
     "@parity/api": "^2.1.23",
     "json-prune": "^1.1.0",
     "memoizee": "^0.4.12"

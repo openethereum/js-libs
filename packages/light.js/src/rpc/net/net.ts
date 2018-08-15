@@ -17,7 +17,7 @@ import { switchMapPromise } from '../../utils/operators';
  *
  * @return - An Observable containing the number.
  */
-export const peerCount$ = createRpc$<BigNumber>({
+export const peerCount$ = createRpc$<number, BigNumber>({
   calls: ['net_peerCount'],
   frequency: [onEvery5Seconds$],
   pipes: () => [switchMapPromise(() => api().net.peerCount())]

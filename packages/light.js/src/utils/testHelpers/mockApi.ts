@@ -10,14 +10,14 @@
  */
 export const rejectApi = (rejectWith = new Error('bar'), isPubSub = true) => ({
   fake: {
-    method () {
+    method() {
       return Promise.reject(rejectWith);
     }
   },
   isPubSub,
   pubsub: {
     fake: {
-      method (callback) {
+      method(callback: Function) {
         callback(rejectWith, null);
         return Promise.resolve(1); // Resolves to subscriptionId
       }
@@ -36,14 +36,14 @@ export const resolveApi = (
   isPubSub = true
 ) => ({
   fake: {
-    method () {
+    method() {
       return Promise.resolve(resolveWith);
     }
   },
   isPubSub,
   pubsub: {
     fake: {
-      method (callback) {
+      method(callback: Function) {
         callback(null, resolveWith);
         return Promise.resolve(1); // Resolves to subscriptionId
       }

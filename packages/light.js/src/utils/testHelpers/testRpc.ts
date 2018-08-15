@@ -11,7 +11,7 @@ import { RpcObservable } from '../../types';
  *
  * @ignore
  */
-const testRpc = (name: string, rpc$: RpcObservable<any>) =>
+const testRpc = (name: string, rpc$: RpcObservable<any, any>) =>
   describe(`${name} rpc`, () => {
     it('should be a function', () => {
       expect(typeof rpc$).toBe('function');
