@@ -37,13 +37,3 @@ export const chainName$ = createRpc$<string>({
 })(() =>
   getFrequency(chainName$).pipe(switchMapPromise(() => api().parity.netChain()))
 );
-
-/**
- * Get the amount of peers. Calls `net_peerCount`
- *
- * @return {Observable<Number>} - An Observable containing the number.
- */
-export const peerCount$ = createRpc$<Number>({
-  calls: ['net_peerCount'],
-  frequency: [onEvery5Seconds$]
-})(() => getFrequency(peerCount$).pipe(switchMapPromise(() => api().net.peerCount())));
