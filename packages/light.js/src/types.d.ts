@@ -38,7 +38,7 @@ export interface FrequencyObservable<T> extends Observable<T> {
 export interface RpcObservable<T> {
   (...args: any[]): Observable<T>;
   metadata?: Metadata; // TODO All RpcObservables should have metadata?
-  setFrequency? (frequency: Observable<any>[]): void; // post$, makeContract... don't have setFrequency
+  setFrequency?(frequency: Observable<any>[]): void; // post$, makeContract... don't have setFrequency
 }
 
 // TODO This should be on @parity/api
@@ -54,8 +54,4 @@ export interface TxStatus {
   estimated?: any; // BigNumber
   requested?: string;
   signed?: string;
-}
-
-export interface WithError<T> {
-  error;
 }

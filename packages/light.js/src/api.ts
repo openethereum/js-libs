@@ -7,7 +7,7 @@ import * as Api from '@parity/api';
 
 // import { name } from '../package.json';
 
-let api;
+let api: any; // TODO @parity/api
 
 /**
  * Sets an Api object.
@@ -15,7 +15,7 @@ let api;
  * @param {Object} newApi - The Api object.
  * @return {Null}
  */
-export const setApi = newApi => {
+export const setApi = (newApi: any) => {
   api = newApi;
   if (!api.isPubSub) {
     console.warn(
