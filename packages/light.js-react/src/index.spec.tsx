@@ -9,13 +9,15 @@ import * as React from 'react';
 import * as Adapter from 'enzyme-adapter-react-16';
 import * as Enzyme from 'enzyme';
 import { of } from 'rxjs';
+import { toClass } from 'recompose';
 
-import { withOneObservable } from './';
+import light, { withOneObservable } from './';
 
 Enzyme.configure({ adapter: new Adapter() });
 const { mount } = Enzyme;
 
-class MockComponent extends React.Component {}
+const MockComponent = toClass(props => <div>{JSON.stringify(props)}</div>);
+const mockRpc$ = () => of('bar');
 
 describe('withOneObservable', () => {
   test('it should return a HOC', () => {
@@ -23,11 +25,28 @@ describe('withOneObservable', () => {
   });
 
   test('it should give the wrapped component the correct props', () => {
-    const EnhancedComponent = withOneObservable('foo', () => of('bar'))(
+    const EnhancedComponent = withOneObservable('foo', mockRpc$)(MockComponent);
+    const wrapper = mount(<EnhancedComponent />);
+    const div = wrapper.find('div');
+    expect(div.text()).toEqual(JSON.stringify({ foo: 'bar' }));
+  });
+});
+
+describe('light', () => {
+  test('it should return a HOC', () => {
+    expect(
+      typeof light({
+        foo: mockRpc$
+      })
+    ).toBe('function');
+  });
+
+  test('it should give the wrapped component the correct props', () => {
+    const EnhancedComponent = light({ foo: mockRpc$, baz: mockRpc$ })(
       MockComponent
     );
     const wrapper = mount(<EnhancedComponent />);
-    expect(wrapper.props()).toHaveProperty('foo');
-    expect(wrapper.props().foo).toBe('bar');
+    const div = wrapper.find('div');
+    expect(div.text()).toEqual(JSON.stringify({ foo: 'bar', baz: 'bar' }));
   });
 });
