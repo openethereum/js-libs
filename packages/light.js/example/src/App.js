@@ -9,6 +9,7 @@ import { BrowserRouter, Link, Route, Switch } from 'react-router-dom';
 import BalanceOf from './BalanceOf';
 import BlockNumber from './BlockNumber';
 import logo from './logo.svg';
+import PeerCount from './PeerCount';
 import './App.css';
 
 class App extends Component {
@@ -31,6 +32,9 @@ class App extends Component {
             <li>
               <Link to="/blockNumber$">blockNumber$</Link>
             </li>
+            <li>
+              <Link to="/peerCount$">peerCount$</Link>
+            </li>
           </ul>
           <br />
           <p>
@@ -45,6 +49,7 @@ class App extends Component {
             <Route component={null} exact path="/" />
             <Route component={BalanceOf} exact path="/balanceOf$" />
             <Route component={BlockNumber} exact path="/blockNumber$" />
+            <Route component={PeerCount} exact path="/peerCount$" />
           </Switch>
 
           <br />
