@@ -4,10 +4,10 @@
 // SPDX-License-Identifier: MIT
 
 import React, { Component } from 'react';
+import light from '@parity/light.js-react';
 
 import BalanceOfAddress from './BalanceOfAddress';
 import { defaultAccount$ } from '../light.js';
-import light from '../hoc';
 
 @light({
   defaultAccount: defaultAccount$

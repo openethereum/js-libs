@@ -8,7 +8,6 @@ import { compose, mapPropsStream, setObservableConfig } from 'recompose';
 import { map, switchMap } from 'rxjs/operators';
 import { RpcObservable } from '@parity/light.js';
 
-console.log('hello');
 // https://github.com/acdlite/recompose/blob/master/docs/API.md#setobservableconfig
 setObservableConfig({
   // Converts a plain ES observable to an RxJS 6 observable
