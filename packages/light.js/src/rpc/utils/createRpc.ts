@@ -74,7 +74,7 @@ const createRpc = <Source, Out>(
     // The pipes to add
     const pipes: OperatorFunction<any, any>[] = [];
     if (metadata.pipes && isFunction(metadata.pipes)) {
-      pipes.concat(metadata.pipes(...args));
+      pipes.push(...metadata.pipes(...args));
     }
     pipes.push(multicast(() => subject$), refCount());
     if (options.withoutLoading === true) {

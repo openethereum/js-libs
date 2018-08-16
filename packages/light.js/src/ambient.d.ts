@@ -4,6 +4,7 @@
 // SPDX-License-Identifier: MIT
 
 declare module '@parity/api';
+declare module '@parity/api/lib/util';
 declare module '@parity/api/lib/util/encode';
 declare module '@parity/api/lib/util/types';
 declare module 'json-prune';

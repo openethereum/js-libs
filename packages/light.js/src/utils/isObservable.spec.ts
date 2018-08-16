@@ -14,13 +14,13 @@ import isObservable from './isObservable';
  * @param {Any} input - The input to the isObservable function.
  * @param {Boolean} expected - The expected output.
  */
-const testIsObservable = (name, input, expected) => {
+const testIsObservable = (name: string, input: any, expected: boolean) => {
   it(`should return ${expected} for a ${name}`, () => {
     expect(isObservable(input)).toBe(expected);
   });
 };
 
 testIsObservable('Observable', of(1), true);
-testIsObservable('function', () => null, false);
+testIsObservable('function', (): any => null, false);
 testIsObservable('object', {}, false);
 testIsObservable('null', null, false);
