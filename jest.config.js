@@ -5,5 +5,6 @@ module.exports = {
   transform: {
     '^.+\\.tsx?$': 'ts-jest'
   },
-  testRegex: 'spec\\.(ts|tsx)$'
+  // testRegex: 'spec\\.(ts|tsx)$' // TODO Skip api/ tests for now, as it's still WIP
+  testRegex: 'packages/(abi|light.js|light.js-react)/.*spec\\.(ts|tsx)$'
 };
