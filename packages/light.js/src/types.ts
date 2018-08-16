@@ -12,8 +12,6 @@ declare global {
   }
 }
 
-export type Abi = Array<Object>; // TODO Better type?
-
 // TODO This should be on @parity/api
 export type AccountsInfo = {
   name: String;

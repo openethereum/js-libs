@@ -17,7 +17,8 @@
     "access": "public"
   },
   "scripts": {
-    "build": "rimraf lib && echo Skipped for now.",
+    "prebuild": "rimraf lib",
+    "build": "echo Skipped for now.",
     "test": "jest"
   },
   "devDependencies": {

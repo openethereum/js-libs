@@ -15,7 +15,8 @@
     "access": "public"
   },
   "scripts": {
-    "build": "rimraf lib && tsc",
+    "prebuild": "rimraf lib",
+    "build": "tsc",
     "test": "jest"
   },
   "devDependencies": {

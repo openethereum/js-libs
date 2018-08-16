@@ -3,12 +3,12 @@
 //
 // SPDX-License-Identifier: MIT
 
-import Abi from '@parity/abi';
+import Abi, { AbiItem } from '@parity/abi';
 import Func from '@parity/abi/lib/spec/function';
 import { abiEncode } from '@parity/api/lib/util/encode';
 import * as memoizee from 'memoizee';
 
-import { Abi as AbiType, Address, RpcObservable } from '../../types';
+import { Address } from '../../types';
 import createRpc from '../utils/createRpc';
 import { switchMapPromise } from '../../utils/operators';
 import api from '../../api';
@@ -33,7 +33,7 @@ interface MakeContract {
  * @return - The contract object as defined in @parity/api.
  */
 const getContract = memoizee(
-  (address: Address, abiJson: AbiType) => api().newContract(abiJson, address),
+  (address: Address, abiJson: AbiItem[]) => api().newContract(abiJson, address),
   { length: 1 } // Only memoize by address
 );
 
@@ -47,7 +47,7 @@ const getContract = memoizee(
  * function resolves.
  */
 export const makeContract = memoizee(
-  (address: Address, abiJson: AbiType) => {
+  (address: Address, abiJson: AbiItem[]) => {
     const abi = new Abi(abiJson);
     // Variable result will hold the final object to return
     const result: MakeContract = {

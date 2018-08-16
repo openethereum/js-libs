@@ -18,7 +18,8 @@
     "React"
   ],
   "scripts": {
-    "build": "rimraf lib && tsc",
+    "prebuild": "rimraf lib",
+    "build": "tsc",
     "test": "jest"
   },
   "dependencies": {
@@ -26,6 +27,7 @@
     "symbol-observable": "^1.2.0"
   },
   "devDependencies": {
+    "@parity/light.js": "^1.0.0",
     "@types/enzyme": "^3.1.13",
     "@types/enzyme-adapter-react-16": "^1.0.3",
     "@types/recompose": "^0.26.4",
