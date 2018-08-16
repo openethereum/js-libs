@@ -49,9 +49,7 @@ const frequencyMixins = {
  * @param metadata - The metadata to add.
  * @return - The original RpcObservable with patched metadata.
  */
-const createRpc = <Source, Out>(
-  metadata: Metadata<Source, Out>
-): RpcObservable<Source, Out> => {
+const createRpc = <Source, Out>(metadata: Metadata<Source, Out>) => {
   // rpc$ will hold the RpcObservable minus its metadata
   const rpc$: RpcObservableWithoutMetadata<Source, Out> = (...args: any[]) => {
     // The source Observable can either be another RpcObservable (in the
@@ -92,9 +90,7 @@ const createRpc = <Source, Out>(
     return source$.pipe(...pipes);
   };
 
-  let memoizedRpc$ = memoizee<RpcObservableWithoutMetadata<Source, Out>>(rpc$, {
-    length: false
-  });
+  let memoizedRpc$ = memoizee(rpc$, { primitive: true, length: false });
 
   Object.assign(memoizedRpc$, frequencyMixins, { metadata });
 

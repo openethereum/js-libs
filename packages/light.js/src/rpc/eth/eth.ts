@@ -41,7 +41,7 @@ export const accounts$ = createRpc$<Address[], Address[]>({
 export const balanceOf$ = createRpc$<any, BigNumber>({
   calls: ['eth_getBalance'],
   frequency: [onEveryBlock$, onStartup$],
-  name: 'balanceof$',
+  name: 'balanceOf$',
   pipes: (address: Address) => [
     switchMapPromise(() => api().eth.getBalance(address))
   ]
