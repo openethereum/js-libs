@@ -4,15 +4,9 @@
 // SPDX-License-Identifier: MIT
 
 import { combineLatest, from, Observable } from 'rxjs';
-import { compose, mapPropsStream, setObservableConfig } from 'recompose';
+import { compose, mapPropsStreamWithConfig } from 'recompose';
 import { map, switchMap } from 'rxjs/operators';
 import { RpcObservable } from '@parity/light.js';
-
-// https://github.com/acdlite/recompose/blob/master/docs/API.md#setobservableconfig
-setObservableConfig({
-  // Converts a plain ES observable to an RxJS 6 observable
-  fromESObservable: from
-});
 
 interface Observables {
   [key: string]: RpcObservable<any, any>;
@@ -30,7 +24,11 @@ export const withOneObservable = <OwnProps, T>(
   key: string,
   rpc$: RpcObservable<any, T>
 ) =>
-  mapPropsStream(props$ =>
+  mapPropsStreamWithConfig({
+    // Converts a plain ES observable to an RxJS 6 observable
+    fromESObservable: from,
+    toESObservable: stream$ => stream$
+  })(props$ =>
     combineLatest(
       props$,
       (props$ as Observable<OwnProps>).pipe(switchMap(rpc$))
