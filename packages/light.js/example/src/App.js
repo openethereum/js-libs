@@ -7,6 +7,7 @@ import React, { Component } from 'react';
 import { BrowserRouter, Link, Route, Switch } from 'react-router-dom';
 
 import BalanceOf from './BalanceOf';
+import BlockNumber from './BlockNumber';
 import logo from './logo.svg';
 import './App.css';
 
@@ -28,7 +29,7 @@ class App extends Component {
               <Link to="/balanceOf$">balanceOf$</Link>
             </li>
             <li>
-              <Link to="/syncStatus$">syncStatus$</Link>
+              <Link to="/blockNumber$">blockNumber$</Link>
             </li>
           </ul>
           <br />
@@ -43,6 +44,7 @@ class App extends Component {
           <Switch>
             <Route component={null} exact path="/" />
             <Route component={BalanceOf} exact path="/balanceOf$" />
+            <Route component={BlockNumber} exact path="/blockNumber$" />
           </Switch>
 
           <br />
