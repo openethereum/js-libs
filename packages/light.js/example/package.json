@@ -6,6 +6,7 @@
     "@parity/abi": "^2.1.4",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
+    "react-router-dom": "^4.3.1",
     "react-scripts": "1.1.4"
   },
   "scripts": {

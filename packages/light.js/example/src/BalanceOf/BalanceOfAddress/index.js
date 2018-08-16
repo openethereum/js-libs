@@ -3,6 +3,6 @@
 //
 // SPDX-License-Identifier: MIT
 
-import RepeatBalance from './RepeatBalance';
+import BalanceOfAddress from './BalanceOfAddress';
 
-export default RepeatBalance;
+export default BalanceOfAddress;
