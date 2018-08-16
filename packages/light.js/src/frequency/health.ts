@@ -9,11 +9,12 @@ import createOnFromPubsub from './utils/createOnFromPubsub';
 /**
  * Observable that emits when syncing status changes.
  */
-export const onPeersChange$ = createOnFromPubsub<number>('net_peerCount', api);
-onPeersChange$.metadata = {
-  calls: ['net_peerCount'],
-  name: 'onPeersChange$'
-};
+// TODO Pubsub doesn't exist on `net_peerCount`
+// export const onPeersChange$ = createOnFromPubsub<number>('net_peerCount', api);
+// onPeersChange$.metadata = {
+//   calls: ['net_peerCount'],
+//   name: 'onPeersChange$'
+// };
 
 /**
  * Observable that emits when syncing status changes.
