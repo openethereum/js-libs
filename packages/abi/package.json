@@ -19,8 +19,7 @@
     "test": "jest"
   },
   "devDependencies": {
-    "@types/utf8": "^2.1.6",
-    "rimraf": "^2.6.2"
+    "@types/utf8": "^2.1.6"
   },
   "dependencies": {
     "bignumber.js": "7.2.1",

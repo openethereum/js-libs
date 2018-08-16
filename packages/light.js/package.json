@@ -23,16 +23,15 @@
   "dependencies": {
     "@parity/abi": "^3.0.0",
     "@parity/api": "^2.1.23",
+    "bignumber.js": "^7.2.1",
     "json-prune": "^1.1.0",
     "memoizee": "^0.4.12"
   },
   "devDependencies": {
     "@types/memoizee": "^0.4.2",
-    "rimraf": "^2.6.2",
     "rxjs": "^6.2.1"
   },
   "peerDependencies": {
-    "bignumber.js": "^7.2.1",
     "rxjs": "^6.2.1"
   }
 }
