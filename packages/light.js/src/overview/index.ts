@@ -47,16 +47,33 @@ if (typeof window !== 'undefined') {
         return;
       }
 
-      overview[key] = { calledWithArgs: {} };
-
-      // We populate the `calledWithArgs` in a human-readable way
+      // We populate the `calledWithArgs` field, in a human-readable way
       Object.keys(rpc$.metadata.calledWithArgs).map(calledWithArgsKey => {
         const subject$ = rpc$.metadata.calledWithArgs[calledWithArgsKey];
+
+        // Don't show this calledWithArgs item if there are not active
+        // subscribers.
+        if (!subject$.observers.length) {
+          return;
+        }
+
+        // Safely initialize the fields
+        overview[key] = overview[key] || {};
+        overview[key].calledWithArgs = overview[key].calledWithArgs || {};
+
+        // Populate each arg the RpcObservable has been called with, with its
+        // currentValue and subscribersCount
         overview[key].calledWithArgs[calledWithArgsKey] = {
           currentValue: subject$._events && subject$._events[0],
           subscribersCount: subject$.observers.length
         };
       });
+
+      // Don't show this RpcObservable if it has no active subscribers on any
+      // of its args.
+      if (!overview[key] || !overview[key].calledWithArgs) {
+        return;
+      }
 
       // We add all calls of this RpcObservable
       if (rpc$.metadata.calls) {
