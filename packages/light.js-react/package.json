@@ -1,10 +1,10 @@
 {
-  "name": "@parity/light.js",
-  "description": "A high-level reactive JS library optimized for light clients",
+  "name": "@parity/light.js-react",
+  "description": "A HOC to easily use @parity/light.js with React.",
   "version": "1.0.0",
   "author": "Parity Team <admin@parity.io>",
   "license": "MIT",
-  "repository": "https://github.com/paritytech/js-libs/packages/light.js",
+  "repository": "https://github.com/paritytech/js-libs/packages/light.js-react",
   "main": "lib/index.js",
   "keywords": [
     "API",
@@ -14,25 +14,21 @@
     "Observable",
     "Parity",
     "Reactive",
-    "RxJS"
+    "RxJS",
+    "React"
   ],
   "scripts": {
     "build": "rimraf lib && tsc",
     "test": "jest"
   },
   "dependencies": {
-    "@parity/abi": "^3.0.0",
-    "@parity/api": "^2.1.23",
-    "json-prune": "^1.1.0",
-    "memoizee": "^0.4.12"
+    "recompose": "^0.28.2"
   },
   "devDependencies": {
-    "@types/memoizee": "^0.4.2",
-    "rimraf": "^2.6.2",
-    "rxjs": "^6.2.1"
+    "@types/recompose": "^0.26.4"
   },
   "peerDependencies": {
-    "bignumber.js": "^7.2.1",
+    "@parity/light.js": "^1.0.0",
     "rxjs": "^6.2.1"
   }
 }
