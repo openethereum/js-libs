@@ -33,15 +33,16 @@ class Balance extends Component {
           'loading...'
         )}
 
-        <h3>
-          Balance of a fixed address{' '}
-          <code>0x005d98ddB660F40F3a226A3F67b7831A0d8Dfe85</code>
-        </h3>
-        <BalanceOfAddress address="0x005d98ddB660F40F3a226A3F67b7831A0d8Dfe85" />
-
         <h3>Balance of a chosen address</h3>
         <input onChange={this.handleChange} value={currentAccount} />
         <BalanceOfAddress address={currentAccount} />
+        <p>
+          <em>
+            Please note in your network requests that if you put the same
+            address as your default account, the underlying RPC requested won't
+            be uncessarily dedoubled.
+          </em>
+        </p>
       </div>
     );
   }

@@ -44,6 +44,13 @@ class App extends Component {
             <Route component={null} exact path="/" />
             <Route component={BalanceOf} exact path="/balanceOf$" />
           </Switch>
+
+          <br />
+          <br />
+          <p>
+            At any time, type <code>window.parity.rpcOverview()</code> in your
+            browser console to have a look at the current active subscriptions.
+          </p>
         </div>
       </BrowserRouter>
     );
