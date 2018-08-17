@@ -2,7 +2,8 @@
 
 A high-level reactive JS library optimized for light clients.
 
-[Documentation](https://parity-js.github.io/light.js/)
+[![Build Status](https://travis-ci.org/paritytech/js-libs.svg?branch=master)](https://travis-ci.org/paritytech/js-libs)
+[![dependencies Status](https://david-dm.org/paritytech/js-libs/status.svg?path=packages/light.js)](https://david-dm.org/paritytech/js-libs?path=packages/light.js)
 
 ## Getting Started
 

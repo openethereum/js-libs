@@ -2,6 +2,9 @@
 
 A HOC to easily use [@parity/light.js](https://github.com/paritytech/js-libs/packages/light.js) with React.
 
+[![Build Status](https://travis-ci.org/paritytech/js-libs.svg?branch=master)](https://travis-ci.org/paritytech/js-libs)
+[![dependencies Status](https://david-dm.org/paritytech/js-libs/status.svg?path=packages/light.js-react)](https://david-dm.org/paritytech/js-libs?path=packages/light.js-react)
+
 ## Usage
 
 The libray provides a higher-order component (HOC) to use `@parity/light.js`'s Observables easily with React apps.
