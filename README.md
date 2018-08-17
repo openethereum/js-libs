@@ -5,7 +5,7 @@
 
 <br /><br /><br />
 
-<h1 align="center">Parity's JavaScript stack</h1>
+<h1 align="center">Parity's JavaScript Stack</h1>
 
 <h4 align="center">
   A collection of JavaScript libraries for dapp development.
