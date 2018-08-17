@@ -3,11 +3,15 @@
 [![Gitter: Parity.js](https://img.shields.io/badge/gitter-parity.js-4AB495.svg)](https://gitter.im/paritytech/parity.js)
 [![Riot: +Parity](https://img.shields.io/badge/riot-%2Bparity%3Amatrix.parity.io-orange.svg)](https://riot.im/app/#/group/+parity:matrix.parity.io)
 
+<br /><br /><br />
+
 <h1 align="center">Parity's JavaScript stack</h1>
 
 <h4 align="center">
   an ecosystem of composable React components for building interactive data visualizations.
 </h4>
+
+<br /><br /><br />
 
 ## Packages
 
