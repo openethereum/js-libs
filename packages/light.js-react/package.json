@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "author": "Parity Team <admin@parity.io>",
   "license": "MIT",
-  "repository": "https://github.com/paritytech/js-libs/packages/light.js-react",
+  "repository": "https://github.com/paritytech/js-libs/tree/master/packages/light.js-react",
   "main": "lib/index.js",
   "keywords": [
     "API",

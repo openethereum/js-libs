@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "author": "Parity Team <admin@parity.io>",
   "license": "MIT",
-  "repository": "https://github.com/paritytech/js-libs/packages/light.js",
+  "repository": "https://github.com/paritytech/js-libs/tree/master/packages/light.js",
   "main": "lib/index.js",
   "keywords": [
     "API",
@@ -16,6 +16,9 @@
     "Reactive",
     "RxJS"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "prebuild": "rimraf lib",
     "build": "tsc",
