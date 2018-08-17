@@ -3,6 +3,7 @@
 Parity.js is a thin, fast, Promise-based wrapper around the Ethereum APIs.
 
 [![Build Status](https://travis-ci.org/paritytech/js-libs.svg?branch=master)](https://travis-ci.org/paritytech/js-libs)
+[![npm (scoped)](https://img.shields.io/npm/v/@parity/api.svg)](https://www.npmjs.com/package/@parity/api)
 [![dependencies Status](https://david-dm.org/paritytech/js-libs/status.svg?path=packages/api)](https://david-dm.org/paritytech/js-libs?path=packages/api)
 
 ## installation

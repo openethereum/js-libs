@@ -3,6 +3,7 @@
 A HOC to easily use [@parity/light.js](https://github.com/paritytech/js-libs/packages/light.js) with React.
 
 [![Build Status](https://travis-ci.org/paritytech/js-libs.svg?branch=master)](https://travis-ci.org/paritytech/js-libs)
+[![npm (scoped)](https://img.shields.io/npm/v/@parity/light.js-react.svg)](https://www.npmjs.com/package/@parity/light.js-react)
 [![dependencies Status](https://david-dm.org/paritytech/js-libs/status.svg?path=packages/light.js-react)](https://david-dm.org/paritytech/js-libs?path=packages/light.js-react)
 
 ## Usage
