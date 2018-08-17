@@ -1,4 +1,4 @@
-# @parity/light.js-hoc
+# @parity/light.js-react
 
 A HOC to easily use [@parity/light.js](https://github.com/paritytech/js-libs/packages/light.js) with React.
 
