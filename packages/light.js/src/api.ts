@@ -12,7 +12,7 @@ import * as EventEmitter from 'eventemitter3';
  *
  * @ignore
  */
-class NullProvider extends EventEmitter {
+export class NullProvider extends EventEmitter {
   send(method: string, params: any[]) {
     debug('@parity/light.js:api')(
       `Calling "${method}" rpc with params "${JSON.stringify(

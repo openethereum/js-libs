@@ -3,11 +3,11 @@
 //
 // SPDX-License-Identifier: MIT
 
-import { getApi, setApi } from './api';
+import { getApi, NullProvider, setApi } from './api';
 import { resolveApi } from './utils/testHelpers/mockApi';
 
-it('should return the default Api object', () => {
-  expect(getApi().provider._url).toBe('ws://localhost:8546');
+it('should return the Null provider', () => {
+  expect(getApi().provider instanceof NullProvider).toBe(true);
 });
 
 it('should correctly set a new Api', () => {

@@ -28,7 +28,9 @@ const createOnFromPubsub = <T>(
   if (!api().isPubSub) {
     debug('@parity/light.js:api')(
       `Pubsub not available for ${
-        api().provider.constructor.name
+        api().provider
+          ? api().provider.constructor.name
+          : 'current Api provider'
       }, polling "${pubsub}" every second.`
     );
     return timer(0, 1000).pipe(
