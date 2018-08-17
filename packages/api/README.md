@@ -2,10 +2,9 @@
 
 Parity.js is a thin, fast, Promise-based wrapper around the Ethereum APIs.
 
-[![Build Status](https://travis-ci.org/paritytech/js-api.svg?branch=master)](https://travis-ci.org/paritytech/js-api)
-[![Coverage Status](https://coveralls.io/repos/github/paritytech/js-api/badge.svg?branch=master)](https://coveralls.io/github/paritytech/js-api?branch=master)
-[![Dependency Status](https://david-dm.org/paritytech/js-api.svg)](https://david-dm.org/paritytech/js-api)
-[![devDependency Status](https://david-dm.org/paritytech/js-api/dev-status.svg)](https://david-dm.org/paritytech/js-api#info=devDependencies)
+[![Build Status](https://travis-ci.org/paritytech/js-libs.svg?branch=master)](https://travis-ci.org/paritytech/js-libs)
+[![npm (scoped)](https://img.shields.io/npm/v/@parity/api.svg)](https://www.npmjs.com/package/@parity/api)
+[![dependencies Status](https://david-dm.org/paritytech/js-libs/status.svg?path=packages/api)](https://david-dm.org/paritytech/js-libs?path=packages/api)
 
 ## installation
 
@@ -29,24 +28,19 @@ const api = new Api(provider);
 perform a call
 
 ```javascript
-api.eth
-  .coinbase()
-  .then((coinbase) => {
-    console.log(`The coinbase is ${coinbase}`);
-  });
+api.eth.coinbase().then(coinbase => {
+  console.log(`The coinbase is ${coinbase}`);
+});
 ```
 
 multiple promises
 
 ```javascript
-Promise
-  .all([
-    api.eth.coinbase(),
-    api.net.listening()
-  ])
-  .then(([coinbase, listening]) => {
+Promise.all([api.eth.coinbase(), api.net.listening()]).then(
+  ([coinbase, listening]) => {
     // do stuff here
-  });
+  }
+);
 ```
 
 chaining promises
@@ -73,10 +67,9 @@ const contract = api.newContract(abi, address);
 find & call a function
 
 ```javascript
-contract.instance
-  .callMe
+contract.instance.callMe
   .call({ gas: 21000 }, [true, 'someString']) // or estimateGas or postTransaction
-  .then((result) => {
+  .then(result => {
     console.log(`the result was ${result}`);
   });
 ```
