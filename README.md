@@ -8,7 +8,7 @@
 <h1 align="center">Parity's JavaScript stack</h1>
 
 <h4 align="center">
-  an ecosystem of composable React components for building interactive data visualizations.
+  A collection of JavaScript libraries for dapp development.
 </h4>
 
 <br /><br /><br />
