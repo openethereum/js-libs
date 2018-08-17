@@ -3,6 +3,7 @@
 //
 // SPDX-License-Identifier: MIT
 
+import * as debug from 'debug';
 import { FrequencyObservable } from '../../types';
 import { Observable, Observer, timer } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
@@ -25,6 +26,11 @@ const createOnFromPubsub = <T>(
   // MetaMaskProvider. In this case, as suggested on their Github, the best
   // solution for now is to poll.
   if (!api().isPubSub) {
+    debug('@parity/light.js:as')(
+      `Pubsub not available for ${
+        api().provider.constructor.name
+      }, polling "${pubsub}" every second.`
+    );
     return timer(0, 1000).pipe(
       switchMap(() => api()[namespace][method]())
     ) as FrequencyObservable<T>;
