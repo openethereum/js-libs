@@ -26,7 +26,7 @@ const createOnFromPubsub = <T>(
   // MetaMaskProvider. In this case, as suggested on their Github, the best
   // solution for now is to poll.
   if (!api().isPubSub) {
-    debug('@parity/light.js:as')(
+    debug('@parity/light.js:api')(
       `Pubsub not available for ${
         api().provider.constructor.name
       }, polling "${pubsub}" every second.`
