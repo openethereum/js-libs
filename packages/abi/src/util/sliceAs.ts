@@ -15,7 +15,7 @@ import { toChecksumAddress } from './address';
 export const asU32 = (slice: string) => {
   // TODO: validation
 
-  return new BigNumber(slice, 16);
+  return new BigNumber(slice.toLowerCase(), 16);
 };
 
 /**

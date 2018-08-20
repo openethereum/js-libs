@@ -26,7 +26,7 @@
     "@types/node": "^10.5.2"
   },
   "dependencies": {
-    "@parity/abi": "~2.1.4",
+    "@parity/abi": "^3.0.0",
     "@parity/jsonrpc": "2.1.x",
     "@parity/wordlist": "1.1.x",
     "bignumber.js": "7.2.1",
