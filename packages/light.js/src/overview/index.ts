@@ -3,11 +3,11 @@
 //
 // SPDX-License-Identifier: MIT
 
+import { ApiValue, RpcObservable } from '../types';
 import * as rpc from '../rpc';
-import { RpcObservable } from '../types';
 
 interface CalledWithArgsItem {
-  currentValue: any;
+  currentValue: ApiValue;
   subscribersCount: number;
 }
 
@@ -40,7 +40,7 @@ if (typeof window !== 'undefined') {
         return;
       }
 
-      const rpc$: RpcObservable<any, any> = (rpc as any)[key];
+      const rpc$: RpcObservable<any, ApiValue> = (rpc as any)[key];
 
       // If the rpc$ has not been called, then we don't show it
       if (!rpc$.metadata.calledWithArgs) {

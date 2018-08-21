@@ -20,7 +20,10 @@ export type AccountsInfo = {
 // TODO This should be on @parity/api
 export type Address = string;
 
-export type Metadata<Source, Out> = {
+// TODO This should be on @parity/api
+export type ApiValue = any;
+
+export interface Metadata<Source, Out> {
   calledWithArgs?: {
     [key: string]: any;
   };
@@ -28,8 +31,8 @@ export type Metadata<Source, Out> = {
   dependsOn?: RpcObservable<any, Source>;
   frequency?: FrequencyObservable<Source>[];
   name?: string;
-  pipes?: (...args: any[]) => OperatorFunction<any, any>[];
-};
+  pipes?: (...args: any[]) => OperatorFunction<Source, Out>[];
+}
 
 export interface FrequencyObservable<T> extends Observable<T> {
   metadata?: { calls?: string[]; name: string };
@@ -38,7 +41,7 @@ export interface FrequencyObservable<T> extends Observable<T> {
 export interface RpcObservable<Source, Out> {
   (...args: any[]): Observable<Out>;
   metadata?: Metadata<Source, Out>;
-  setFrequency?(frequency: Observable<any>[]): void; // post$, makeContract... don't have setFrequency
+  setFrequency?(frequency: Observable<ApiValue>[]): void; // post$, makeContract... don't have setFrequency
 }
 
 // TODO This should be on @parity/api
