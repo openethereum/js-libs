@@ -5,8 +5,9 @@ module.exports = {
   excludePrivate: true,
   hideGenerator: true,
   includes: './src',
-  out: 'docs',
+  out: 'docs/api',
   module: 'commonjs',
+  mdEngine: 'gitbook',
   stripInternal: 'true',
   theme: 'markdown'
 };
