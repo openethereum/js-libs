@@ -3,8 +3,7 @@
 //
 // SPDX-License-Identifier: MIT
 
-import Abi from '@parity/abi';
-import Func from '@parity/abi/lib/spec/function';
+import * as Abi from '@parity/abi';
 import { abiEncode } from '@parity/api/lib/util/encode';
 import * as memoizee from 'memoizee';
 
