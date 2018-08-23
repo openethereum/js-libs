@@ -25,7 +25,7 @@ export type ApiValue = any;
 
 export interface Metadata<Source, Out> {
   calledWithArgs?: {
-    [key: string]: any;
+    [key: string]: Out;
   };
   calls?: string[];
   dependsOn?: RpcObservable<any, Source>;
@@ -41,7 +41,7 @@ export interface FrequencyObservable<T> extends Observable<T> {
 export interface RpcObservable<Source, Out> {
   (...args: any[]): Observable<Out>;
   metadata?: Metadata<Source, Out>;
-  setFrequency?(frequency: Observable<ApiValue>[]): void; // post$, makeContract... don't have setFrequency
+  setFrequency?(frequency: FrequencyObservable<Source>[]): void; // post$, makeContract... don't have setFrequency
 }
 
 // TODO This should be on @parity/api
