@@ -18,35 +18,14 @@ To learn more about Parity's Light Client, please refer to our wiki: https://wik
 
 ## Current Dapp Development Patterns
 
-If you are a dapp developer, you are probably used to work with a remote full node on the backend:
+If you are a dapp developer, you are probably used to work with a remote full node on the backend, which you connect to with [`web3.js`](https://github.com/ethereum/web3.js/):
 
 - either via MetaMask: `web3js = new Web3(web3.currentProvider);`, which internally connects to INFURA.
 - or connecting to INFURA directly: `web3js = new Web3(new Web3.providers.HttpProvider('https://mainnet.infura.io'));`.
 
-Behind the scenes, there are a couple of differences when developing a dapp with a light node:
+So all your JSONRPC requests require a network call. As such, some patterns for making these requests start to appear. Let's explore some of them, the use case is we want to constantly show the latest balance of an ERC20 token.
 
-- The Light Client has no pending blocks or pending transactions.
-- It actually doesn't have the state at all, so cannot verify and propagate incoming transactions.
-- No block bodies (so no transactions), so we cannot fetch transaction data fast.
-
-Basically, it means that a all JSONRPC calls that require some state, transaction or block data, will require a network call.
-
-From the developer's perspective, the JSONRPC call is the same; behind the scenes, the dapp will send a JSONRPC request to the Light Client, and the latter will ask its peers (through the network) for the result. The network latency should be taken into account when developing a dapp for the Light Client.
-
-### Remote Full Node vs Light Client as a backend
-
-If you are already using a remote node today, then the code and the app's UX shouldn't be very different if you switch to a Light Client. Both methods require a network latency to resolve most JSONRPC calls.
-
-Therefore, the patterns of developing your dapps shouldn't be very different, we're exploring some of them here.
-
-Please note that there are at least two advantages of using a Light Client:
-
-- we don't use a centralized backend to fetch data we need.
-- we verify the data we receive, instead of blindy trusting the backend.
-
-But today, it is easier to get started with a remote full node like INFURA.
-
-### Example of naive polling, which doesn't work well
+### 1. Example of naive polling, which doesn't work well
 
 For example, if you want to fetch the latest ERC20 token balance, the following piece of code (which might actually work), doesn't make sense:
 
@@ -62,7 +41,7 @@ setInterval(async () => {
 
 We're querying the contract balance every 500ms, so we're making a network request every 500ms. This is too many requests, and moreover, if one network requests takes more than 500ms to resolve, then the displayed result on your dapp could be outdated.
 
-### Smart Polling
+### 2. Smart Polling
 
 There are of course smarter patterns that we see coming again and again in the dapp development community, which become some basic 101 knowledge between dapp developers.
 
@@ -83,7 +62,9 @@ setTimeout(function update() {
 });
 ```
 
-### Pubsub
+### 3. Pubsub
+
+A more intelligent way would be to have a "push" mechanism instead of a "pull" mechanism. With pubsub, we can subscribe to changes on the network. Here, we subscribing to a new header, and updating balance each time we receive a new header.
 
 ```javascript
 const contract = web3.eth.Contract(ABI, '0x00..ff');
@@ -95,6 +76,31 @@ async function updateBalance() {
 
 web3.eth.subscribe('newBlockHeaders').on('data', updateBalance);
 ```
+
+## `@parity/light.js`: Putting best patterns into a library
+
+### Which backend? Remote Full Node vs Light Client
+
+Here's a comparison of the advantages each type of node offers.
+
+| Remote Full Node                       | Light Client                                                           |
+| -------------------------------------- | ---------------------------------------------------------------------- |
+| -                                      | We don't use a centralized backend to fetch data we need.              |
+| -                                      | We verify the data we receive, instead of blindy trusting the backend. |
+| Much easier to get started with.       | -                                                                      |
+| Light Client still experimental today. | -                                                                      |
+
+However, from the code's perspective, or from your dapp's UX perspective, both solutions are actually quite similar.
+
+Recall that:
+
+- the Light Client has no pending blocks or pending transactions.
+- it actually doesn't have the state at all, so cannot verify and propagate incoming transactions.
+- mo block bodies (so no transactions), so we cannot fetch transaction data fast.
+
+Which means that all JSONRPC calls that require some state, transaction or block data, will require a network call. This is the same as a remote full node.
+
+The (good) development patterns we explored above are therefore also relevant to Light Client development. And that's the goal of `@parity/light.js`. Please also refer to [TODO]().
 
 ### The goal of @parity/light.js
 

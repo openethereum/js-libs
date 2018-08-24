@@ -4,6 +4,7 @@
   - [Light Client Development](concepts/light-client-development.md)
   - [Reactive Programming](concepts/reactive-programming.md)
   - [RpcObservables](concepts/rpc-observables.md)
+  - [RpcObservables Properties](concepts/rpc-observables-properties.md)
 - [API](api/API.md)
   - [Default](api/modules/_api_.md)
   - FrequencyObservables

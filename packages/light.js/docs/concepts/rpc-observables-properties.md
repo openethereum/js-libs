@@ -1,109 +1,90 @@
-# RpcObservables
+# RpcObservables Properties
 
-The whole library `@parity/light.js` works with the concept of `RpcObservable`s.
+`RpcObservables` are built with the idea that we should make the _minimum_ amount of JSONRPC calls to achieve what we want in our dapp.
 
-The name _RpcObservable_ might actually not be the best, because it's actually **not** an Observable. A `RpcObservable` is a function returning an Observable.
+## Observables are cold
 
-Here's the TypeScript type of a `RpcObservable`:
-
-```javascript
-export interface RpcObservable<Source, Out> {
-  (...args: any[]): Observable<Out>;
-  metadata?: Metadata<Source, Out>;
-}
-```
-
-Or in simple words: a `RpcObservable` is a function returning an Observable, and this function has some metadata.
-
-Let's have a look at `MetaData`:
+The underlying JSONRPC method is only called if there's at least one subscriber.
 
 ```javascript
-export interface Metadata<Source, Out> {
-  // --snip--
-  frequency?: FrequencyObservable<Source>[];
-  name?: string;
-  pipes?: (...args: any[]) => OperatorFunction<Source, Out>[];
-}
+import { balanceOf$ } from '@parity/light.js';
+
+const myObs$ = balanceOf$('0x123');
+// Observable created, but `eth_getBalance` not called yet
+const subscription = myObs$.subscribe(console.log);
+// `eth_getBalance` called for the 1st time
+
+// Some other code...
+
+subscription.unsubscribe();
+// `eth_getBalance` stops being called
 ```
 
-These are the most important fields of `MetaData`, which we will explain.
+## Observables are PublishReplay(1)
 
-## Main Idea
+Let's take `blockNumber$()` which fires blocks 7, 8 and 9, and has 3 subscribers that don't subscribe at the same time.
 
-We believe that data streams are an intuitive way to express events happening on the Ethereum blockchain. The most obvious example is the pubsub pattern we described [before](/concepts/light-client-development.html#pubsub), where we wanted to fetch the balance on every new block.
+We have the following marble diagram (`^` denotes when the subscriber subscribes).
 
-It's intuitive to have an Observable, called `onEveryBlock$`, that would fire an event each time it receives a new block from the network. Then, every time it fires, we declaratively make an JSONRPC call to `eth_getBalance`. Into code, it looks like this:
+```
+blockNumber$(): -----7----------8------9-----|
+subscriber1:    -^---7----------8------9-----|
+subscriber2:    ------------^7--8------9-----|
+subscriber3:    --------------------------^9-|
+```
+
+Note: the default behavior for Observables is without PublishReplay, i.e.
+
+```
+blockNumber$(): -----7----------8------9-----|
+subscriber1:    -^---7----------8------9-----|
+subscriber2:    ------------^---8------9-----|
+subscriber3:    --------------------------^--|
+```
+
+But Observables in this library are PublishReplay(1). [Read more](https://blog.angularindepth.com/rxjs-how-to-use-refcount-73a0c6619a4e) about PublishReplay.
+
+## Observables are memoized
 
 ```javascript
-import { from } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+const obs1$ = balanceOf$('0x123');
+const obs2$ = balanceOf$('0x123');
+console.log(obs1$ === obs2$); // true
 
-// Observable that makes a JSONRPC request
-const fetchBalance = () => from(api.eth.getBalance('0x12..ff');
-
-// On every block, we make that JSONRPC request
-onEveryBlock$.pipe(switchMap(fetchBalance)));
+const obs3$ = balanceOf$('0x456');
+console.log(obs1$ === obs3$); // false
 ```
 
-Similarly, if we want to check our peer count every 5 seconds, we'd do
+### Underlying API calls are not unnessarily repeated
 
 ```javascript
-import { from } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+const obs1$ = balanceOf$('0x123');
+const obs2$ = balanceOf$('0x123');
 
-// Observable that makes a JSONRPC request
-const checkPeerCount = () => from(api.net.peerCount();
+obs1$.subscribe(console.log);
+obs1$.subscribe(console.log);
+obs2$.subscribe(console.log);
+// Logs 3 times the balance
+// But only one call to `eth_getBalance` has been made
 
-// On every block, we make that JSONRPC request
-onEvery5Seconds$.pipe(switchMap(checkPeerCount)));
+const obs3$ = balanceOf$('0x456');
+// Logs a new balance, another call to `eth_getBalance` is made
 ```
 
-The main idea of `@parity/light.js` is the following: **"on every [frequency], we do [something]"**.
+## Underlying PubSub subscriptions are dropped when there's no subscriber
 
-On every new block, we call `eth_balance`. On every 5 seconds, we call `net_peerCount`. Etc.
+```javascript
+import { blockNumber$ } from '@parity/light.js';
 
-Looking back at the `MetaData` above, the `frequency` field holds the **frequency**, which is an array of `FrequencyObservable`s, and the `pipes` hold an array of RxJS pipe functions, and each of them does **something**.
+const myObs$ = blockNumber$();
+console.log(blockNumber$.frequency); // [onEveryBlock$]
+// Note: onEveryBlock$ creates a pubsub on `eth_blockNumber`
 
-## `FrequencyObservable`
+const subscription = myObs$.subscribe(console.log);
+// Creates a pubsub subscription
 
-Some examples of `FrequencyObservable` shipped with `@parity/light.js` are:
+// Some other code...
 
-- `onEveryBlock$`
-- `onEvery2Blocks$`
-- `onEverySecond$`
-- `onEvery5Seconds$`
-- `onSyncingChanged$` (fires when sync status changes)
-- `onAccountsChanged$` (fires when you change account)
-- `onStartup$` (fires once at dapp start)
-- etc.
-
-The full list can be seen in the [API section](/api/API.md).
-
-## `RpcObservable`
-
-An `RpcObservable` can either have a frequency, or depend on another `RpcObservable` which has a frequency.
-
-### `RpcObservable` with frequencies
-
-An `RpcObservable` with a frequency has its `Metadata.frequency` field filled with one or more `FrequencyObservable`s. For example, `balanceOf$` has as frequency of `[onEveryBlock$]`.
-
-Then, this `RpcObservable` has an array of pipes, which will be piped to the `FrequencyObservable`. For example, `balanceOf$` has one pipe which make a `eth_getBalance` JSONRPC request.
-
-### `RpcObservable` which depends on another `RpcObservable`
-
-Some `RpcObservable` don't have their own frequencies, but depend on a parent `RpcObservable`. This is the case of `defaultAccount$`, which depends on `account$`. In this case, the `Metadata.dependsOn` field points to the parent `RpcObservable`.
-
-These `RpcObservable`s still have some pipes. For example `defaultAccount$` has one pipe which takes the 1st element of the array returned by `accounts$`.
-
-### Calling an `RpcObservable`
-
-As per the TypeScript signature, the `RpcObservable` function can take arguments. These arguments are then passed down into the pipes. For instance, the argument `0x123` in `balanceOf$('0x123')` is passed down into `balanceOf$`'s pipes, i.e. into the JSONRPC `eth_getBalance` call.
-
-### Examples of `RpcObservable`
-
-- `accounts$`: Returns the array of accounts managed by the node. Frequency is `onAccountsChanged$`.
-- `defaultAccount$`: Returns the default active account. Depends on `accounts$`.
-- `blockNumber$`: Returns the current block number. Frequency is `onEveryBlock$`.
-- `peerCount$`: Returns the number of peers. Frequency is `onEvery5Seconds$`.
-
-The full list can be seen in the [API section](/api/API.md).
+subscription.unsubscribe();
+// Drops the pubsub subscription
+```

@@ -1,20 +1,16 @@
-
-@parity/light.js
-================
+# @parity/light.js
 
 A high-level reactive JS library optimized for light clients.
 
 [![Build Status](https://travis-ci.org/paritytech/js-libs.svg?branch=master)](https://travis-ci.org/paritytech/js-libs) [![npm (scoped)](https://img.shields.io/npm/v/@parity/light.js.svg)](https://www.npmjs.com/package/@parity/light.js) [![dependencies Status](https://david-dm.org/paritytech/js-libs/status.svg?path=packages/light.js)](https://david-dm.org/paritytech/js-libs?path=packages/light.js)
 
-Getting Started
----------------
+## Getting Started
 
 ```bash
 yarn install @parity/light.js
 ```
 
-Usage
------
+## Usage
 
 Reactively observe JSONRPC methods:
 
@@ -68,8 +64,7 @@ defaultAccount$()
 
 All available methods are documented [in the docs](https://parity-js.github.io/light.js/).
 
-Usage with React
-----------------
+## Usage with React
 
 The libray provides a higher-order component to use these Observables easily with React apps.
 
@@ -89,8 +84,7 @@ class MyClass extends React.Component {
 
 The UI will automatically update when the syncing state changes.
 
-Advanced Usage
---------------
+## Advanced Usage
 
 ### Frequency
 
@@ -147,15 +141,14 @@ To see an overview of all currently active Observables, type `window.parity.rpcO
 
 The keys are the Observables you are using in your dapp, each containing an object where:
 
-*   `calls`: the underlying JSONRPC calls made.
-*   `dependsOn`: means that the current Observable depends on other Observables, so it doesn't make any JSONRPC calls itself, and doesn't have a frequency.
-*   `frequency`: the frequency upon which the Observable is called.
-*   `subscribersCount`: the number of subscribers this Observable has.
+- `calls`: the underlying JSONRPC calls made.
+- `dependsOn`: means that the current Observable depends on other Observables, so it doesn't make any JSONRPC calls itself, and doesn't have a frequency.
+- `frequency`: the frequency upon which the Observable is called.
+- `subscribersCount`: the number of subscribers this Observable has.
 
 This output can of course be different on different pages of your dapp, if they use different Observables.
 
-Notes about Implementation
---------------------------
+## Notes about Implementation
 
 ### Observables are cold
 
@@ -244,9 +237,7 @@ subscription.unsubscribe();
 // Drops the pubsub subscription
 ```
 
-TODO
-----
+## TODO
 
-*   Switch to TypeScript.
-*   Have 100% test coverage.
-
+- Switch to TypeScript.
+- Have 100% test coverage.
