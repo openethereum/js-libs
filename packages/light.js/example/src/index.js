@@ -7,11 +7,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import 'symbol-observable'; // TODO Remove this once https://github.com/acdlite/recompose/pull/660 is merged
 
-import api from './api';
 import App from './App';
 import light, { balanceOf$, frequency } from './light.js';
+import provider from './provider';
 
-light.setApi(api);
+light.setProvider(provider);
 balanceOf$.setFrequency([frequency.onEvery2Seconds$]);
 
 ReactDOM.render(<App />, document.getElementById('root'));

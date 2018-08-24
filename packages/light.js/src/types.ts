@@ -4,7 +4,7 @@
 // SPDX-License-Identifier: MIT
 
 import BigNumber from 'bignumber.js';
-import { Observable, OperatorFunction } from 'rxjs';
+import { Observable, OperatorFunction, ReplaySubject } from 'rxjs';
 
 declare global {
   interface Window {
@@ -25,7 +25,7 @@ export type ApiValue = any;
 
 export interface Metadata<Source, Out> {
   calledWithArgs?: {
-    [key: string]: Out;
+    [key: string]: ReplaySubject<Out>;
   };
   calls?: string[];
   dependsOn?: RpcObservable<any, Source>;

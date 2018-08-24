@@ -64,6 +64,7 @@ if (typeof window !== 'undefined') {
         // Populate each arg the RpcObservable has been called with, with its
         // currentValue and subscribersCount
         overview[key].calledWithArgs[calledWithArgsKey] = {
+          // @ts-ignore We need to access private properties here
           currentValue: subject$._events && subject$._events[0],
           subscribersCount: subject$.observers.length
         };

@@ -67,7 +67,7 @@ const createRpc = <Source, Out>(metadata: Metadata<Source, Out>) => {
     // A RpcObservable is a source$ Observable, a single subject$ that
     // subscribesthis source, and this subject$ multicasts the fired values to
     // all Observers.
-    const subject$ = new ReplaySubject(1);
+    const subject$ = new ReplaySubject<Out>(1);
 
     // The pipes to add
     const pipes: OperatorFunction<any, any>[] = [];
