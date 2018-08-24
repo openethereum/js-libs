@@ -16,3 +16,6 @@ lib
 
 # os-generated files
 .DS_Store
+
+# generated gitbook
+_book

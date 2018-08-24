@@ -7,6 +7,8 @@ import * as Api from '@parity/api';
 import * as debug from 'debug';
 import * as EventEmitter from 'eventemitter3';
 
+let api: any; // TODO @parity/api
+
 /**
  * Use this null Api provider if the Api hasn't been set by the end user yet.
  *
@@ -22,15 +24,13 @@ export class NullProvider extends EventEmitter {
   }
 }
 
-let api: any; // TODO @parity/api
-
 /**
- * Sets an Api object.
+ * Sets a new Ethereum provider object.
  *
- * @param newApi - The Api object.
+ * @param provider - An Ethereum provider object.
  */
-export const setApi = (newApi: any) => {
-  api = newApi;
+export const setProvider = (provider: any) => {
+  api = new Api(provider);
   if (!api.isPubSub) {
     console.warn(
       `Current provider does not support pubsub. @parity/light.js will poll every second to listen to changes.`

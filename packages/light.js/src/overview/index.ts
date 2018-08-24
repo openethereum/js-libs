@@ -3,11 +3,11 @@
 //
 // SPDX-License-Identifier: MIT
 
+import { ApiValue, RpcObservable } from '../types';
 import * as rpc from '../rpc';
-import { RpcObservable } from '../types';
 
 interface CalledWithArgsItem {
-  currentValue: any;
+  currentValue: ApiValue;
   subscribersCount: number;
 }
 
@@ -40,7 +40,7 @@ if (typeof window !== 'undefined') {
         return;
       }
 
-      const rpc$: RpcObservable<any, any> = (rpc as any)[key];
+      const rpc$: RpcObservable<any, ApiValue> = (rpc as any)[key];
 
       // If the rpc$ has not been called, then we don't show it
       if (!rpc$.metadata.calledWithArgs) {
@@ -64,6 +64,7 @@ if (typeof window !== 'undefined') {
         // Populate each arg the RpcObservable has been called with, with its
         // currentValue and subscribersCount
         overview[key].calledWithArgs[calledWithArgsKey] = {
+          // @ts-ignore We need to access private properties here
           currentValue: subject$._events && subject$._events[0],
           subscribersCount: subject$.observers.length
         };
