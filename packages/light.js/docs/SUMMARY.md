@@ -1,4 +1,5 @@
 - Getting started
+  - [Installation](getting-started/installation.md)
 - Guides
 - Concepts
   - [Light Client Development](concepts/light-client-development.md)

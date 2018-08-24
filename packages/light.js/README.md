@@ -242,5 +242,4 @@ subscription.unsubscribe();
 
 ## TODO
 
-- Switch to TypeScript.
 - Have 100% test coverage.
