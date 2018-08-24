@@ -25,6 +25,20 @@ export class NullProvider extends EventEmitter {
 }
 
 /**
+ * Sets a new Api object.
+ *
+ * @param newApi - An Api object.
+ */
+export const setApi = (newApi: any) => {
+  api = newApi;
+  if (!api.isPubSub) {
+    console.warn(
+      `Current provider does not support pubsub. @parity/light.js will poll every second to listen to changes.`
+    );
+  }
+};
+
+/**
  * Sets a new Ethereum provider object.
  *
  * @param provider - An Ethereum provider object.
