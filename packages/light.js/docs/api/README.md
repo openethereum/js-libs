@@ -4,7 +4,7 @@
 
 A high-level reactive JS library optimized for light clients.
 
-[![Build Status](https://travis-ci.org/paritytech/js-libs.svg?branch=master)](https://travis-ci.org/paritytech/js-libs) [![npm (scoped)](https://img.shields.io/npm/v/@parity/light.js.svg)](https://www.npmjs.com/package/@parity/light.js) [![dependencies Status](https://david-dm.org/paritytech/js-libs/status.svg?path=packages/light.js)](https://david-dm.org/paritytech/js-libs?path=packages/light.js)
+[![Build Status](https://travis-ci.org/paritytech/js-libs.svg?branch=master)](https://travis-ci.org/paritytech/js-libs) [![npm (scoped)](https://img.shields.io/npm/v/@parity/light.js.svg)](https://www.npmjs.com/package/@parity/light.js) [![npm](https://img.shields.io/npm/dw/@parity/light.js.svg)](https://www.npmjs.com/package/@parity/light.js) [![dependencies Status](https://david-dm.org/paritytech/js-libs/status.svg?path=packages/light.js)](https://david-dm.org/paritytech/js-libs?path=packages/light.js)
 
 Getting Started
 ---------------
@@ -19,7 +19,9 @@ Usage
 Reactively observe JSONRPC methods:
 
 ```javascript
-import { defaultAccount$ } from '@parity/light.js';
+import light, { defaultAccount$ } from '@parity/light.js';
+
+light.setProvider(/* put your ethereum provider here */);
 
 defaultAccount$().subscribe(publicAddress => console.log(publicAddress));
 // Outputs your public address 0x...
@@ -66,7 +68,7 @@ defaultAccount$()
   .subscribe(console.log); // Will log the result, and everytime the result changes
 ```
 
-All available methods are documented [in the docs](https://parity-js.github.io/light.js/).
+All available methods are documented [in the docs](TODO).
 
 Usage with React
 ----------------
@@ -74,15 +76,15 @@ Usage with React
 The libray provides a higher-order component to use these Observables easily with React apps.
 
 ```javascript
-import light from '???'; // ??? to be decided
-import { syncing$ } from '@parity/light.js';
+import light from 'parity/ligth.js-react';
+import { syncStatus$ } from '@parity/light.js';
 
 @light({
-  syncingVariable: syncing$
+  mySyncVariable: syncStatus$
 })
 class MyClass extends React.Component {
   render() {
-    return <div>{JSON.stringify(this.props.syncingVariable)}</div>;
+    return <div>{JSON.stringify(this.props.mySyncVariable)}</div>;
   }
 }
 ```
@@ -154,99 +156,8 @@ The keys are the Observables you are using in your dapp, each containing an obje
 
 This output can of course be different on different pages of your dapp, if they use different Observables.
 
-Notes about Implementation
---------------------------
-
-### Observables are cold
-
-The underlying JSONRPC method is only called if there's at least one subscriber.
-
-```javascript
-import { balanceOf$ } from '@parity/light.js';
-
-const myObs$ = balanceOf$('0x123');
-// Observable created, but `eth_getBalance` not called yet
-const subscription = myObs$.subscribe(console.log);
-// `eth_getBalance` called for the 1st time
-
-// Some other code...
-
-subscription.unsubscribe();
-// `eth_getBalance` stops being called
-```
-
-### Observables are PublishReplay(1)
-
-Let's take `blockNumber()$` which fires blocks 7, 8 and 9, and has 3 subscribers that don't subscribe at the same time.
-
-We have the following marble diagram (`^` denotes when the subscriber subscribes).
-
-```
-blockNumber$(): -----7----------8------9-----|
-subscriber1:    -^---7----------8------9-----|
-subscriber2:    ------------^7--8------9-----|
-subscriber3:    --------------------------^9-|
-```
-
-Note: the default behavior for Observables is without PublishReplay, i.e.
-
-```
-blockNumber$(): -----7----------8------9-----|
-subscriber1:    -^---7----------8------9-----|
-subscriber2:    ------------^---8------9-----|
-subscriber3:    --------------------------^--|
-```
-
-But Observables in this library are PublishReplay(1). [Read more](https://blog.angularindepth.com/rxjs-how-to-use-refcount-73a0c6619a4e) about PublishReplay.
-
-### Observables are memoized
-
-```javascript
-const obs1$ = balanceOf$('0x123');
-const obs2$ = balanceOf$('0x123');
-console.log(obs1$ === obs2$); // true
-
-const obs3$ = balanceOf$('0x456');
-console.log(obs1$ === obs3$); // false
-```
-
-### Underlying API calls are not unnessarily repeated
-
-```javascript
-const obs1$ = balanceOf$('0x123');
-const obs2$ = balanceOf$('0x123');
-
-obs1$.subscribe(console.log);
-obs1$.subscribe(console.log);
-obs2$.subscribe(console.log);
-// Logs 3 times the balance
-// But only one call to `eth_getBalance` has been made
-
-const obs3$ = balanceOf$('0x456');
-// Logs a new balance, another call to `eth_getBalance` is made
-```
-
-### Underlying PubSub subscriptions are dropped when there's no subscriber
-
-```javascript
-import { blockNumber$ } from '@parity/light.js';
-
-const myObs$ = blockNumber$();
-console.log(blockNumber$.frequency); // [onEveryBlock$]
-// Note: onEveryBlock$ creates a pubsub on `eth_blockNumber`
-
-const subscription = myObs$.subscribe(console.log);
-// Creates a pubsub subscription
-
-// Some other code...
-
-subscription.unsubscribe();
-// Drops the pubsub subscription
-```
-
 TODO
 ----
 
-*   Switch to TypeScript.
 *   Have 100% test coverage.
 
