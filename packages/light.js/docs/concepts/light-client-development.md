@@ -64,7 +64,7 @@ setTimeout(function update() {
 
 ### 3. Pubsub
 
-A more intelligent way would be to have a "push" mechanism instead of a "pull" mechanism. With pubsub, we can subscribe to changes on the network. Here, we subscribing to a new header, and updating balance each time we receive a new header.
+A more intelligent way would be to have a "push" mechanism instead of a "pull" mechanism. With pubsub, we can subscribe to changes on the network. Here, we subscribing to new headers, and updating balance each time we receive a new header.
 
 ```javascript
 const contract = web3.eth.Contract(ABI, '0x00..ff');
@@ -100,7 +100,7 @@ Recall that:
 
 Which means that all JSONRPC calls that require some state, transaction or block data, will require a network call. This is the same as a remote full node.
 
-The (good) development patterns we explored above are therefore also relevant to Light Client development. And that's the goal of `@parity/light.js`. Please also refer to [TODO]().
+The (good) development patterns we explored above are therefore also relevant to Light Client development. And that's the goal of `@parity/light.js`.
 
 ### The goal of @parity/light.js
 

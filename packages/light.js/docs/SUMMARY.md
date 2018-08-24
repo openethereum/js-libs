@@ -1,6 +1,8 @@
 - Getting started
   - [Installation](getting-started/installation.md)
+  - [Does this work with a full node?](getting-started/does-it-work-with-a-full-node.md)
 - Guides
+  - [Guide1](guides/guide1.md)
 - Concepts
   - [Light Client Development](concepts/light-client-development.md)
   - [Reactive Programming](concepts/reactive-programming.md)

@@ -19,7 +19,7 @@ balanceOf$('0xbb9bc244d798123fde783fcc1c72d3bb8c189413').subscribe(console.log);
 
 Here are some examples of providers you can use.
 
-### Provider 1: Your own Light Client (Recommended Way)
+### Provider 1: Your own Light Client (Recommended Way for development)
 
 Please install Parity Ethereum first: https://parity.io. Then run Parity Ethereum with the following flags:
 
@@ -45,6 +45,10 @@ light.setProvider(provider);
 ```
 
 Note: `@parity/api` is Parity's version of [web3.js](https://github.com/ethereum/web3.js/), but you can also web3.js instead. Please refer to [`@parity/api` documentation](https://github.com/paritytech/js-libs/tree/master/packages/api) to see the difference.
+
+Note: As of August 2018, this method is only suitable for local development only. If you put your dapp online, there is no easy way it'll have its own "local" Light Client. We recommend using another provider in this case.
+
+However, if you are building a mobile application or an Electron desktop application, then the Light Client can be easily embedded into the application itself. For an example, see [Fether](https://github.com/paritytech/fether).
 
 ### Provider 2: MetaMask
 
