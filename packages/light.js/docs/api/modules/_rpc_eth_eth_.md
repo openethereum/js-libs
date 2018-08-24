@@ -11,7 +11,7 @@
   name: 'accounts$'
 })
 
-*Defined in [rpc/eth/eth.ts:30](https://github.com/paritytech/js-libs/blob/a8a861f/packages/light.js/src/rpc/eth/eth.ts#L30)*
+*Defined in [rpc/eth/eth.ts:30](https://github.com/paritytech/js-libs/blob/c75381e/packages/light.js/src/rpc/eth/eth.ts#L30)*
 
 Observable which contains the array of all addresses managed by the light client.
 
@@ -32,7 +32,7 @@ ___
   ]
 })
 
-*Defined in [rpc/eth/eth.ts:41](https://github.com/paritytech/js-libs/blob/a8a861f/packages/light.js/src/rpc/eth/eth.ts#L41)*
+*Defined in [rpc/eth/eth.ts:41](https://github.com/paritytech/js-libs/blob/c75381e/packages/light.js/src/rpc/eth/eth.ts#L41)*
 
 Get the balance of a given account. Calls `eth_getBalance`.
 *__param__*: The account address to query the balance.
@@ -49,7 +49,7 @@ ___
   name: 'blockNumber$'
 })
 
-*Defined in [rpc/eth/eth.ts:67](https://github.com/paritytech/js-libs/blob/a8a861f/packages/light.js/src/rpc/eth/eth.ts#L67)*
+*Defined in [rpc/eth/eth.ts:67](https://github.com/paritytech/js-libs/blob/c75381e/packages/light.js/src/rpc/eth/eth.ts#L67)*
 
 Get the current block number.
 *__returns__*: *   An Observable containing the block height.
@@ -65,7 +65,7 @@ ___
   pipes: () => [map(accounts => accounts[0])]
 })
 
-*Defined in [rpc/eth/eth.ts:56](https://github.com/paritytech/js-libs/blob/a8a861f/packages/light.js/src/rpc/eth/eth.ts#L56)*
+*Defined in [rpc/eth/eth.ts:56](https://github.com/paritytech/js-libs/blob/c75381e/packages/light.js/src/rpc/eth/eth.ts#L56)*
 
 Get the default account managed by the light client.
 *__returns__*: *   An Observable containing the public address of the default account.
@@ -89,7 +89,7 @@ ___
   ]
 })
 
-*Defined in [rpc/eth/eth.ts:75](https://github.com/paritytech/js-libs/blob/a8a861f/packages/light.js/src/rpc/eth/eth.ts#L75)*
+*Defined in [rpc/eth/eth.ts:75](https://github.com/paritytech/js-libs/blob/c75381e/packages/light.js/src/rpc/eth/eth.ts#L75)*
 
 Shorthand for fetching the current account's balance.
 
@@ -103,7 +103,7 @@ ___
   name: 'syncStatus$'
 })
 
-*Defined in [rpc/eth/eth.ts:94](https://github.com/paritytech/js-libs/blob/a8a861f/packages/light.js/src/rpc/eth/eth.ts#L94)*
+*Defined in [rpc/eth/eth.ts:94](https://github.com/paritytech/js-libs/blob/c75381e/packages/light.js/src/rpc/eth/eth.ts#L94)*
 
 Get the syncStatus state.
 *__returns__*: *   An Observable containing the syncing state object, or false.
