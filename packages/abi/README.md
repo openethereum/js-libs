@@ -8,6 +8,8 @@ A port of [https://github.com/paritytech/ethabi](https://github.com/paritytech/e
 [![dependencies Status](https://david-dm.org/paritytech/js-libs/status.svg?path=packages/abi)](https://david-dm.org/paritytech/js-libs?path=packages/abi)
 [![docs](https://img.shields.io/badge/docs-passing-green.svg)](https://parity-js.github.io/abi/)
 
+## [Full Documentation](https://parity-js.github.io/abi/)
+
 ## Contributing
 
 Clone the repo and install dependencies via `npm install`. Tests can be executed via `npm run test`
