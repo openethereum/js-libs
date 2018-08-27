@@ -25,7 +25,7 @@
   'f'
 ]
 
-*Defined in [util/types.ts:6](https://github.com/paritytech/js-libs/blob/98a5da8/packages/abi/src/util/types.ts#L6)*
+*Defined in [util/types.ts:6](https://github.com/paritytech/js-libs/blob/90978f6/packages/abi/src/util/types.ts#L6)*
 
 ___
 
@@ -37,7 +37,7 @@ ___
 
 ▸ **isArray**(input: *`any`*): `boolean`
 
-*Defined in [util/types.ts:25](https://github.com/paritytech/js-libs/blob/98a5da8/packages/abi/src/util/types.ts#L25)*
+*Defined in [util/types.ts:25](https://github.com/paritytech/js-libs/blob/90978f6/packages/abi/src/util/types.ts#L25)*
 
 **Parameters:**
 
@@ -54,7 +54,7 @@ ___
 
 ▸ **isError**(input: *`any`*): `boolean`
 
-*Defined in [util/types.ts:28](https://github.com/paritytech/js-libs/blob/98a5da8/packages/abi/src/util/types.ts#L28)*
+*Defined in [util/types.ts:28](https://github.com/paritytech/js-libs/blob/90978f6/packages/abi/src/util/types.ts#L28)*
 
 **Parameters:**
 
@@ -71,7 +71,7 @@ ___
 
 ▸ **isFunction**(input: *`any`*): `boolean`
 
-*Defined in [util/types.ts:30](https://github.com/paritytech/js-libs/blob/98a5da8/packages/abi/src/util/types.ts#L30)*
+*Defined in [util/types.ts:30](https://github.com/paritytech/js-libs/blob/90978f6/packages/abi/src/util/types.ts#L30)*
 
 **Parameters:**
 
@@ -88,7 +88,7 @@ ___
 
 ▸ **isHex**(input: *`any`*): `boolean`
 
-*Defined in [util/types.ts:33](https://github.com/paritytech/js-libs/blob/98a5da8/packages/abi/src/util/types.ts#L33)*
+*Defined in [util/types.ts:33](https://github.com/paritytech/js-libs/blob/90978f6/packages/abi/src/util/types.ts#L33)*
 
 **Parameters:**
 
@@ -105,7 +105,7 @@ ___
 
 ▸ **isInstanceOf**(input: *`any`*, clazz: *`any`*): `boolean`
 
-*Defined in [util/types.ts:57](https://github.com/paritytech/js-libs/blob/98a5da8/packages/abi/src/util/types.ts#L57)*
+*Defined in [util/types.ts:57](https://github.com/paritytech/js-libs/blob/90978f6/packages/abi/src/util/types.ts#L57)*
 
 **Parameters:**
 
@@ -123,7 +123,7 @@ ___
 
 ▸ **isObject**(input: *`any`*): `boolean`
 
-*Defined in [util/types.ts:51](https://github.com/paritytech/js-libs/blob/98a5da8/packages/abi/src/util/types.ts#L51)*
+*Defined in [util/types.ts:51](https://github.com/paritytech/js-libs/blob/90978f6/packages/abi/src/util/types.ts#L51)*
 
 **Parameters:**
 
@@ -140,7 +140,7 @@ ___
 
 ▸ **isString**(input: *`any`*): `boolean`
 
-*Defined in [util/types.ts:54](https://github.com/paritytech/js-libs/blob/98a5da8/packages/abi/src/util/types.ts#L54)*
+*Defined in [util/types.ts:54](https://github.com/paritytech/js-libs/blob/90978f6/packages/abi/src/util/types.ts#L54)*
 
 **Parameters:**
 

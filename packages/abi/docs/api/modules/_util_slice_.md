@@ -8,7 +8,7 @@
 
 ▸ **sliceData**(data: *`string`*): `string`[]
 
-*Defined in [util/slice.ts:13](https://github.com/paritytech/js-libs/blob/98a5da8/packages/abi/src/util/slice.ts#L13)*
+*Defined in [util/slice.ts:13](https://github.com/paritytech/js-libs/blob/90978f6/packages/abi/src/util/slice.ts#L13)*
 
 Slice data.
 

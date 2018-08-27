@@ -8,7 +8,7 @@
 
 ▸ **eventSignature**(eventName: *`string`*, params: *[ParamType](../classes/_spec_paramtype_paramtype_.paramtype.md)[]*): `object`
 
-*Defined in [util/signature.ts:14](https://github.com/paritytech/js-libs/blob/98a5da8/packages/abi/src/util/signature.ts#L14)*
+*Defined in [util/signature.ts:14](https://github.com/paritytech/js-libs/blob/90978f6/packages/abi/src/util/signature.ts#L14)*
 
 Get event signature.
 
@@ -28,7 +28,7 @@ ___
 
 ▸ **methodSignature**(methodName: *`string`*, params: *[ParamType](../classes/_spec_paramtype_paramtype_.paramtype.md)[]*): `object`
 
-*Defined in [util/signature.ts:29](https://github.com/paritytech/js-libs/blob/98a5da8/packages/abi/src/util/signature.ts#L29)*
+*Defined in [util/signature.ts:29](https://github.com/paritytech/js-libs/blob/90978f6/packages/abi/src/util/signature.ts#L29)*
 
 Get method signature.
 
@@ -48,7 +48,7 @@ ___
 
 ▸ **parseName**(name: *`string`*): `object`
 
-*Defined in [util/signature.ts:40](https://github.com/paritytech/js-libs/blob/98a5da8/packages/abi/src/util/signature.ts#L40)*
+*Defined in [util/signature.ts:40](https://github.com/paritytech/js-libs/blob/90978f6/packages/abi/src/util/signature.ts#L40)*
 
 Parse name.
 
