@@ -6,6 +6,9 @@ A port of [https://github.com/paritytech/ethabi](https://github.com/paritytech/e
 [![npm (scoped)](https://img.shields.io/npm/v/@parity/abi.svg)](https://www.npmjs.com/package/@parity/abi)
 [![npm](https://img.shields.io/npm/dw/@parity/abi.svg)](https://www.npmjs.com/package/@parity/abi)
 [![dependencies Status](https://david-dm.org/paritytech/js-libs/status.svg?path=packages/abi)](https://david-dm.org/paritytech/js-libs?path=packages/abi)
+[![docs](https://img.shields.io/badge/docs-passing-green.svg)](https://parity-js.github.io/abi/)
+
+## [Full Documentation](https://parity-js.github.io/abi/)
 
 ## Contributing
 
