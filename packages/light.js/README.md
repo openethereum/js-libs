@@ -6,6 +6,9 @@ A high-level reactive JS library optimized for light clients.
 [![npm (scoped)](https://img.shields.io/npm/v/@parity/light.js.svg)](https://www.npmjs.com/package/@parity/light.js)
 [![npm](https://img.shields.io/npm/dw/@parity/light.js.svg)](https://www.npmjs.com/package/@parity/light.js)
 [![dependencies Status](https://david-dm.org/paritytech/js-libs/status.svg?path=packages/light.js)](https://david-dm.org/paritytech/js-libs?path=packages/light.js)
+[![docs](https://parity-js.github.io/light.js/)](https://img.shields.io/badge/docs-passing-green.svg)
+
+## [Full Documentation](https://parity-js.github.io/light.js/)
 
 ## Getting Started
 
