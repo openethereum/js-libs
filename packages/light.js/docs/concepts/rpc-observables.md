@@ -1,10 +1,10 @@
 # RpcObservables
 
-The whole library `@parity/light.js` works with the concept of `RpcObservable`s.
+The whole library `@parity/light.js` works with the concept of RpcObservables.
 
-The name _RpcObservable_ might actually not be the best, because it's actually **not** an Observable. A `RpcObservable` is a function returning an Observable.
+The name _RpcObservable_ might actually not be the best, because it's actually **not** an Observable. A RpcObservable is a function returning an Observable.
 
-Here's the TypeScript type of a `RpcObservable`:
+Here's the TypeScript type of a RpcObservable:
 
 ```javascript
 export interface RpcObservable<Source, Out> {
@@ -13,7 +13,7 @@ export interface RpcObservable<Source, Out> {
 }
 ```
 
-Or in simple words: a `RpcObservable` is a function returning an Observable, and this function has some metadata.
+Or in simple words: a RpcObservable is a function returning an Observable, and this function has some metadata.
 
 Let's have a look at `MetaData`:
 
@@ -79,27 +79,27 @@ Some examples of `FrequencyObservable` shipped with `@parity/light.js` are:
 
 The full list can be seen in the [API section](/api/API.md).
 
-## `RpcObservable`
+## RpcObservable
 
-An `RpcObservable` can either have a frequency, or depend on another `RpcObservable` which has a frequency.
+An RpcObservable can either have a frequency, or depend on another RpcObservable which has a frequency.
 
-### `RpcObservable` with frequencies
+### RpcObservable with frequencies
 
-An `RpcObservable` with a frequency has its `Metadata.frequency` field filled with one or more `FrequencyObservable`s. For example, `balanceOf$` has as frequency of `[onEveryBlock$]`.
+An RpcObservable with a frequency has its `Metadata.frequency` field filled with one or more `FrequencyObservable`s. For example, `balanceOf$` has as frequency of `[onEveryBlock$]`.
 
-Then, this `RpcObservable` has an array of pipes, which will be piped to the `FrequencyObservable`. For example, `balanceOf$` has one pipe which make a `eth_getBalance` JSONRPC request.
+Then, this RpcObservable has an array of pipes, which will be piped to the `FrequencyObservable`. For example, `balanceOf$` has one pipe which make a `eth_getBalance` JSONRPC request.
 
-### `RpcObservable` which depends on another `RpcObservable`
+### RpcObservable which depends on another RpcObservable
 
-Some `RpcObservable` don't have their own frequencies, but depend on a parent `RpcObservable`. This is the case of `defaultAccount$`, which depends on `account$`. In this case, the `Metadata.dependsOn` field points to the parent `RpcObservable`.
+Some RpcObservable don't have their own frequencies, but depend on a parent RpcObservable. This is the case of `defaultAccount$`, which depends on `account$`. In this case, the `Metadata.dependsOn` field points to the parent RpcObservable.
 
-These `RpcObservable`s still have some pipes. For example `defaultAccount$` has one pipe which takes the 1st element of the array returned by `accounts$`.
+These RpcObservables still have some pipes. For example `defaultAccount$` has one pipe which takes the 1st element of the array returned by `accounts$`.
 
-### Calling an `RpcObservable`
+### Calling an RpcObservable
 
-As per the TypeScript signature, the `RpcObservable` function can take arguments. These arguments are then passed down into the pipes. For instance, the argument `0x123` in `balanceOf$('0x123')` is passed down into `balanceOf$`'s pipes, i.e. into the JSONRPC `eth_getBalance` call.
+As per the TypeScript signature, the RpcObservable function can take arguments. These arguments are then passed down into the pipes. For instance, the argument `0x123` in `balanceOf$('0x123')` is passed down into `balanceOf$`'s pipes, i.e. into the JSONRPC `eth_getBalance` call.
 
-### Examples of `RpcObservable`
+### Examples of RpcObservable
 
 - `accounts$`: Returns the array of accounts managed by the node. Frequency is `onAccountsChanged$`.
 - `defaultAccount$`: Returns the default active account. Depends on `accounts$`.
