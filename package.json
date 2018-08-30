@@ -20,7 +20,8 @@
   "scripts": {
     "build": "lerna exec yarn build --stream",
     "lint": "tslint 'packages/**/*.ts'",
-    "test": "jest"
+    "test": "jest",
+    "update-docs": "scripts/update-docs.sh"
   },
   "devDependencies": {
     "@types/jest": "^23.1.6",
