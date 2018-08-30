@@ -3,8 +3,10 @@
 ## From npm
 
 ```bash
-yarn install @parity/light.js # Or npm install @parity/light.js
+yarn install rxjs @parity/light.js # Or npm install
 ```
+
+RxJS is a needed peer-dependency.
 
 ## Usage
 
@@ -21,13 +23,7 @@ Here are some examples of providers you can use.
 
 ### Provider 1: Your own Light Client (Recommended Way for development)
 
-Please install Parity Ethereum first: https://parity.io. Then run Parity Ethereum with the following flags:
-
-```bash
-/path/to/parity --chain kovan --light --ws-origins all
-```
-
-We are using the Kovan testnet so that we are not testing our dapp with real Ether. To get some fake Kovan ETH to play with, head to the faucet: https://faucet.kovan.network/.
+Make sure a Light Client is running locally with a WebSocket server on port 8546. Follow [this tutorial](/guides/tutorial1-set-up-a-light-client.html) to learn how to do it.
 
 Then create a new provider that connects to the Light Client:
 

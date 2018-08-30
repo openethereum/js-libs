@@ -2,7 +2,9 @@
   - [Installation](getting-started/installation.md)
   - [Does this work with a full node?](getting-started/does-it-work-with-a-full-node.md)
 - Guides
-  - [Guide1](guides/guide1.md)
+  - [Tutorial Part 1: Set up a Light Client](guides/tutorial1-set-up-a-light-client.md)
+  - [Tutorial Part 2: Our First RpcObservable](guides/tutorial2-our-first-rpcobservable.md)
+  - [Tutorial Part 3: Manipulating RpcObservables](guides/tutorial3-manipulating-rpcobservables.md)
 - Concepts
   - [Light Client Development](concepts/light-client-development.md)
   - [Reactive Programming](concepts/reactive-programming.md)
