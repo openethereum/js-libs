@@ -28,7 +28,7 @@ do
 
     # Push docs to parity-js, on gh-pages branch
     PROJECT_DIR=`pwd`
-    REMOTE_REPO="https://git:f0a87d1f77a5e0fbaf80e178a196e0623591321e@github.com/parity-js/$SCOPE"
+    REMOTE_REPO="https://git:$GH_TOKEN@github.com/parity-js/$SCOPE"
     cd /tmp
     git clone -b gh-pages $REMOTE_REPO new-$SCOPE-docs
     cd new-$SCOPE-docs
