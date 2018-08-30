@@ -19,6 +19,7 @@ before_deploy:
   - npm install --global gitbook-cli
 deploy:
   provider: script
+  skip_cleanup: true
   script: scripts/update-docs.sh --scope=abi,light.js
   on:
     branch: master
