@@ -13,7 +13,7 @@
   pipes: () => [switchMapPromise(() => api().net.peerCount())]
 })
 
-*Defined in [rpc/net/net.ts:20](https://github.com/paritytech/js-libs/blob/c75381e/packages/light.js/src/rpc/net/net.ts#L20)*
+*Defined in [rpc/net/net.ts:20](https://github.com/paritytech/js-libs/blob/79a5f83/packages/light.js/src/rpc/net/net.ts#L20)*
 
 Get the amount of peers.
 

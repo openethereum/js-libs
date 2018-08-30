@@ -2,7 +2,15 @@
   - [Installation](getting-started/installation.md)
   - [Does this work with a full node?](getting-started/does-it-work-with-a-full-node.md)
 - Guides
-  - [Guide1](guides/guide1.md)
+  - [Tutorial Part 1: Set up a Light Client](guides/tutorial1-set-up-a-light-client.md)
+  - [Tutorial Part 2: Our First RpcObservable](guides/tutorial2-our-first-rpcobservable.md)
+  - [Tutorial Part 3: Manipulating RpcObservables](guides/tutorial3-manipulating-rpcobservables.md)
+  - [Tutorial Part 4: Send a Transaction](guides/tutorial4-send-a-transaction.md)
+  - [Tutorial Part 5: Work with Contracts](guides/tutorial5-work-with-contracts.md)
+  - [Tutorial Part 6: Integrate with React](guides/tutorial6-integrate-with-react.md)
+  - [Redux Integration](guides/redux-integration.md)
+  - [Angular Integration](guides/angular-integration.md)
+  - [Overview of Active RpcObservables](guides/ovewview-of-active-rpcobservables.md)
 - Concepts
   - [Light Client Development](concepts/light-client-development.md)
   - [Reactive Programming](concepts/reactive-programming.md)

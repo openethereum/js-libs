@@ -8,7 +8,7 @@
 
 ▸ **post$**(tx: *[Tx](_types_.md#tx)*, options?: *`object`*): `any`
 
-*Defined in [rpc/other/post.ts:22](https://github.com/paritytech/js-libs/blob/c75381e/packages/light.js/src/rpc/other/post.ts#L22)*
+*Defined in [rpc/other/post.ts:22](https://github.com/paritytech/js-libs/blob/79a5f83/packages/light.js/src/rpc/other/post.ts#L22)*
 
 Post a transaction to the network.
 

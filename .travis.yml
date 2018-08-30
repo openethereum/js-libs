@@ -10,8 +10,15 @@ install:
   - yarn install
 language: node_js
 node_js:
-  - "10"
+  - '10'
 script:
   - yarn lint
   - yarn build
   - yarn test --coverage --coverageReporters=text-lcov | coveralls ; test ${PIPESTATUS[0]} -eq 0
+before_deploy:
+  - npm install --global gitbook-cli
+deploy:
+  provider: script
+  script: scripts/update-docs.sh --scope=abi,light.js
+  on:
+    branch: master

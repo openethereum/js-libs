@@ -8,7 +8,7 @@
 
 **ΤAccountsInfo**: *`object`*
 
-*Defined in [types.ts:16](https://github.com/paritytech/js-libs/blob/c75381e/packages/light.js/src/types.ts#L16)*
+*Defined in [types.ts:16](https://github.com/paritytech/js-libs/blob/79a5f83/packages/light.js/src/types.ts#L16)*
 
 #### Type declaration
 
@@ -19,7 +19,7 @@ ___
 
 **ΤAddress**: *`string`*
 
-*Defined in [types.ts:21](https://github.com/paritytech/js-libs/blob/c75381e/packages/light.js/src/types.ts#L21)*
+*Defined in [types.ts:21](https://github.com/paritytech/js-libs/blob/79a5f83/packages/light.js/src/types.ts#L21)*
 
 ___
 <a id="apivalue"></a>
@@ -28,7 +28,7 @@ ___
 
 **ΤApiValue**: *`any`*
 
-*Defined in [types.ts:24](https://github.com/paritytech/js-libs/blob/c75381e/packages/light.js/src/types.ts#L24)*
+*Defined in [types.ts:24](https://github.com/paritytech/js-libs/blob/79a5f83/packages/light.js/src/types.ts#L24)*
 
 ___
 <a id="tx"></a>
@@ -37,7 +37,7 @@ ___
 
 **ΤTx**: *`object`*
 
-*Defined in [types.ts:48](https://github.com/paritytech/js-libs/blob/c75381e/packages/light.js/src/types.ts#L48)*
+*Defined in [types.ts:48](https://github.com/paritytech/js-libs/blob/79a5f83/packages/light.js/src/types.ts#L48)*
 
 #### Type declaration
 

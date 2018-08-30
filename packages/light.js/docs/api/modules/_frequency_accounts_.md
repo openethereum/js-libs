@@ -11,7 +11,7 @@
   api
 )
 
-*Defined in [frequency/accounts.ts:13](https://github.com/paritytech/js-libs/blob/c75381e/packages/light.js/src/frequency/accounts.ts#L13)*
+*Defined in [frequency/accounts.ts:13](https://github.com/paritytech/js-libs/blob/79a5f83/packages/light.js/src/frequency/accounts.ts#L13)*
 
 Observable that emits each time the default account changes
 
@@ -25,7 +25,7 @@ ___
   api
 )
 
-*Defined in [frequency/accounts.ts:22](https://github.com/paritytech/js-libs/blob/c75381e/packages/light.js/src/frequency/accounts.ts#L22)*
+*Defined in [frequency/accounts.ts:22](https://github.com/paritytech/js-libs/blob/79a5f83/packages/light.js/src/frequency/accounts.ts#L22)*
 
 Observable that emits each time the default account changes
 

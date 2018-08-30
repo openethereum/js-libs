@@ -11,7 +11,7 @@
   api
 )
 
-*Defined in [frequency/health.ts:22](https://github.com/paritytech/js-libs/blob/c75381e/packages/light.js/src/frequency/health.ts#L22)*
+*Defined in [frequency/health.ts:22](https://github.com/paritytech/js-libs/blob/79a5f83/packages/light.js/src/frequency/health.ts#L22)*
 
 Observable that emits when syncing status changes.
 

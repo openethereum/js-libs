@@ -10,7 +10,7 @@
   filter(n => +n % 2 === 0) // Around ~30s on mainnet // TODO Use isEqualTo and mod from bignumber.js
 ) as FrequencyObservable<BigNumber>
 
-*Defined in [frequency/blocks.ts:25](https://github.com/paritytech/js-libs/blob/c75381e/packages/light.js/src/frequency/blocks.ts#L25)*
+*Defined in [frequency/blocks.ts:25](https://github.com/paritytech/js-libs/blob/79a5f83/packages/light.js/src/frequency/blocks.ts#L25)*
 
 Observable that emits on every 2nd block.
 
@@ -23,7 +23,7 @@ ___
   filter(n => +n % 4 === 0) // Around ~1min on mainnet // TODO Use isEqualTo and mod from bignumber.js
 ) as FrequencyObservable<BigNumber>
 
-*Defined in [frequency/blocks.ts:33](https://github.com/paritytech/js-libs/blob/c75381e/packages/light.js/src/frequency/blocks.ts#L33)*
+*Defined in [frequency/blocks.ts:33](https://github.com/paritytech/js-libs/blob/79a5f83/packages/light.js/src/frequency/blocks.ts#L33)*
 
 Observable that emits on every 4th block.
 
@@ -37,7 +37,7 @@ ___
   api
 )
 
-*Defined in [frequency/blocks.ts:16](https://github.com/paritytech/js-libs/blob/c75381e/packages/light.js/src/frequency/blocks.ts#L16)*
+*Defined in [frequency/blocks.ts:16](https://github.com/paritytech/js-libs/blob/79a5f83/packages/light.js/src/frequency/blocks.ts#L16)*
 
 Observable that emits on every new block.
 
