@@ -20,6 +20,6 @@ before_deploy:
 deploy:
   provider: script
   skip_cleanup: true
-  script: scripts/update-docs.sh --scope=abi,light.js
+  script: yarn update-docs --scope=abi,light.js
   on:
     branch: master
