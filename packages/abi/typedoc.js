@@ -4,7 +4,7 @@ module.exports = {
   excludePrivate: true,
   hideGenerator: true,
   includes: './src',
-  out: 'docs/api',
+  out: 'docs',
   module: 'commonjs',
   mdEngine: 'gitbook',
   stripInternal: 'true',
