@@ -6,7 +6,7 @@
 import BigNumber from 'bignumber.js';
 import { bytesToHex, hexToAscii } from '@parity/api/lib/util/format';
 
-import ABI from './abi/certifier.json';
+import * as ABI from './abi/certifier.json';
 import { Api, Contract } from './types';
 import Registry from './registry';
 
