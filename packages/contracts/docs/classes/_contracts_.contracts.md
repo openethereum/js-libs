@@ -12,7 +12,7 @@
 
 ⊕ **new Contracts**(api: *`Api`*): [Contracts](_contracts_.contracts.md)
 
-*Defined in [contracts.ts:23](https://github.com/paritytech/js-libs/blob/0aad080/packages/contracts/src/contracts.ts#L23)*
+*Defined in [contracts.ts:23](https://github.com/paritytech/js-libs/blob/9aff8ef/packages/contracts/src/contracts.ts#L23)*
 
 **Parameters:**
 
@@ -32,7 +32,7 @@ ___
 
 getbadgeReg(): [BadgeReg](_badgereg_.badgereg.md)
 
-*Defined in [contracts.ts:41](https://github.com/paritytech/js-libs/blob/0aad080/packages/contracts/src/contracts.ts#L41)*
+*Defined in [contracts.ts:41](https://github.com/paritytech/js-libs/blob/9aff8ef/packages/contracts/src/contracts.ts#L41)*
 
 **Returns:** [BadgeReg](_badgereg_.badgereg.md)
 
@@ -43,7 +43,7 @@ ___
 
 getdappReg(): [DappReg](_dappreg_.dappreg.md)
 
-*Defined in [contracts.ts:45](https://github.com/paritytech/js-libs/blob/0aad080/packages/contracts/src/contracts.ts#L45)*
+*Defined in [contracts.ts:45](https://github.com/paritytech/js-libs/blob/9aff8ef/packages/contracts/src/contracts.ts#L45)*
 
 **Returns:** [DappReg](_dappreg_.dappreg.md)
 
@@ -54,7 +54,7 @@ ___
 
 getgithubHint(): [GithubHint](_githubhint_.githubhint.md)
 
-*Defined in [contracts.ts:57](https://github.com/paritytech/js-libs/blob/0aad080/packages/contracts/src/contracts.ts#L57)*
+*Defined in [contracts.ts:57](https://github.com/paritytech/js-libs/blob/9aff8ef/packages/contracts/src/contracts.ts#L57)*
 
 **Returns:** [GithubHint](_githubhint_.githubhint.md)
 
@@ -65,7 +65,7 @@ ___
 
 getregistry(): [Registry](_registry_.registry.md)
 
-*Defined in [contracts.ts:37](https://github.com/paritytech/js-libs/blob/0aad080/packages/contracts/src/contracts.ts#L37)*
+*Defined in [contracts.ts:37](https://github.com/paritytech/js-libs/blob/9aff8ef/packages/contracts/src/contracts.ts#L37)*
 
 **Returns:** [Registry](_registry_.registry.md)
 
@@ -76,7 +76,7 @@ ___
 
 getsignatureReg(): [SignatureReg](_signaturereg_.signaturereg.md)
 
-*Defined in [contracts.ts:49](https://github.com/paritytech/js-libs/blob/0aad080/packages/contracts/src/contracts.ts#L49)*
+*Defined in [contracts.ts:49](https://github.com/paritytech/js-libs/blob/9aff8ef/packages/contracts/src/contracts.ts#L49)*
 
 **Returns:** [SignatureReg](_signaturereg_.signaturereg.md)
 
@@ -87,7 +87,7 @@ ___
 
 gettokenReg(): [TokenReg](_tokenreg_.tokenreg.md)
 
-*Defined in [contracts.ts:53](https://github.com/paritytech/js-libs/blob/0aad080/packages/contracts/src/contracts.ts#L53)*
+*Defined in [contracts.ts:53](https://github.com/paritytech/js-libs/blob/9aff8ef/packages/contracts/src/contracts.ts#L53)*
 
 **Returns:** [TokenReg](_tokenreg_.tokenreg.md)
 
@@ -101,7 +101,7 @@ ___
 
 ▸ **get**(api: *`Api`*): [Contracts](_contracts_.contracts.md)
 
-*Defined in [contracts.ts:61](https://github.com/paritytech/js-libs/blob/0aad080/packages/contracts/src/contracts.ts#L61)*
+*Defined in [contracts.ts:61](https://github.com/paritytech/js-libs/blob/9aff8ef/packages/contracts/src/contracts.ts#L61)*
 
 **Parameters:**
 

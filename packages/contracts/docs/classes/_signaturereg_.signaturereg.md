@@ -12,7 +12,7 @@
 
 ⊕ **new SignatureReg**(api: *`Api`*, registry: *[Registry](_registry_.registry.md)*): [SignatureReg](_signaturereg_.signaturereg.md)
 
-*Defined in [signaturereg.ts:11](https://github.com/paritytech/js-libs/blob/0aad080/packages/contracts/src/signaturereg.ts#L11)*
+*Defined in [signaturereg.ts:11](https://github.com/paritytech/js-libs/blob/9aff8ef/packages/contracts/src/signaturereg.ts#L11)*
 
 **Parameters:**
 
@@ -33,7 +33,7 @@ ___
 
 ▸ **getInstance**(): `any`
 
-*Defined in [signaturereg.ts:20](https://github.com/paritytech/js-libs/blob/0aad080/packages/contracts/src/signaturereg.ts#L20)*
+*Defined in [signaturereg.ts:20](https://github.com/paritytech/js-libs/blob/9aff8ef/packages/contracts/src/signaturereg.ts#L20)*
 
 **Returns:** `any`
 
@@ -44,7 +44,7 @@ ___
 
 ▸ **lookup**(signature: *`string`*): `any`
 
-*Defined in [signaturereg.ts:24](https://github.com/paritytech/js-libs/blob/0aad080/packages/contracts/src/signaturereg.ts#L24)*
+*Defined in [signaturereg.ts:24](https://github.com/paritytech/js-libs/blob/9aff8ef/packages/contracts/src/signaturereg.ts#L24)*
 
 **Parameters:**
 

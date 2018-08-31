@@ -25,7 +25,7 @@
 
 **● ZERO20**: *"0x0000000000000000000000000000000000000000"* = "0x0000000000000000000000000000000000000000"
 
-*Defined in [badgereg.ts:21](https://github.com/paritytech/js-libs/blob/0aad080/packages/contracts/src/badgereg.ts#L21)*
+*Defined in [badgereg.ts:21](https://github.com/paritytech/js-libs/blob/9aff8ef/packages/contracts/src/badgereg.ts#L21)*
 
 ___
 <a id="zero32"></a>
@@ -34,7 +34,7 @@ ___
 
 **● ZERO32**: *"0x0000000000000000000000000000000000000000000000000000000000000000"* = "0x0000000000000000000000000000000000000000000000000000000000000000"
 
-*Defined in [badgereg.ts:22](https://github.com/paritytech/js-libs/blob/0aad080/packages/contracts/src/badgereg.ts#L22)*
+*Defined in [badgereg.ts:22](https://github.com/paritytech/js-libs/blob/9aff8ef/packages/contracts/src/badgereg.ts#L22)*
 
 ___
 

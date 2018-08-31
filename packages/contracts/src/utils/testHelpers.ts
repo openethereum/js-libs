@@ -7,6 +7,9 @@ import * as apiutil from '@parity/api/lib/util';
 
 import { ContractInstance } from '../types';
 
+/**
+ * @ignore
+ */
 const mockApi = (instance: ContractInstance) => ({
   eth: {
     getCode: jest.fn(() => Promise.resolve('0x123456'))

@@ -12,7 +12,7 @@
 
 ⊕ **new Registry**(api: *`Api`*): [Registry](_registry_.registry.md)
 
-*Defined in [registry.ts:29](https://github.com/paritytech/js-libs/blob/0aad080/packages/contracts/src/registry.ts#L29)*
+*Defined in [registry.ts:29](https://github.com/paritytech/js-libs/blob/9aff8ef/packages/contracts/src/registry.ts#L29)*
 
 **Parameters:**
 
@@ -32,7 +32,7 @@ ___
 
 ▸ **_createGetParams**(_name: *`string`*, key: *`string`*): `any`[]
 
-*Defined in [registry.ts:136](https://github.com/paritytech/js-libs/blob/0aad080/packages/contracts/src/registry.ts#L136)*
+*Defined in [registry.ts:136](https://github.com/paritytech/js-libs/blob/9aff8ef/packages/contracts/src/registry.ts#L136)*
 
 **Parameters:**
 
@@ -50,7 +50,7 @@ ___
 
 ▸ **fetchContract**(): `any`
 
-*Defined in [registry.ts:95](https://github.com/paritytech/js-libs/blob/0aad080/packages/contracts/src/registry.ts#L95)*
+*Defined in [registry.ts:95](https://github.com/paritytech/js-libs/blob/9aff8ef/packages/contracts/src/registry.ts#L95)*
 
 **Returns:** `any`
 
@@ -61,7 +61,7 @@ ___
 
 ▸ **getContract**(_name: *`string`*): `any`
 
-*Defined in [registry.ts:64](https://github.com/paritytech/js-libs/blob/0aad080/packages/contracts/src/registry.ts#L64)*
+*Defined in [registry.ts:64](https://github.com/paritytech/js-libs/blob/9aff8ef/packages/contracts/src/registry.ts#L64)*
 
 **Parameters:**
 
@@ -78,7 +78,7 @@ ___
 
 ▸ **getContractInstance**(_name: *`string`*): `any`
 
-*Defined in [registry.ts:89](https://github.com/paritytech/js-libs/blob/0aad080/packages/contracts/src/registry.ts#L89)*
+*Defined in [registry.ts:89](https://github.com/paritytech/js-libs/blob/9aff8ef/packages/contracts/src/registry.ts#L89)*
 
 **Parameters:**
 
@@ -95,7 +95,7 @@ ___
 
 ▸ **getInstance**(): `any`
 
-*Defined in [registry.ts:37](https://github.com/paritytech/js-libs/blob/0aad080/packages/contracts/src/registry.ts#L37)*
+*Defined in [registry.ts:37](https://github.com/paritytech/js-libs/blob/9aff8ef/packages/contracts/src/registry.ts#L37)*
 
 **Returns:** `any`
 
@@ -106,7 +106,7 @@ ___
 
 ▸ **lookupAddress**(name: *`string`*): `any`
 
-*Defined in [registry.ts:143](https://github.com/paritytech/js-libs/blob/0aad080/packages/contracts/src/registry.ts#L143)*
+*Defined in [registry.ts:143](https://github.com/paritytech/js-libs/blob/9aff8ef/packages/contracts/src/registry.ts#L143)*
 
 **Parameters:**
 
@@ -123,7 +123,7 @@ ___
 
 ▸ **lookupMeta**(name: *`string`*, key: *`string`*): `any`
 
-*Defined in [registry.ts:154](https://github.com/paritytech/js-libs/blob/0aad080/packages/contracts/src/registry.ts#L154)*
+*Defined in [registry.ts:154](https://github.com/paritytech/js-libs/blob/9aff8ef/packages/contracts/src/registry.ts#L154)*
 
 **Parameters:**
 

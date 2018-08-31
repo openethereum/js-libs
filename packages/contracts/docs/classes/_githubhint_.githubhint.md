@@ -12,7 +12,7 @@
 
 ⊕ **new GithubHint**(api: *`Api`*, registry: *[Registry](_registry_.registry.md)*): [GithubHint](_githubhint_.githubhint.md)
 
-*Defined in [githubhint.ts:12](https://github.com/paritytech/js-libs/blob/0aad080/packages/contracts/src/githubhint.ts#L12)*
+*Defined in [githubhint.ts:12](https://github.com/paritytech/js-libs/blob/9aff8ef/packages/contracts/src/githubhint.ts#L12)*
 
 **Parameters:**
 
@@ -33,7 +33,7 @@ ___
 
 ▸ **getContract**(): `any`
 
-*Defined in [githubhint.ts:21](https://github.com/paritytech/js-libs/blob/0aad080/packages/contracts/src/githubhint.ts#L21)*
+*Defined in [githubhint.ts:21](https://github.com/paritytech/js-libs/blob/9aff8ef/packages/contracts/src/githubhint.ts#L21)*
 
 **Returns:** `any`
 
@@ -44,7 +44,7 @@ ___
 
 ▸ **getEntry**(entryId: *`string`*): `any`
 
-*Defined in [githubhint.ts:36](https://github.com/paritytech/js-libs/blob/0aad080/packages/contracts/src/githubhint.ts#L36)*
+*Defined in [githubhint.ts:36](https://github.com/paritytech/js-libs/blob/9aff8ef/packages/contracts/src/githubhint.ts#L36)*
 
 **Parameters:**
 
@@ -61,7 +61,7 @@ ___
 
 ▸ **getInstance**(): `any`
 
-*Defined in [githubhint.ts:25](https://github.com/paritytech/js-libs/blob/0aad080/packages/contracts/src/githubhint.ts#L25)*
+*Defined in [githubhint.ts:25](https://github.com/paritytech/js-libs/blob/9aff8ef/packages/contracts/src/githubhint.ts#L25)*
 
 **Returns:** `any`
 

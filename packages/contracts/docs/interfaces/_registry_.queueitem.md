@@ -12,7 +12,7 @@
 
 ▸ **resolve**(...args: *`any`[]*): `void`
 
-*Defined in [registry.ts:10](https://github.com/paritytech/js-libs/blob/0aad080/packages/contracts/src/registry.ts#L10)*
+*Defined in [registry.ts:10](https://github.com/paritytech/js-libs/blob/9aff8ef/packages/contracts/src/registry.ts#L10)*
 
 **Parameters:**
 

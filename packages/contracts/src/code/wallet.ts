@@ -5,6 +5,7 @@
 
 /**
  * @version Solidity v0.4.10 - Optimized
+ * @ignore
  * @from https://github.com/paritytech/parity/blob/6b0e4f9098be6b841353e7c4f116aa86b7c2e3d6/js/src/contracts/snippets/enhanced-wallet.sol
  * @date 20-Jul-2017 @ 16h00 UTC
  */

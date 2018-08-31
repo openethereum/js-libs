@@ -12,7 +12,7 @@
 
 ⊕ **new TokenReg**(api: *`Api`*, registry: *[Registry](_registry_.registry.md)*): [TokenReg](_tokenreg_.tokenreg.md)
 
-*Defined in [tokenreg.ts:11](https://github.com/paritytech/js-libs/blob/0aad080/packages/contracts/src/tokenreg.ts#L11)*
+*Defined in [tokenreg.ts:11](https://github.com/paritytech/js-libs/blob/9aff8ef/packages/contracts/src/tokenreg.ts#L11)*
 
 **Parameters:**
 
@@ -33,7 +33,7 @@ ___
 
 ▸ **getContract**(): `any`
 
-*Defined in [tokenreg.ts:20](https://github.com/paritytech/js-libs/blob/0aad080/packages/contracts/src/tokenreg.ts#L20)*
+*Defined in [tokenreg.ts:20](https://github.com/paritytech/js-libs/blob/9aff8ef/packages/contracts/src/tokenreg.ts#L20)*
 
 **Returns:** `any`
 
@@ -44,7 +44,7 @@ ___
 
 ▸ **getInstance**(): `any`
 
-*Defined in [tokenreg.ts:24](https://github.com/paritytech/js-libs/blob/0aad080/packages/contracts/src/tokenreg.ts#L24)*
+*Defined in [tokenreg.ts:24](https://github.com/paritytech/js-libs/blob/9aff8ef/packages/contracts/src/tokenreg.ts#L24)*
 
 **Returns:** `any`
 
@@ -55,7 +55,7 @@ ___
 
 ▸ **token**(index: *`number`*): `any`
 
-*Defined in [tokenreg.ts:34](https://github.com/paritytech/js-libs/blob/0aad080/packages/contracts/src/tokenreg.ts#L34)*
+*Defined in [tokenreg.ts:34](https://github.com/paritytech/js-libs/blob/9aff8ef/packages/contracts/src/tokenreg.ts#L34)*
 
 **Parameters:**
 
@@ -72,7 +72,7 @@ ___
 
 ▸ **tokenCount**(): `any`
 
-*Defined in [tokenreg.ts:28](https://github.com/paritytech/js-libs/blob/0aad080/packages/contracts/src/tokenreg.ts#L28)*
+*Defined in [tokenreg.ts:28](https://github.com/paritytech/js-libs/blob/9aff8ef/packages/contracts/src/tokenreg.ts#L28)*
 
 **Returns:** `any`
 

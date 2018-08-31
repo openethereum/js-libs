@@ -27,7 +27,7 @@
   '0x64c3ee34851517a9faecd995c102b339f03e564ad6772dc43a26f993238b20ec' // homestead
 ]
 
-*Defined in [registry.ts:13](https://github.com/paritytech/js-libs/blob/0aad080/packages/contracts/src/registry.ts#L13)*
+*Defined in [registry.ts:13](https://github.com/paritytech/js-libs/blob/9aff8ef/packages/contracts/src/registry.ts#L13)*
 
 ___
 

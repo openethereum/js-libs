@@ -12,7 +12,7 @@
 
 ⊕ **new BadgeReg**(api: *`Api`*, registry: *[Registry](_registry_.registry.md)*): [BadgeReg](_badgereg_.badgereg.md)
 
-*Defined in [badgereg.ts:31](https://github.com/paritytech/js-libs/blob/0aad080/packages/contracts/src/badgereg.ts#L31)*
+*Defined in [badgereg.ts:31](https://github.com/paritytech/js-libs/blob/9aff8ef/packages/contracts/src/badgereg.ts#L31)*
 
 **Parameters:**
 
@@ -33,7 +33,7 @@ ___
 
 **● certifiers**: *[Metadata](../interfaces/_badgereg_.metadata.md)[]* =  []
 
-*Defined in [badgereg.ts:27](https://github.com/paritytech/js-libs/blob/0aad080/packages/contracts/src/badgereg.ts#L27)*
+*Defined in [badgereg.ts:27](https://github.com/paritytech/js-libs/blob/9aff8ef/packages/contracts/src/badgereg.ts#L27)*
 
 ___
 <a id="contracts"></a>
@@ -42,7 +42,7 @@ ___
 
 **● contracts**: *`object`*
 
-*Defined in [badgereg.ts:28](https://github.com/paritytech/js-libs/blob/0aad080/packages/contracts/src/badgereg.ts#L28)*
+*Defined in [badgereg.ts:28](https://github.com/paritytech/js-libs/blob/9aff8ef/packages/contracts/src/badgereg.ts#L28)*
 
 #### Type declaration
 
@@ -58,7 +58,7 @@ ___
 
 ▸ **certifierCount**(): `any`
 
-*Defined in [badgereg.ts:44](https://github.com/paritytech/js-libs/blob/0aad080/packages/contracts/src/badgereg.ts#L44)*
+*Defined in [badgereg.ts:44](https://github.com/paritytech/js-libs/blob/9aff8ef/packages/contracts/src/badgereg.ts#L44)*
 
 **Returns:** `any`
 
@@ -69,7 +69,7 @@ ___
 
 ▸ **checkIfCertified**(certifier: *`string`*, address: *`string`*): `any`
 
-*Defined in [badgereg.ts:117](https://github.com/paritytech/js-libs/blob/0aad080/packages/contracts/src/badgereg.ts#L117)*
+*Defined in [badgereg.ts:117](https://github.com/paritytech/js-libs/blob/9aff8ef/packages/contracts/src/badgereg.ts#L117)*
 
 **Parameters:**
 
@@ -87,7 +87,7 @@ ___
 
 ▸ **fetchCertifier**(id: *`number`*): `any`
 
-*Defined in [badgereg.ts:52](https://github.com/paritytech/js-libs/blob/0aad080/packages/contracts/src/badgereg.ts#L52)*
+*Defined in [badgereg.ts:52](https://github.com/paritytech/js-libs/blob/9aff8ef/packages/contracts/src/badgereg.ts#L52)*
 
 **Parameters:**
 
@@ -104,7 +104,7 @@ ___
 
 ▸ **fetchCertifierByName**(name: *`string`*): `any`
 
-*Defined in [badgereg.ts:78](https://github.com/paritytech/js-libs/blob/0aad080/packages/contracts/src/badgereg.ts#L78)*
+*Defined in [badgereg.ts:78](https://github.com/paritytech/js-libs/blob/9aff8ef/packages/contracts/src/badgereg.ts#L78)*
 
 **Parameters:**
 
@@ -121,7 +121,7 @@ ___
 
 ▸ **fetchMeta**(id: *`number`*): `any`
 
-*Defined in [badgereg.ts:97](https://github.com/paritytech/js-libs/blob/0aad080/packages/contracts/src/badgereg.ts#L97)*
+*Defined in [badgereg.ts:97](https://github.com/paritytech/js-libs/blob/9aff8ef/packages/contracts/src/badgereg.ts#L97)*
 
 **Parameters:**
 
@@ -138,7 +138,7 @@ ___
 
 ▸ **getContract**(): `any`
 
-*Defined in [badgereg.ts:40](https://github.com/paritytech/js-libs/blob/0aad080/packages/contracts/src/badgereg.ts#L40)*
+*Defined in [badgereg.ts:40](https://github.com/paritytech/js-libs/blob/9aff8ef/packages/contracts/src/badgereg.ts#L40)*
 
 **Returns:** `any`
 

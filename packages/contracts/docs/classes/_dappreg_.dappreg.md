@@ -12,7 +12,7 @@
 
 ⊕ **new DappReg**(api: *`Api`*, registry: *[Registry](_registry_.registry.md)*): [DappReg](_dappreg_.dappreg.md)
 
-*Defined in [dappreg.ts:11](https://github.com/paritytech/js-libs/blob/0aad080/packages/contracts/src/dappreg.ts#L11)*
+*Defined in [dappreg.ts:11](https://github.com/paritytech/js-libs/blob/9aff8ef/packages/contracts/src/dappreg.ts#L11)*
 
 **Parameters:**
 
@@ -33,7 +33,7 @@ ___
 
 ▸ **at**(index: *`number`*): `any`
 
-*Defined in [dappreg.ts:34](https://github.com/paritytech/js-libs/blob/0aad080/packages/contracts/src/dappreg.ts#L34)*
+*Defined in [dappreg.ts:34](https://github.com/paritytech/js-libs/blob/9aff8ef/packages/contracts/src/dappreg.ts#L34)*
 
 **Parameters:**
 
@@ -50,7 +50,7 @@ ___
 
 ▸ **count**(): `any`
 
-*Defined in [dappreg.ts:28](https://github.com/paritytech/js-libs/blob/0aad080/packages/contracts/src/dappreg.ts#L28)*
+*Defined in [dappreg.ts:28](https://github.com/paritytech/js-libs/blob/9aff8ef/packages/contracts/src/dappreg.ts#L28)*
 
 **Returns:** `any`
 
@@ -61,7 +61,7 @@ ___
 
 ▸ **get**(id: *`string`*): `any`
 
-*Defined in [dappreg.ts:40](https://github.com/paritytech/js-libs/blob/0aad080/packages/contracts/src/dappreg.ts#L40)*
+*Defined in [dappreg.ts:40](https://github.com/paritytech/js-libs/blob/9aff8ef/packages/contracts/src/dappreg.ts#L40)*
 
 **Parameters:**
 
@@ -78,7 +78,7 @@ ___
 
 ▸ **getContent**(id: *`string`*): `any`
 
-*Defined in [dappreg.ts:56](https://github.com/paritytech/js-libs/blob/0aad080/packages/contracts/src/dappreg.ts#L56)*
+*Defined in [dappreg.ts:56](https://github.com/paritytech/js-libs/blob/9aff8ef/packages/contracts/src/dappreg.ts#L56)*
 
 **Parameters:**
 
@@ -95,7 +95,7 @@ ___
 
 ▸ **getContract**(): `any`
 
-*Defined in [dappreg.ts:20](https://github.com/paritytech/js-libs/blob/0aad080/packages/contracts/src/dappreg.ts#L20)*
+*Defined in [dappreg.ts:20](https://github.com/paritytech/js-libs/blob/9aff8ef/packages/contracts/src/dappreg.ts#L20)*
 
 **Returns:** `any`
 
@@ -106,7 +106,7 @@ ___
 
 ▸ **getImage**(id: *`string`*): `any`
 
-*Defined in [dappreg.ts:52](https://github.com/paritytech/js-libs/blob/0aad080/packages/contracts/src/dappreg.ts#L52)*
+*Defined in [dappreg.ts:52](https://github.com/paritytech/js-libs/blob/9aff8ef/packages/contracts/src/dappreg.ts#L52)*
 
 **Parameters:**
 
@@ -123,7 +123,7 @@ ___
 
 ▸ **getInstance**(): `any`
 
-*Defined in [dappreg.ts:24](https://github.com/paritytech/js-libs/blob/0aad080/packages/contracts/src/dappreg.ts#L24)*
+*Defined in [dappreg.ts:24](https://github.com/paritytech/js-libs/blob/9aff8ef/packages/contracts/src/dappreg.ts#L24)*
 
 **Returns:** `any`
 
@@ -134,7 +134,7 @@ ___
 
 ▸ **getManifest**(id: *`string`*): `any`
 
-*Defined in [dappreg.ts:60](https://github.com/paritytech/js-libs/blob/0aad080/packages/contracts/src/dappreg.ts#L60)*
+*Defined in [dappreg.ts:60](https://github.com/paritytech/js-libs/blob/9aff8ef/packages/contracts/src/dappreg.ts#L60)*
 
 **Parameters:**
 
@@ -151,7 +151,7 @@ ___
 
 ▸ **meta**(id: *`string`*, key: *`string`*): `any`
 
-*Defined in [dappreg.ts:46](https://github.com/paritytech/js-libs/blob/0aad080/packages/contracts/src/dappreg.ts#L46)*
+*Defined in [dappreg.ts:46](https://github.com/paritytech/js-libs/blob/9aff8ef/packages/contracts/src/dappreg.ts#L46)*
 
 **Parameters:**
 
