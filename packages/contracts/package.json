@@ -1,0 +1,26 @@
+{
+  "name": "@parity/contracts",
+  "description": "Parity's contracts as ES6 classes.r",
+  "version": "1.0.0",
+  "author": "Parity Team <admin@parity.io>",
+  "license": "MIT",
+  "repository": "https://github.com/paritytech/js-libs/tree/master/packages/contracts",
+  "main": "lib/index.js",
+  "keywords": [
+    "Ethereum",
+    "Contracts",
+    "Solidity",
+    "Parity"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "prebuild": "rimraf lib",
+    "build": "tsc",
+    "test": "jest"
+  },
+  "dependencies": {
+    "@parity/abi": "^2.1.4"
+  }
+}
