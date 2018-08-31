@@ -21,6 +21,8 @@
     "test": "jest"
   },
   "dependencies": {
-    "@parity/abi": "^2.1.4"
+    "@parity/abi": "^2.1.4",
+    "@parity/api": "^2.1.24",
+    "bignumber.js": "^7.2.1"
   }
 }

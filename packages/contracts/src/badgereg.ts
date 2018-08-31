@@ -3,11 +3,20 @@
 //
 // SPDX-License-Identifier: MIT
 
+import BigNumber from 'bignumber.js';
 import { bytesToHex, hexToAscii } from '@parity/api/lib/util/format';
 
 import ABI from './abi/certifier.json';
-import { Api } from './types';
+import { Api, Contract } from './types';
 import Registry from './registry';
+
+interface Metadata {
+  address: string;
+  id: number;
+  name: string;
+  title: string;
+  icon: string;
+}
 
 const ZERO20 = '0x0000000000000000000000000000000000000000';
 const ZERO32 =
@@ -15,6 +24,10 @@ const ZERO32 =
 
 export default class BadgeReg {
   private _api: Api;
+  public certifiers: Metadata[] = [];
+  public contracts: {
+    [key: string]: Contract;
+  };
   private _registry: Registry;
 
   constructor(api: Api, registry: Registry) {
@@ -22,8 +35,6 @@ export default class BadgeReg {
     this._registry = registry;
 
     registry.getContract('badgereg');
-    this.certifiers = []; // by id
-    this.contracts = {}; // by name
   }
 
   getContract() {
@@ -31,23 +42,23 @@ export default class BadgeReg {
   }
 
   certifierCount() {
-    return this.getContract().then(badgeReg => {
+    return this.getContract().then((badgeReg: Contract) => {
       return badgeReg.instance.badgeCount
         .call({}, [])
-        .then(count => count.valueOf());
+        .then((count: BigNumber) => count.valueOf());
     });
   }
 
-  fetchCertifier(id) {
+  fetchCertifier(id: number) {
     if (this.certifiers[id]) {
       return Promise.resolve(this.certifiers[id]);
     }
 
     return this.getContract()
-      .then(badgeReg => {
+      .then((badgeReg: Contract) => {
         return badgeReg.instance.badge.call({}, [id]);
       })
-      .then(([address, name]) => {
+      .then(([address, name]: [string, string]) => {
         if (address === ZERO20) {
           throw new Error(`Certifier ${id} does not exist.`);
         }
@@ -55,7 +66,7 @@ export default class BadgeReg {
         name = bytesToHex(name);
         name = name === ZERO32 ? null : hexToAscii(name);
 
-        return this.fetchMeta(id).then(({ title, icon }) => {
+        return this.fetchMeta(id).then(({ title, icon }: Metadata) => {
           const data = { address, id, name, title, icon };
 
           this.certifiers[id] = data;
@@ -64,17 +75,17 @@ export default class BadgeReg {
       });
   }
 
-  fetchCertifierByName(name) {
+  fetchCertifierByName(name: string) {
     return this.getContract()
-      .then(badgeReg => {
+      .then((badgeReg: Contract) => {
         return badgeReg.instance.fromName.call({}, [name]);
       })
-      .then(([id, address, owner]) => {
+      .then(([id, address, _]: [number, string, string]) => {
         if (address === ZERO20) {
           throw new Error(`Certifier ${name} does not exist.`);
         }
 
-        return this.fetchMeta(id).then(({ title, icon }) => {
+        return this.fetchMeta(id).then(({ title, icon }: Metadata) => {
           const data = { address, id, name, title, icon };
 
           this.certifiers[id] = data;
@@ -83,15 +94,15 @@ export default class BadgeReg {
       });
   }
 
-  fetchMeta(id) {
+  fetchMeta(id: number) {
     return this.getContract()
-      .then(badgeReg => {
+      .then((badgeReg: Contract) => {
         return Promise.all([
           badgeReg.instance.meta.call({}, [id, 'TITLE']),
           badgeReg.instance.meta.call({}, [id, 'IMG'])
         ]);
       })
-      .then(([title, icon]) => {
+      .then(([title, icon]: [string, string]) => {
         title = bytesToHex(title).replace(/(00)+$/, '');
         title = title === ZERO32 ? null : hexToAscii(title);
 
@@ -103,7 +114,7 @@ export default class BadgeReg {
       });
   }
 
-  checkIfCertified(certifier, address) {
+  checkIfCertified(certifier: string, address: string) {
     if (!this.contracts[certifier]) {
       this.contracts[certifier] = this._api.newContract(ABI, certifier);
     }
