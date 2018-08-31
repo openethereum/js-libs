@@ -43,4 +43,4 @@ See the [docs/](docs) folder to see the properties of each of those contracts.
 import { eip20 } from '@parity/abi/lib/abi';
 ```
 
-The list of available ABIs is in the [src/abi/](abi) folder.
+The list of available ABIs is in the [src/abi/](src/abi) folder.
