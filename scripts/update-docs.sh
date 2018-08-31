@@ -18,7 +18,10 @@ IFS=',' read -r -a ARRAY <<< "$SCOPES"
 # Generate docs in the SCOPE folder
 for SCOPE in "${ARRAY[@]}"
 do
+    echo "Docs for $SCOPE."
+
     # Generate latest version of docs
+    echo "Generating docs."
     pushd .
     cd "packages/$SCOPE"
     yarn docs
@@ -27,13 +30,16 @@ do
     popd
 
     # Push docs to parity-js, on gh-pages branch
+    echo "Cloning doc repo."
     PROJECT_DIR=`pwd`
-    REMOTE_REPO="https://git:$GH_TOKEN@github.com/parity-js/$SCOPE"
+    REMOTE_REPO="https://git:$GH_TOKEN@github.com/parity-js/$SCOPE.git"
     cd /tmp
     git clone -b gh-pages $REMOTE_REPO new-$SCOPE-docs
     cd new-$SCOPE-docs
     cp -r "$PROJECT_DIR/packages/$SCOPE/docs/_book/." .
     git add .
+
+    echo "Pushing to doc repo."
     set +e # Don't catch errors in the next lines
     git commit -m "Update docs"
     git push
