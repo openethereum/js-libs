@@ -16,6 +16,7 @@
     "access": "public"
   },
   "scripts": {
+    "docs": "typedoc && rimraf docs/README.md",
     "prebuild": "rimraf lib",
     "build": "tsc",
     "test": "jest"
