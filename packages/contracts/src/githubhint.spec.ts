@@ -3,24 +3,27 @@
 //
 // SPDX-License-Identifier: MIT
 
-import sinon from 'sinon';
-
+import { ContractInstance } from './types';
 import GithubHint from './githubhint';
+import mockApi from './utils/testHelpers';
+import Registry from './registry';
 
-let githubHint;
-let instance;
-let registry;
+let githubHint: GithubHint;
+let instance: ContractInstance;
+let registry: Registry;
 
 function create() {
   instance = {
     __id: 'testInstance',
     entries: {
-      call: sinon.stub().resolves('testValue')
+      call: jest.fn(() => Promise.resolve('testValue'))
     }
   };
-  registry = {
-    getContract: sinon.stub().resolves({ instance })
-  };
+
+  const api = mockApi(instance);
+  registry = new Registry(api);
+  registry.getContract = jest.fn(() => Promise.resolve({ instance }));
+
   githubHint = new GithubHint({}, registry);
 
   return githubHint;
@@ -34,11 +37,12 @@ describe('contracts/GithubHint', () => {
   });
 
   it('instantiates successfully', () => {
-    expect(githubHint).to.be.ok;
+    expect(githubHint).toBeTruthy();
   });
 
   it('attaches the instance on create', () => {
-    expect(githubHint._instance.__id).to.equal('testInstance');
+    // @ts-ignore Access private property
+    expect(githubHint._instance.__id).toEqual('testInstance');
   });
 
   describe('interface', () => {
@@ -48,7 +52,7 @@ describe('contracts/GithubHint', () => {
       });
 
       it('calls entries on the instance', () => {
-        expect(instance.entries.call).to.have.been.calledWith({}, ['testId']);
+        expect(instance.entries.call).toHaveBeenCalledWith({}, ['testId']);
       });
     });
   });
