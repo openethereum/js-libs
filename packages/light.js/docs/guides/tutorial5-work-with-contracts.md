@@ -67,9 +67,9 @@ gavcoinContract
       '0x407d73d8a49eeb85d32cf465507dd71d507100c1', // The "to" address
       new BigNumber(2.01) // The amount to transfer
     ],
-    // The 2nd argument is optional
+    // This 2nd argument is optional, and is an options object containing the following fields:
     {
-      gasPrice: toWei(tx.gasPrice, 'shannon') // shannon == gwei
+      gasPrice: ...
     }
   )
   .subscribe(transfer => console.log('transfer$', transfer));

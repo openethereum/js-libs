@@ -57,7 +57,7 @@ ___
 
 **● metadata**: *`object`*
 
-*Defined in [types.ts:38](https://github.com/paritytech/js-libs/blob/79a5f83/packages/light.js/src/types.ts#L38)*
+*Defined in [types.ts:38](https://github.com/paritytech/js-libs/blob/70247e1/packages/light.js/src/types.ts#L38)*
 
 #### Type declaration
 
