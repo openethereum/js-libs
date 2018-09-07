@@ -10,7 +10,7 @@ import { multicast, refCount } from 'rxjs/operators';
 import * as prune from 'json-prune';
 
 import { Metadata, RpcObservable } from '../../types';
-import { withoutLoading } from '../../utils/operators';
+import { distinctValues, withoutLoading } from '../../utils/operators';
 
 interface RpcObservableWithoutMetadata<_, Out> {
   (...args: any[]): Observable<Out>;
@@ -78,6 +78,7 @@ const createRpc = <Source, Out>(metadata: Metadata<Source, Out>) => {
     if (options.withoutLoading === true) {
       pipes.push(withoutLoading());
     }
+    pipes.push(distinctValues());
 
     // Add a field in the calledWithArgs object, so that we know this function has
     // been called with these particular args in the app. See overview.js on
