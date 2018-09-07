@@ -1,4 +1,5 @@
 module.exports = {
+  entryPoint: 'docs',
   exclude: ['**/*spec.ts'],
   excludeExternals: true,
   excludePrivate: true,

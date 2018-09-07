@@ -22,7 +22,7 @@
 
 **● logger**: *`LoggerFunction`*
 
-*Defined in [index.ts:18](https://github.com/paritytech/js-libs/blob/67fa654/packages/electron/src/index.ts#L18)*
+*Defined in [index.ts:18](https://github.com/paritytech/js-libs/blob/937a957/packages/electron/src/index.ts#L18)*
 
 ___
 
