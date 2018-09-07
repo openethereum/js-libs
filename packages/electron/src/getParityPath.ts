@@ -11,22 +11,29 @@ import { promisify } from 'util';
 
 import logger from './utils/logger';
 
+/**
+ * @ignore
+ */
 const fsStat = promisify(stat);
 
 /**
  * The default path to install parity, in case there's no other instance found
  * on the machine.
- *
- * @ignore
  */
-export const defaultParityPath = () =>
-  Promise.resolve(
+export function defaultParityPath() {
+  return Promise.resolve(
     `${app.getPath('userData')}/parity${
       process.platform === 'win32' ? '.exe' : ''
     }`
   );
+}
 
-let parityPath: string; // The real parity path, will be populated after doesParityExist Promise resolves
+/**
+ * The real parity path, will be populated after doesParityExist Promise resolves.
+ *
+ * @ignore
+ */
+let parityPath: string;
 
 /**
  * Test if `parity` command is in $PATH.
@@ -109,7 +116,7 @@ const doesParityExist = async () => {
 /**
  * Returns the path to Parity, or throws if parity is not found.
  */
-export const getParityPath = async () => {
+export async function getParityPath() {
   if (parityPath) {
     return parityPath;
   }
@@ -124,4 +131,4 @@ export const getParityPath = async () => {
     logger()('@parity/electron:main')(`Parity not found on machine.`);
     throw err;
   }
-};
+}

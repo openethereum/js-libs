@@ -11,13 +11,28 @@ import { getParityPath } from './getParityPath';
 import logCommand from './utils/logCommand';
 import logger from './utils/logger';
 
+interface RunParityOptions {
+  flags: string[];
+  onParityError: (error: Error) => void;
+}
+
+/**
+ * @ignore
+ */
 const fsChmod = promisify(chmod);
 
+/**
+ * @ignore
+ */
 let parity: ChildProcess = null; // Will hold the running parity instance
 
-// These are errors output by parity, which we should ignore (i.e. don't
-// panic). They happen when an instance of parity is already running, and
-// parity-electron tries to launch another one.
+/**
+ * These are errors output by parity, which we should ignore (i.e. don't
+ * panic). They happen when an instance of parity is already running, and
+ * parity-electron tries to launch another one.
+ *
+ * @ignore
+ */
 const catchableErrors = [
   'is already in use, make sure that another instance of an Ethereum client is not running',
   'IO error: While lock file:'
@@ -26,15 +41,15 @@ const catchableErrors = [
 /**
  * Spawns a child process to run Parity.
  */
-export const runParity = async ({
-  flags = [],
-  onParityError = () => {
-    /* Do nothing if error. */
+export async function runParity(
+  options: RunParityOptions = {
+    flags: [],
+    onParityError: () => {
+      /* Do nothing if error. */
+    }
   }
-}: {
-  flags: string[];
-  onParityError: (error: Error) => void;
-}) => {
+) {
+  const { flags, onParityError } = options;
   const parityPath = await getParityPath();
 
   // Some users somehow had no +x on the parity binary after downloading
@@ -87,13 +102,18 @@ export const runParity = async ({
     // Otherwise, if the exit code is not 0, then we show some error message
     onParityError(new Error(`Exit code ${exitCode}, with signal ${signal}.`));
   });
-};
+}
 
-export const killParity = () => {
+/**
+ * If a Parity process has been spawned with runParity, then it kills this
+ * process. However, there's no guarantee that Parity has been cleanly killed,
+ * and the Promise resolves instantly.
+ */
+export function killParity() {
   if (parity) {
     logger()('Stopping parity.');
     parity.kill();
     parity = null;
   }
   return Promise.resolve();
-};
+}

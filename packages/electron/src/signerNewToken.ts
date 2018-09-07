@@ -10,10 +10,11 @@ import logCommand from './utils/logCommand';
 import logger from './utils/logger';
 
 /**
- * Launch a parity instance to get a secure token.
+ * Runs parity signer new-token and resolves with a new secure token to be
+ * used in a dapp. Rejects if no token could be extracted.
  */
-export const signerNewToken = (): Promise<string> =>
-  new Promise(async (resolve, reject) => {
+export function signerNewToken(): Promise<string> {
+  return new Promise(async (resolve, reject) => {
     logger()('@parity/electron:main')('Requesting new token.');
 
     const parityPath = await getParityPath();
@@ -46,3 +47,4 @@ export const signerNewToken = (): Promise<string> =>
       reject(new Error('Error extracting token.'));
     }, 2000);
   });
+}

@@ -14,13 +14,36 @@ import * as retry from 'async-retry';
 import { defaultParityPath, getParityPath } from './getParityPath';
 import logger from './utils/logger';
 
+interface FetchParityOptions {
+  onProgress: (progress: number) => void;
+  parityChannel: string;
+}
+
+/**
+ * @ignore
+ */
 const checksum = promisify(file);
+/**
+ * @ignore
+ */
 const fsChmod = promisify(chmod);
+/**
+ * @ignore
+ */
 const fsRename = promisify(rename);
+/**
+ * @ignore
+ */
 const fsUnlink = promisify(unlink);
 
+/**
+ * @ignore
+ */
 const VANITY_URL = 'https://vanity-service.parity.io/parity-binaries';
 
+/**
+ * @ignore
+ */
 const getArch = () => {
   switch (process.platform) {
     case 'darwin':
@@ -41,6 +64,9 @@ const getArch = () => {
   }
 };
 
+/**
+ * @ignore
+ */
 const getOs = () => {
   switch (process.platform) {
     case 'darwin':
@@ -55,7 +81,7 @@ const getOs = () => {
 /**
  * Remove parity binary or partial binary in the userData folder, if it exists.
  */
-export const deleteParity = async () => {
+export async function deleteParity() {
   const parityPath = await defaultParityPath();
 
   // Remove parity binary
@@ -71,21 +97,22 @@ export const deleteParity = async () => {
   } catch (e) {
     /* Do nothing if error. */
   }
-};
+}
 
 /**
  * Downloads Parity, saves it to Electron's `userData` folder, and returns the
  * path to the downloaded binary once finished.
  */
-export const fetchParity = async (
+export async function fetchParity(
   mainWindow: BrowserWindow,
-  {
-    onProgress = () => {
+  options: FetchParityOptions = {
+    onProgress: () => {
       /* Do nothing by defaut. */
     },
-    parityChannel = 'beta'
-  }: { onProgress: (progress: number) => void; parityChannel: string }
-) => {
+    parityChannel: 'beta'
+  }
+) {
+  const { onProgress, parityChannel } = options;
   try {
     const parityPath = retry(
       async (_, attempt: number) => {
@@ -157,4 +184,4 @@ export const fetchParity = async (
     await deleteParity();
     throw err;
   }
-};
+}

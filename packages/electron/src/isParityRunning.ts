@@ -8,17 +8,22 @@ import * as retry from 'async-retry';
 
 import logger from './utils/logger';
 
-/**
- * Detect if another instance of parity is already running or not. To achieve
- * that, we just ping on the common hosts, see {@link hostsToPing} array.
- */
-export const isParityRunning = async ({
-  wsInterface = '127.0.0.1',
-  wsPort = '8546'
-}: {
+interface IsParityRunningOptions {
   wsInterface: string;
   wsPort: number | string;
-}) => {
+}
+
+/**
+ * Detect if another instance of parity is already running or not. To achieve
+ * that, we just ping on the common hosts.
+ */
+export async function isParityRunning(
+  options: IsParityRunningOptions = {
+    wsInterface: '127.0.0.1',
+    wsPort: '8546'
+  }
+) {
+  const { wsInterface, wsPort } = options;
   /**
    * Try to ping these hosts to test if Parity is running.
    */
@@ -45,4 +50,4 @@ export const isParityRunning = async ({
   } catch (e) {
     return false;
   }
-};
+}
