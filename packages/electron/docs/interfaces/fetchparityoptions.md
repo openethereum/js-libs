@@ -23,7 +23,7 @@
 
 **● onProgress**: *`function`*
 
-*Defined in [fetchParity.ts:18](https://github.com/paritytech/js-libs/blob/5bb5fa4/packages/electron/src/fetchParity.ts#L18)*
+*Defined in [fetchParity.ts:18](https://github.com/paritytech/js-libs/blob/f3c5e36/packages/electron/src/fetchParity.ts#L18)*
 
 #### Type declaration
 ▸(progress: *`number`*): `void`
@@ -43,7 +43,7 @@ ___
 
 **● parityChannel**: *`string`*
 
-*Defined in [fetchParity.ts:19](https://github.com/paritytech/js-libs/blob/5bb5fa4/packages/electron/src/fetchParity.ts#L19)*
+*Defined in [fetchParity.ts:19](https://github.com/paritytech/js-libs/blob/f3c5e36/packages/electron/src/fetchParity.ts#L19)*
 
 ___
 
