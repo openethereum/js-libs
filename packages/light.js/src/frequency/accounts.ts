@@ -5,22 +5,22 @@
 
 import { AccountsInfo, Address, FrequencyObservable } from '../types';
 import api from '../api';
-import createOnFromPubsub from './utils/createOnFromPubsub';
+import createPubsubObservable from './utils/createPubsubObservable';
 
 /**
  * Observable that emits each time the default account changes
  */
-export const onAccountsChanged$ = createOnFromPubsub<Address[]>(
-  'eth_accounts',
-  api
-);
+export const onAccountsChanged$ = (() =>
+  createPubsubObservable('eth_accounts', api)) as FrequencyObservable<
+  Address[]
+>;
 onAccountsChanged$.metadata = { name: 'onAccountsChanged$' };
 
 /**
  * Observable that emits each time the default account changes
  */
-export const onAccountsInfoChanged$ = createOnFromPubsub<AccountsInfo>(
-  'parity_accountsInfo',
-  api
-);
+export const onAccountsInfoChanged$ = (() =>
+  createPubsubObservable('parity_accountsInfo', api)) as FrequencyObservable<
+  AccountsInfo
+>;
 onAccountsInfoChanged$.metadata = { name: 'onAccountsInfoChanged$' };
