@@ -34,7 +34,8 @@ export interface Metadata<Source, Out> {
   pipes?: (...args: any[]) => OperatorFunction<Source, Out>[];
 }
 
-export interface FrequencyObservable<T> extends Observable<T> {
+export interface FrequencyObservable<T> {
+  (): Observable<T>;
   metadata?: { calls?: string[]; name: string };
 }
 

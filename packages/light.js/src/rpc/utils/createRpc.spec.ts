@@ -26,7 +26,7 @@ it('should contain frequencyMixins', () => {
 });
 
 it('should set correct frequency', () => {
-  const frequency = timer(0, 1000);
+  const frequency = () => timer(0, 1000);
   const rpc$ = createRpc({});
   rpc$.setFrequency([frequency]);
   expect(rpc$.metadata.frequency).toEqual([frequency]);

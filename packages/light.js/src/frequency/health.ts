@@ -4,13 +4,14 @@
 // SPDX-License-Identifier: MIT
 
 import api from '../api';
-import createOnFromPubsub from './utils/createOnFromPubsub';
+import createPubsubObservable from './utils/createPubsubObservable';
+import { FrequencyObservable } from '../types';
 
 /**
  * Observable that emits when syncing status changes.
  */
 // TODO Pubsub doesn't exist on `net_peerCount`
-// export const onPeersChange$ = createOnFromPubsub<number>('net_peerCount', api);
+// export const onPeersChange$ = createPubsubObservable<number>('net_peerCount', api);
 // onPeersChange$.metadata = {
 //   calls: ['net_peerCount'],
 //   name: 'onPeersChange$'
@@ -19,10 +20,10 @@ import createOnFromPubsub from './utils/createOnFromPubsub';
 /**
  * Observable that emits when syncing status changes.
  */
-export const onSyncingChanged$ = createOnFromPubsub<object | boolean>(
-  'eth_syncing',
-  api
-);
+export const onSyncingChanged$ = (() =>
+  createPubsubObservable('eth_syncing', api)) as FrequencyObservable<
+  object | boolean
+>;
 onSyncingChanged$.metadata = {
   calls: ['eth_syncing'],
   name: 'onSyncingChanged$'

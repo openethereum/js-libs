@@ -9,6 +9,7 @@ import { merge, ReplaySubject, Observable, OperatorFunction } from 'rxjs';
 import { multicast, refCount } from 'rxjs/operators';
 import * as prune from 'json-prune';
 
+import { getApi, NullProvider } from '../../api';
 import { Metadata, RpcObservable } from '../../types';
 import { distinctValues, withoutLoading } from '../../utils/operators';
 
@@ -57,16 +58,16 @@ const createRpc = <Source, Out>(metadata: Metadata<Source, Out>) => {
     // FrequencyObservables
     const source$ = metadata.dependsOn
       ? metadata.dependsOn(...args)
-      : merge(...metadata.frequency);
+      : merge(...metadata.frequency.map(f => f()));
 
     // The last arguments is an options, if it's an object
     // TODO What if we pass a single object as argument, which is not options?
     const options: { withoutLoading?: boolean } =
       args && args.length && isObject(args[args.length - 1]) ? args.pop() : {};
 
-    // A RpcObservable is a source$ Observable, a single subject$ that
-    // subscribesthis source, and this subject$ multicasts the fired values to
-    // all Observers.
+    // A RpcObservable is: a source$ Observable, a single subject$ that
+    // subscribes to this source, and this subject$ multicasts the fired values
+    // to all Observers.
     const subject$ = new ReplaySubject<Out>(1);
 
     // The pipes to add
@@ -91,7 +92,13 @@ const createRpc = <Source, Out>(metadata: Metadata<Source, Out>) => {
     return source$.pipe(...pipes);
   };
 
-  let memoizedRpc$ = memoizee(rpc$, { primitive: true, length: false });
+  // We memoize only if the api has been already set by the user. The reason
+  // is: at startup the NullProvider is used. If we memoized, then this
+  // provider will be used all the time
+  const memoizedRpc$ =
+    getApi() instanceof NullProvider
+      ? rpc$
+      : memoizee(rpc$, { primitive: true, length: false });
 
   Object.assign(memoizedRpc$, frequencyMixins, { metadata });
 
