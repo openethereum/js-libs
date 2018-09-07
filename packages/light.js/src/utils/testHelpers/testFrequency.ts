@@ -14,11 +14,11 @@ import isObservable from '../isObservable';
 const testFrequency = (name: string, frequency$: FrequencyObservable<any>) =>
   describe(`${name} rpc`, () => {
     it('should be an Observable', () => {
-      expect(isObservable(frequency$)).toBe(true);
+      expect(isObservable(frequency$())).toBe(true);
     });
 
     it('should be subscribable', () => {
-      expect(() => frequency$.subscribe()).not.toThrow();
+      expect(() => frequency$().subscribe()).not.toThrow();
     });
 
     it('should contain a `metadata` field', () => {
