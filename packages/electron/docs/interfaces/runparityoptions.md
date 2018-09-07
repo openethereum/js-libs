@@ -23,7 +23,7 @@
 
 **● flags**: *`string`[]*
 
-*Defined in [runParity.ts:15](https://github.com/paritytech/js-libs/blob/d249f6f/packages/electron/src/runParity.ts#L15)*
+*Defined in [runParity.ts:15](https://github.com/paritytech/js-libs/blob/5bb5fa4/packages/electron/src/runParity.ts#L15)*
 
 ___
 <a id="onparityerror"></a>
@@ -32,7 +32,7 @@ ___
 
 **● onParityError**: *`function`*
 
-*Defined in [runParity.ts:16](https://github.com/paritytech/js-libs/blob/d249f6f/packages/electron/src/runParity.ts#L16)*
+*Defined in [runParity.ts:16](https://github.com/paritytech/js-libs/blob/5bb5fa4/packages/electron/src/runParity.ts#L16)*
 
 #### Type declaration
 ▸(error: *`Error`*): `void`

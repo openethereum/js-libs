@@ -2,7 +2,9 @@
 
 Control the Parity Ethereum client from electron.
 
-With this libray, you will be able, from Electron, to:
+## Description
+
+With this library, you will be able, from Electron, to:
 
 - download Parity Ethereum locally in Electron's user data folder.
 - run/stop/check if Parity Ethereum is running.
