@@ -12,6 +12,6 @@ import createRpc from '../../rpc/utils/createRpc';
  *
  * @ignore
  */
-const mockRpc$ = createRpc({ frequency: [timer(0, 1000)] });
+const mockRpc$ = createRpc({ frequency: [() => timer(0, 1000)] });
 
 export default mockRpc$;

@@ -4,7 +4,6 @@
 // SPDX-License-Identifier: MIT
 
 import * as debug from 'debug';
-import { FrequencyObservable } from '../../types';
 import { Observable, Observer, timer } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 
@@ -16,10 +15,10 @@ import { distinctReplayRefCount } from '../../utils/operators/distinctReplayRefC
  * @ignore
  * @example onAccountsChanged$, onEveryBlock$...
  */
-const createOnFromPubsub = <T>(
+const createPubsubObservable = <T>(
   pubsub: string,
   api: any // TODO @parity/api
-): FrequencyObservable<T> => {
+): Observable<T> => {
   const [namespace, method] = pubsub.split('_');
 
   // There's a chance the provider doesn't support pubsub, for example
@@ -33,14 +32,12 @@ const createOnFromPubsub = <T>(
           : 'current Api provider'
       }, polling "${pubsub}" every second.`
     );
-    return timer(0, 1000).pipe(
-      switchMap(() => api()[namespace][method]())
-    ) as FrequencyObservable<T>;
+    return timer(0, 1000).pipe(switchMap(() => api()[namespace][method]()));
   }
 
   return Observable.create((observer: Observer<T>) => {
     const subscription = api().pubsub[namespace][method](
-      (error: Error, result: any) => {
+      (error: Error, result: T) => {
         // TODO use @parity/api type for result
         if (error) {
           observer.error(error);
@@ -56,4 +53,4 @@ const createOnFromPubsub = <T>(
   }).pipe(distinctReplayRefCount());
 };
 
-export default createOnFromPubsub;
+export default createPubsubObservable;
