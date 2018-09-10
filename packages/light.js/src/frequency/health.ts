@@ -3,27 +3,21 @@
 //
 // SPDX-License-Identifier: MIT
 
-import api from '../api';
-import createOnFromPubsub from './utils/createOnFromPubsub';
+import createPubsubObservable from './utils/createPubsubObservable';
 
 /**
- * Observable that emits when syncing status changes.
+ * Observable that emits when peer count changes.
  */
 // TODO Pubsub doesn't exist on `net_peerCount`
-// export const onPeersChange$ = createOnFromPubsub<number>('net_peerCount', api);
-// onPeersChange$.metadata = {
-//   calls: ['net_peerCount'],
-//   name: 'onPeersChange$'
-// };
 
 /**
  * Observable that emits when syncing status changes.
  */
-export const onSyncingChanged$ = createOnFromPubsub<object | boolean>(
-  'eth_syncing',
-  api
-);
-onSyncingChanged$.metadata = {
-  calls: ['eth_syncing'],
-  name: 'onSyncingChanged$'
-};
+export const onSyncingChanged$ = (api: any) =>
+  createPubsubObservable<object | boolean>(
+    {
+      calls: ['eth_syncing'],
+      name: 'onSyncingChanged$'
+    },
+    api
+  );

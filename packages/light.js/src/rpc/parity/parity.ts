@@ -3,10 +3,8 @@
 //
 // SPDX-License-Identifier: MIT
 
-import { AccountsInfo } from '../../types';
-import api from '../../api';
+import { AccountsInfo, FrequencyObject } from '../../types';
 import createRpc$ from '../utils/createRpc';
-import { onAccountsInfoChanged$, onStartup$ } from '../../frequency';
 import { switchMapPromise } from '../../utils/operators';
 
 /**
@@ -15,10 +13,11 @@ import { switchMapPromise } from '../../utils/operators';
  * @return - An Observable containing all info that can be
  * accessed by user concerning accounts.
  */
-export const accountsInfo$ = createRpc$<AccountsInfo, AccountsInfo>({
-  frequency: [onAccountsInfoChanged$],
-  name: 'accountsInfo$'
-});
+export const accountsInfo$ = (_: any, frequency: FrequencyObject) =>
+  createRpc$<AccountsInfo, AccountsInfo>({
+    frequency: [frequency.onAccountsInfoChanged$],
+    name: 'accountsInfo$'
+  });
 
 /**
  * Get the name of the current chain. Calls `parity_netChain`.
@@ -26,9 +25,10 @@ export const accountsInfo$ = createRpc$<AccountsInfo, AccountsInfo>({
  * @return - An Observable containing the name of the
  * current chain.
  */
-export const chainName$ = createRpc$<any, string>({
-  calls: ['parity_netChain'],
-  frequency: [onStartup$],
-  name: 'chainName$',
-  pipes: () => [switchMapPromise(() => api().parity.netChain())]
-});
+export const chainName$ = (api: any, frequency: FrequencyObject) =>
+  createRpc$<any, string>({
+    calls: ['parity_netChain'],
+    frequency: [frequency.onStartup$],
+    name: 'chainName$',
+    pipes: () => [switchMapPromise(() => api.parity.netChain())]
+  });

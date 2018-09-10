@@ -7,16 +7,9 @@ import BigNumber from 'bignumber.js';
 import { of } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 
-import { Address } from '../../types';
-import api from '../../api';
+import { Address, FrequencyObject } from '../../types';
 import createRpc$ from '../utils/createRpc';
 import { isNullOrLoading, RPC_LOADING } from '../../utils/isLoading';
-import {
-  onAccountsChanged$,
-  onEveryBlock$,
-  onStartup$,
-  onSyncingChanged$
-} from '../../frequency';
 import { switchMapPromise } from '../../utils/operators';
 
 /**
@@ -27,10 +20,11 @@ import { switchMapPromise } from '../../utils/operators';
  *
  * @return - An Observable containing the list of public addresses.
  */
-export const accounts$ = createRpc$<Address[], Address[]>({
-  frequency: [onAccountsChanged$],
-  name: 'accounts$'
-});
+export const accounts$ = (_: any, frequency: FrequencyObject) =>
+  createRpc$<Address[], Address[]>({
+    frequency: [frequency.onAccountsChanged$],
+    name: 'accounts$'
+  });
 
 /**
  * Get the balance of a given account. Calls `eth_getBalance`.
@@ -38,14 +32,15 @@ export const accounts$ = createRpc$<Address[], Address[]>({
  * @param address - The account address to query the balance.
  * @return - An Observable containing the balance.
  */
-export const balanceOf$ = createRpc$<any, BigNumber>({
-  calls: ['eth_getBalance'],
-  frequency: [onEveryBlock$, onStartup$],
-  name: 'balanceOf$',
-  pipes: (address: Address) => [
-    switchMapPromise(() => api().eth.getBalance(address))
-  ]
-});
+export const balanceOf$ = (api: any, frequency: FrequencyObject) =>
+  createRpc$<any, BigNumber>({
+    calls: ['eth_getBalance'],
+    frequency: [frequency.onEveryBlock$, frequency.onStartup$],
+    name: 'balanceOf$',
+    pipes: (address: Address) => [
+      switchMapPromise(() => api.eth.getBalance(address))
+    ]
+  });
 
 /**
  * Get the default account managed by the light client.
@@ -53,45 +48,49 @@ export const balanceOf$ = createRpc$<any, BigNumber>({
  * @return - An Observable containing the public address
  * of the default account.
  */
-export const defaultAccount$ = createRpc$<Address[], Address>({
-  dependsOn: accounts$,
-  name: 'defaultAccount$',
-  pipes: () => [map(accounts => accounts[0])]
-});
+export const defaultAccount$ = (api: any, frequency: FrequencyObject) =>
+  createRpc$<Address[], Address>({
+    dependsOn: accounts$(api, frequency),
+    name: 'defaultAccount$',
+    pipes: () => [map(accounts => accounts[0])]
+  });
 
 /**
  * Get the current block number.
  *
  * @return {Observable<Number>} - An Observable containing the block height.
  */
-export const blockNumber$ = createRpc$<BigNumber, BigNumber>({
-  frequency: [onEveryBlock$],
-  name: 'blockNumber$'
-});
+export const blockNumber$ = (_: any, frequency: FrequencyObject) =>
+  createRpc$<BigNumber, BigNumber>({
+    frequency: [frequency.onEveryBlock$],
+    name: 'blockNumber$'
+  });
 
 /**
  * Shorthand for fetching the current account's balance.
  */
-export const myBalance$ = createRpc$<Address, BigNumber>({
-  calls: [`eth_getBalance`],
-  dependsOn: defaultAccount$,
-  name: 'myBalance$',
-  pipes: () => [
-    switchMap(
-      defaultAccount =>
-        isNullOrLoading(defaultAccount)
-          ? of(RPC_LOADING)
-          : balanceOf$(defaultAccount)
-    )
-  ]
-});
+export const myBalance$ = (api: any, frequency: FrequencyObject) =>
+  createRpc$<Address, BigNumber | Symbol>({
+    calls: [`eth_getBalance`],
+    dependsOn: defaultAccount$(api, frequency),
+    name: 'myBalance$',
+    pipes: () => [
+      switchMap(
+        defaultAccount =>
+          isNullOrLoading(defaultAccount)
+            ? of(RPC_LOADING)
+            : balanceOf$(api, frequency)(defaultAccount)
+      )
+    ]
+  });
 
 /**
  * Get the syncStatus state.
  *
  * @return - An Observable containing the syncing state object, or false.
  */
-export const syncStatus$ = createRpc$<object | boolean, object | boolean>({
-  frequency: [onSyncingChanged$],
-  name: 'syncStatus$'
-});
+export const syncStatus$ = (_: any, frequency: FrequencyObject) =>
+  createRpc$<object | boolean, object | boolean>({
+    frequency: [frequency.onSyncingChanged$],
+    name: 'syncStatus$'
+  });

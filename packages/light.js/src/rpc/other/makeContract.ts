@@ -7,11 +7,9 @@ import * as Abi from '@parity/abi';
 import { abiEncode } from '@parity/api/lib/util/encode';
 import * as memoizee from 'memoizee';
 
-import { Address } from '../../types';
+import { Address, FrequencyObject } from '../../types';
 import createRpc from '../utils/createRpc';
 import { switchMapPromise } from '../../utils/operators';
-import api from '../../api';
-import { onEveryBlock$ } from '../../frequency';
 import { post$ } from './post';
 
 interface MakeContract {
@@ -32,7 +30,7 @@ interface MakeContract {
  * @return - The contract object as defined in @parity/api.
  */
 const getContract = memoizee(
-  (address: Address, abiJson: any[]) => api().newContract(abiJson, address), // use types from @parity/abi
+  (address: Address, abiJson: any[]) => api.newContract(abiJson, address), // use types from @parity/abi
   { length: 1 } // Only memoize by address
 );
 
@@ -45,59 +43,60 @@ const getContract = memoizee(
  * contract, and each function return an Observable which will fire when the
  * function resolves.
  */
-export const makeContract = memoizee(
-  (address: Address, abiJson: any[]) => {
-    // use types from @parity/abi
-    const abi = new Abi(abiJson);
-    // Variable result will hold the final object to return
-    const result: MakeContract = {
-      abi,
-      address,
-      get contractObject() {
-        return getContract(address, abiJson);
-      }
-    };
-
-    // We then copy every key inside contract.instance into our `result` object,
-    // replacing each the value by an Observable instead of a Promise.
-    abi.functions.forEach(({ name }: any) => {
+export const makeContract = (api: any, frequency: FrequencyObject) =>
+  memoizee(
+    (address: Address, abiJson: any[]) => {
       // use types from @parity/abi
-      result[`${name}$`] = (...args: any[]) => {
-        // We only get the contract when the function is called for the 1st
-        // time. Note: getContract is memoized, won't create contract on each
-        // call.
-        const contract = getContract(address, abiJson);
-        const method = contract.instance[name]; // Hold the method from the Abi
-
-        // The last arguments in args can be an options object
-        const options =
-          args.length === method.inputs.length + 1 ? args.pop() : {};
-
-        if (method.constant) {
-          return createRpc({
-            frequency: [onEveryBlock$],
-            name,
-            pipes: () => [
-              switchMapPromise(() =>
-                contract.instance[name].call(options, args)
-              )
-            ]
-          })(...args);
-        } else {
-          return post$({
-            to: address,
-            data: abiEncode(
-              method.name,
-              method.inputs.map(({ kind: { type } }: any) => type), // TODO Use @parity/api types
-              args
-            ),
-            ...options
-          });
+      const abi = new Abi(abiJson);
+      // Variable result will hold the final object to return
+      const result: MakeContract = {
+        abi,
+        address,
+        get contractObject() {
+          return getContract(address, abiJson);
         }
       };
-    });
 
-    return result;
-  },
-  { length: 1 } // Only memoize by address
-);
+      // We then copy every key inside contract.instance into our `result` object,
+      // replacing each the value by an Observable instead of a Promise.
+      abi.functions.forEach(({ name }: any) => {
+        // use types from @parity/abi
+        result[`${name}$`] = (...args: any[]) => {
+          // We only get the contract when the function is called for the 1st
+          // time. Note: getContract is memoized, won't create contract on each
+          // call.
+          const contract = getContract(address, abiJson);
+          const method = contract.instance[name]; // Hold the method from the Abi
+
+          // The last arguments in args can be an options object
+          const options =
+            args.length === method.inputs.length + 1 ? args.pop() : {};
+
+          if (method.constant) {
+            return createRpc({
+              frequency: [frequency.onEveryBlock$],
+              name,
+              pipes: () => [
+                switchMapPromise(() =>
+                  contract.instance[name].call(options, args)
+                )
+              ]
+            })(...args);
+          } else {
+            return post$(api, frequency)({
+              to: address,
+              data: abiEncode(
+                method.name,
+                method.inputs.map(({ kind: { type } }: any) => type), // TODO Use @parity/api types
+                args
+              ),
+              ...options
+            });
+          }
+        };
+      });
+
+      return result;
+    },
+    { length: 1 } // Only memoize by address
+  );

@@ -4,7 +4,7 @@
 // SPDX-License-Identifier: MIT
 
 import * as debug from 'debug';
-import { FrequencyObservable } from '../../types';
+import { FrequencyObservable, FrequencyObservableMetadata } from '../../types';
 import { Observable, Observer, timer } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 
@@ -16,30 +16,35 @@ import { distinctReplayRefCount } from '../../utils/operators/distinctReplayRefC
  * @ignore
  * @example onAccountsChanged$, onEveryBlock$...
  */
-const createOnFromPubsub = <T>(
-  pubsub: string,
+const createPubsubObservable = <T>(
+  metadata: FrequencyObservableMetadata,
   api: any // TODO @parity/api
 ): FrequencyObservable<T> => {
+  const {
+    calls: [pubsub],
+    name
+  } = metadata;
   const [namespace, method] = pubsub.split('_');
 
   // There's a chance the provider doesn't support pubsub, for example
   // MetaMaskProvider. In this case, as suggested on their Github, the best
   // solution for now is to poll.
-  if (!api().isPubSub) {
+  if (!api.isPubSub) {
     debug('@parity/light.js:api')(
       `Pubsub not available for ${
-        api().provider
-          ? api().provider.constructor.name
-          : 'current Api provider'
+        api.provider ? api.provider.constructor.name : 'current Api provider'
       }, polling "${pubsub}" every second.`
     );
-    return timer(0, 1000).pipe(
-      switchMap(() => api()[namespace][method]())
+
+    const result = timer(0, 1000).pipe(
+      switchMap(() => api[namespace][method]())
     ) as FrequencyObservable<T>;
+    result.metadata = { name };
+    return result;
   }
 
-  return Observable.create((observer: Observer<T>) => {
-    const subscription = api().pubsub[namespace][method](
+  const result = Observable.create((observer: Observer<T>) => {
+    const subscription = api.pubsub[namespace][method](
       (error: Error, result: any) => {
         // TODO use @parity/api type for result
         if (error) {
@@ -51,9 +56,11 @@ const createOnFromPubsub = <T>(
     );
     return () =>
       subscription.then((subscriptionId: string) =>
-        api().pubsub.unsubscribe(subscriptionId)
+        api.pubsub.unsubscribe(subscriptionId)
       );
-  }).pipe(distinctReplayRefCount());
+  }).pipe(distinctReplayRefCount()) as FrequencyObservable<T>;
+  result.metadata = metadata;
+  return result;
 };
 
-export default createOnFromPubsub;
+export default createPubsubObservable;
