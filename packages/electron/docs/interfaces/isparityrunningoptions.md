@@ -23,7 +23,7 @@
 
 **● wsInterface**: *`string`*
 
-*Defined in [isParityRunning.ts:12](https://github.com/paritytech/js-libs/blob/f3c5e36/packages/electron/src/isParityRunning.ts#L12)*
+*Defined in [isParityRunning.ts:12](https://github.com/paritytech/js-libs/blob/6933cc7/packages/electron/src/isParityRunning.ts#L12)*
 
 ___
 <a id="wsport"></a>
@@ -33,7 +33,7 @@ ___
 **● wsPort**: * `number` &#124; `string`
 *
 
-*Defined in [isParityRunning.ts:13](https://github.com/paritytech/js-libs/blob/f3c5e36/packages/electron/src/isParityRunning.ts#L13)*
+*Defined in [isParityRunning.ts:13](https://github.com/paritytech/js-libs/blob/6933cc7/packages/electron/src/isParityRunning.ts#L13)*
 
 ___
 

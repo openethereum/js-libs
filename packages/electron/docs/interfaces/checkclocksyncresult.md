@@ -23,7 +23,7 @@
 
 **● isClockSync**: *`boolean`*
 
-*Defined in [checkClockSync.ts:9](https://github.com/paritytech/js-libs/blob/f3c5e36/packages/electron/src/checkClockSync.ts#L9)*
+*Defined in [checkClockSync.ts:9](https://github.com/paritytech/js-libs/blob/6933cc7/packages/electron/src/checkClockSync.ts#L9)*
 
 ___
 <a id="timedrift"></a>
@@ -32,7 +32,7 @@ ___
 
 **● timeDrift**: *`number`*
 
-*Defined in [checkClockSync.ts:10](https://github.com/paritytech/js-libs/blob/f3c5e36/packages/electron/src/checkClockSync.ts#L10)*
+*Defined in [checkClockSync.ts:10](https://github.com/paritytech/js-libs/blob/6933cc7/packages/electron/src/checkClockSync.ts#L10)*
 
 ___
 
