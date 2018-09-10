@@ -65,7 +65,7 @@ isParityRunning()
 
 ▸ **checkClockSync**(): `Promise`<[CheckClockSyncResult](docs/interfaces/checkclocksyncresult.md)>
 
-_Defined in [checkClockSync.ts:21](https://github.com/paritytech/js-libs/blob/f3c5e36/packages/electron/src/checkClockSync.ts#L21)_
+_Defined in [checkClockSync.ts:21](https://github.com/paritytech/js-libs/blob/6933cc7/packages/electron/src/checkClockSync.ts#L21)_
 
 Use SNTP to check if the local clock is synchronized; return the time drift.
 
@@ -79,7 +79,7 @@ Use SNTP to check if the local clock is synchronized; return the time drift.
 
 ▸ **defaultParityPath**(): `Promise`<`string`>
 
-_Defined in [getParityPath.ts:23](https://github.com/paritytech/js-libs/blob/f3c5e36/packages/electron/src/getParityPath.ts#L23)_
+_Defined in [getParityPath.ts:23](https://github.com/paritytech/js-libs/blob/6933cc7/packages/electron/src/getParityPath.ts#L23)_
 
 The default path to install parity, in case there's no other instance found on the machine.
 
@@ -93,7 +93,7 @@ The default path to install parity, in case there's no other instance found on t
 
 ▸ **deleteParity**(): `Promise`<`void`>
 
-_Defined in [fetchParity.ts:84](https://github.com/paritytech/js-libs/blob/f3c5e36/packages/electron/src/fetchParity.ts#L84)_
+_Defined in [fetchParity.ts:84](https://github.com/paritytech/js-libs/blob/6933cc7/packages/electron/src/fetchParity.ts#L84)_
 
 Remove parity binary or partial binary in the userData folder, if it exists.
 
@@ -107,7 +107,7 @@ Remove parity binary or partial binary in the userData folder, if it exists.
 
 ▸ **fetchParity**(mainWindow: _`BrowserWindow`_, options?: _[FetchParityOptions](docs/interfaces/fetchparityoptions.md)_): `Promise`<`string`>
 
-_Defined in [fetchParity.ts:106](https://github.com/paritytech/js-libs/blob/f3c5e36/packages/electron/src/fetchParity.ts#L106)_
+_Defined in [fetchParity.ts:106](https://github.com/paritytech/js-libs/blob/6933cc7/packages/electron/src/fetchParity.ts#L106)_
 
 Downloads Parity, saves it to Electron's `userData` folder, and returns the path to the downloaded binary once finished.
 
@@ -128,7 +128,7 @@ Downloads Parity, saves it to Electron's `userData` folder, and returns the path
 
 ▸ **getParityPath**(): `Promise`<`string`>
 
-_Defined in [getParityPath.ts:119](https://github.com/paritytech/js-libs/blob/f3c5e36/packages/electron/src/getParityPath.ts#L119)_
+_Defined in [getParityPath.ts:104](https://github.com/paritytech/js-libs/blob/6933cc7/packages/electron/src/getParityPath.ts#L104)_
 
 Returns the path to Parity, or throws if parity is not found.
 
@@ -142,7 +142,7 @@ Returns the path to Parity, or throws if parity is not found.
 
 ▸ **isParityRunning**(options?: _[IsParityRunningOptions](docs/interfaces/isparityrunningoptions.md)_): `Promise`<`boolean`>
 
-_Defined in [isParityRunning.ts:20](https://github.com/paritytech/js-libs/blob/f3c5e36/packages/electron/src/isParityRunning.ts#L20)_
+_Defined in [isParityRunning.ts:20](https://github.com/paritytech/js-libs/blob/6933cc7/packages/electron/src/isParityRunning.ts#L20)_
 
 Detect if another instance of parity is already running or not. To achieve that, we just ping on the common hosts.
 
@@ -162,7 +162,7 @@ Detect if another instance of parity is already running or not. To achieve that,
 
 ▸ **killParity**(): `Promise`<`void`>
 
-_Defined in [runParity.ts:112](https://github.com/paritytech/js-libs/blob/f3c5e36/packages/electron/src/runParity.ts#L112)_
+_Defined in [runParity.ts:118](https://github.com/paritytech/js-libs/blob/6933cc7/packages/electron/src/runParity.ts#L118)_
 
 If a Parity process has been spawned with runParity, then it kills this process. However, there's no guarantee that Parity has been cleanly killed, and the Promise resolves instantly.
 
@@ -176,7 +176,7 @@ If a Parity process has been spawned with runParity, then it kills this process.
 
 ▸ **parityElectron**(options?: _[ParityElectronOptions](docs/interfaces/parityelectronoptions.md)_): `void`
 
-_Defined in [index.ts:25](https://github.com/paritytech/js-libs/blob/f3c5e36/packages/electron/src/index.ts#L25)_
+_Defined in [index.ts:25](https://github.com/paritytech/js-libs/blob/6933cc7/packages/electron/src/index.ts#L25)_
 
 Set default options for @parity/electron. Can be skipped if we don't want to override default options.
 
@@ -196,7 +196,7 @@ Set default options for @parity/electron. Can be skipped if we don't want to ove
 
 ▸ **runParity**(options?: _[RunParityOptions](docs/interfaces/runparityoptions.md)_): `Promise`<`void`>
 
-_Defined in [runParity.ts:44](https://github.com/paritytech/js-libs/blob/f3c5e36/packages/electron/src/runParity.ts#L44)_
+_Defined in [runParity.ts:44](https://github.com/paritytech/js-libs/blob/6933cc7/packages/electron/src/runParity.ts#L44)_
 
 Spawns a child process to run Parity.
 
@@ -216,7 +216,7 @@ Spawns a child process to run Parity.
 
 ▸ **signerNewToken**(): `Promise`<`string`>
 
-_Defined in [signerNewToken.ts:16](https://github.com/paritytech/js-libs/blob/f3c5e36/packages/electron/src/signerNewToken.ts#L16)_
+_Defined in [signerNewToken.ts:16](https://github.com/paritytech/js-libs/blob/6933cc7/packages/electron/src/signerNewToken.ts#L16)_
 
 Runs parity signer new-token and resolves with a new secure token to be used in a dapp. Rejects if no token could be extracted.
 
