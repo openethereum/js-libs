@@ -49,7 +49,13 @@ export async function runParity(
     }
   }
 ) {
-  const { flags, onParityError } = options;
+  const { flags, onParityError } = {
+    flags: [],
+    onParityError: () => {
+      /* Do nothing if error. */
+    },
+    ...options
+  };
   const parityPath = await getParityPath();
 
   // Some users somehow had no +x on the parity binary after downloading

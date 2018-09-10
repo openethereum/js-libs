@@ -112,7 +112,14 @@ export async function fetchParity(
     parityChannel: 'beta'
   }
 ) {
-  const { onProgress, parityChannel } = options;
+  const { onProgress, parityChannel } = {
+    onProgress: () => {
+      /* Do nothing by defaut. */
+    },
+    parityChannel: 'beta',
+    ...options
+  };
+
   try {
     const parityPath = retry(
       async (_, attempt: number) => {

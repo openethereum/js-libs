@@ -90,28 +90,13 @@ const isParityInUserData = async () => {
  * @ignore
  * @return Promise<string> - Resolves to a string which is the command to run parity.
  */
-const doesParityExist = async () => {
-  try {
-    // First test if `parity` command exists
-    return await isParityInPath();
-  } catch (e) {
-    /* Do nothing if error. */
-  }
-
-  try {
-    // Then test if parity is in OS
-    return await isParityInOs();
-  } catch (e) {
-    /* Do nothing if error. */
-  }
-
-  try {
-    // Finally test userData folder
-    return await isParityInUserData();
-  } catch (e) {
-    throw new Error('Parity not found.');
-  }
-};
+const doesParityExist = () =>
+  isParityInPath()
+    .catch(isParityInOs)
+    .catch(isParityInUserData)
+    .catch(_ => {
+      throw new Error('Parity not found.');
+    });
 
 /**
  * Returns the path to Parity, or throws if parity is not found.

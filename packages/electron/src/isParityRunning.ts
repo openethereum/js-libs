@@ -23,7 +23,12 @@ export async function isParityRunning(
     wsPort: '8546'
   }
 ) {
-  const { wsInterface, wsPort } = options;
+  const { wsInterface, wsPort } = {
+    wsInterface: '127.0.0.1',
+    wsPort: '8546',
+    ...options
+  };
+
   /**
    * Try to ping these hosts to test if Parity is running.
    */
