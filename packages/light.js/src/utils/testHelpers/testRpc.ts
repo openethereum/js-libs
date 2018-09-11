@@ -6,6 +6,7 @@
 import { createFrequencyMap } from '../../light';
 import isObservable from '../isObservable';
 import { resolveApi } from './mockApi';
+import { RPC_LOADING } from '../isLoading';
 import { RpcObservable, FrequencyMap } from '../../types';
 
 /**
@@ -34,9 +35,25 @@ const testRpc = (
       expect(() => rpc$().subscribe()).not.toThrow();
     });
 
+    it('function result Observable should return values', done => {
+      rpc$().subscribe(data => {
+        // The first value is either 'foo' (defined in mockApi), or the
+        // RPC_LOADING symbole.
+        // In the case of defaultAccount$ (which is accounts$[0]), the returned
+        // value is 'f'. TODO not clean.
+        expect(['foo', 'f', RPC_LOADING]).toContain(data);
+        done();
+      });
+    });
+
     it('function should return the same Observable upon re-running (memoization)', () => {
       const initial$ = rpc$();
       expect(rpc$()).toBe(initial$);
+    });
+
+    it('function should not return the same Observable if options are passed', () => {
+      const initial$ = rpc$();
+      expect(rpc$({ withoutLoading: true })).not.toBe(initial$);
     });
 
     it('should contain a `metadata` field', () => {
