@@ -7,17 +7,15 @@ import * as Abi from '@parity/abi';
 import { abiEncode } from '@parity/api/lib/util/encode';
 import * as memoizee from 'memoizee';
 
-import { Address, FrequencyMap } from '../../types';
+import {
+  Address,
+  FrequencyMap,
+  MakeContract,
+  RpcObservableOptions
+} from '../../types';
 import createRpc from '../utils/createRpc';
 import { switchMapPromise } from '../../utils/operators';
 import { post$ } from './post';
-
-interface MakeContract {
-  abi: any; // use types from @parity/abi
-  address: string;
-  readonly contractObject: any; // TODO from @parity/api
-  [index: string]: any | string | ((...args: any[]) => any); // use types from @parity/abi
-}
 
 /**
  * Cache contracts, so that they are:
@@ -30,7 +28,8 @@ interface MakeContract {
  * @return - The contract object as defined in @parity/api.
  */
 const getContract = memoizee(
-  (address: Address, abiJson: any[]) => api.newContract(abiJson, address), // use types from @parity/abi
+  (address: Address, abiJson: any[], api: any) =>
+    api.newContract(abiJson, address), // TODO Use types from @parity/abi
   { length: 1 } // Only memoize by address
 );
 
@@ -46,14 +45,14 @@ const getContract = memoizee(
 export const makeContract = (api: any, frequency: FrequencyMap) =>
   memoizee(
     (address: Address, abiJson: any[]) => {
-      // use types from @parity/abi
+      // TODO use types from @parity/abi
       const abi = new Abi(abiJson);
       // Variable result will hold the final object to return
       const result: MakeContract = {
         abi,
         address,
         get contractObject() {
-          return getContract(address, abiJson);
+          return getContract(address, abiJson, api);
         }
       };
 
@@ -65,12 +64,26 @@ export const makeContract = (api: any, frequency: FrequencyMap) =>
           // We only get the contract when the function is called for the 1st
           // time. Note: getContract is memoized, won't create contract on each
           // call.
-          const contract = getContract(address, abiJson);
+          const contract = getContract(address, abiJson, api);
           const method = contract.instance[name]; // Hold the method from the Abi
 
-          // The last arguments in args can be an options object
-          const options =
-            args.length === method.inputs.length + 1 ? args.pop() : {};
+          // The last 2 arguments in args can be options object:
+          // - the 1st one to pass to the contract call function (callOptions)
+          // - the 2nd one is the { withoutLoading }, specific to @parity/light.js
+          // TODO Make this clearer.
+          let callOptions = {};
+          let rpcOptions: RpcObservableOptions = {};
+          if (args.length === method.inputs.length + 2) {
+            rpcOptions = args.pop();
+            callOptions = args.pop();
+          } else if (args.length === method.inputs.length + 1) {
+            const options = args.pop();
+            if (options.withoutLoading) {
+              rpcOptions = options;
+            } else {
+              callOptions = options;
+            }
+          }
 
           if (method.constant) {
             return createRpc({
@@ -78,10 +91,10 @@ export const makeContract = (api: any, frequency: FrequencyMap) =>
               name,
               pipes: () => [
                 switchMapPromise(() =>
-                  contract.instance[name].call(options, args)
+                  contract.instance[name].call(callOptions, args)
                 )
               ]
-            })(...args);
+            })(...args, rpcOptions);
           } else {
             return post$(api, frequency)({
               to: address,
@@ -90,7 +103,7 @@ export const makeContract = (api: any, frequency: FrequencyMap) =>
                 method.inputs.map(({ kind: { type } }: any) => type), // TODO Use @parity/api types
                 args
               ),
-              ...options
+              ...callOptions
             });
           }
         };

@@ -52,6 +52,13 @@ export type FrequencyMap = {
   [index in FrequencyKey]: FrequencyObservable<any>
 };
 
+export interface MakeContract {
+  abi: any; // use types from @parity/abi
+  address: string;
+  readonly contractObject: any; // TODO from @parity/api
+  [index: string]: any | string | ((...args: any[]) => any); // use types from @parity/abi
+}
+
 export type RpcKey = keyof typeof rpc;
 
 export interface RpcObservable<Source, Out> {
@@ -61,6 +68,10 @@ export interface RpcObservable<Source, Out> {
 }
 
 export type RpcMap = { [index in RpcKey]: RpcObservable<any, any> };
+
+export interface RpcObservableOptions {
+  withoutLoading?: boolean;
+}
 
 // TODO This should be on @parity/api
 export type Tx = {

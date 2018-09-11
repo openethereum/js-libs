@@ -9,12 +9,13 @@ import { merge, ReplaySubject, OperatorFunction, Observable } from 'rxjs';
 import { multicast, refCount } from 'rxjs/operators';
 import * as prune from 'json-prune';
 
-import { Metadata, RpcObservable, FrequencyObservable } from '../../types';
+import {
+  Metadata,
+  RpcObservable,
+  FrequencyObservable,
+  RpcObservableOptions
+} from '../../types';
 import { distinctValues, withoutLoading } from '../../utils/operators';
-
-interface RpcObservableOptions {
-  withoutLoading: boolean;
-}
 
 /**
  * Mixins that are added into an RpcObservable.

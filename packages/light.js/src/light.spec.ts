@@ -43,7 +43,6 @@ it('should correctly put all rpcs in createRpcMap', () => {
     'blockNumber$',
     'chainName$',
     'defaultAccount$',
-    'makeContract',
     'myBalance$',
     'peerCount$',
     'post$',
@@ -65,4 +64,8 @@ it('should have all rpc$ as methods', () => {
   Object.keys(rpcMap).forEach(rpc => {
     expect(light[rpc as RpcKey]).toBeTruthy();
   });
+});
+
+it('should have a makeContract field', () => {
+  expect(light.makeContract).toBeTruthy();
 });

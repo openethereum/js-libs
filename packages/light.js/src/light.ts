@@ -7,12 +7,15 @@ import * as Api from '@parity/api';
 
 import * as frequency from './frequency';
 import {
+  Address,
   FrequencyKey,
   FrequencyMap,
   FrequencyObservable,
+  MakeContract,
   RpcKey,
   RpcMap
 } from './types';
+import { makeContract } from './rpc/other/makeContract';
 import * as rpc from './rpc';
 
 // Type of `frequency` in `import * as frequency from './frequency';`
@@ -50,33 +53,32 @@ export const createRpcMap = (api: any, frequency: FrequencyMap) =>
     {} as RpcMap
   );
 
+interface WithMakeContract {
+  makeContract: (address: Address, abiJson: any[]) => MakeContract;
+}
+
 // https://stackoverflow.com/questions/48495665/extending-this-in-typescript-class-by-object-assign
-interface Light extends RpcMap {}
+interface Light extends RpcMap, WithMakeContract {}
 
 /**
  * The Light class, `@parity/light.js`'s main export.
  */
-class Light implements RpcMap {
-  private _api: any;
-  private _frequency: FrequencyMap;
+class Light implements RpcMap, WithMakeContract {
+  public api: any;
+  public frequency: FrequencyMap;
 
   constructor(provider: any) {
-    this._api = new Api(provider);
+    this.api = new Api(provider);
 
     // Add this.frequency and list all FrequencyObservables in there.
-    this._frequency = createFrequencyMap(this._api);
+    this.frequency = createFrequencyMap(this.api);
 
     // Add all RpcObservables directly in this Light class, as mixins.
-    const rpcObservables = createRpcMap(this._api, this._frequency);
+    const rpcObservables = createRpcMap(this.api, this.frequency);
     Object.assign(this, rpcObservables);
-  }
 
-  get api() {
-    return this._api;
-  }
-
-  get frequency() {
-    return this._frequency;
+    // Add makeContract method
+    this.makeContract = makeContract(this.api, this.frequency);
   }
 }
 
