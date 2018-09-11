@@ -3,13 +3,21 @@
 //
 // SPDX-License-Identifier: MIT
 
-import { combineLatest, from, Observable } from 'rxjs';
-import { compose, mapPropsStreamWithConfig } from 'recompose';
+import { from } from 'rxjs';
+import {
+  compose,
+  ComponentEnhancer,
+  mapPropsStreamWithConfig
+} from 'recompose';
 import { map, switchMap } from 'rxjs/operators';
-import { RpcObservable } from '@parity/light.js';
+import Light, { RpcObservable } from '@parity/light.js';
 
-interface Observables {
+interface ObservableMap {
   [key: string]: RpcObservable<any, any>;
+}
+
+interface LightWithHoc extends Light {
+  hoc: (observables: ObservableMap) => ComponentEnhancer<{}, {}>;
 }
 
 /**
@@ -20,7 +28,7 @@ interface Observables {
  * will be accessible via `this.props[key]`.
  * @param rpc$ - The RpcObservable to listen to.
  */
-export const withOneObservable = <OwnProps, T>(
+export const withOneObservable = <OwnProps extends object, T>(
   key: string,
   rpc$: RpcObservable<any, T>
 ) =>
@@ -28,11 +36,10 @@ export const withOneObservable = <OwnProps, T>(
     // Converts a plain ES observable to an RxJS 6 observable
     fromESObservable: from,
     toESObservable: stream$ => stream$
-  })(props$ =>
-    combineLatest(
-      props$,
-      (props$ as Observable<OwnProps>).pipe(switchMap(rpc$))
-    ).pipe(map(([props, value]) => ({ ...props, [key]: value })))
+  })(
+    switchMap((props: OwnProps) =>
+      rpc$(props).pipe(map(value => ({ ...(props as object), [key]: value })))
+    )
   );
 
 /**
@@ -43,11 +50,21 @@ export const withOneObservable = <OwnProps, T>(
  * `this.props`, and the value of each key will be the value emitted by the
  * corresponding Observable.
  */
-const light = (observables: Observables) =>
+export const hoc = (observables: ObservableMap) =>
   compose(
     ...Object.keys(observables).map(key =>
       withOneObservable(key, observables[key])
     )
   );
 
-export default light;
+/**
+ * Add a `hoc` field on the Light class, which plays the role of a HOC.
+ *
+ * @param light - The base Light instance.
+ */
+const addHocToLight = (light: Light) => {
+  (light as LightWithHoc).hoc = hoc;
+  return light as LightWithHoc;
+};
+
+export default addHocToLight;

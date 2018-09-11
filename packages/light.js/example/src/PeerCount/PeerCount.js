@@ -5,11 +5,10 @@
 
 import React, { Component } from 'react';
 
-import { peerCount$ } from '../light.js/index.js';
-import light from '../hoc';
+import light from '../lightHoc';
 
-@light({
-  peerCount: () => peerCount$({ withoutLoading: true })
+@light.hoc({
+  peerCount: () => light.peerCount$({ withoutLoading: true })
 })
 class PeerCount extends Component {
   render() {

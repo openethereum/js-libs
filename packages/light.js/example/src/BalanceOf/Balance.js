@@ -6,11 +6,10 @@
 import React, { Component } from 'react';
 
 import BalanceOfAddress from './BalanceOfAddress';
-import { defaultAccount$ } from '../light.js';
-import light from '../hoc';
+import light from '../lightHoc';
 
-@light({
-  defaultAccount: defaultAccount$
+@light.hoc({
+  defaultAccount: light.defaultAccount$
 })
 class Balance extends Component {
   state = { currentAccount: '0x005d98ddB660F40F3a226A3F67b7831A0d8Dfe85' };

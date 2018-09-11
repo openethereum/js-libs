@@ -5,4 +5,6 @@
 
 import Light from './light';
 
+export * from './types';
+
 export default Light;
