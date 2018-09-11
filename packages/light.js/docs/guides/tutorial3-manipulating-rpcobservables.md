@@ -15,9 +15,11 @@ Concretely, in your app, a possible UX would be to show a loading spinner while 
 However, if this behavior is not desirable for you, the you can add the `withoutLoading` options:
 
 ```javascript
-balanceOf$('0x407d73d8a49eeb85d32cf465507dd71d507100c1', {
-  withoutLoading: true
-}).subscribe(balance => console.log('balance', balance));
+light
+  .balanceOf$('0x407d73d8a49eeb85d32cf465507dd71d507100c1', {
+    withoutLoading: true
+  })
+  .subscribe(balance => console.log('balance', balance));
 ```
 
 In this case, the `Symbol(Fetching RPC...)` will never be logged, and you will only be notified when the balance actually changes.
@@ -33,9 +35,10 @@ Since `@parity/light.js` relies heavily on RxJS Observables, all the tools for p
 ```javascript
 import { map } from 'rxjs/operators';
 
-balanceOf$('0x407d73d8a49eeb85d32cf465507dd71d507100c1', {
-  withoutLoading: true
-})
+light
+  .balanceOf$('0x407d73d8a49eeb85d32cf465507dd71d507100c1', {
+    withoutLoading: true
+  })
   .pipe(
     map(balance => balance.toFormat(2)), // Format the number nicely
     map(balance => `${balance} ETH`) // Append 'ETH'
@@ -54,7 +57,8 @@ See https://codesandbox.io/s/xp87z0xjmo.
 ```javascript
 import { map, filter } from 'rxjs/operators';
 
-blockNumber$()
+light
+  .blockNumber$()
   .pipe(
     map(v => +v), // Convert BigNumber to number
     filter(blockNumber => blockNumber % 2 === 0) // Filter out pair numbers
@@ -72,10 +76,11 @@ See https://codesandbox.io/s/v37j38o38y.
 ### Get the balance of the current account
 
 ```javascript
-defaultAccount$()
+light
+  .defaultAccount$()
   .pipe(
     switchMap(publicAddress =>
-      balanceOf$(publicAddress, { withoutLoading: true })
+      light.balanceOf$(publicAddress, { withoutLoading: true })
     ),
     map(value => +value) // Return number instead of BigNumber
   )

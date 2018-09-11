@@ -20,16 +20,20 @@ Now we have our basic dapp harness, we can start introducing more interesting fu
 yarn add @parity/api @parity/light.js
 ```
 
-`@parity/api` is Parity's equivalent of `web3.js`, click [here](https://github.com/paritytech/js-libs/tree/master/packages/api) to see `@parity/api` documentation. We're only using it in our dapp to create a Provider to connect to our Light Client: let's create a file `src/provider.js` to define this provider:
+`@parity/api` is Parity's equivalent of `web3.js`, click [here](https://github.com/paritytech/js-libs/tree/master/packages/api) to see `@parity/api` documentation. We're only using it in our dapp to create a Provider to connect to our Light Client: let's create a file `src/light.js` to define this provider, and connect it to `@parity/light.js`:
 
 ```javascript
+// src/light.js
 import Api from '@parity/api';
+import Light from '@parity/light.js';
 
 const provider = window.web3
   ? window.web3.currentProvider
   : new Api.Provider.Ws('ws://127.0.0.1:8546');
 
-export default provider;
+const light = new Light(provider);
+
+export default light;
 ```
 
 Here, we're saying that if there is a web3 provider present (for example injected by MetaMask), then we use it. Or else, by default, we connect to our local Light Client which we spawned in the previous step.
@@ -39,12 +43,11 @@ Now, we can go to `src/index.js`, which is the entry point of our dapp, and conn
 ```javascript
 import React from 'react';
 import ReactDOM from 'react-dom';
-import light from '@parity/light.js';
 
 import App from './App';
-import provider from './provider';
+import light from './light';
 
-light.setProvider(provider);
+// Do stuff with light
 
 ReactDOM.render(<App />, document.getElementById('root'));
 ```
@@ -55,20 +58,16 @@ The whole `@parity/light.js` works with the concept of [RpcObservables](/concept
 
 For now, let's just see how to use them. Make the following change in `src/index.js`:
 
-```diff
+```javascript
 import React from 'react';
 import ReactDOM from 'react-dom';
--import light from '@parity/light.js';
-+import light, { blockNumber$ } from '@parity/light.js';
 
 import App from './App';
-import provider from './provider';
+import light from './light';
 
-light.setProvider(provider);
-
-+blockNumber$().subscribe(blockNumber =>
-+  console.log('blockNumber', blockNumber)
-+);
+light
+  .blockNumber$()
+  .subscribe(blockNumber => console.log('blockNumber', blockNumber));
 
 ReactDOM.render(<App />, document.getElementById('root'));
 ```
@@ -79,23 +78,19 @@ A RpcObservable is a function that returns an Observable (calling a JSONRPC requ
 
 Here's another RpcObservable, returning the balance of an account, and logging it each time this balance changes.
 
-```diff
+```javascript
 import React from 'react';
 import ReactDOM from 'react-dom';
--import light, { blockNumber$ } from '@parity/light.js';
-+import light, { balanceOf$, blockNumber$ } from '@parity/light.js';
 
 import App from './App';
-import provider from './provider';
+import light from './light';
 
-light.setProvider(provider);
-
-blockNumber$().subscribe(blockNumber =>
-  console.log('blockNumber', blockNumber)
-);
-+balanceOf$('0x407d73d8a49eeb85d32cf465507dd71d507100c1').subscribe(balance =>
-+  console.log('balance', balance)
-+);
+light
+  .blockNumber$()
+  .subscribe(blockNumber => console.log('blockNumber', blockNumber));
+light
+  .balanceOf$('0x407d73d8a49eeb85d32cf465507dd71d507100c1')
+  .subscribe(balance => console.log('balance', balance));
 
 ReactDOM.render(<App />, document.getElementById('root'));
 ```

@@ -11,12 +11,14 @@ RxJS is a needed peer-dependency.
 ## Usage
 
 ```javascript
-import light, { balanceOf$ } from './light.js';
+import Light from '@parity/light.js';
 
-light.setProvider(/* put your Ethereum provider here */);
+const light = new Light(ethereumProvider);
 
 // Will print every time balance changes.
-balanceOf$('0xbb9bc244d798123fde783fcc1c72d3bb8c189413').subscribe(console.log);
+light
+  .balanceOf$('0xbb9bc244d798123fde783fcc1c72d3bb8c189413')
+  .subscribe(console.log);
 ```
 
 Here are some examples of providers you can use.
@@ -29,13 +31,13 @@ Then create a new provider that connects to the Light Client:
 
 ```javascript
 import Api from '@parity/api';
-import light from '@parity/light.js';
+import Light from '@parity/light.js';
 
 // The dapp and the Light Client communicate via WebSocket. Other
 // possibilities are Http or IPC.
 const provider = new Api.Provider.Ws('ws://127.0.0.1:8546');
 
-light.setProvider(provider);
+const light = new Light(provider);
 
 // Your app...
 ```
@@ -51,11 +53,10 @@ However, if you are building a mobile application or an Electron desktop applica
 Make sure you have [MetaMask](https://metamask.io/) installed. Then,
 
 ```javascript
-import light from '@parity/light.js';
+import Light from '@parity/light.js';
 
 window.addEventListener('load', () => {
-  // Wait for web3.currentProvider to be injected
-  light.setProvider(window.web3.currentProvider);
+  const light = new Light(window.web3.currentProvider);
 
   startApp();
 });
@@ -65,12 +66,12 @@ window.addEventListener('load', () => {
 
 ```javascript
 import Api from '@parity/api';
-import light from '@parity/light.js';
+import Light from '@parity/light.js';
 
 // The dapp and the INFURA node communicate via WebSockets.
 const provider = new Api.Provider.Ws('wss://mainnet.infura.io/ws');
 
-light.setProvider(provider);
+const light = new Light(provider);
 
 // Your app...
 ```
@@ -81,13 +82,13 @@ Make sure you have a full node running.
 
 ```javascript
 import Api from '@parity/api';
-import light from '@parity/light.js';
+import Light from '@parity/light.js';
 
 // The dapp and the full node communicate via WebSocket. Other
 // possibilities are Http or IPC.
 const provider = new Api.Provider.Ws('ws://127.0.0.1:8546');
 
-light.setProvider(provider);
+const light = new Light(provider);
 
 // Your app...
 ```
