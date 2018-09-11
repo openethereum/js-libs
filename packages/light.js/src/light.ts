@@ -18,7 +18,11 @@ import {
 import { makeContract } from './rpc/other/makeContract';
 import * as rpc from './rpc';
 
-// Type of `frequency` in `import * as frequency from './frequency';`
+/**
+ * Type of `frequency` in `import * as frequency from './frequency';`
+ *
+ * @ignore
+ */
 type FrequencyModule = {
   [index in FrequencyKey]: (api: any) => FrequencyObservable<any>
 };
@@ -53,17 +57,20 @@ export const createRpcMap = (api: any, frequency: FrequencyMap) =>
     {} as RpcMap
   );
 
+/**
+ * @ignore
+ */
 interface WithMakeContract {
   makeContract: (address: Address, abiJson: any[]) => MakeContract;
 }
 
 // https://stackoverflow.com/questions/48495665/extending-this-in-typescript-class-by-object-assign
-interface Light extends RpcMap, WithMakeContract {}
+export interface Light extends RpcMap, WithMakeContract {}
 
 /**
  * The Light class, `@parity/light.js`'s main export.
  */
-class Light implements RpcMap, WithMakeContract {
+export class Light implements RpcMap, WithMakeContract {
   public api: any;
   public frequency: FrequencyMap;
 
