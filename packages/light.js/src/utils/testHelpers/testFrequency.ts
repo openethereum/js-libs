@@ -18,23 +18,23 @@ const testFrequency = (
 ) =>
   describe(`${name} rpc`, () => {
     it('should be an Observable', () => {
-      expect(isObservable(frequency(resolveApi))).toBe(true);
-      expect(isObservable(frequency(rejectApi))).toBe(true);
+      expect(isObservable(frequency(resolveApi()))).toBe(true);
+      expect(isObservable(frequency(rejectApi()))).toBe(true);
     });
 
     it('should be subscribable', () => {
-      expect(() => frequency(resolveApi).subscribe()).not.toThrow();
-      expect(() => frequency(rejectApi).subscribe()).not.toThrow();
+      expect(() => frequency(resolveApi()).subscribe()).not.toThrow();
+      expect(() => frequency(rejectApi()).subscribe()).not.toThrow();
     });
 
     it('should contain a `metadata` field', () => {
-      expect(frequency(resolveApi).metadata).toBeTruthy();
-      expect(frequency(rejectApi).metadata).toBeTruthy();
+      expect(frequency(resolveApi()).metadata).toBeTruthy();
+      expect(frequency(rejectApi()).metadata).toBeTruthy();
     });
 
     it('should contain `name` in metadata', () => {
-      const { metadata } = frequency(resolveApi);
-      expect(metadata.name).toBeTruthy();
+      expect(frequency(resolveApi()).metadata.name).toBeTruthy();
+      expect(frequency(rejectApi()).metadata.name).toBeTruthy();
     });
   });
 

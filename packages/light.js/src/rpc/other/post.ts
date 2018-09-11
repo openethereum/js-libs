@@ -6,7 +6,7 @@
 import { Observable, Observer } from 'rxjs';
 
 import { distinctReplayRefCount } from '../../utils/operators';
-import { FrequencyObject, RpcObservable, Tx, TxStatus } from '../../types';
+import { FrequencyMap, RpcObservable, Tx, TxStatus } from '../../types';
 
 /**
  * Post a transaction to the network.
@@ -18,7 +18,7 @@ import { FrequencyObject, RpcObservable, Tx, TxStatus } from '../../types';
  * @param options? - Options to pass.
  * @return - The status of the transaction.
  */
-export const post$ = (api: any, _: FrequencyObject) => {
+export const post$ = (api: any, _: FrequencyMap) => {
   const result: RpcObservable<any, TxStatus> = (
     tx: Tx,
     options: { estimate?: boolean } = {}

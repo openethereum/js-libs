@@ -7,7 +7,7 @@ import BigNumber from 'bignumber.js';
 import { of } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 
-import { Address, FrequencyObject } from '../../types';
+import { Address, FrequencyMap } from '../../types';
 import createRpc$ from '../utils/createRpc';
 import { isNullOrLoading, RPC_LOADING } from '../../utils/isLoading';
 import { switchMapPromise } from '../../utils/operators';
@@ -20,7 +20,7 @@ import { switchMapPromise } from '../../utils/operators';
  *
  * @return - An Observable containing the list of public addresses.
  */
-export const accounts$ = (_: any, frequency: FrequencyObject) =>
+export const accounts$ = (_: any, frequency: FrequencyMap) =>
   createRpc$<Address[], Address[]>({
     frequency: [frequency.onAccountsChanged$],
     name: 'accounts$'
@@ -32,7 +32,7 @@ export const accounts$ = (_: any, frequency: FrequencyObject) =>
  * @param address - The account address to query the balance.
  * @return - An Observable containing the balance.
  */
-export const balanceOf$ = (api: any, frequency: FrequencyObject) =>
+export const balanceOf$ = (api: any, frequency: FrequencyMap) =>
   createRpc$<any, BigNumber>({
     calls: ['eth_getBalance'],
     frequency: [frequency.onEveryBlock$, frequency.onStartup$],
@@ -48,7 +48,7 @@ export const balanceOf$ = (api: any, frequency: FrequencyObject) =>
  * @return - An Observable containing the public address
  * of the default account.
  */
-export const defaultAccount$ = (api: any, frequency: FrequencyObject) =>
+export const defaultAccount$ = (api: any, frequency: FrequencyMap) =>
   createRpc$<Address[], Address>({
     dependsOn: accounts$(api, frequency),
     name: 'defaultAccount$',
@@ -60,7 +60,7 @@ export const defaultAccount$ = (api: any, frequency: FrequencyObject) =>
  *
  * @return {Observable<Number>} - An Observable containing the block height.
  */
-export const blockNumber$ = (_: any, frequency: FrequencyObject) =>
+export const blockNumber$ = (_: any, frequency: FrequencyMap) =>
   createRpc$<BigNumber, BigNumber>({
     frequency: [frequency.onEveryBlock$],
     name: 'blockNumber$'
@@ -69,7 +69,7 @@ export const blockNumber$ = (_: any, frequency: FrequencyObject) =>
 /**
  * Shorthand for fetching the current account's balance.
  */
-export const myBalance$ = (api: any, frequency: FrequencyObject) =>
+export const myBalance$ = (api: any, frequency: FrequencyMap) =>
   createRpc$<Address, BigNumber | Symbol>({
     calls: [`eth_getBalance`],
     dependsOn: defaultAccount$(api, frequency),
@@ -89,7 +89,7 @@ export const myBalance$ = (api: any, frequency: FrequencyObject) =>
  *
  * @return - An Observable containing the syncing state object, or false.
  */
-export const syncStatus$ = (_: any, frequency: FrequencyObject) =>
+export const syncStatus$ = (_: any, frequency: FrequencyMap) =>
   createRpc$<object | boolean, object | boolean>({
     frequency: [frequency.onSyncingChanged$],
     name: 'syncStatus$'

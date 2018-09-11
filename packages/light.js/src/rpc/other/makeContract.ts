@@ -7,7 +7,7 @@ import * as Abi from '@parity/abi';
 import { abiEncode } from '@parity/api/lib/util/encode';
 import * as memoizee from 'memoizee';
 
-import { Address, FrequencyObject } from '../../types';
+import { Address, FrequencyMap } from '../../types';
 import createRpc from '../utils/createRpc';
 import { switchMapPromise } from '../../utils/operators';
 import { post$ } from './post';
@@ -43,7 +43,7 @@ const getContract = memoizee(
  * contract, and each function return an Observable which will fire when the
  * function resolves.
  */
-export const makeContract = (api: any, frequency: FrequencyObject) =>
+export const makeContract = (api: any, frequency: FrequencyMap) =>
   memoizee(
     (address: Address, abiJson: any[]) => {
       // use types from @parity/abi

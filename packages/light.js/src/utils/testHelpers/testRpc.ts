@@ -3,15 +3,24 @@
 //
 // SPDX-License-Identifier: MIT
 
+import { createFrequencyMap } from '../../light';
 import isObservable from '../isObservable';
-import { RpcObservable } from '../../types';
+import { resolveApi } from './mockApi';
+import { RpcObservable, FrequencyMap } from '../../types';
 
 /**
  * Helper function to make basic tests for RpcObservables.
  *
  * @ignore
  */
-const testRpc = (name: string, rpc$: RpcObservable<any, any>) =>
+const testRpc = (
+  name: string,
+  rpc: (api: any, frequency: FrequencyMap) => RpcObservable<any, any>
+) => {
+  const api = resolveApi();
+  const frequency = createFrequencyMap(api);
+  const rpc$ = rpc(api, frequency);
+
   describe(`${name} rpc`, () => {
     it('should be a function', () => {
       expect(typeof rpc$).toBe('function');
@@ -41,5 +50,6 @@ const testRpc = (name: string, rpc$: RpcObservable<any, any>) =>
       ).toBeTruthy();
     });
   });
+};
 
 export default testRpc;

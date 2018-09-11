@@ -48,7 +48,7 @@ export interface FrequencyObservable<T> extends Observable<T> {
   metadata?: FrequencyObservableMetadata;
 }
 
-export type FrequencyObject = {
+export type FrequencyMap = {
   [index in FrequencyKey]: FrequencyObservable<any>
 };
 
@@ -60,7 +60,7 @@ export interface RpcObservable<Source, Out> {
   setFrequency?(frequency: FrequencyObservable<Source>[]): void; // post$, makeContract... don't have setFrequency
 }
 
-export type RpcObject = { [index in RpcKey]: RpcObservable<any, any> };
+export type RpcMap = { [index in RpcKey]: RpcObservable<any, any> };
 
 // TODO This should be on @parity/api
 export type Tx = {
