@@ -2,6 +2,7 @@ module.exports = {
   collectCoverageFrom: ['**/*.{ts,tsx}', '!**/node_modules/**', '!**/*.d.ts'],
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
   rootDir: '.',
+  silent: true,
   transform: {
     '^.+\\.tsx?$': 'ts-jest'
   },

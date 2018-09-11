@@ -3,6 +3,17 @@
 //
 // SPDX-License-Identifier: MIT
 
+import * as EventEmitter from 'eventemitter3';
+
+/**
+ * @ignore
+ */
+export class MockProvider extends EventEmitter {
+  send() {
+    return Promise.resolve('foo');
+  }
+}
+
 // List of JSONRPCs we want to mock
 const listOfMockRps: { [index: string]: string[] } = {
   eth: ['accounts', 'blockNumber', 'getBalance', 'syncing'],
