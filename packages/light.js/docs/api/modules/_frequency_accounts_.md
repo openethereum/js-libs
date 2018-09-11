@@ -1,33 +1,43 @@
 
 
-# Variables
+# Functions
 
 <a id="onaccountschanged_"></a>
 
-## `<Const>` onAccountsChanged$
+##  onAccountsChanged$
 
-**● onAccountsChanged$**: *[FrequencyObservable](../interfaces/_types_.frequencyobservable.md)<`string`[]>* =  createOnFromPubsub<Address[]>(
-  'eth_accounts',
-  api
-)
+▸ **onAccountsChanged$**(api: *`any`*): [FrequencyObservable](../interfaces/_types_.frequencyobservable.md)<`string`[]>
 
-*Defined in [frequency/accounts.ts:13](https://github.com/paritytech/js-libs/blob/70247e1/packages/light.js/src/frequency/accounts.ts#L13)*
+*Defined in [frequency/accounts.ts:14](https://github.com/paritytech/js-libs/blob/7df4531/packages/light.js/src/frequency/accounts.ts#L14)*
 
 Observable that emits each time the default account changes
+
+**Parameters:**
+
+| Param | Type | Description |
+| ------ | ------ | ------ |
+| api | `any` |  The api object with which to create this [FrequencyObservable](../interfaces/_types_.frequencyobservable.md). |
+
+**Returns:** [FrequencyObservable](../interfaces/_types_.frequencyobservable.md)<`string`[]>
 
 ___
 <a id="onaccountsinfochanged_"></a>
 
-## `<Const>` onAccountsInfoChanged$
+##  onAccountsInfoChanged$
 
-**● onAccountsInfoChanged$**: *[FrequencyObservable](../interfaces/_types_.frequencyobservable.md)<`object`>* =  createOnFromPubsub<AccountsInfo>(
-  'parity_accountsInfo',
-  api
-)
+▸ **onAccountsInfoChanged$**(api: *`any`*): [FrequencyObservable](../interfaces/_types_.frequencyobservable.md)<`object`>
 
-*Defined in [frequency/accounts.ts:22](https://github.com/paritytech/js-libs/blob/70247e1/packages/light.js/src/frequency/accounts.ts#L22)*
+*Defined in [frequency/accounts.ts:26](https://github.com/paritytech/js-libs/blob/7df4531/packages/light.js/src/frequency/accounts.ts#L26)*
 
 Observable that emits each time the default account changes
+
+**Parameters:**
+
+| Param | Type | Description |
+| ------ | ------ | ------ |
+| api | `any` |  The api object with which to create this [FrequencyObservable](../interfaces/_types_.frequencyobservable.md). |
+
+**Returns:** [FrequencyObservable](../interfaces/_types_.frequencyobservable.md)<`object`>
 
 ___
 

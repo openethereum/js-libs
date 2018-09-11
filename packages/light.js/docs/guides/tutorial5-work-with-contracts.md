@@ -18,9 +18,10 @@ So let's instantiate a contract object:
 
 ```javascript
 import erc20Abi from '@parity/contracts/lib/abi/eip20';
-import { makeContract } from '@parity/light.js';
 
-const gavcoinContract = makeContract(
+import light from './light';
+
+const gavcoinContract = light.makeContract(
   '0x4733659a5cB7896A65c918Add6f59C5148FB5ffa',
   erc20Abi
 );

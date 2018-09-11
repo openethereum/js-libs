@@ -7,9 +7,7 @@
 The underlying JSONRPC method is only called if there's at least one subscriber.
 
 ```javascript
-import { balanceOf$ } from '@parity/light.js';
-
-const myObs$ = balanceOf$('0x123');
+const myObs$ = light.balanceOf$('0x123');
 // Observable created, but `eth_getBalance` not called yet
 const subscription = myObs$.subscribe(console.log);
 // `eth_getBalance` called for the 1st time
@@ -47,19 +45,19 @@ But Observables in this library are PublishReplay(1). [Read more](https://blog.a
 ## Observables are memoized
 
 ```javascript
-const obs1$ = balanceOf$('0x123');
-const obs2$ = balanceOf$('0x123');
+const obs1$ = light.balanceOf$('0x123');
+const obs2$ = light.balanceOf$('0x123');
 console.log(obs1$ === obs2$); // true
 
-const obs3$ = balanceOf$('0x456');
+const obs3$ = light.balanceOf$('0x456');
 console.log(obs1$ === obs3$); // false
 ```
 
 ### Underlying API calls are not unnessarily repeated
 
 ```javascript
-const obs1$ = balanceOf$('0x123');
-const obs2$ = balanceOf$('0x123');
+const obs1$ = light.balanceOf$('0x123');
+const obs2$ = light.balanceOf$('0x123');
 
 obs1$.subscribe(console.log);
 obs1$.subscribe(console.log);
@@ -67,17 +65,15 @@ obs2$.subscribe(console.log);
 // Logs 3 times the balance
 // But only one call to `eth_getBalance` has been made
 
-const obs3$ = balanceOf$('0x456');
+const obs3$ = light.balanceOf$('0x456');
 // Logs a new balance, another call to `eth_getBalance` is made
 ```
 
 ## Underlying PubSub subscriptions are dropped when there's no subscriber
 
 ```javascript
-import { blockNumber$ } from '@parity/light.js';
-
-const myObs$ = blockNumber$();
-console.log(blockNumber$.frequency); // [onEveryBlock$]
+const myObs$ = light.blockNumber$();
+console.log(light.blockNumber$.metadata.frequency); // [onEveryBlock$]
 // Note: onEveryBlock$ creates a pubsub on `eth_blockNumber`
 
 const subscription = myObs$.subscribe(console.log);

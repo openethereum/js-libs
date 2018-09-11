@@ -3,14 +3,8 @@
 //
 // SPDX-License-Identifier: MIT
 
-import { setApi, setProvider } from './api';
-import * as frequency from './frequency';
-import './overview';
+import Light from './light';
 
-export * from './rpc';
-export * from './utils/isLoading';
 export * from './types';
-export { withoutLoading } from './utils/operators/withoutLoading';
 
-export { frequency };
-export default { setApi, setProvider };
+export default Light;

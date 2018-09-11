@@ -3,5 +3,6 @@
 //
 // SPDX-License-Identifier: MIT
 
-export * from './makeContract';
+// Note: we explicitly don't export makeContract here, as it's not a
+// RpcObservable. It is imported manually in the Light class (light.js).
 export * from './post';

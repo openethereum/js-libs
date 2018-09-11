@@ -5,29 +5,36 @@
 
 import { FrequencyObservable } from '../../types';
 import isObservable from '../isObservable';
+import { rejectApi, resolveApi } from './mockApi';
 
 /**
- * Helper function to make basic tests for frequency$ observables.
+ * Helper function to make basic tests for frequency observables.
  *
  * @ignore
  */
-const testFrequency = (name: string, frequency$: FrequencyObservable<any>) =>
+const testFrequency = (
+  name: string,
+  frequency: (api: any) => FrequencyObservable<any>
+) =>
   describe(`${name} rpc`, () => {
     it('should be an Observable', () => {
-      expect(isObservable(frequency$)).toBe(true);
+      expect(isObservable(frequency(resolveApi()))).toBe(true);
+      expect(isObservable(frequency(rejectApi()))).toBe(true);
     });
 
     it('should be subscribable', () => {
-      expect(() => frequency$.subscribe()).not.toThrow();
+      expect(() => frequency(resolveApi()).subscribe()).not.toThrow();
+      expect(() => frequency(rejectApi()).subscribe()).not.toThrow();
     });
 
     it('should contain a `metadata` field', () => {
-      expect(frequency$.metadata).toBeTruthy();
+      expect(frequency(resolveApi()).metadata).toBeTruthy();
+      expect(frequency(rejectApi()).metadata).toBeTruthy();
     });
 
     it('should contain `name` in metadata', () => {
-      const { metadata } = frequency$;
-      expect(metadata.name).toBeTruthy();
+      expect(frequency(resolveApi()).metadata.name).toBeTruthy();
+      expect(frequency(rejectApi()).metadata.name).toBeTruthy();
     });
   });
 

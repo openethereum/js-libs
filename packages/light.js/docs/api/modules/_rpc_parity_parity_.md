@@ -1,37 +1,49 @@
 
 
-# Variables
+# Functions
 
 <a id="accountsinfo_"></a>
 
-## `<Const>` accountsInfo$
+##  accountsInfo$
 
-**● accountsInfo$**: *[RpcObservable](../interfaces/_types_.rpcobservable.md)<`object`, `object`>* =  createRpc$<AccountsInfo, AccountsInfo>({
-  frequency: [onAccountsInfoChanged$],
-  name: 'accountsInfo$'
-})
+▸ **accountsInfo$**(_: *`any`*, frequency: *[FrequencyMap](_types_.md#frequencymap)*): [RpcObservable](../interfaces/_types_.rpcobservable.md)<`object`, `object`>
 
-*Defined in [rpc/parity/parity.ts:18](https://github.com/paritytech/js-libs/blob/70247e1/packages/light.js/src/rpc/parity/parity.ts#L18)*
+*Defined in [rpc/parity/parity.ts:18](https://github.com/paritytech/js-libs/blob/7df4531/packages/light.js/src/rpc/parity/parity.ts#L18)*
 
 Get accounts info. Calls `parity_accountsInfo`.
-*__returns__*: *   An Observable containing all info that can be accessed by user concerning accounts.
+
+**Parameters:**
+
+| Param | Type | Description |
+| ------ | ------ | ------ |
+| _ | `any` |
+| frequency | [FrequencyMap](_types_.md#frequencymap) |  The FrequencyMap used to create this [RpcObservable](../interfaces/_types_.rpcobservable.md). |
+
+**Returns:** [RpcObservable](../interfaces/_types_.rpcobservable.md)<`object`, `object`>
+- An Observable containing all info that can be
+accessed by user concerning accounts.
 
 ___
 <a id="chainname_"></a>
 
-## `<Const>` chainName$
+##  chainName$
 
-**● chainName$**: *[RpcObservable](../interfaces/_types_.rpcobservable.md)<`any`, `string`>* =  createRpc$<any, string>({
-  calls: ['parity_netChain'],
-  frequency: [onStartup$],
-  name: 'chainName$',
-  pipes: () => [switchMapPromise(() => api().parity.netChain())]
-})
+▸ **chainName$**(api: *`any`*, frequency: *[FrequencyMap](_types_.md#frequencymap)*): [RpcObservable](../interfaces/_types_.rpcobservable.md)<`any`, `string`>
 
-*Defined in [rpc/parity/parity.ts:29](https://github.com/paritytech/js-libs/blob/70247e1/packages/light.js/src/rpc/parity/parity.ts#L29)*
+*Defined in [rpc/parity/parity.ts:33](https://github.com/paritytech/js-libs/blob/7df4531/packages/light.js/src/rpc/parity/parity.ts#L33)*
 
 Get the name of the current chain. Calls `parity_netChain`.
-*__returns__*: *   An Observable containing the name of the current chain.
+
+**Parameters:**
+
+| Param | Type | Description |
+| ------ | ------ | ------ |
+| api | `any` |  The Api object used to create this [RpcObservable](../interfaces/_types_.rpcobservable.md). |
+| frequency | [FrequencyMap](_types_.md#frequencymap) |  The FrequencyMap used to create this [RpcObservable](../interfaces/_types_.rpcobservable.md). |
+
+**Returns:** [RpcObservable](../interfaces/_types_.rpcobservable.md)<`any`, `string`>
+- An Observable containing the name of the
+current chain.
 
 ___
 

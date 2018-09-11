@@ -1,24 +1,28 @@
 
 
-# Variables
+# Functions
 
 <a id="peercount_"></a>
 
-## `<Const>` peerCount$
+##  peerCount$
 
-**● peerCount$**: *[RpcObservable](../interfaces/_types_.rpcobservable.md)<`number`, `BigNumber`>* =  createRpc$<number, BigNumber>({
-  calls: ['net_peerCount'],
-  frequency: [onEvery5Seconds$],
-  name: 'peerCount$',
-  pipes: () => [switchMapPromise(() => api().net.peerCount())]
-})
+▸ **peerCount$**(api: *`any`*, frequency: *[FrequencyMap](_types_.md#frequencymap)*): [RpcObservable](../interfaces/_types_.rpcobservable.md)<`number`, `BigNumber`>
 
-*Defined in [rpc/net/net.ts:20](https://github.com/paritytech/js-libs/blob/70247e1/packages/light.js/src/rpc/net/net.ts#L20)*
+*Defined in [rpc/net/net.ts:21](https://github.com/paritytech/js-libs/blob/7df4531/packages/light.js/src/rpc/net/net.ts#L21)*
 
 Get the amount of peers.
 
 Calls `net_peerCount`
-*__returns__*: *   An Observable containing the number.
+
+**Parameters:**
+
+| Param | Type | Description |
+| ------ | ------ | ------ |
+| api | `any` |  The Api object used to create this [RpcObservable](../interfaces/_types_.rpcobservable.md). |
+| frequency | [FrequencyMap](_types_.md#frequencymap) |  The FrequencyMap used to create this [RpcObservable](../interfaces/_types_.rpcobservable.md). |
+
+**Returns:** [RpcObservable](../interfaces/_types_.rpcobservable.md)<`number`, `BigNumber`>
+- An Observable containing the number.
 
 ___
 

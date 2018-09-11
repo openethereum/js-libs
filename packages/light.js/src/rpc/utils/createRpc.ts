@@ -5,16 +5,17 @@
 
 import * as memoizee from 'memoizee';
 import { isFunction, isObject } from '@parity/api/lib/util/types';
-import { merge, ReplaySubject, Observable, OperatorFunction } from 'rxjs';
+import { merge, ReplaySubject, OperatorFunction, Observable } from 'rxjs';
 import { multicast, refCount } from 'rxjs/operators';
 import * as prune from 'json-prune';
 
-import { Metadata, RpcObservable } from '../../types';
+import {
+  Metadata,
+  RpcObservable,
+  FrequencyObservable,
+  RpcObservableOptions
+} from '../../types';
 import { distinctValues, withoutLoading } from '../../utils/operators';
-
-interface RpcObservableWithoutMetadata<_, Out> {
-  (...args: any[]): Observable<Out>;
-}
 
 /**
  * Mixins that are added into an RpcObservable.
@@ -30,7 +31,7 @@ const frequencyMixins = {
    * balanceOf$.setFrequency([onEverySecond$, onStartup$]); // Will fetch
    * balance once on startup, and then every second.
    */
-  setFrequency(frequency: Observable<any>[]) {
+  setFrequency<T>(frequency: FrequencyObservable<T>[]) {
     // TODO Check that frequency is well-formed
 
     this.metadata.frequency = frequency;
@@ -51,7 +52,7 @@ const frequencyMixins = {
  */
 const createRpc = <Source, Out>(metadata: Metadata<Source, Out>) => {
   // rpc$ will hold the RpcObservable minus its metadata
-  const rpc$: RpcObservableWithoutMetadata<Source, Out> = (...args: any[]) => {
+  function rpc$(...args: any[]) {
     // The source Observable can either be another RpcObservable (in the
     // `dependsOn` field), or anObservable built by merging all the
     // FrequencyObservables
@@ -61,7 +62,8 @@ const createRpc = <Source, Out>(metadata: Metadata<Source, Out>) => {
 
     // The last arguments is an options, if it's an object
     // TODO What if we pass a single object as argument, which is not options?
-    const options: { withoutLoading?: boolean } =
+    // TODO Typescript doesn't add typing for the last argument, add overloads?
+    const options: RpcObservableOptions =
       args && args.length && isObject(args[args.length - 1]) ? args.pop() : {};
 
     // A RpcObservable is a source$ Observable, a single subject$ that
@@ -88,8 +90,10 @@ const createRpc = <Source, Out>(metadata: Metadata<Source, Out>) => {
     }
     metadata.calledWithArgs[prune(args)] = subject$;
 
-    return source$.pipe(...pipes);
-  };
+    // @ts-ignore
+    // https://github.com/Microsoft/TypeScript/issues/4130#issuecomment-380796112
+    return source$.pipe(...pipes) as Observable<Out>;
+  }
 
   let memoizedRpc$ = memoizee(rpc$, { primitive: true, length: false });
 

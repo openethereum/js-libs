@@ -5,11 +5,10 @@
 
 import React, { Component } from 'react';
 
-import { blockNumber$ } from '../light.js';
-import light from '../hoc';
+import light from '../lightHoc';
 
-@light({
-  blockNumber: blockNumber$
+@light.hoc({
+  blockNumber: light.blockNumber$
 })
 class BlockNumber extends Component {
   render() {

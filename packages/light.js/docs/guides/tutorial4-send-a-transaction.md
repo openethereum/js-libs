@@ -34,12 +34,14 @@ The value to which the RpcObservable evaluates reflects the ongoing status of th
 ### Example
 
 ```javascript
-import { post$ } from '@parity/light.js';
+import light from './light';
 
-post$({
-  to: '0x180fbce524fd79b4af8dccf83809acd9bc95fd1a',
-  value: 100 * 1e15 // value in wei
-}).subscribe(console.log);
+light
+  .post$({
+    to: '0x180fbce524fd79b4af8dccf83809acd9bc95fd1a',
+    value: 100 * 1e15 // value in wei
+  })
+  .subscribe(console.log);
 
 // Logs:
 // { requested: '0x1' }

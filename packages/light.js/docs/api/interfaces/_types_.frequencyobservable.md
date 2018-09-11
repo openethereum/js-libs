@@ -55,11 +55,9 @@ ___
 
 ## `<Optional>` metadata
 
-**● metadata**: *`object`*
+**● metadata**: *[FrequencyObservableMetadata](_types_.frequencyobservablemetadata.md)*
 
-*Defined in [types.ts:38](https://github.com/paritytech/js-libs/blob/70247e1/packages/light.js/src/types.ts#L38)*
-
-#### Type declaration
+*Defined in [types.ts:48](https://github.com/paritytech/js-libs/blob/7df4531/packages/light.js/src/types.ts#L48)*
 
 ___
 <a id="operator"></a>

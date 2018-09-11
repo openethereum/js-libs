@@ -4,12 +4,12 @@
 // SPDX-License-Identifier: MIT
 
 import { distinctUntilChanged, filter } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 import { isLoading } from '../isLoading';
-import { Observable } from 'rxjs';
+
 /**
  * Filter out the loading states in our observable.
- *
  */
 export const withoutLoading = () => <T>(
   source$: Observable<T>

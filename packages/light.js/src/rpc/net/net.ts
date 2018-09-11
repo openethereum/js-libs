@@ -5,9 +5,8 @@
 
 import BigNumber from 'bignumber.js';
 
-import api from '../../api';
 import createRpc$ from '../utils/createRpc';
-import { onEvery5Seconds$ } from '../../frequency';
+import { FrequencyMap } from '../../types';
 import { switchMapPromise } from '../../utils/operators';
 
 /**
@@ -15,11 +14,15 @@ import { switchMapPromise } from '../../utils/operators';
  *
  * Calls `net_peerCount`
  *
+ * @param api - The Api object used to create this {@link RpcObservable}.
+ * @param frequency - The FrequencyMap used to create this {@link RpcObservable}.
  * @return - An Observable containing the number.
  */
-export const peerCount$ = createRpc$<number, BigNumber>({
-  calls: ['net_peerCount'],
-  frequency: [onEvery5Seconds$],
-  name: 'peerCount$',
-  pipes: () => [switchMapPromise(() => api().net.peerCount())]
-});
+export function peerCount$(api: any, frequency: FrequencyMap) {
+  return createRpc$<number, BigNumber>({
+    calls: ['net_peerCount'],
+    frequency: [frequency.onEvery5Seconds$],
+    name: 'peerCount$',
+    pipes: () => [switchMapPromise(() => api.net.peerCount())]
+  });
+}

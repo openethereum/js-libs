@@ -5,9 +5,8 @@
 
 import { Observable, Observer } from 'rxjs';
 
-import api from '../../api';
 import { distinctReplayRefCount } from '../../utils/operators';
-import { RpcObservable, Tx, TxStatus } from '../../types';
+import { FrequencyMap, RpcObservable, Tx, TxStatus } from '../../types';
 
 /**
  * Post a transaction to the network.
@@ -16,56 +15,61 @@ import { RpcObservable, Tx, TxStatus } from '../../types';
  * `parity_checkRequest` and `eth_getTransactionReceipt` to get the status of
  * the transaction.
  *
- * @param options? - Options to pass.
+ * @param api - The Api object used to create this {@link RpcObservable}.
+ * @param frequency - The FrequencyMap used to create this {@link RpcObservable}.
  * @return - The status of the transaction.
  */
-export const post$: RpcObservable<any, TxStatus> = (
-  tx: Tx,
-  options: { estimate?: boolean } = {}
-) => {
-  const source$ = Observable.create(async (observer: Observer<TxStatus>) => {
-    try {
-      if (options.estimate) {
-        observer.next({ estimating: true });
-        const gas = await api().eth.estimateGas(tx);
-        observer.next({ estimated: gas });
-      }
-      const signerRequestId = await api().parity.postTransaction(tx);
-      observer.next({ requested: signerRequestId });
-      const transactionHash = await api().pollMethod(
-        'parity_checkRequest',
-        signerRequestId
-      );
-      if (tx.condition) {
-        observer.next({ signed: transactionHash, schedule: tx.condition });
-      } else {
-        observer.next({ signed: transactionHash });
-        const receipt = await api().pollMethod(
-          'eth_getTransactionReceipt',
-          transactionHash,
-          (
-            receipt: any // TODO Receipt use @parity/api type
-          ) => receipt && receipt.blockNumber && !receipt.blockNumber.eq(0)
+export function post$(api: any, _: FrequencyMap) {
+  const result: RpcObservable<any, TxStatus> = (
+    tx: Tx,
+    options: { estimate?: boolean } = {}
+  ) => {
+    const source$ = Observable.create(async (observer: Observer<TxStatus>) => {
+      try {
+        if (options.estimate) {
+          observer.next({ estimating: true });
+          const gas = await api.eth.estimateGas(tx);
+          observer.next({ estimated: gas });
+        }
+        const signerRequestId = await api.parity.postTransaction(tx);
+        observer.next({ requested: signerRequestId });
+        const transactionHash = await api.pollMethod(
+          'parity_checkRequest',
+          signerRequestId
         );
-        observer.next({ confirmed: receipt });
+        if (tx.condition) {
+          observer.next({ signed: transactionHash, schedule: tx.condition });
+        } else {
+          observer.next({ signed: transactionHash });
+          const receipt = await api.pollMethod(
+            'eth_getTransactionReceipt',
+            transactionHash,
+            (
+              receipt: any // TODO Receipt use @parity/api type
+            ) => receipt && receipt.blockNumber && !receipt.blockNumber.eq(0)
+          );
+          observer.next({ confirmed: receipt });
+        }
+
+        observer.complete();
+      } catch (error) {
+        observer.next({ failed: error });
+        observer.error(error);
       }
+    }).pipe(distinctReplayRefCount());
 
-      observer.complete();
-    } catch (error) {
-      observer.next({ failed: error });
-      observer.error(error);
-    }
-  }).pipe(distinctReplayRefCount());
+    source$.subscribe(); // Run this Observable immediately;
+    return source$;
+  };
 
-  source$.subscribe(); // Run this Observable immediately;
-  return source$;
-};
-post$.metadata = {
-  calls: [
-    'eth_estimateGas',
-    'parity_postTransaction',
-    'parity_checkRequest',
-    'eth_getTransactionReceipt'
-  ],
-  name: 'post$'
-};
+  result.metadata = {
+    calls: [
+      'eth_estimateGas',
+      'parity_postTransaction',
+      'parity_checkRequest',
+      'eth_getTransactionReceipt'
+    ],
+    name: 'post$'
+  };
+  return result;
+}
