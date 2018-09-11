@@ -3,8 +3,10 @@
 //
 // SPDX-License-Identifier: MIT
 
-import { distinctUntilChanged, publishReplay, refCount } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { publishReplay, refCount } from 'rxjs/operators';
+
+import { distinctValues } from './distinctValues';
 
 /**
  * Shorthand for distinctUntilChanged(), publishReplay(1) and refCount().
@@ -15,7 +17,7 @@ export const distinctReplayRefCount = () => <T>(
   source$: Observable<T>
 ): Observable<T> =>
   source$.pipe(
-    distinctUntilChanged(),
+    distinctValues(),
     publishReplay(1),
     refCount()
   );
