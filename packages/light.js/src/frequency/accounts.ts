@@ -8,18 +8,24 @@ import createPubsubObservable from './utils/createPubsubObservable';
 
 /**
  * Observable that emits each time the default account changes
+ *
+ * @param api - The api object with which to create this {@link FrequencyObservable}.
  */
-export const onAccountsChanged$ = (api: any) =>
-  createPubsubObservable<Address[]>(
+export function onAccountsChanged$(api: any) {
+  return createPubsubObservable<Address[]>(
     { calls: ['eth_accounts'], name: 'onAccountsChanged$' },
     api
   );
+}
 
 /**
  * Observable that emits each time the default account changes
+ *
+ * @param api - The api object with which to create this {@link FrequencyObservable}.
  */
-export const onAccountsInfoChanged$ = (api: any) =>
-  createPubsubObservable<AccountsInfo>(
+export function onAccountsInfoChanged$(api: any) {
+  return createPubsubObservable<AccountsInfo>(
     { calls: ['parity_accountsInfo'], name: 'onAccountsInfoChanged$' },
     api
   );
+}

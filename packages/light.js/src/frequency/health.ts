@@ -12,12 +12,15 @@ import createPubsubObservable from './utils/createPubsubObservable';
 
 /**
  * Observable that emits when syncing status changes.
+ *
+ * @param api - The api object with which to create this {@link FrequencyObservable}.
  */
-export const onSyncingChanged$ = (api: any) =>
-  createPubsubObservable<object | boolean>(
+export function onSyncingChanged$(api: any) {
+  return createPubsubObservable<object | boolean>(
     {
       calls: ['eth_syncing'],
       name: 'onSyncingChanged$'
     },
     api
   );
+}

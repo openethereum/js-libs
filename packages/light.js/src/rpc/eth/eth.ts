@@ -18,22 +18,26 @@ import { switchMapPromise } from '../../utils/operators';
  *
  * Calls eth_accounts.
  *
+ * @param api - The Api object used to create this {@link RpcObservable}.
+ * @param frequency - The FrequencyMap used to create this {@link RpcObservable}.
  * @return - An Observable containing the list of public addresses.
  */
-export const accounts$ = (_: any, frequency: FrequencyMap) =>
-  createRpc$<Address[], Address[]>({
+export function accounts$(_: any, frequency: FrequencyMap) {
+  return createRpc$<Address[], Address[]>({
     frequency: [frequency.onAccountsChanged$],
     name: 'accounts$'
   });
+}
 
 /**
  * Get the balance of a given account. Calls `eth_getBalance`.
  *
- * @param address - The account address to query the balance.
+ * @param api - The Api object used to create this {@link RpcObservable}.
+ * @param frequency - The FrequencyMap used to create this {@link RpcObservable}.
  * @return - An Observable containing the balance.
  */
-export const balanceOf$ = (api: any, frequency: FrequencyMap) =>
-  createRpc$<any, BigNumber>({
+export function balanceOf$(api: any, frequency: FrequencyMap) {
+  return createRpc$<any, BigNumber>({
     calls: ['eth_getBalance'],
     frequency: [frequency.onEveryBlock$, frequency.onStartup$],
     name: 'balanceOf$',
@@ -41,36 +45,43 @@ export const balanceOf$ = (api: any, frequency: FrequencyMap) =>
       switchMapPromise(() => api.eth.getBalance(address))
     ]
   });
+}
 
 /**
  * Get the default account managed by the light client.
  *
+ * @param api - The Api object used to create this {@link RpcObservable}.
+ * @param frequency - The FrequencyMap used to create this {@link RpcObservable}.
  * @return - An Observable containing the public address
  * of the default account.
  */
-export const defaultAccount$ = (api: any, frequency: FrequencyMap) =>
-  createRpc$<Address[], Address>({
+export function defaultAccount$(api: any, frequency: FrequencyMap) {
+  return createRpc$<Address[], Address>({
     dependsOn: accounts$(api, frequency),
     name: 'defaultAccount$',
     pipes: () => [map(accounts => accounts[0])]
   });
+}
 
 /**
  * Get the current block number.
  *
+ * @param api - The Api object used to create this {@link RpcObservable}.
+ * @param frequency - The FrequencyMap used to create this {@link RpcObservable}.
  * @return {Observable<Number>} - An Observable containing the block height.
  */
-export const blockNumber$ = (_: any, frequency: FrequencyMap) =>
-  createRpc$<BigNumber, BigNumber>({
+export function blockNumber$(_: any, frequency: FrequencyMap) {
+  return createRpc$<BigNumber, BigNumber>({
     frequency: [frequency.onEveryBlock$],
     name: 'blockNumber$'
   });
+}
 
 /**
  * Shorthand for fetching the current account's balance.
  */
-export const myBalance$ = (api: any, frequency: FrequencyMap) =>
-  createRpc$<Address, BigNumber | Symbol>({
+export function myBalance$(api: any, frequency: FrequencyMap) {
+  return createRpc$<Address, BigNumber | Symbol>({
     calls: [`eth_getBalance`],
     dependsOn: defaultAccount$(api, frequency),
     name: 'myBalance$',
@@ -83,14 +94,18 @@ export const myBalance$ = (api: any, frequency: FrequencyMap) =>
       )
     ]
   });
+}
 
 /**
  * Get the syncStatus state.
  *
+ * @param api - The Api object used to create this {@link RpcObservable}.
+ * @param frequency - The FrequencyMap used to create this {@link RpcObservable}.
  * @return - An Observable containing the syncing state object, or false.
  */
-export const syncStatus$ = (_: any, frequency: FrequencyMap) =>
-  createRpc$<object | boolean, object | boolean>({
+export function syncStatus$(_: any, frequency: FrequencyMap) {
+  return createRpc$<object | boolean, object | boolean>({
     frequency: [frequency.onSyncingChanged$],
     name: 'syncStatus$'
   });
+}

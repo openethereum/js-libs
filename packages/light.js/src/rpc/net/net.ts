@@ -14,12 +14,15 @@ import { switchMapPromise } from '../../utils/operators';
  *
  * Calls `net_peerCount`
  *
+ * @param api - The Api object used to create this {@link RpcObservable}.
+ * @param frequency - The FrequencyMap used to create this {@link RpcObservable}.
  * @return - An Observable containing the number.
  */
-export const peerCount$ = (api: any, frequency: FrequencyMap) =>
-  createRpc$<number, BigNumber>({
+export function peerCount$(api: any, frequency: FrequencyMap) {
+  return createRpc$<number, BigNumber>({
     calls: ['net_peerCount'],
     frequency: [frequency.onEvery5Seconds$],
     name: 'peerCount$',
     pipes: () => [switchMapPromise(() => api.net.peerCount())]
   });
+}

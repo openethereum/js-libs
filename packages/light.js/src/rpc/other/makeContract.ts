@@ -36,14 +36,14 @@ const getContract = memoizee(
 /**
  * Create a contract.
  *
- * @param address - The contract address.
- * @param - The contract abi.
+ * @param api - The Api object used to create this {@link RpcObservable}.
+ * @param frequency - The FrequencyMap used to create this {@link RpcObservable}.
  * @return - An object whose keys are all the functions of the
  * contract, and each function return an Observable which will fire when the
  * function resolves.
  */
-export const makeContract = (api: any, frequency: FrequencyMap) =>
-  memoizee(
+export function makeContract(api: any, frequency: FrequencyMap) {
+  return memoizee(
     (address: Address, abiJson: any[]) => {
       // TODO use types from @parity/abi
       const abi = new Abi(abiJson);
@@ -113,3 +113,4 @@ export const makeContract = (api: any, frequency: FrequencyMap) =>
     },
     { length: 1 } // Only memoize by address
   );
+}

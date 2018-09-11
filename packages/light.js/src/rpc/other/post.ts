@@ -15,10 +15,11 @@ import { FrequencyMap, RpcObservable, Tx, TxStatus } from '../../types';
  * `parity_checkRequest` and `eth_getTransactionReceipt` to get the status of
  * the transaction.
  *
- * @param options? - Options to pass.
+ * @param api - The Api object used to create this {@link RpcObservable}.
+ * @param frequency - The FrequencyMap used to create this {@link RpcObservable}.
  * @return - The status of the transaction.
  */
-export const post$ = (api: any, _: FrequencyMap) => {
+export function post$(api: any, _: FrequencyMap) {
   const result: RpcObservable<any, TxStatus> = (
     tx: Tx,
     options: { estimate?: boolean } = {}
@@ -71,4 +72,4 @@ export const post$ = (api: any, _: FrequencyMap) => {
     name: 'post$'
   };
   return result;
-};
+}
