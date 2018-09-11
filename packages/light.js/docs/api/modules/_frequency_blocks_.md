@@ -1,45 +1,62 @@
 
 
-# Variables
+# Functions
 
 <a id="onevery2blocks_"></a>
 
-## `<Const>` onEvery2Blocks$
+##  onEvery2Blocks$
 
-**● onEvery2Blocks$**: *[FrequencyObservable](../interfaces/_types_.frequencyobservable.md)<`BigNumber`>* =  onEveryBlock$.pipe(
-  filter(n => +n % 2 === 0) // Around ~30s on mainnet // TODO Use isEqualTo and mod from bignumber.js
-) as FrequencyObservable<BigNumber>
+▸ **onEvery2Blocks$**(api: *`any`*): [FrequencyObservable](../interfaces/_types_.frequencyobservable.md)<`BigNumber`>
 
-*Defined in [frequency/blocks.ts:25](https://github.com/paritytech/js-libs/blob/70247e1/packages/light.js/src/frequency/blocks.ts#L25)*
+*Defined in [frequency/blocks.ts:29](https://github.com/paritytech/js-libs/blob/7df4531/packages/light.js/src/frequency/blocks.ts#L29)*
 
 Observable that emits on every 2nd block.
+
+**Parameters:**
+
+| Param | Type | Description |
+| ------ | ------ | ------ |
+| api | `any` |  The api object with which to create this [FrequencyObservable](../interfaces/_types_.frequencyobservable.md). |
+
+**Returns:** [FrequencyObservable](../interfaces/_types_.frequencyobservable.md)<`BigNumber`>
 
 ___
 <a id="onevery4blocks_"></a>
 
-## `<Const>` onEvery4Blocks$
+##  onEvery4Blocks$
 
-**● onEvery4Blocks$**: *[FrequencyObservable](../interfaces/_types_.frequencyobservable.md)<`BigNumber`>* =  onEveryBlock$.pipe(
-  filter(n => +n % 4 === 0) // Around ~1min on mainnet // TODO Use isEqualTo and mod from bignumber.js
-) as FrequencyObservable<BigNumber>
+▸ **onEvery4Blocks$**(api: *`any`*): [FrequencyObservable](../interfaces/_types_.frequencyobservable.md)<`BigNumber`>
 
-*Defined in [frequency/blocks.ts:33](https://github.com/paritytech/js-libs/blob/70247e1/packages/light.js/src/frequency/blocks.ts#L33)*
+*Defined in [frequency/blocks.ts:42](https://github.com/paritytech/js-libs/blob/7df4531/packages/light.js/src/frequency/blocks.ts#L42)*
 
 Observable that emits on every 4th block.
+
+**Parameters:**
+
+| Param | Type | Description |
+| ------ | ------ | ------ |
+| api | `any` |  The api object with which to create this [FrequencyObservable](../interfaces/_types_.frequencyobservable.md). |
+
+**Returns:** [FrequencyObservable](../interfaces/_types_.frequencyobservable.md)<`BigNumber`>
 
 ___
 <a id="oneveryblock_"></a>
 
-## `<Const>` onEveryBlock$
+##  onEveryBlock$
 
-**● onEveryBlock$**: *[FrequencyObservable](../interfaces/_types_.frequencyobservable.md)<`BigNumber`>* =  createOnFromPubsub<BigNumber>(
-  'eth_blockNumber',
-  api
-)
+▸ **onEveryBlock$**(api: *`any`*): [FrequencyObservable](../interfaces/_types_.frequencyobservable.md)<`BigNumber`>
 
-*Defined in [frequency/blocks.ts:16](https://github.com/paritytech/js-libs/blob/70247e1/packages/light.js/src/frequency/blocks.ts#L16)*
+*Defined in [frequency/blocks.ts:17](https://github.com/paritytech/js-libs/blob/7df4531/packages/light.js/src/frequency/blocks.ts#L17)*
 
 Observable that emits on every new block.
+
+**Parameters:**
+
+| Param | Type | Description |
+| ------ | ------ | ------ |
+| api | `any` |  The api object with which to create this [FrequencyObservable](../interfaces/_types_.frequencyobservable.md). |
+
+**Returns:** [FrequencyObservable](../interfaces/_types_.frequencyobservable.md)<`BigNumber`>
 
 ___
 

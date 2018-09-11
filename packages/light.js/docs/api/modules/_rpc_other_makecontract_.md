@@ -1,77 +1,29 @@
 
 
-# Variables
+# Functions
 
 <a id="makecontract"></a>
 
-## `<Const>` makeContract
+##  makeContract
 
-**● makeContract**: * `(Anonymous function)` & `Memoized`<`(Anonymous function)`>
-* =  memoizee(
-  (address: Address, abiJson: any[]) => {
-    // use types from @parity/abi
-    const abi = new Abi(abiJson);
-    // Variable result will hold the final object to return
-    const result: MakeContract = {
-      abi,
-      address,
-      get contractObject() {
-        return getContract(address, abiJson);
-      }
-    };
+▸ **makeContract**(api: *`any`*, frequency: *[FrequencyMap](_types_.md#frequencymap)*):  `(Anonymous function)` & `Memoized`<`(Anonymous function)`>
 
-    // We then copy every key inside contract.instance into our `result` object,
-    // replacing each the value by an Observable instead of a Promise.
-    abi.functions.forEach(({ name }: any) => {
-      // use types from @parity/abi
-      result[`${name}$`] = (...args: any[]) => {
-        // We only get the contract when the function is called for the 1st
-        // time. Note: getContract is memoized, won't create contract on each
-        // call.
-        const contract = getContract(address, abiJson);
-        const method = contract.instance[name]; // Hold the method from the Abi
-
-        // The last arguments in args can be an options object
-        const options =
-          args.length === method.inputs.length + 1 ? args.pop() : {};
-
-        if (method.constant) {
-          return createRpc({
-            frequency: [onEveryBlock$],
-            name,
-            pipes: () => [
-              switchMapPromise(() =>
-                contract.instance[name].call(options, args)
-              )
-            ]
-          })(...args);
-        } else {
-          return post$({
-            to: address,
-            data: abiEncode(
-              method.name,
-              method.inputs.map(({ kind: { type } }: any) => type), // TODO Use @parity/api types
-              args
-            ),
-            ...options
-          });
-        }
-      };
-    });
-
-    return result;
-  },
-  { length: 1 } // Only memoize by address
-)
-
-*Defined in [rpc/other/makeContract.ts:48](https://github.com/paritytech/js-libs/blob/70247e1/packages/light.js/src/rpc/other/makeContract.ts#L48)*
+*Defined in [rpc/other/makeContract.ts:45](https://github.com/paritytech/js-libs/blob/7df4531/packages/light.js/src/rpc/other/makeContract.ts#L45)*
 
 Create a contract.
-*__param__*: The contract address.
 
-*__param__*: The contract abi.
+**Parameters:**
 
-*__returns__*: *   An object whose keys are all the functions of the contract, and each function return an Observable which will fire when the function resolves.
+| Param | Type | Description |
+| ------ | ------ | ------ |
+| api | `any` |  The Api object used to create this [RpcObservable](../interfaces/_types_.rpcobservable.md). |
+| frequency | [FrequencyMap](_types_.md#frequencymap) |  The FrequencyMap used to create this [RpcObservable](../interfaces/_types_.rpcobservable.md). |
+
+**Returns:**  `(Anonymous function)` & `Memoized`<`(Anonymous function)`>
+
+- An object whose keys are all the functions of the
+contract, and each function return an Observable which will fire when the
+function resolves.
 
 ___
 

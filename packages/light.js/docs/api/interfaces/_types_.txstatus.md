@@ -12,7 +12,7 @@
 
 **● confirmed**: *`any`*
 
-*Defined in [types.ts:55](https://github.com/paritytech/js-libs/blob/70247e1/packages/light.js/src/types.ts#L55)*
+*Defined in [types.ts:84](https://github.com/paritytech/js-libs/blob/7df4531/packages/light.js/src/types.ts#L84)*
 
 ___
 <a id="estimated"></a>
@@ -21,7 +21,7 @@ ___
 
 **● estimated**: *`BigNumber`*
 
-*Defined in [types.ts:57](https://github.com/paritytech/js-libs/blob/70247e1/packages/light.js/src/types.ts#L57)*
+*Defined in [types.ts:86](https://github.com/paritytech/js-libs/blob/7df4531/packages/light.js/src/types.ts#L86)*
 
 ___
 <a id="estimating"></a>
@@ -30,7 +30,7 @@ ___
 
 **● estimating**: *`boolean`*
 
-*Defined in [types.ts:56](https://github.com/paritytech/js-libs/blob/70247e1/packages/light.js/src/types.ts#L56)*
+*Defined in [types.ts:85](https://github.com/paritytech/js-libs/blob/7df4531/packages/light.js/src/types.ts#L85)*
 
 ___
 <a id="failed"></a>
@@ -39,7 +39,7 @@ ___
 
 **● failed**: *`Error`*
 
-*Defined in [types.ts:58](https://github.com/paritytech/js-libs/blob/70247e1/packages/light.js/src/types.ts#L58)*
+*Defined in [types.ts:87](https://github.com/paritytech/js-libs/blob/7df4531/packages/light.js/src/types.ts#L87)*
 
 ___
 <a id="requested"></a>
@@ -48,7 +48,7 @@ ___
 
 **● requested**: *`string`*
 
-*Defined in [types.ts:59](https://github.com/paritytech/js-libs/blob/70247e1/packages/light.js/src/types.ts#L59)*
+*Defined in [types.ts:88](https://github.com/paritytech/js-libs/blob/7df4531/packages/light.js/src/types.ts#L88)*
 
 ___
 <a id="schedule"></a>
@@ -57,7 +57,7 @@ ___
 
 **● schedule**: *`any`*
 
-*Defined in [types.ts:60](https://github.com/paritytech/js-libs/blob/70247e1/packages/light.js/src/types.ts#L60)*
+*Defined in [types.ts:89](https://github.com/paritytech/js-libs/blob/7df4531/packages/light.js/src/types.ts#L89)*
 
 ___
 <a id="signed"></a>
@@ -66,7 +66,7 @@ ___
 
 **● signed**: *`string`*
 
-*Defined in [types.ts:61](https://github.com/paritytech/js-libs/blob/70247e1/packages/light.js/src/types.ts#L61)*
+*Defined in [types.ts:90](https://github.com/paritytech/js-libs/blob/7df4531/packages/light.js/src/types.ts#L90)*
 
 ___
 
