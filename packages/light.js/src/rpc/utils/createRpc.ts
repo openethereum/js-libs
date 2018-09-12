@@ -3,7 +3,7 @@
 //
 // SPDX-License-Identifier: MIT
 
-import * as memoizee from 'memoizee';
+import * as Api from '@parity/api';
 import { isFunction, isObject } from '@parity/api/lib/util/types';
 import { merge, ReplaySubject, Observable, OperatorFunction } from 'rxjs';
 import { multicast, refCount } from 'rxjs/operators';
@@ -50,7 +50,11 @@ const frequencyMixins = {
  * @param metadata - The metadata to add.
  * @return - The original RpcObservable with patched metadata.
  */
-const createRpc = <Source, Out>(metadata: Metadata<Source, Out>) => {
+const createRpc = <Source, Out>(
+  metadata: Metadata<Source, Out>,
+  provider: any
+) => {
+  const api = provider ? new Api(provider) : getApi();
   // rpc$ will hold the RpcObservable minus its metadata
   const rpc$: RpcObservableWithoutMetadata<Source, Out> = (...args: any[]) => {
     // The source Observable can either be another RpcObservable (in the
@@ -73,7 +77,7 @@ const createRpc = <Source, Out>(metadata: Metadata<Source, Out>) => {
     // The pipes to add
     const pipes: OperatorFunction<any, any>[] = [];
     if (metadata.pipes && isFunction(metadata.pipes)) {
-      pipes.push(...metadata.pipes(...args));
+      pipes.push(...metadata.pipes(api));
     }
     pipes.push(multicast(() => subject$), refCount());
     if (options.withoutLoading === true) {
@@ -92,17 +96,9 @@ const createRpc = <Source, Out>(metadata: Metadata<Source, Out>) => {
     return source$.pipe(...pipes);
   };
 
-  // We memoize only if the api has been already set by the user. The reason
-  // is: at startup the NullProvider is used. If we memoized, then this
-  // provider will be used all the time
-  const memoizedRpc$ =
-    getApi() instanceof NullProvider
-      ? rpc$
-      : memoizee(rpc$, { primitive: true, length: false });
+  Object.assign(rpc$, frequencyMixins, { metadata });
 
-  Object.assign(memoizedRpc$, frequencyMixins, { metadata });
-
-  return memoizedRpc$ as RpcObservable<Source, Out>;
+  return rpc$ as RpcObservable<Source, Out>;
 };
 
 export default createRpc;

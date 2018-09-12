@@ -6,6 +6,9 @@
 import BigNumber from 'bignumber.js';
 import { Observable, OperatorFunction, ReplaySubject } from 'rxjs';
 
+import * as frequency from './frequency';
+import * as rpc from './rpc';
+
 declare global {
   interface Window {
     parity: any;
@@ -34,15 +37,40 @@ export interface Metadata<Source, Out> {
   pipes?: (...args: any[]) => OperatorFunction<Source, Out>[];
 }
 
-export interface FrequencyObservable<T> {
-  (): Observable<T>;
-  metadata?: { calls?: string[]; name: string };
+export type FrequencyKey = keyof typeof frequency;
+
+export interface FrequencyObservableMetadata {
+  calls?: string[];
+  name: string;
 }
+
+export interface FrequencyObservable<T> extends Observable<T> {
+  metadata?: FrequencyObservableMetadata;
+}
+
+export type FrequencyMap = {
+  [index in FrequencyKey]: FrequencyObservable<any>
+};
+
+export interface MakeContract {
+  abi: any; // use types from @parity/abi
+  address: string;
+  readonly contractObject: any; // TODO from @parity/api
+  [index: string]: any | string | ((...args: any[]) => any); // use types from @parity/abi
+}
+
+export type RpcKey = keyof typeof rpc;
 
 export interface RpcObservable<Source, Out> {
   (...args: any[]): Observable<Out>;
   metadata?: Metadata<Source, Out>;
   setFrequency?(frequency: FrequencyObservable<Source>[]): void; // post$, makeContract... don't have setFrequency
+}
+
+export type RpcMap = { [index in RpcKey]: RpcObservable<any, any> };
+
+export interface RpcObservableOptions {
+  withoutLoading?: boolean;
 }
 
 // TODO This should be on @parity/api
