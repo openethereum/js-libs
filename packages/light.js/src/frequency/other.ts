@@ -12,7 +12,6 @@ import { FrequencyObservable, FrequencyObservableOptions } from '../types';
  *
  * @param options - Options to pass to {@link FrequencyObservable}.
  */
-export const onStartup$: FrequencyObservable<number> = (
-  _?: FrequencyObservableOptions
-) => of(0);
-onStartup$.metadata = { name: 'onStartup$' };
+export function onStartup$(_?: FrequencyObservableOptions) {
+  return of(0);
+}

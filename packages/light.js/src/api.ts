@@ -8,8 +8,6 @@ import * as debug from 'debug';
 import * as EventEmitter from 'eventemitter3';
 import * as memoizee from 'memoizee';
 
-import frequency from './frequency';
-
 // This is our global api object, to be used if no provider is passed to RpcObservables.
 let api: any; // TODO @parity/api
 
@@ -21,21 +19,6 @@ let api: any; // TODO @parity/api
 export const createApiFromProvider = memoizee(
   (provider?: any) => new Api(provider)
 );
-
-/**
- * Use this null Api provider if the Api hasn't been set by the end user yet.
- *
- * @ignore
- */
-export class NullProvider extends EventEmitter {
-  send(method: string, params: any[]) {
-    debug('@parity/light.js:api')(
-      `Calling "${method}" rpc with params "${JSON.stringify(
-        params
-      )}", ignoring because Api object not set yet.`
-    );
-  }
-}
 
 /**
  * Sets a new Api object.
@@ -69,7 +52,7 @@ export const setProvider = (provider?: any) => {
  */
 export const getApi = () => {
   if (!api) {
-    api = createApiFromProvider(new NullProvider());
+    throw new Error('Please define a provider before using any RpcObservable.');
   }
   return api;
 };
