@@ -24,7 +24,7 @@ export const memoizeAll = <T extends FunctionMap>(rpcMap: T) =>
   Object.keys(rpcMap).reduce(
     (result, key) => {
       const metadata = rpcMap[key].metadata;
-      result[key] = memoizee(rpcMap[key]); // This operation does not copy the metadata of rpcMap[key].
+      result[key] = memoizee(rpcMap[key], { primitive: true }); // This operation does not copy the metadata of rpcMap[key].
       result[key].metadata = metadata;
       return result;
     },

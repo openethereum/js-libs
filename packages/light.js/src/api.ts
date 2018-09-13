@@ -8,6 +8,8 @@ import * as debug from 'debug';
 import * as EventEmitter from 'eventemitter3';
 import * as memoizee from 'memoizee';
 
+import frequency from './frequency';
+
 // This is our global api object, to be used if no provider is passed to RpcObservables.
 let api: any; // TODO @parity/api
 
@@ -55,12 +57,7 @@ export const setApi = (newApi: any) => {
  * @param provider - An Ethereum provider object.
  */
 export const setProvider = (provider?: any) => {
-  api = createApiFromProvider(provider);
-  if (!api.isPubSub) {
-    console.warn(
-      `Current provider does not support pubsub. @parity/light.js will poll every second to listen to changes.`
-    );
-  }
+  setApi(createApiFromProvider(provider));
 };
 
 /**

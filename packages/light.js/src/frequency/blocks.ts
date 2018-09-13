@@ -4,7 +4,7 @@
 // SPDX-License-Identifier: MIT
 
 import BigNumber from 'bignumber.js';
-import { filter } from 'rxjs/operators';
+import { filter, tap } from 'rxjs/operators';
 
 import createPubsubObservable from './utils/createPubsubObservable';
 import { FrequencyObservable, FrequencyObservableOptions } from '../types';

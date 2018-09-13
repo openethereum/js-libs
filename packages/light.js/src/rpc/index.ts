@@ -3,9 +3,6 @@
 //
 // SPDX-License-Identifier: MIT
 
-import { memoizeAll } from '../utils/memoizeAll';
-import * as eth from './eth';
+import rpc from './rpc';
 
-const rpc = { ...eth };
-
-export default memoizeAll(rpc);
+export default rpc;

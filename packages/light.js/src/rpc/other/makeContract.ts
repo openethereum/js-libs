@@ -11,7 +11,7 @@ import { Address } from '../../types';
 import createRpc from '../utils/createRpc';
 import { switchMapPromise } from '../../utils/operators';
 import api from '../../api';
-import { onEveryBlock$ } from '../../frequency';
+import frequency from '../../frequency';
 import { post$ } from './post';
 
 interface MakeContract {
@@ -75,7 +75,7 @@ export const makeContract = memoizee(
 
         if (method.constant) {
           return createRpc({
-            frequency: [onEveryBlock$],
+            frequency: [frequency.onEveryBlock$],
             name,
             pipes: () => [
               switchMapPromise(() =>
