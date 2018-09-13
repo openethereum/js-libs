@@ -37,7 +37,7 @@
 
         if (method.constant) {
           return createRpc({
-            frequency: [onEveryBlock$],
+            frequency: [frequency.onEveryBlock$],
             name,
             pipes: () => [
               switchMapPromise(() =>
@@ -64,7 +64,7 @@
   { length: 1 } // Only memoize by address
 )
 
-*Defined in [rpc/other/makeContract.ts:48](https://github.com/paritytech/js-libs/blob/70247e1/packages/light.js/src/rpc/other/makeContract.ts#L48)*
+*Defined in [rpc/other/makeContract.ts:48](https://github.com/paritytech/js-libs/blob/ea75324/packages/light.js/src/rpc/other/makeContract.ts#L48)*
 
 Create a contract.
 *__param__*: The contract address.
