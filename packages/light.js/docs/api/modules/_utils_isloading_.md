@@ -8,7 +8,7 @@
 
 **● RPC_LOADING**: *`unique symbol`* =  Symbol('Fetching RPC...')
 
-*Defined in [utils/isLoading.ts:6](https://github.com/paritytech/js-libs/blob/a46b19a/packages/light.js/src/utils/isLoading.ts#L6)*
+*Defined in [utils/isLoading.ts:6](https://github.com/paritytech/js-libs/blob/b4404e2/packages/light.js/src/utils/isLoading.ts#L6)*
 
 ___
 
@@ -20,7 +20,7 @@ ___
 
 ▸ **isLoading**(value: *`any`*): `boolean`
 
-*Defined in [utils/isLoading.ts:14](https://github.com/paritytech/js-libs/blob/a46b19a/packages/light.js/src/utils/isLoading.ts#L14)*
+*Defined in [utils/isLoading.ts:14](https://github.com/paritytech/js-libs/blob/b4404e2/packages/light.js/src/utils/isLoading.ts#L14)*
 
 Check if a rpc$ value is loading.
 
@@ -40,7 +40,7 @@ ___
 
 ▸ **isNullOrLoading**(value: *`any`*): `boolean`
 
-*Defined in [utils/isLoading.ts:22](https://github.com/paritytech/js-libs/blob/a46b19a/packages/light.js/src/utils/isLoading.ts#L22)*
+*Defined in [utils/isLoading.ts:22](https://github.com/paritytech/js-libs/blob/b4404e2/packages/light.js/src/utils/isLoading.ts#L22)*
 
 Check if a rpc$ value is `null,`undefined` or loading.
 

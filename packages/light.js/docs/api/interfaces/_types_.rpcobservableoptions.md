@@ -12,7 +12,7 @@
 
 **● provider**: *`any`*
 
-*Defined in [types.ts:78](https://github.com/paritytech/js-libs/blob/a46b19a/packages/light.js/src/types.ts#L78)*
+*Defined in [types.ts:78](https://github.com/paritytech/js-libs/blob/b4404e2/packages/light.js/src/types.ts#L78)*
 
 ___
 <a id="withoutloading"></a>
@@ -21,7 +21,7 @@ ___
 
 **● withoutLoading**: *`boolean`*
 
-*Defined in [types.ts:79](https://github.com/paritytech/js-libs/blob/a46b19a/packages/light.js/src/types.ts#L79)*
+*Defined in [types.ts:79](https://github.com/paritytech/js-libs/blob/b4404e2/packages/light.js/src/types.ts#L79)*
 
 ___
 

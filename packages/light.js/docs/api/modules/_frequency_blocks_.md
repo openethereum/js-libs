@@ -8,7 +8,7 @@
 
 ▸ **onEvery2Blocks$**(options?: *[FrequencyObservableOptions](../interfaces/_types_.frequencyobservableoptions.md)*): `Observable`<`BigNumber`>
 
-*Defined in [frequency/blocks.ts:26](https://github.com/paritytech/js-libs/blob/a46b19a/packages/light.js/src/frequency/blocks.ts#L26)*
+*Defined in [frequency/blocks.ts:26](https://github.com/paritytech/js-libs/blob/b4404e2/packages/light.js/src/frequency/blocks.ts#L26)*
 
 Observable that emits on every 2nd block.
 
@@ -27,7 +27,7 @@ ___
 
 ▸ **onEvery4Blocks$**(options?: *[FrequencyObservableOptions](../interfaces/_types_.frequencyobservableoptions.md)*): `Observable`<`BigNumber`>
 
-*Defined in [frequency/blocks.ts:37](https://github.com/paritytech/js-libs/blob/a46b19a/packages/light.js/src/frequency/blocks.ts#L37)*
+*Defined in [frequency/blocks.ts:37](https://github.com/paritytech/js-libs/blob/b4404e2/packages/light.js/src/frequency/blocks.ts#L37)*
 
 Observable that emits on every 4th block.
 
@@ -46,7 +46,7 @@ ___
 
 ▸ **onEveryBlock$**(options?: *[FrequencyObservableOptions](../interfaces/_types_.frequencyobservableoptions.md)*): `Observable`<`BigNumber`>
 
-*Defined in [frequency/blocks.ts:17](https://github.com/paritytech/js-libs/blob/a46b19a/packages/light.js/src/frequency/blocks.ts#L17)*
+*Defined in [frequency/blocks.ts:17](https://github.com/paritytech/js-libs/blob/b4404e2/packages/light.js/src/frequency/blocks.ts#L17)*
 
 Observable that emits on every new block.
 

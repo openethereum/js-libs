@@ -8,15 +8,15 @@
 
 **● makeContract**: * `(Anonymous function)` & `Memoized`<`(Anonymous function)`>
 * =  memoizee(
-  (address: Address, abiJson: any[]) => {
-    // use types from @parity/abi
-    const abi = new Abi(abiJson);
+  (address: Address, abiJson: any[], options: { provider?: any } = {}) => {
+    const { provider } = options;
+    const abi = new Abi(abiJson); // use types from @parity/abi
     // Variable result will hold the final object to return
     const result: MakeContract = {
       abi,
       address,
       get contractObject() {
-        return getContract(address, abiJson);
+        return getContract(address, abiJson, provider);
       }
     };
 
@@ -28,7 +28,7 @@
         // We only get the contract when the function is called for the 1st
         // time. Note: getContract is memoized, won't create contract on each
         // call.
-        const contract = getContract(address, abiJson);
+        const contract = getContract(address, abiJson, provider);
         const method = contract.instance[name]; // Hold the method from the Abi
 
         // The last arguments in args can be an options object
@@ -64,7 +64,7 @@
   { length: 1 } // Only memoize by address
 )
 
-*Defined in [rpc/other/makeContract.ts:48](https://github.com/paritytech/js-libs/blob/a46b19a/packages/light.js/src/rpc/other/makeContract.ts#L48)*
+*Defined in [rpc/other/makeContract.ts:51](https://github.com/paritytech/js-libs/blob/b4404e2/packages/light.js/src/rpc/other/makeContract.ts#L51)*
 
 Create a contract.
 *__param__*: The contract address.

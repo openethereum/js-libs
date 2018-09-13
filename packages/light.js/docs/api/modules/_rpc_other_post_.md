@@ -4,11 +4,11 @@
 
 <a id="post_"></a>
 
-## `<Const>` post$
+##  post$
 
-▸ **post$**(tx: *[Tx](_types_.md#tx)*, options?: *`object`*): `any`
+▸ **post$**(tx: *[Tx](_types_.md#tx)*, options?: *`PostOptions`*): `Observable`<[TxStatus](../interfaces/_types_.txstatus.md)>
 
-*Defined in [rpc/other/post.ts:22](https://github.com/paritytech/js-libs/blob/a46b19a/packages/light.js/src/rpc/other/post.ts#L22)*
+*Defined in [rpc/other/post.ts:26](https://github.com/paritytech/js-libs/blob/b4404e2/packages/light.js/src/rpc/other/post.ts#L26)*
 
 Post a transaction to the network.
 
@@ -19,9 +19,9 @@ Calls, in this order, `eth_estimateGas`, `parity_postTransaction`, `parity_check
 | Param | Type | Default value |
 | ------ | ------ | ------ |
 | tx | [Tx](_types_.md#tx) | - |
-| `Default value` options | `object` |  {} |
+| `Default value` options | `PostOptions` |  {} |
 
-**Returns:** `any`
+**Returns:** `Observable`<[TxStatus](../interfaces/_types_.txstatus.md)>
 - The status of the transaction.
 
 ___
