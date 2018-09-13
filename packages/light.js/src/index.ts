@@ -22,6 +22,7 @@ export const {
   defaultAccount$,
   myBalance$,
   peerCount$,
+  post$,
   syncStatus$
 } = rpc;
 export default { setApi, setProvider };
