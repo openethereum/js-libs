@@ -3,8 +3,11 @@
 //
 // SPDX-License-Identifier: MIT
 
-import { FrequencyObservable } from '../../types';
-import isObservable from '../isObservable';
+import { createApiFromProvider } from '../api';
+import frequency from './frequency';
+import { FrequencyObservable, FrequencyKey, FrequencyMap } from '../types';
+import isObservable from '../utils/isObservable';
+import { resolveApi } from '../utils/testHelpers/mockApi';
 
 /**
  * Helper function to make basic tests for frequency$ observables.
@@ -31,4 +34,6 @@ const testFrequency = (name: string, frequency$: FrequencyObservable<any>) =>
     });
   });
 
-export default testFrequency;
+Object.keys(frequency).forEach(key =>
+  testFrequency(key, (frequency as FrequencyMap)[key as FrequencyKey])
+);

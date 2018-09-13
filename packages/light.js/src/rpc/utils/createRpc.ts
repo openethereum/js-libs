@@ -4,14 +4,17 @@
 // SPDX-License-Identifier: MIT
 
 import * as Api from '@parity/api';
-import { isFunction, isObject } from '@parity/api/lib/util/types';
+import { isFunction } from '@parity/api/lib/util/types';
 import { merge, ReplaySubject, Observable, OperatorFunction } from 'rxjs';
 import { multicast, refCount } from 'rxjs/operators';
 import * as prune from 'json-prune';
 
 import { getApi, NullProvider } from '../../api';
-import { Metadata, RpcObservable } from '../../types';
-import { distinctValues, withoutLoading } from '../../utils/operators';
+import { Metadata, RpcObservable, RpcObservableOptions } from '../../types';
+import {
+  distinctValues,
+  withoutLoading as withoutLoadingOperator
+} from '../../utils/operators';
 
 interface RpcObservableWithoutMetadata<_, Out> {
   (...args: any[]): Observable<Out>;
@@ -45,15 +48,18 @@ const frequencyMixins = {
 
 /**
  * Add metadata to an RpcObservable, and transform it into a ReplaySubject(1).
+ * It's a currified function.
  *
  * @ignore
  * @param metadata - The metadata to add.
- * @return - The original RpcObservable with patched metadata.
+ * @example
+ * createRpc(metadata)(options) returns a RpcObservable.
+ * createRpc(metadata)(options)(someArgs) returns an Observable.
  */
-const createRpc = <Source, Out>(
-  metadata: Metadata<Source, Out>,
-  provider?: any
+const createRpc = <Source, Out>(metadata: Metadata<Source, Out>) => (
+  options: RpcObservableOptions = {}
 ) => {
+  const { provider, withoutLoading } = options;
   const api = provider ? new Api(provider) : getApi();
   // rpc$ will hold the RpcObservable minus its metadata
   const rpc$: RpcObservableWithoutMetadata<Source, Out> = (...args: any[]) => {
@@ -61,13 +67,8 @@ const createRpc = <Source, Out>(
     // `dependsOn` field), or anObservable built by merging all the
     // FrequencyObservables
     const source$ = metadata.dependsOn
-      ? metadata.dependsOn(...args)
+      ? metadata.dependsOn(...args, options)
       : merge(...metadata.frequency.map(f => f(provider)));
-
-    // The last arguments is an options, if it's an object
-    // TODO What if we pass a single object as argument, which is not options?
-    const options: { withoutLoading?: boolean } =
-      args && args.length && isObject(args[args.length - 1]) ? args.pop() : {};
 
     // A RpcObservable is: a source$ Observable, a single subject$ that
     // subscribes to this source, and this subject$ multicasts the fired values
@@ -80,8 +81,8 @@ const createRpc = <Source, Out>(
       pipes.push(...metadata.pipes(api));
     }
     pipes.push(multicast(() => subject$), refCount());
-    if (options.withoutLoading === true) {
-      pipes.push(withoutLoading());
+    if (withoutLoading === true) {
+      pipes.push(withoutLoadingOperator());
     }
     pipes.push(distinctValues());
 

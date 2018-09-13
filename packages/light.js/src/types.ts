@@ -6,8 +6,8 @@
 import BigNumber from 'bignumber.js';
 import { Observable, OperatorFunction, ReplaySubject } from 'rxjs';
 
-import * as frequency from './frequency';
-import * as rpc from './rpc';
+import frequency from './frequency';
+import rpc from './rpc';
 
 declare global {
   interface Window {
@@ -44,6 +44,10 @@ export interface FrequencyObservableMetadata {
   name: string;
 }
 
+export interface FrequencyObservableOptions {
+  provider?: any; // TODO types from @parity/abi
+}
+
 export interface FrequencyObservable<T> {
   (...args: any[]): Observable<T>;
   metadata?: FrequencyObservableMetadata;
@@ -54,10 +58,10 @@ export type FrequencyMap = {
 };
 
 export interface MakeContract {
-  abi: any; // use types from @parity/abi
+  abi: any; // TODO types from @parity/abi
   address: string;
   readonly contractObject: any; // TODO from @parity/api
-  [index: string]: any | string | ((...args: any[]) => any); // use types from @parity/abi
+  [index: string]: any | string | ((...args: any[]) => any); // TODO types from @parity/abi
 }
 
 export type RpcKey = keyof typeof rpc;
@@ -71,6 +75,7 @@ export interface RpcObservable<Source, Out> {
 export type RpcMap = { [index in RpcKey]: RpcObservable<any, any> };
 
 export interface RpcObservableOptions {
+  provider?: any; // TODO types from @parity/abi
   withoutLoading?: boolean;
 }
 

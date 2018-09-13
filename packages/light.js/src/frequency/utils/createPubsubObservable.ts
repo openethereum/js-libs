@@ -4,7 +4,7 @@
 // SPDX-License-Identifier: MIT
 
 import * as debug from 'debug';
-import { FrequencyObservable, FrequencyObservableMetadata } from '../../types';
+import { FrequencyObservableOptions } from '../../types';
 import { Observable, Observer, timer } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 
@@ -19,7 +19,7 @@ import { distinctReplayRefCount } from '../../utils/operators/distinctReplayRefC
  */
 const createPubsubObservable = <T>(
   pubsub: string,
-  provider?: any // TODO @parity/api
+  { provider }: FrequencyObservableOptions = {}
 ) => {
   const [namespace, method] = pubsub.split('_');
   const api = provider ? createApiFromProvider(provider) : getApi();

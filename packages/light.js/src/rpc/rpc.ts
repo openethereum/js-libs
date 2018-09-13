@@ -4,6 +4,8 @@
 // SPDX-License-Identifier: MIT
 
 import * as eth from './eth';
-import testRpc from '../../utils/testHelpers/testRpc';
+import { memoizeAll } from '../utils/memoizeAll';
 
-Object.keys(eth).forEach(key => testRpc(key, (eth as any)[key]));
+const rpc = memoizeAll({ ...eth });
+
+export default rpc;

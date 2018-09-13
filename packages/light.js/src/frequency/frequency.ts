@@ -3,8 +3,19 @@
 //
 // SPDX-License-Identifier: MIT
 
-export * from './accounts';
-export * from './blocks';
-export * from './health';
-export * from './other';
-export * from './time';
+import * as accounts from './accounts';
+import * as blocks from './blocks';
+import * as health from './health';
+import { memoizeAll } from '../utils/memoizeAll';
+import * as other from './other';
+import * as time from './time';
+
+const frequency = memoizeAll({
+  ...accounts,
+  ...blocks,
+  ...health,
+  ...other,
+  ...time
+});
+
+export default frequency;

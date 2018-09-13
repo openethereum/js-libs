@@ -3,21 +3,21 @@
 //
 // SPDX-License-Identifier: MIT
 
-import { getApi, NullProvider, setApi } from './api';
+import { getApi, NullProvider, setApi, setProvider } from './api';
 import { resolveApi } from './utils/testHelpers/mockApi';
 
 it('should return the Null provider', () => {
   expect(getApi().provider instanceof NullProvider).toBe(true);
 });
 
-it('should correctly set a new Api', () => {
-  const mockApi = resolveApi(undefined, false); // Pubsub
-  setApi(mockApi);
-  expect(getApi()).toBe(mockApi);
+it('should correctly set a new api', () => {
+  const api = resolveApi();
+  setApi(api);
+  expect(getApi()).toBe(api);
 });
 
-it('should correctly set a new Api', () => {
-  const mockApi = resolveApi(undefined, false); // Not pubsub
-  setApi(mockApi);
-  expect(getApi()).toBe(mockApi);
+it('should correctly set a new provider', () => {
+  const provider = new NullProvider();
+  setProvider(provider);
+  expect(getApi().provider).toBe(provider);
 });

@@ -4,7 +4,7 @@
 // SPDX-License-Identifier: MIT
 
 import createPubsubObservable from './utils/createPubsubObservable';
-import { FrequencyObservable } from '../types';
+import { FrequencyObservable, FrequencyObservableOptions } from '../types';
 
 /**
  * Observable that emits when syncing status changes.
@@ -14,11 +14,11 @@ import { FrequencyObservable } from '../types';
 /**
  * Observable that emits when syncing status changes.
  *
- * @param provider - The provider object with which to create this {@link FrequencyObservable}.
+ * @param options - Options to pass to {@link FrequencyObservable}.
  */
 export const onSyncingChanged$: FrequencyObservable<object | boolean> = (
-  provider?: any
-) => createPubsubObservable('eth_syncing', provider);
+  options?: FrequencyObservableOptions
+) => createPubsubObservable('eth_syncing', options);
 onSyncingChanged$.metadata = {
   calls: ['eth_syncing'],
   name: 'onSyncingChanged$'

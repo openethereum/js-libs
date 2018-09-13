@@ -3,7 +3,9 @@
 //
 // SPDX-License-Identifier: MIT
 
-export * from './eth';
-// export * from './net';
-// export * from './other';
-// export * from './parity';
+import { memoizeAll } from '../utils/memoizeAll';
+import * as eth from './eth';
+
+const rpc = { ...eth };
+
+export default memoizeAll(rpc);

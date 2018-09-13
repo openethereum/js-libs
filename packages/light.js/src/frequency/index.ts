@@ -3,7 +3,6 @@
 //
 // SPDX-License-Identifier: MIT
 
-import * as frequency from './frequency';
-import { memoizeAll } from '../utils/memoizeAll';
+import frequency from './frequency';
 
-export default memoizeAll(frequency);
+export default frequency;

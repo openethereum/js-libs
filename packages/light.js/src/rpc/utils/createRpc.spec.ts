@@ -12,22 +12,22 @@ it('should return a function', () => {
 });
 
 it('should add empty metadata by default', () => {
-  expect(createRpc({}).metadata).toEqual({});
+  expect(createRpc({})().metadata).toEqual({});
 });
 
 it('should append input metadata', () => {
-  expect(createRpc({ name: 'bar' }).metadata).toEqual({
+  expect(createRpc({ name: 'bar' })().metadata).toEqual({
     name: 'bar'
   });
 });
 
 it('should contain frequencyMixins', () => {
-  expect(typeof createRpc({}).setFrequency).toBe('function');
+  expect(typeof createRpc({})().setFrequency).toBe('function');
 });
 
 it('should set correct frequency', () => {
   const frequency = () => timer(0, 1000);
-  const rpc$ = createRpc({});
+  const rpc$ = createRpc({})();
   rpc$.setFrequency([frequency]);
   expect(rpc$.metadata.frequency).toEqual([frequency]);
 });

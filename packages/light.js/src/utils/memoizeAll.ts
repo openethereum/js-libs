@@ -4,9 +4,14 @@
 // SPDX-License-Identifier: MIT
 
 import * as memoizee from 'memoizee';
+import { FrequencyObservableMetadata, Metadata } from '../types';
+
+interface FunctionWithMetadata extends Function {
+  metadata?: Metadata<any, any> | FrequencyObservableMetadata;
+}
 
 interface FunctionMap {
-  [key: string]: Function;
+  [key: string]: FunctionWithMetadata;
 }
 
 /**
@@ -18,7 +23,9 @@ interface FunctionMap {
 export const memoizeAll = <T extends FunctionMap>(rpcMap: T) =>
   Object.keys(rpcMap).reduce(
     (result, key) => {
-      result[key] = memoizee(rpcMap[key]);
+      const metadata = rpcMap[key].metadata;
+      result[key] = memoizee(rpcMap[key]); // This operation does not copy the metadata of rpcMap[key].
+      result[key].metadata = metadata;
       return result;
     },
     {} as T
