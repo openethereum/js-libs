@@ -5,7 +5,9 @@
 
 import * as memoizee from 'memoizee';
 
-import { RpcKey, RpcMap } from '../../types';
+interface FunctionMap {
+  [key: string]: Function;
+}
 
 /**
  * Given an {@link RpcMap} of {@link RpcObservables}, memoize all the RpcObservables.
@@ -13,11 +15,11 @@ import { RpcKey, RpcMap } from '../../types';
  * @ignore
  * @param rpcMap - The input RpcMap to memoize.
  */
-export const memoizeAll = (rpcMap: RpcMap) =>
+export const memoizeAll = <T extends FunctionMap>(rpcMap: T) =>
   Object.keys(rpcMap).reduce(
     (result, key) => {
-      (result as RpcMap)[key as RpcKey] = memoizee(rpcMap[key as RpcKey]);
+      result[key] = memoizee(rpcMap[key]);
       return result;
     },
-    {} as RpcMap
+    {} as T
   );

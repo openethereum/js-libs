@@ -44,7 +44,8 @@ export interface FrequencyObservableMetadata {
   name: string;
 }
 
-export interface FrequencyObservable<T> extends Observable<T> {
+export interface FrequencyObservable<T> {
+  (...args: any[]): Observable<T>;
   metadata?: FrequencyObservableMetadata;
 }
 

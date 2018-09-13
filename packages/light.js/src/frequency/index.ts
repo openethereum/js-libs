@@ -3,8 +3,7 @@
 //
 // SPDX-License-Identifier: MIT
 
-export * from './accounts';
-export * from './blocks';
-export * from './health';
-export * from './other';
-export * from './time';
+import * as frequency from './frequency';
+import { memoizeAll } from '../utils/memoizeAll';
+
+export default memoizeAll(frequency);

@@ -52,7 +52,7 @@ const frequencyMixins = {
  */
 const createRpc = <Source, Out>(
   metadata: Metadata<Source, Out>,
-  provider: any
+  provider?: any
 ) => {
   const api = provider ? new Api(provider) : getApi();
   // rpc$ will hold the RpcObservable minus its metadata
@@ -62,7 +62,7 @@ const createRpc = <Source, Out>(
     // FrequencyObservables
     const source$ = metadata.dependsOn
       ? metadata.dependsOn(...args)
-      : merge(...metadata.frequency.map(f => f()));
+      : merge(...metadata.frequency.map(f => f(provider)));
 
     // The last arguments is an options, if it's an object
     // TODO What if we pass a single object as argument, which is not options?

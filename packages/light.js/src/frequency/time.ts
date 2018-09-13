@@ -10,23 +10,20 @@ import { FrequencyObservable } from '../types';
 /**
  * Observable that emits on every second.
  */
-export const onEverySecond$ = (() => timer(0, 1000)) as FrequencyObservable<
-  number
->;
+export const onEverySecond$: FrequencyObservable<number> = (_?: any) =>
+  timer(0, 1000);
 onEverySecond$.metadata = { name: 'onEverySecond$' };
 
 /**
  * Observable that emits on every other second.
  */
-export const onEvery2Seconds$ = (() => timer(0, 2000)) as FrequencyObservable<
-  number
->;
+export const onEvery2Seconds$: FrequencyObservable<number> = (_?: any) =>
+  timer(0, 2000);
 onEvery2Seconds$.metadata = { name: 'onEvery2Seconds$' };
 
 /**
  * Observable that emits every five seconds.
  */
-export const onEvery5Seconds$ = (() => timer(0, 5000)) as FrequencyObservable<
-  number
->;
+export const onEvery5Seconds$: FrequencyObservable<number> = (_?: any) =>
+  timer(0, 5000);
 onEvery5Seconds$.metadata = { name: 'onEvery5Seconds$' };

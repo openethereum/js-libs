@@ -11,12 +11,7 @@ import { Address } from '../../types';
 import api from '../../api';
 import createRpc$ from '../utils/createRpc';
 import { isNullOrLoading, RPC_LOADING } from '../../utils/isLoading';
-import {
-  onAccountsChanged$,
-  onEveryBlock$,
-  onStartup$,
-  onSyncingChanged$
-} from '../../frequency';
+import frequency from '../../frequency';
 import { switchMapPromise } from '../../utils/operators';
 
 // /**
@@ -36,6 +31,7 @@ import { switchMapPromise } from '../../utils/operators';
 //     api
 //   );
 
+frequency.onAccountsChanged$;
 /**
  * Get the balance of a given account. Calls `eth_getBalance`.
  *
@@ -46,7 +42,7 @@ export const balanceOf$ = (address: Address, provider?: any) =>
   createRpc$<any, BigNumber>(
     {
       calls: ['eth_getBalance'],
-      frequency: [onEveryBlock$, onStartup$],
+      frequency: [frequency.onEveryBlock$, frequency.onStartup$],
       name: 'balanceOf$',
       pipes: api => [switchMapPromise(() => api.eth.getBalance(address))]
     },

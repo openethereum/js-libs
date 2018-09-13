@@ -4,23 +4,24 @@
 // SPDX-License-Identifier: MIT
 
 import { AccountsInfo, Address, FrequencyObservable } from '../types';
-import api from '../api';
 import createPubsubObservable from './utils/createPubsubObservable';
 
 /**
  * Observable that emits each time the default account changes
+ *
+ * @param provider - The provider object with which to create this {@link FrequencyObservable}.
  */
-export const onAccountsChanged$ = (() =>
-  createPubsubObservable('eth_accounts', api)) as FrequencyObservable<
-  Address[]
->;
+export const onAccountsChanged$: FrequencyObservable<Address[]> = (
+  provider?: any
+) => createPubsubObservable('eth_accounts', provider);
 onAccountsChanged$.metadata = { name: 'onAccountsChanged$' };
 
 /**
  * Observable that emits each time the default account changes
+ *
+ * @param provider - The provider object with which to create this {@link FrequencyObservable}.
  */
-export const onAccountsInfoChanged$ = (() =>
-  createPubsubObservable('parity_accountsInfo', api)) as FrequencyObservable<
-  AccountsInfo
->;
+export const onAccountsInfoChanged$: FrequencyObservable<AccountsInfo> = (
+  provider?: any
+) => createPubsubObservable('parity_accountsInfo', provider);
 onAccountsInfoChanged$.metadata = { name: 'onAccountsInfoChanged$' };

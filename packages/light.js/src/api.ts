@@ -6,8 +6,13 @@
 import * as Api from '@parity/api';
 import * as debug from 'debug';
 import * as EventEmitter from 'eventemitter3';
+import * as memoizee from 'memoizee';
 
 let api: any; // TODO @parity/api
+
+export const createApiFromProvider = memoizee(
+  (provider?: any) => new Api(provider)
+);
 
 /**
  * Use this null Api provider if the Api hasn't been set by the end user yet.
@@ -25,26 +30,12 @@ export class NullProvider extends EventEmitter {
 }
 
 /**
- * Sets a new Api object.
- *
- * @param newApi - An Api object.
- */
-export const setApi = (newApi: any) => {
-  api = newApi;
-  if (!api.isPubSub) {
-    console.warn(
-      `Current provider does not support pubsub. @parity/light.js will poll every second to listen to changes.`
-    );
-  }
-};
-
-/**
  * Sets a new Ethereum provider object.
  *
  * @param provider - An Ethereum provider object.
  */
-export const setProvider = (provider: any) => {
-  api = new Api(provider);
+export const setProvider = (provider?: any) => {
+  api = createApiFromProvider(provider);
   if (!api.isPubSub) {
     console.warn(
       `Current provider does not support pubsub. @parity/light.js will poll every second to listen to changes.`
@@ -61,7 +52,7 @@ export const setProvider = (provider: any) => {
  */
 export const getApi = () => {
   if (!api) {
-    api = new Api(new NullProvider());
+    api = createApiFromProvider(new NullProvider());
   }
   return api;
 };
