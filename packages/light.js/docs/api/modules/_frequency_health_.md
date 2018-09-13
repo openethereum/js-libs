@@ -4,11 +4,11 @@
 
 <a id="onsyncingchanged_"></a>
 
-## `<Const>` onSyncingChanged$
+##  onSyncingChanged$
 
-▸ **onSyncingChanged$**(options?: *[FrequencyObservableOptions](../interfaces/_types_.frequencyobservableoptions.md)*): `Observable`< `false` &#124; `true` &#124; `object`>
+▸ **onSyncingChanged$**(options?: *[FrequencyObservableOptions](../interfaces/_types_.frequencyobservableoptions.md)*): `Observable`< `false` &#124; `object`>
 
-*Defined in [frequency/health.ts:19](https://github.com/paritytech/js-libs/blob/ea75324/packages/light.js/src/frequency/health.ts#L19)*
+*Defined in [frequency/health.ts:19](https://github.com/paritytech/js-libs/blob/a46b19a/packages/light.js/src/frequency/health.ts#L19)*
 
 Observable that emits when syncing status changes.
 
@@ -18,7 +18,7 @@ Observable that emits when syncing status changes.
 | ------ | ------ | ------ |
 | `Optional` options | [FrequencyObservableOptions](../interfaces/_types_.frequencyobservableoptions.md) |  Options to pass to [FrequencyObservable](../interfaces/_types_.frequencyobservable.md). |
 
-**Returns:** `Observable`< `false` &#124; `true` &#124; `object`>
+**Returns:** `Observable`< `false` &#124; `object`>
 
 ___
 

@@ -8,7 +8,7 @@
 
 **ΤAccountsInfo**: *`object`*
 
-*Defined in [types.ts:19](https://github.com/paritytech/js-libs/blob/ea75324/packages/light.js/src/types.ts#L19)*
+*Defined in [types.ts:19](https://github.com/paritytech/js-libs/blob/a46b19a/packages/light.js/src/types.ts#L19)*
 
 #### Type declaration
 
@@ -19,7 +19,7 @@ ___
 
 **ΤAddress**: *`string`*
 
-*Defined in [types.ts:24](https://github.com/paritytech/js-libs/blob/ea75324/packages/light.js/src/types.ts#L24)*
+*Defined in [types.ts:24](https://github.com/paritytech/js-libs/blob/a46b19a/packages/light.js/src/types.ts#L24)*
 
 ___
 <a id="apivalue"></a>
@@ -28,7 +28,7 @@ ___
 
 **ΤApiValue**: *`any`*
 
-*Defined in [types.ts:27](https://github.com/paritytech/js-libs/blob/ea75324/packages/light.js/src/types.ts#L27)*
+*Defined in [types.ts:27](https://github.com/paritytech/js-libs/blob/a46b19a/packages/light.js/src/types.ts#L27)*
 
 ___
 <a id="frequencykey"></a>
@@ -37,7 +37,7 @@ ___
 
 **ΤFrequencyKey**: *`keyof object`*
 
-*Defined in [types.ts:40](https://github.com/paritytech/js-libs/blob/ea75324/packages/light.js/src/types.ts#L40)*
+*Defined in [types.ts:40](https://github.com/paritytech/js-libs/blob/a46b19a/packages/light.js/src/types.ts#L40)*
 
 ___
 <a id="frequencymap"></a>
@@ -46,7 +46,7 @@ ___
 
 **ΤFrequencyMap**: *`object`*
 
-*Defined in [types.ts:56](https://github.com/paritytech/js-libs/blob/ea75324/packages/light.js/src/types.ts#L56)*
+*Defined in [types.ts:56](https://github.com/paritytech/js-libs/blob/a46b19a/packages/light.js/src/types.ts#L56)*
 
 #### Type declaration
 
@@ -57,7 +57,7 @@ ___
 
 **ΤRpcKey**: *`keyof object`*
 
-*Defined in [types.ts:67](https://github.com/paritytech/js-libs/blob/ea75324/packages/light.js/src/types.ts#L67)*
+*Defined in [types.ts:67](https://github.com/paritytech/js-libs/blob/a46b19a/packages/light.js/src/types.ts#L67)*
 
 ___
 <a id="rpcmap"></a>
@@ -66,7 +66,7 @@ ___
 
 **ΤRpcMap**: *`object`*
 
-*Defined in [types.ts:75](https://github.com/paritytech/js-libs/blob/ea75324/packages/light.js/src/types.ts#L75)*
+*Defined in [types.ts:75](https://github.com/paritytech/js-libs/blob/a46b19a/packages/light.js/src/types.ts#L75)*
 
 #### Type declaration
 
@@ -77,7 +77,7 @@ ___
 
 **ΤTx**: *`object`*
 
-*Defined in [types.ts:83](https://github.com/paritytech/js-libs/blob/ea75324/packages/light.js/src/types.ts#L83)*
+*Defined in [types.ts:83](https://github.com/paritytech/js-libs/blob/a46b19a/packages/light.js/src/types.ts#L83)*
 
 #### Type declaration
 

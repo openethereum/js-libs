@@ -4,11 +4,11 @@
 
 <a id="onaccountschanged_"></a>
 
-## `<Const>` onAccountsChanged$
+##  onAccountsChanged$
 
 ▸ **onAccountsChanged$**(options?: *[FrequencyObservableOptions](../interfaces/_types_.frequencyobservableoptions.md)*): `Observable`<`string`[]>
 
-*Defined in [frequency/accounts.ts:19](https://github.com/paritytech/js-libs/blob/ea75324/packages/light.js/src/frequency/accounts.ts#L19)*
+*Defined in [frequency/accounts.ts:14](https://github.com/paritytech/js-libs/blob/a46b19a/packages/light.js/src/frequency/accounts.ts#L14)*
 
 Observable that emits each time the default account changes
 
@@ -23,11 +23,11 @@ Observable that emits each time the default account changes
 ___
 <a id="onaccountsinfochanged_"></a>
 
-## `<Const>` onAccountsInfoChanged$
+##  onAccountsInfoChanged$
 
 ▸ **onAccountsInfoChanged$**(options?: *[FrequencyObservableOptions](../interfaces/_types_.frequencyobservableoptions.md)*): `Observable`<`object`>
 
-*Defined in [frequency/accounts.ts:29](https://github.com/paritytech/js-libs/blob/ea75324/packages/light.js/src/frequency/accounts.ts#L29)*
+*Defined in [frequency/accounts.ts:23](https://github.com/paritytech/js-libs/blob/a46b19a/packages/light.js/src/frequency/accounts.ts#L23)*
 
 Observable that emits each time the default account changes
 
