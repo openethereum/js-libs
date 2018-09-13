@@ -7,7 +7,6 @@ import isObservable from '../utils/isObservable';
 import { resolveApi } from '../utils/testHelpers/mockApi';
 import rpc from './rpc';
 import { RpcKey, RpcMap, RpcObservable } from '../types';
-import { RPC_LOADING } from '../utils/isLoading';
 import { setApi } from '../api';
 
 /**
@@ -26,20 +25,16 @@ const testRpc = (name: string, rpc$: RpcObservable<any, any>) =>
     });
 
     it('function should return an Observable', () => {
-      expect(isObservable(rpc$())).toBe(true);
+      expect(isObservable(rpc$({}))).toBe(true);
     });
 
     it('function result Observable should be subscribable', () => {
-      expect(() => rpc$().subscribe()).not.toThrow();
+      expect(() => rpc$({}).subscribe()).not.toThrow();
     });
 
     it('function result Observable should return values', done => {
-      rpc$().subscribe(data => {
-        // The first value is either 'foo' (defined in mockApi), or the
-        // RPC_LOADING symbole.
-        // In the case of defaultAccount$ (which is accounts$[0]), the returned
-        // value is 'f'. TODO not clean.
-        expect(['foo', 'f', RPC_LOADING]).toContain(data);
+      rpc$({}).subscribe(data => {
+        expect(data).toBeTruthy();
         done();
       });
     });

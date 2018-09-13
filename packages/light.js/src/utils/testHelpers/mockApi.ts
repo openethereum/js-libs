@@ -8,7 +8,7 @@ const listOfMockRps: { [index: string]: string[] } = {
   eth: ['accounts', 'blockNumber', 'getBalance', 'syncing'],
   fake: ['method'],
   net: ['peerCount'],
-  parity: ['accountsInfo', 'netChain']
+  parity: ['accountsInfo', 'netChain', 'postTransaction']
 };
 
 /**
@@ -50,7 +50,14 @@ const createApi = (
 
       return apiObject;
     },
-    { isPubSub } as { [index: string]: any }
+    {
+      isPubSub,
+      pollMethod() {
+        return isError
+          ? Promise.reject(resolveWith)
+          : Promise.resolve(resolveWith);
+      }
+    } as { [index: string]: any }
   );
 
   return result;

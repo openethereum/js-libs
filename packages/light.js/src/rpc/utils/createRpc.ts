@@ -3,18 +3,17 @@
 //
 // SPDX-License-Identifier: MIT
 
-import * as Api from '@parity/api';
 import { isFunction } from '@parity/api/lib/util/types';
 import { merge, ReplaySubject, Observable, OperatorFunction } from 'rxjs';
 import { multicast, refCount } from 'rxjs/operators';
 import * as prune from 'json-prune';
 
-import { getApi } from '../../api';
-import { Metadata, RpcObservable, RpcObservableOptions } from '../../types';
+import { createApiFromProvider, getApi } from '../../api';
 import {
   distinctValues,
   withoutLoading as withoutLoadingOperator
 } from '../../utils/operators';
+import { Metadata, RpcObservable, RpcObservableOptions } from '../../types';
 
 interface RpcObservableWithoutMetadata<_, Out> {
   (...args: any[]): Observable<Out>;
@@ -60,7 +59,7 @@ const createRpc = <Source, Out>(metadata: Metadata<Source, Out>) => (
   options: RpcObservableOptions = {}
 ) => {
   const { provider, withoutLoading } = options;
-  const api = provider ? new Api(provider) : getApi();
+  const api = provider ? createApiFromProvider(provider) : getApi();
   // rpc$ will hold the RpcObservable minus its metadata
   const rpc$: RpcObservableWithoutMetadata<Source, Out> = (...args: any[]) => {
     // The source Observable can either be another RpcObservable (in the

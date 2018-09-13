@@ -8,9 +8,9 @@ import { abiEncode } from '@parity/api/lib/util/encode';
 import * as memoizee from 'memoizee';
 
 import { Address } from '../../types';
+import { createApiFromProvider, getApi } from '../../api';
 import createRpc from '../utils/createRpc';
 import { switchMapPromise } from '../../utils/operators';
-import api from '../../api';
 import frequency from '../../frequency';
 import { post$ } from './post';
 
@@ -32,7 +32,10 @@ interface MakeContract {
  * @return - The contract object as defined in @parity/api.
  */
 const getContract = memoizee(
-  (address: Address, abiJson: any[]) => api().newContract(abiJson, address), // use types from @parity/abi
+  (address: Address, abiJson: any[], provider: any) => {
+    const api = provider ? createApiFromProvider(provider) : getApi();
+    return api.newContract(abiJson, address);
+  }, // use types from @parity/abi
   { length: 1 } // Only memoize by address
 );
 
@@ -46,15 +49,15 @@ const getContract = memoizee(
  * function resolves.
  */
 export const makeContract = memoizee(
-  (address: Address, abiJson: any[]) => {
-    // use types from @parity/abi
-    const abi = new Abi(abiJson);
+  (address: Address, abiJson: any[], options: { provider?: any } = {}) => {
+    const { provider } = options;
+    const abi = new Abi(abiJson); // use types from @parity/abi
     // Variable result will hold the final object to return
     const result: MakeContract = {
       abi,
       address,
       get contractObject() {
-        return getContract(address, abiJson);
+        return getContract(address, abiJson, provider);
       }
     };
 
@@ -66,7 +69,7 @@ export const makeContract = memoizee(
         // We only get the contract when the function is called for the 1st
         // time. Note: getContract is memoized, won't create contract on each
         // call.
-        const contract = getContract(address, abiJson);
+        const contract = getContract(address, abiJson, provider);
         const method = contract.instance[name]; // Hold the method from the Abi
 
         // The last arguments in args can be an options object

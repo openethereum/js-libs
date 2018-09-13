@@ -6,8 +6,9 @@
 import * as eth from './eth';
 import { memoizeAll } from '../utils/memoizeAll';
 import * as net from './net';
+import { post$ } from './other';
 import * as parity from './parity';
 
-const rpc = { ...eth, ...net, ...parity };
+const rpc = { ...eth, ...net, ...parity, post$ };
 
 export default memoizeAll(rpc);
