@@ -34,15 +34,6 @@ const testFrequency = (
       expect(() => frequency$().subscribe()).not.toThrow();
     });
 
-    it('should contain a `metadata` field', () => {
-      expect(frequency$.metadata).toBeTruthy();
-    });
-
-    it('should contain `name` in metadata', () => {
-      const { metadata } = frequency$;
-      expect(metadata.name).toBeTruthy();
-    });
-
     it('function should return the same Observable upon re-running (memoization)', () => {
       const initial$ = frequency$();
       expect(frequency$()).toBe(initial$);

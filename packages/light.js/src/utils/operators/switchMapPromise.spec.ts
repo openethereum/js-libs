@@ -3,7 +3,7 @@
 //
 // SPDX-License-Identifier: MIT
 
-import { finalize, skip, take } from 'rxjs/operators';
+import { skip, take } from 'rxjs/operators';
 
 import mockRpc$ from '../testHelpers/mockRpc';
 import { rejectApi, resolveApi } from '../testHelpers/mockApi';

@@ -6,6 +6,12 @@
 import { timer } from 'rxjs';
 
 import createRpc from './createRpc';
+import { resolveApi } from '../../utils/testHelpers/mockApi';
+import { setApi } from '../../api';
+
+beforeAll(() => {
+  setApi(resolveApi());
+});
 
 it('should return a function', () => {
   expect(typeof createRpc({})).toBe('function');

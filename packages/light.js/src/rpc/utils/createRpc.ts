@@ -9,7 +9,7 @@ import { merge, ReplaySubject, Observable, OperatorFunction } from 'rxjs';
 import { multicast, refCount } from 'rxjs/operators';
 import * as prune from 'json-prune';
 
-import { getApi, NullProvider } from '../../api';
+import { getApi } from '../../api';
 import { Metadata, RpcObservable, RpcObservableOptions } from '../../types';
 import {
   distinctValues,
