@@ -3,6 +3,8 @@
 //
 // SPDX-License-Identifier: MIT
 
+declare module '@parity/abi';
+declare module '@parity/abi/lib/spec/function';
 declare module '@parity/api';
 declare module '@parity/api/lib/util';
 declare module '@parity/api/lib/util/encode';
