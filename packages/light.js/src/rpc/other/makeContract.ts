@@ -85,7 +85,7 @@ export const makeContract = memoizee(
                 contract.instance[name].call(options, args)
               )
             ]
-          })(...args);
+          })()(...args);
         } else {
           return post$({
             to: address,
