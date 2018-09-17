@@ -51,8 +51,8 @@ const createRpcWithApi = memoizee(
     normalizer: (args: any) => {
       // Custom memoization function, i.e. create an unique id from the args.
       // `args` is arguments object as accessible in memoized function
-      return `${args[0].name}${args[1].provider.id}${args[2]}${JSON.stringify(
-        Array.from(args).slice(3)
+      return `${args[0].name}${args[1].provider.id}${JSON.stringify(
+        Array.from(args).slice(2)
       )}`;
     }
   }
