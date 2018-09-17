@@ -33,5 +33,5 @@ export function chainName$(options?: RpcObservableOptions) {
     frequency: [frequency.onStartup$],
     name: 'chainName$',
     pipes: api => [switchMapPromise(() => api.parity.netChain())]
-  })()(options);
+  })(options)();
 }

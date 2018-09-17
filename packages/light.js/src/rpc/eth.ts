@@ -26,7 +26,7 @@ export function accounts$(options?: RpcObservableOptions) {
   return createRpc$<Address[], Address[]>({
     frequency: [frequency.onAccountsChanged$],
     name: 'accounts$'
-  })()(options);
+  })(options)();
 }
 
 /**
@@ -42,7 +42,7 @@ export function balanceOf$(address: Address, options?: RpcObservableOptions) {
     frequency: [frequency.onEveryBlock$, frequency.onStartup$],
     name: 'balanceOf$',
     pipes: api => [switchMapPromise(() => api.eth.getBalance(address))]
-  })(address)(options);
+  })(options)(address);
 }
 
 /**
@@ -57,7 +57,7 @@ export function defaultAccount$(options?: RpcObservableOptions) {
     dependsOn: accounts$,
     name: 'defaultAccount$',
     pipes: () => [map(accounts => accounts[0])]
-  })()(options);
+  })(options)();
 }
 
 /**
@@ -69,7 +69,7 @@ export function blockNumber$(options?: RpcObservableOptions) {
   return createRpc$<BigNumber, BigNumber>({
     frequency: [frequency.onEveryBlock$],
     name: 'blockNumber$'
-  })()(options);
+  })(options)();
 }
 
 /**
@@ -88,7 +88,7 @@ export function myBalance$(options?: RpcObservableOptions) {
             : balanceOf$(defaultAccount)
       )
     ]
-  })()(options);
+  })(options)();
 }
 
 /**
@@ -100,5 +100,5 @@ export function syncStatus$(options?: RpcObservableOptions) {
   return createRpc$<object | boolean, object | boolean>({
     frequency: [frequency.onSyncingChanged$],
     name: 'syncStatus$'
-  })()(options);
+  })(options)();
 }

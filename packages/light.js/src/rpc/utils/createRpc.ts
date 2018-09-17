@@ -69,8 +69,8 @@ const createRpcWithApi = memoizee(
  * createRpc(metadata)(options)(someArgs) returns an Observable.
  */
 const createRpc = <Source, Out>(metadata: Metadata<Source, Out>) => (
-  ...args: any[]
-) => (options: RpcObservableOptions = {}) => {
+  options: RpcObservableOptions = {}
+) => (...args: any[]) => {
   const { provider } = options;
   const api = provider ? createApiFromProvider(provider) : getApi();
 
