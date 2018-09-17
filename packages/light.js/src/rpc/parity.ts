@@ -18,7 +18,7 @@ export function accountsInfo$(options?: RpcObservableOptions) {
   return createRpc$<AccountsInfo, AccountsInfo>({
     frequency: [frequency.onAccountsInfoChanged$],
     name: 'accountsInfo$'
-  })(options)();
+  })()(options);
 }
 
 /**
@@ -33,5 +33,5 @@ export function chainName$(options?: RpcObservableOptions) {
     frequency: [frequency.onStartup$],
     name: 'chainName$',
     pipes: api => [switchMapPromise(() => api.parity.netChain())]
-  })(options)();
+  })()(options);
 }

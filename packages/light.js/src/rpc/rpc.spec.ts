@@ -3,11 +3,20 @@
 //
 // SPDX-License-Identifier: MIT
 
+import * as Api from '@parity/api';
+
 import isObservable from '../utils/isObservable';
-import { resolveApi } from '../utils/testHelpers/mockApi';
+import {
+  MockProvider,
+  rejectApi,
+  resolveApi
+} from '../utils/testHelpers/mockApi';
 import rpc from './rpc';
 import { RpcKey, RpcMap, RpcObservable } from '../types';
 import { setApi } from '../api';
+
+jest.mock('@parity/api');
+Api.mockImplementation(() => resolveApi());
 
 /**
  * Helper function to make basic tests for RpcObservables.
@@ -16,7 +25,7 @@ import { setApi } from '../api';
  */
 const testRpc = (name: string, rpc$: RpcObservable<any, any>) =>
   describe(`${name} rpc`, () => {
-    beforeAll(() => {
+    beforeEach(() => {
       setApi(resolveApi());
     });
 
@@ -24,34 +33,46 @@ const testRpc = (name: string, rpc$: RpcObservable<any, any>) =>
       expect(typeof rpc$).toBe('function');
     });
 
-    it('function should return an Observable', () => {
+    it('should return an Observable', () => {
       expect(isObservable(rpc$({}))).toBe(true);
     });
 
-    it('function result Observable should be subscribable', () => {
+    it('result Observable should be subscribable', () => {
       expect(() => rpc$({}).subscribe()).not.toThrow();
     });
 
-    it('function result Observable should return values', done => {
+    it('result Observable should return values', done => {
       rpc$({}).subscribe(data => {
         expect(data).toBeTruthy();
         done();
       });
     });
 
-    it('function should return the same Observable upon re-running (memoization)', () => {
+    // Memoization tests don't concern post$
+    if (name === 'post$') {
+      return;
+    }
+
+    it('should return the same Observable upon re-running (memoization)', () => {
       const initial$ = rpc$();
       expect(rpc$()).toBe(initial$);
     });
 
-    it('function should not return the same Observable if options are passed', () => {
+    it('should not return the same Observable if we change Api', () => {
       const initial$ = rpc$();
-      expect(rpc$({ withoutLoading: true })).not.toBe(initial$);
+      setApi(rejectApi());
+      expect(rpc$()).not.toBe(initial$);
     });
 
-    it('function should return the same Observable if same options are passed', () => {
-      const initial$ = rpc$({ withoutLoading: true });
-      expect(rpc$({ withoutLoading: true })).toBe(initial$);
+    it('should not return the same Observable if options are passed', () => {
+      const initial$ = rpc$();
+      expect(rpc$({ provider: new MockProvider() })).not.toBe(initial$);
+    });
+
+    it('should return the same Observable if same options are passed', () => {
+      const provider = new MockProvider();
+      const initial$ = rpc$({ provider });
+      expect(rpc$({ provider })).toBe(initial$);
     });
   });
 

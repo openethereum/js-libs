@@ -4,46 +4,59 @@
 // SPDX-License-Identifier: MIT
 
 import { isFunction } from '@parity/api/lib/util/types';
+import * as memoizee from 'memoizee';
 import { merge, ReplaySubject, Observable, OperatorFunction } from 'rxjs';
 import { multicast, refCount } from 'rxjs/operators';
-import * as prune from 'json-prune';
 
 import { createApiFromProvider, getApi } from '../../api';
-import {
-  distinctValues,
-  withoutLoading as withoutLoadingOperator
-} from '../../utils/operators';
-import { Metadata, RpcObservable, RpcObservableOptions } from '../../types';
-
-interface RpcObservableWithoutMetadata<_, Out> {
-  (...args: any[]): Observable<Out>;
-}
+import { distinctValues } from '../../utils/operators';
+import { Metadata, RpcObservableOptions } from '../../types';
 
 /**
- * Mixins that are added into an RpcObservable.
+ * Add metadata to an RpcObservable, and transform it into a ReplaySubject(1).
+ * It's a currified function.
+ * Pure function version of {@link createRpc}.
  *
  * @ignore
+ * @param metadata - The metadata to add.
+ * @example
+ * createRpc(metadata)(options) returns a RpcObservable.
+ * createRpc(metadata)(options)(someArgs) returns an Observable.
  */
-const frequencyMixins = {
-  /**
-   * Change the frequency of a RPC Observable.
-   *
-   * @param frequency - An array of frequency Observables.
-   * @example
-   * balanceOf$.setFrequency([onEverySecond$, onStartup$]); // Will fetch
-   * balance once on startup, and then every second.
-   */
-  setFrequency(frequency: Observable<any>[]) {
-    // TODO Check that frequency is well-formed
+const createRpcWithApi = memoizee(
+  <Source, Out>(metadata: Metadata<Source, Out>, api: any, ...args: any[]) => {
+    // The source Observable can either be another RpcObservable (in the
+    // `dependsOn` field), or anObservable built by merging all the
+    // FrequencyObservables
+    const source$ = metadata.dependsOn
+      ? metadata.dependsOn(...args, { provider: api.provider })
+      : merge(...metadata.frequency.map(f => f({ provider: api.provider })));
 
-    this.metadata.frequency = frequency;
+    // A RpcObservable is: a source$ Observable, a single subject$ that
+    // subscribes to this source, and this subject$ multicasts the fired values
+    // to all Observers.
+    const subject$ = new ReplaySubject<Out>(1);
 
-    // If necessary, we clear the memoize cache
-    if (typeof this.clear === 'function') {
-      this.clear();
+    // The pipes to add
+    const pipes: OperatorFunction<any, any>[] = [];
+    if (metadata.pipes && isFunction(metadata.pipes)) {
+      pipes.push(...metadata.pipes(api));
+    }
+    pipes.push(multicast(() => subject$), refCount(), distinctValues());
+
+    return source$.pipe(...pipes) as Observable<Out>;
+  },
+  {
+    length: 3,
+    normalizer: (args: any) => {
+      // Custom memoization function, i.e. create an unique id from the args.
+      // `args` is arguments object as accessible in memoized function
+      return `${args[0].name}${args[1].provider.id}${args[2]}${Array.from(
+        args
+      ).slice(3)}`;
     }
   }
-};
+);
 
 /**
  * Add metadata to an RpcObservable, and transform it into a ReplaySubject(1).
@@ -56,49 +69,12 @@ const frequencyMixins = {
  * createRpc(metadata)(options)(someArgs) returns an Observable.
  */
 const createRpc = <Source, Out>(metadata: Metadata<Source, Out>) => (
-  options: RpcObservableOptions = {}
-) => {
-  const { provider, withoutLoading } = options;
+  ...args: any[]
+) => (options: RpcObservableOptions = {}) => {
+  const { provider } = options;
   const api = provider ? createApiFromProvider(provider) : getApi();
-  // rpc$ will hold the RpcObservable minus its metadata
-  const rpc$: RpcObservableWithoutMetadata<Source, Out> = (...args: any[]) => {
-    // The source Observable can either be another RpcObservable (in the
-    // `dependsOn` field), or anObservable built by merging all the
-    // FrequencyObservables
-    const source$ = metadata.dependsOn
-      ? metadata.dependsOn(...args, options)
-      : merge(...metadata.frequency.map(f => f(provider)));
 
-    // A RpcObservable is: a source$ Observable, a single subject$ that
-    // subscribes to this source, and this subject$ multicasts the fired values
-    // to all Observers.
-    const subject$ = new ReplaySubject<Out>(1);
-
-    // The pipes to add
-    const pipes: OperatorFunction<any, any>[] = [];
-    if (metadata.pipes && isFunction(metadata.pipes)) {
-      pipes.push(...metadata.pipes(api));
-    }
-    pipes.push(multicast(() => subject$), refCount());
-    if (withoutLoading === true) {
-      pipes.push(withoutLoadingOperator());
-    }
-    pipes.push(distinctValues());
-
-    // Add a field in the calledWithArgs object, so that we know this function has
-    // been called with these particular args in the app. See overview.js on
-    // how this is used.
-    if (!metadata.calledWithArgs) {
-      metadata.calledWithArgs = {};
-    }
-    metadata.calledWithArgs[prune(args)] = subject$;
-
-    return source$.pipe(...pipes);
-  };
-
-  Object.assign(rpc$, frequencyMixins, { metadata });
-
-  return rpc$ as RpcObservable<Source, Out>;
+  return createRpcWithApi<Source, Out>(metadata, api, ...args);
 };
 
 export default createRpc;

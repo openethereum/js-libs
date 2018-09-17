@@ -39,18 +39,12 @@ export interface Metadata<Source, Out> {
 
 export type FrequencyKey = keyof typeof frequency;
 
-export interface FrequencyObservableMetadata {
-  calls?: string[];
-  name: string;
-}
-
 export interface FrequencyObservableOptions {
   provider?: any; // TODO types from @parity/abi
 }
 
 export interface FrequencyObservable<T> {
-  (...args: any[]): Observable<T>;
-  metadata?: FrequencyObservableMetadata;
+  (options?: FrequencyObservableOptions): Observable<T>;
 }
 
 export type FrequencyMap = {

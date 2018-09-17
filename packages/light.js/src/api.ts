@@ -4,8 +4,6 @@
 // SPDX-License-Identifier: MIT
 
 import * as Api from '@parity/api';
-import * as debug from 'debug';
-import * as EventEmitter from 'eventemitter3';
 import * as memoizee from 'memoizee';
 
 // This is our global api object, to be used if no provider is passed to RpcObservables.

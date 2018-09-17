@@ -33,7 +33,7 @@ const createPubsubObservableWithApi = memoizee(
       );
 
       return timer(0, 1000).pipe(
-        switchMap(api[namespace][method])
+        switchMap(() => api[namespace][method]())
       ) as Observable<T>;
     }
 

@@ -3,6 +3,23 @@
 //
 // SPDX-License-Identifier: MIT
 
+import * as EventEmitter from 'eventemitter3';
+
+// Count the number of providers we have, so that each time we call createApi,
+// we create a new provider.
+let providerCount = 0;
+
+/**
+ * Provider used for tests.
+ *
+ * @ignore
+ */
+export class MockProvider extends EventEmitter {
+  send() {
+    return Promise.resolve();
+  }
+}
+
 // List of JSONRPCs we want to mock
 const listOfMockRps: { [index: string]: string[] } = {
   eth: ['accounts', 'blockNumber', 'getBalance', 'syncing'],
@@ -56,6 +73,15 @@ const createApi = (
         return isError
           ? Promise.reject(resolveWith)
           : Promise.resolve(resolveWith);
+      },
+      provider: {
+        id: ++providerCount,
+        on: () => {
+          /* Do nothing. */
+        },
+        send: () => {
+          /* Do nothing. */
+        }
       }
     } as { [index: string]: any }
   );

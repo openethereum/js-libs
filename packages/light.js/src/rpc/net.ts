@@ -24,5 +24,5 @@ export function peerCount$(options?: RpcObservableOptions) {
     frequency: [frequency.onEvery5Seconds$],
     name: 'peerCount$',
     pipes: api => [switchMapPromise(() => api.net.peerCount())]
-  })(options)();
+  })()(options);
 }
