@@ -47,7 +47,7 @@ const createRpcWithApi = memoizee(
     return source$.pipe(...pipes) as Observable<Out>;
   },
   {
-    length: 3,
+    length: false, // Dynamic args length
     normalizer: (args: any) => {
       // Custom memoization function, i.e. create an unique id from the args.
       // `args` is arguments object as accessible in memoized function
