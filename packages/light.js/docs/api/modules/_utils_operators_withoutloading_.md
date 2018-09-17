@@ -8,7 +8,7 @@
 
 ▸ **withoutLoading**(): `(Anonymous function)`
 
-*Defined in [utils/operators/withoutLoading.ts:15](https://github.com/paritytech/js-libs/blob/4893e97/packages/light.js/src/utils/operators/withoutLoading.ts#L15)*
+*Defined in [utils/operators/withoutLoading.ts:15](https://github.com/paritytech/js-libs/blob/3a885fe/packages/light.js/src/utils/operators/withoutLoading.ts#L15)*
 
 Filter out the loading states in our observable.
 

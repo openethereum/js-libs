@@ -62,7 +62,6 @@ const testFrequency = (
         'onAccountsChanged',
         'onAccountsInfoChanged',
         'onEveryBlock$',
-        'onEvery2Blocks$',
         'onSyncingChanged'
       ].includes(name)
     ) {

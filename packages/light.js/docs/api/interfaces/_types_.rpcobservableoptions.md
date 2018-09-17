@@ -14,7 +14,7 @@
 
 **● provider**: *`any`*
 
-*Defined in [types.ts:72](https://github.com/paritytech/js-libs/blob/4893e97/packages/light.js/src/types.ts#L72)*
+*Defined in [types.ts:72](https://github.com/paritytech/js-libs/blob/3a885fe/packages/light.js/src/types.ts#L72)*
 
 ___
 
