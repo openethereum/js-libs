@@ -1,25 +1,5 @@
 
 
-# Variables
-
-<a id="onevery2blockswithapi_"></a>
-
-## `<Const>` onEvery2BlocksWithApi$
-
-**● onEvery2BlocksWithApi$**: * `(Anonymous function)` & `Memoized`<`(Anonymous function)`>
-* =  memoizee((api: any) =>
-  onEveryBlock$({ provider: api.provider }).pipe(
-    filter(n => +n % 2 === 0) // Around ~30s on mainnet // TODO Use isEqualTo and mod from bignumber.js
-  )
-)
-
-*Defined in [frequency/blocks.ts:29](https://github.com/paritytech/js-libs/blob/0cbe22a/packages/light.js/src/frequency/blocks.ts#L29)*
-
-Given an api object, return Observable that emits on every 2nd block. Pure function version of {@link onEvery2Blocks}.
-*__param__*: The Api object.
-
-___
-
 # Functions
 
 <a id="onevery2blocks_"></a>
@@ -28,7 +8,7 @@ ___
 
 ▸ **onEvery2Blocks$**(options?: *[FrequencyObservableOptions](../interfaces/_types_.frequencyobservableoptions.md)*): `Observable`<`BigNumber`>
 
-*Defined in [frequency/blocks.ts:40](https://github.com/paritytech/js-libs/blob/0cbe22a/packages/light.js/src/frequency/blocks.ts#L40)*
+*Defined in [frequency/blocks.ts:41](https://github.com/paritytech/js-libs/blob/4893e97/packages/light.js/src/frequency/blocks.ts#L41)*
 
 Observable that emits on every 2nd block.
 
@@ -47,7 +27,7 @@ ___
 
 ▸ **onEveryBlock$**(options?: *[FrequencyObservableOptions](../interfaces/_types_.frequencyobservableoptions.md)*): `Observable`<`BigNumber`>
 
-*Defined in [frequency/blocks.ts:19](https://github.com/paritytech/js-libs/blob/0cbe22a/packages/light.js/src/frequency/blocks.ts#L19)*
+*Defined in [frequency/blocks.ts:19](https://github.com/paritytech/js-libs/blob/4893e97/packages/light.js/src/frequency/blocks.ts#L19)*
 
 Observable that emits on every new block.
 

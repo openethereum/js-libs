@@ -25,6 +25,7 @@ export function onEveryBlock$(options?: FrequencyObservableOptions) {
  * Pure function version of {@link onEvery2Blocks}.
  *
  * @param api - The Api object.
+ * @ignore
  */
 const onEvery2BlocksWithApi$ = memoizee((api: any) =>
   onEveryBlock$({ provider: api.provider }).pipe(

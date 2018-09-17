@@ -9,7 +9,7 @@
 # Callable
 ▸ **__call**(options?: *[FrequencyObservableOptions](_types_.frequencyobservableoptions.md)*): `Observable`<`T`>
 
-*Defined in [types.ts:46](https://github.com/paritytech/js-libs/blob/0cbe22a/packages/light.js/src/types.ts#L46)*
+*Defined in [types.ts:46](https://github.com/paritytech/js-libs/blob/4893e97/packages/light.js/src/types.ts#L46)*
 
 **Parameters:**
 
