@@ -4,6 +4,8 @@
 
 **RpcObservableOptions**
 
+↳  [PostOptions](_rpc_other_post_.postoptions.md)
+
 # Properties
 
 <a id="provider"></a>
@@ -12,7 +14,7 @@
 
 **● provider**: *`any`*
 
-*Defined in [types.ts:78](https://github.com/paritytech/js-libs/blob/b4404e2/packages/light.js/src/types.ts#L78)*
+*Defined in [types.ts:72](https://github.com/paritytech/js-libs/blob/0cbe22a/packages/light.js/src/types.ts#L72)*
 
 ___
 <a id="withoutloading"></a>
@@ -21,7 +23,7 @@ ___
 
 **● withoutLoading**: *`boolean`*
 
-*Defined in [types.ts:79](https://github.com/paritytech/js-libs/blob/b4404e2/packages/light.js/src/types.ts#L79)*
+*Defined in [types.ts:73](https://github.com/paritytech/js-libs/blob/0cbe22a/packages/light.js/src/types.ts#L73)*
 
 ___
 

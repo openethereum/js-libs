@@ -12,7 +12,7 @@
 
 **● provider**: *`any`*
 
-*Defined in [types.ts:48](https://github.com/paritytech/js-libs/blob/b4404e2/packages/light.js/src/types.ts#L48)*
+*Defined in [types.ts:43](https://github.com/paritytech/js-libs/blob/0cbe22a/packages/light.js/src/types.ts#L43)*
 
 ___
 

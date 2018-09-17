@@ -1,5 +1,17 @@
 
 
+# Variables
+
+<a id="api"></a>
+
+## `<Let>` api
+
+**● api**: *`any`*
+
+*Defined in [api.ts:10](https://github.com/paritytech/js-libs/blob/0cbe22a/packages/light.js/src/api.ts#L10)*
+
+___
+
 # Functions
 
 <a id="getapi"></a>
@@ -8,7 +20,7 @@
 
 ▸ **getApi**(): `any`
 
-*Defined in [api.ts:53](https://github.com/paritytech/js-libs/blob/b4404e2/packages/light.js/src/api.ts#L53)*
+*Defined in [api.ts:51](https://github.com/paritytech/js-libs/blob/0cbe22a/packages/light.js/src/api.ts#L51)*
 
 We only ever use api() at call-time of functions; this allows the options (particularly the transport option) to be changed dynamically and the data structure to be reused.
 
@@ -22,7 +34,7 @@ ___
 
 ▸ **setApi**(newApi: *`any`*): `void`
 
-*Defined in [api.ts:28](https://github.com/paritytech/js-libs/blob/b4404e2/packages/light.js/src/api.ts#L28)*
+*Defined in [api.ts:26](https://github.com/paritytech/js-libs/blob/0cbe22a/packages/light.js/src/api.ts#L26)*
 
 Sets a new Api object.
 
@@ -41,7 +53,7 @@ ___
 
 ▸ **setProvider**(provider?: *`any`*): `void`
 
-*Defined in [api.ts:42](https://github.com/paritytech/js-libs/blob/b4404e2/packages/light.js/src/api.ts#L42)*
+*Defined in [api.ts:40](https://github.com/paritytech/js-libs/blob/0cbe22a/packages/light.js/src/api.ts#L40)*
 
 Sets a new Ethereum provider object.
 

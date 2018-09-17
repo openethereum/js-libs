@@ -7,27 +7,15 @@
 **FrequencyObservable**
 
 # Callable
-▸ **__call**(...args: *`any`[]*): `Observable`<`T`>
+▸ **__call**(options?: *[FrequencyObservableOptions](_types_.frequencyobservableoptions.md)*): `Observable`<`T`>
 
-*Defined in [types.ts:51](https://github.com/paritytech/js-libs/blob/b4404e2/packages/light.js/src/types.ts#L51)*
+*Defined in [types.ts:46](https://github.com/paritytech/js-libs/blob/0cbe22a/packages/light.js/src/types.ts#L46)*
 
 **Parameters:**
 
 | Param | Type |
 | ------ | ------ |
-| `Rest` args | `any`[] |
+| `Optional` options | [FrequencyObservableOptions](_types_.frequencyobservableoptions.md) |
 
 **Returns:** `Observable`<`T`>
-
-# Properties
-
-<a id="metadata"></a>
-
-## `<Optional>` metadata
-
-**● metadata**: *[FrequencyObservableMetadata](_types_.frequencyobservablemetadata.md)*
-
-*Defined in [types.ts:53](https://github.com/paritytech/js-libs/blob/b4404e2/packages/light.js/src/types.ts#L53)*
-
-___
 

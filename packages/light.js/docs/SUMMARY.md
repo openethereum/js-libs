@@ -32,7 +32,6 @@
     - [rpc/parity/parity](api/modules/_rpc_parity_parity_.md)
   * [Types](modules/_types_.md)
     - [FrequencyObservable](interfaces/_types_.frequencyobservable.md)
-    - [FrequencyObservableMetadata](interfaces/_types_.frequencyobservablemetadata.md)
     - [FrequencyObservableOptions](interfaces/_types_.frequencyobservableoptions.md)
     - [MakeContract](interfaces/_types_.makecontract.md)
     - [Metadata](interfaces/_types_.metadata.md)
