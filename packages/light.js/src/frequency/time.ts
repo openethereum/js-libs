@@ -4,29 +4,35 @@
 // SPDX-License-Identifier: MIT
 
 import { timer } from 'rxjs';
+import * as memoizee from 'memoizee';
 
-import { FrequencyObservable, FrequencyObservableOptions } from '../types';
+import { FrequencyObservableOptions } from '../types';
 
 /**
  * Observable that emits on every second.
  */
-export const onEverySecond$: FrequencyObservable<number> = (
-  _?: FrequencyObservableOptions
-) => timer(0, 1000);
-onEverySecond$.metadata = { name: 'onEverySecond$' };
+function onEverySecond$(_?: FrequencyObservableOptions) {
+  return timer(0, 1000);
+}
+// @ts-ignore
+onEverySecond$ = memoizee(onEverySecond$);
 
 /**
  * Observable that emits on every other second.
  */
-export const onEvery2Seconds$: FrequencyObservable<number> = (
-  _?: FrequencyObservableOptions
-) => timer(0, 2000);
-onEvery2Seconds$.metadata = { name: 'onEvery2Seconds$' };
+function onEvery2Seconds$(_?: FrequencyObservableOptions) {
+  return timer(0, 2000);
+}
+// @ts-ignore
+onEvery2Seconds$ = memoizee(onEvery2Seconds$);
 
 /**
  * Observable that emits every five seconds.
  */
-export const onEvery5Seconds$: FrequencyObservable<number> = (
-  _?: FrequencyObservableOptions
-) => timer(0, 5000);
-onEvery5Seconds$.metadata = { name: 'onEvery5Seconds$' };
+function onEvery5Seconds$(_?: FrequencyObservableOptions) {
+  return timer(0, 5000);
+}
+// @ts-ignore
+onEvery5Seconds$ = memoizee(onEvery5Seconds$);
+
+export { onEverySecond$, onEvery2Seconds$, onEvery5Seconds$ };

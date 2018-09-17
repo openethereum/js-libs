@@ -6,16 +6,15 @@
 import * as accounts from './accounts';
 import * as blocks from './blocks';
 import * as health from './health';
-import { memoizeAll } from '../utils/memoizeAll';
 import * as other from './other';
 import * as time from './time';
 
-const frequency = memoizeAll({
+const frequency = {
   ...accounts,
   ...blocks,
   ...health,
   ...other,
   ...time
-});
+};
 
 export default frequency;

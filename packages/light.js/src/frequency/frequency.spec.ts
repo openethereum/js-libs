@@ -8,7 +8,7 @@ import { take } from 'rxjs/operators';
 import frequency from './frequency';
 import { FrequencyObservable, FrequencyKey, FrequencyMap } from '../types';
 import isObservable from '../utils/isObservable';
-import { resolveApi } from '../utils/testHelpers/mockApi';
+import { rejectApi, resolveApi } from '../utils/testHelpers/mockApi';
 import { setApi } from '@parity/light.js/src/api';
 
 /**
@@ -22,7 +22,7 @@ const testFrequency = (
   resolveWith: any = 'foo'
 ) =>
   describe(`${name} frequency`, () => {
-    beforeAll(() => {
+    beforeEach(() => {
       setApi(resolveApi(resolveWith));
     });
 
@@ -34,10 +34,26 @@ const testFrequency = (
       expect(() => frequency$().subscribe()).not.toThrow();
     });
 
-    it('function should return the same Observable upon re-running (memoization)', () => {
+    it('should return the same Observable upon re-running (memoization)', () => {
       const initial$ = frequency$();
       expect(frequency$()).toBe(initial$);
     });
+
+    if (
+      [
+        'onAccountsChanged',
+        'onAccountsInfoChanged',
+        'onEveryBlock$',
+        'onEvery2Blocks$',
+        'onSyncingChanged'
+      ].includes(name)
+    ) {
+      it('should not return the same Observable if we change Api in between', () => {
+        const initial$ = frequency$();
+        setApi(rejectApi());
+        expect(frequency$()).not.toBe(initial$);
+      });
+    }
 
     it('should return values', done => {
       frequency$()
