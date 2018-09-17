@@ -8,10 +8,10 @@ import { abiEncode } from '@parity/api/lib/util/encode';
 import * as memoizee from 'memoizee';
 
 import { Address } from '../../types';
+import { createApiFromProvider, getApi } from '../../api';
 import createRpc from '../utils/createRpc';
 import { switchMapPromise } from '../../utils/operators';
-import api from '../../api';
-import { onEveryBlock$ } from '../../frequency';
+import frequency from '../../frequency';
 import { post$ } from './post';
 
 interface MakeContract {
@@ -29,32 +29,36 @@ interface MakeContract {
  *
  * @param address - The contract address.
  * @param abiJson - The contract abi.
+ * @param api - The api Object.
  * @return - The contract object as defined in @parity/api.
  */
 const getContract = memoizee(
-  (address: Address, abiJson: any[]) => api().newContract(abiJson, address), // use types from @parity/abi
-  { length: 1 } // Only memoize by address
+  (address: Address, abiJson: any[], api: any) =>
+    api.newContract(abiJson, address), // use types from @parity/abi
 );
 
 /**
- * Create a contract.
+ * Create a contract, givan an api object.
+ * Pure function version of {@link makeContract}.
  *
+ * @ignore
  * @param address - The contract address.
- * @param - The contract abi.
+ * @param abiJson - The contract abi.
+ * @param api - The api Object.
  * @return - An object whose keys are all the functions of the
  * contract, and each function return an Observable which will fire when the
  * function resolves.
  */
-export const makeContract = memoizee(
-  (address: Address, abiJson: any[]) => {
-    // use types from @parity/abi
-    const abi = new Abi(abiJson);
+const makeContractWithApi = memoizee(
+  (address: Address, abiJson: any[], api: any) => {
+    const abi = new Abi(abiJson); // use types from @parity/abi
+
     // Variable result will hold the final object to return
     const result: MakeContract = {
       abi,
       address,
       get contractObject() {
-        return getContract(address, abiJson);
+        return getContract(address, abiJson, api);
       }
     };
 
@@ -66,7 +70,7 @@ export const makeContract = memoizee(
         // We only get the contract when the function is called for the 1st
         // time. Note: getContract is memoized, won't create contract on each
         // call.
-        const contract = getContract(address, abiJson);
+        const contract = getContract(address, abiJson, api);
         const method = contract.instance[name]; // Hold the method from the Abi
 
         // The last arguments in args can be an options object
@@ -75,14 +79,14 @@ export const makeContract = memoizee(
 
         if (method.constant) {
           return createRpc({
-            frequency: [onEveryBlock$],
+            frequency: [frequency.onEveryBlock$],
             name,
             pipes: () => [
               switchMapPromise(() =>
                 contract.instance[name].call(options, args)
               )
             ]
-          })(...args);
+          })({ provider: api.provider })(...args);
         } else {
           return post$({
             to: address,
@@ -98,6 +102,26 @@ export const makeContract = memoizee(
     });
 
     return result;
-  },
-  { length: 1 } // Only memoize by address
+  }
 );
+
+/**
+ * Create a contract.
+ *
+ * @param address - The contract address.
+ * @param abiJson - The contract abi.
+ * @param options - The options to pass in when creating the contract.
+ * @return - An object whose keys are all the functions of the
+ * contract, and each function return an Observable which will fire when the
+ * function resolves.
+ */
+export const makeContract = (
+  address: Address,
+  abiJson: any[],
+  options: { provider?: any } = {}
+) => {
+  const { provider } = options;
+  const api = provider ? createApiFromProvider(provider) : getApi();
+
+  return makeContractWithApi(address, abiJson, api);
+};

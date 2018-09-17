@@ -30,13 +30,12 @@
     "@parity/api": "^2.1.23",
     "bignumber.js": "^7.2.1",
     "debug": "^3.1.0",
-    "eventemitter3": "^3.1.0",
-    "json-prune": "^1.1.0",
     "memoizee": "^0.4.12"
   },
   "devDependencies": {
     "@types/debug": "^0.0.30",
     "@types/memoizee": "^0.4.2",
+    "eventemitter3": "^3.1.0",
     "rxjs": "^6.2.1"
   },
   "peerDependencies": {

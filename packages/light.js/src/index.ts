@@ -4,13 +4,25 @@
 // SPDX-License-Identifier: MIT
 
 import { setApi, setProvider } from './api';
-import * as frequency from './frequency';
-import './overview';
+import frequency from './frequency';
+import { makeContract } from './rpc/other/makeContract';
+import rpc from './rpc';
 
-export * from './rpc';
 export * from './utils/isLoading';
 export * from './types';
 export { withoutLoading } from './utils/operators/withoutLoading';
 
-export { frequency };
+export { frequency, makeContract }; // makeContract is a bit special, because it's not a RpcObservable
+export const {
+  accounts$,
+  accountsInfo$,
+  balanceOf$,
+  blockNumber$,
+  chainName$,
+  defaultAccount$,
+  myBalance$,
+  peerCount$,
+  post$,
+  syncStatus$
+} = rpc;
 export default { setApi, setProvider };

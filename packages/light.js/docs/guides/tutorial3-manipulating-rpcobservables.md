@@ -12,17 +12,21 @@ Concretely, in your app, a possible UX would be to show a loading spinner while 
 
 ### Removing the loading state
 
-However, if this behavior is not desirable for you, the you can add the `withoutLoading` options:
+However, if this behavior is not desirable for you, the you can add the `withoutLoading` operator:
 
 ```javascript
 balanceOf$('0x407d73d8a49eeb85d32cf465507dd71d507100c1', {
   withoutLoading: true
-}).subscribe(balance => console.log('balance', balance));
+})
+  .pipe(withoutLoading())
+  .subscribe(balance => console.log('balance', balance));
 ```
 
 In this case, the `Symbol(Fetching RPC...)` will never be logged, and you will only be notified when the balance actually changes.
 
-See here for a working example: https://codesandbox.io/s/z6549wqm5l
+See here for a working example: https://codesandbox.io/s/z6549wqm5l.
+
+`withoutLoading()` here is what we call an RxJS _operator_. It modifies the result each time an Observable fires. Let's see some other operators.
 
 ## Operations on Observables
 

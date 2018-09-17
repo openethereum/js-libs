@@ -5,9 +5,13 @@
 
 import { Observable, Observer } from 'rxjs';
 
-import api from '../../api';
+import { createApiFromProvider, getApi } from '../../api';
 import { distinctReplayRefCount } from '../../utils/operators';
-import { RpcObservable, Tx, TxStatus } from '../../types';
+import { RpcObservableOptions, Tx, TxStatus } from '../../types';
+
+interface PostOptions extends RpcObservableOptions {
+  estimate?: boolean;
+}
 
 /**
  * Post a transaction to the network.
@@ -16,23 +20,23 @@ import { RpcObservable, Tx, TxStatus } from '../../types';
  * `parity_checkRequest` and `eth_getTransactionReceipt` to get the status of
  * the transaction.
  *
- * @param options? - Options to pass.
+ * @param options? - Options to pass to the {@link RpcObservable}.
  * @return - The status of the transaction.
  */
-export const post$: RpcObservable<any, TxStatus> = (
-  tx: Tx,
-  options: { estimate?: boolean } = {}
-) => {
+export function post$(tx: Tx, options: PostOptions = {}) {
+  const { estimate, provider } = options;
+  const api = provider ? createApiFromProvider(provider) : getApi();
+
   const source$ = Observable.create(async (observer: Observer<TxStatus>) => {
     try {
-      if (options.estimate) {
+      if (estimate) {
         observer.next({ estimating: true });
-        const gas = await api().eth.estimateGas(tx);
+        const gas = await api.eth.estimateGas(tx);
         observer.next({ estimated: gas });
       }
-      const signerRequestId = await api().parity.postTransaction(tx);
+      const signerRequestId = await api.parity.postTransaction(tx);
       observer.next({ requested: signerRequestId });
-      const transactionHash = await api().pollMethod(
+      const transactionHash = await api.pollMethod(
         'parity_checkRequest',
         signerRequestId
       );
@@ -40,7 +44,7 @@ export const post$: RpcObservable<any, TxStatus> = (
         observer.next({ signed: transactionHash, schedule: tx.condition });
       } else {
         observer.next({ signed: transactionHash });
-        const receipt = await api().pollMethod(
+        const receipt = await api.pollMethod(
           'eth_getTransactionReceipt',
           transactionHash,
           (
@@ -58,14 +62,5 @@ export const post$: RpcObservable<any, TxStatus> = (
   }).pipe(distinctReplayRefCount());
 
   source$.subscribe(); // Run this Observable immediately;
-  return source$;
-};
-post$.metadata = {
-  calls: [
-    'eth_estimateGas',
-    'parity_postTransaction',
-    'parity_checkRequest',
-    'eth_getTransactionReceipt'
-  ],
-  name: 'post$'
-};
+  return source$ as Observable<TxStatus>;
+}

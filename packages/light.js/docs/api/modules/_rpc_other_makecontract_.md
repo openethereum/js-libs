@@ -2,76 +2,57 @@
 
 # Variables
 
-<a id="makecontract"></a>
+<a id="getcontract"></a>
 
-## `<Const>` makeContract
+## `<Const>` getContract
 
-**● makeContract**: * `(Anonymous function)` & `Memoized`<`(Anonymous function)`>
+**● getContract**: * `(Anonymous function)` & `Memoized`<`(Anonymous function)`>
 * =  memoizee(
-  (address: Address, abiJson: any[]) => {
-    // use types from @parity/abi
-    const abi = new Abi(abiJson);
-    // Variable result will hold the final object to return
-    const result: MakeContract = {
-      abi,
-      address,
-      get contractObject() {
-        return getContract(address, abiJson);
-      }
-    };
-
-    // We then copy every key inside contract.instance into our `result` object,
-    // replacing each the value by an Observable instead of a Promise.
-    abi.functions.forEach(({ name }: any) => {
-      // use types from @parity/abi
-      result[`${name}$`] = (...args: any[]) => {
-        // We only get the contract when the function is called for the 1st
-        // time. Note: getContract is memoized, won't create contract on each
-        // call.
-        const contract = getContract(address, abiJson);
-        const method = contract.instance[name]; // Hold the method from the Abi
-
-        // The last arguments in args can be an options object
-        const options =
-          args.length === method.inputs.length + 1 ? args.pop() : {};
-
-        if (method.constant) {
-          return createRpc({
-            frequency: [onEveryBlock$],
-            name,
-            pipes: () => [
-              switchMapPromise(() =>
-                contract.instance[name].call(options, args)
-              )
-            ]
-          })(...args);
-        } else {
-          return post$({
-            to: address,
-            data: abiEncode(
-              method.name,
-              method.inputs.map(({ kind: { type } }: any) => type), // TODO Use @parity/api types
-              args
-            ),
-            ...options
-          });
-        }
-      };
-    });
-
-    return result;
-  },
+  (address: Address, abiJson: any[], api: any) =>
+    api.newContract(abiJson, address), // use types from @parity/abi
   { length: 1 } // Only memoize by address
 )
 
-*Defined in [rpc/other/makeContract.ts:48](https://github.com/paritytech/js-libs/blob/70247e1/packages/light.js/src/rpc/other/makeContract.ts#L48)*
+*Defined in [rpc/other/makeContract.ts:35](https://github.com/paritytech/js-libs/blob/3a885fe/packages/light.js/src/rpc/other/makeContract.ts#L35)*
 
-Create a contract.
+Cache contracts, so that they are:
+
+*   only created after the first call/transaction to a contract has been made
+*   further calls/transactions to the same contract doesn't recreate the contract
 *__param__*: The contract address.
 
 *__param__*: The contract abi.
 
-*__returns__*: *   An object whose keys are all the functions of the contract, and each function return an Observable which will fire when the function resolves.
+*__param__*: The api Object.
+
+*__returns__*: *   The contract object as defined in @parity/api.
+
+___
+
+# Functions
+
+<a id="makecontract-1"></a>
+
+## `<Const>` makeContract
+
+▸ **makeContract**(address: *[Address](_types_.md#address)*, abiJson: *`any`[]*, options?: *`object`*): [MakeContract](../interfaces/_rpc_other_makecontract_.makecontract.md)
+
+*Defined in [rpc/other/makeContract.ts:119](https://github.com/paritytech/js-libs/blob/3a885fe/packages/light.js/src/rpc/other/makeContract.ts#L119)*
+
+Create a contract.
+
+**Parameters:**
+
+| Param | Type | Default value | Description |
+| ------ | ------ | ------ | ------ |
+| address | [Address](_types_.md#address) | - |  The contract address. |
+| abiJson | `any`[] | - |  The contract abi. |
+| `Default value` options | `object` |  {} |  The options to pass in when creating the contract. |
+
+**Returns:** [MakeContract](../interfaces/_rpc_other_makecontract_.makecontract.md)
+- An object whose keys are all the functions of the
+contract, and each function return an Observable which will fire when the
+function resolves.
 
 ___
 

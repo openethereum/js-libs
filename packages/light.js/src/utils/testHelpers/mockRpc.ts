@@ -6,12 +6,15 @@
 import { timer } from 'rxjs';
 
 import createRpc from '../../rpc/utils/createRpc';
+import { resolveApi } from '../testHelpers/mockApi';
+import { setApi } from '../../api';
 
 /**
  * Create a fake RpcObservable.
  *
  * @ignore
  */
-const mockRpc$ = createRpc({ frequency: [timer(0, 1000)] });
+setApi(resolveApi());
+const mockRpc$ = createRpc({ frequency: [() => timer(0, 1000)] })();
 
 export default mockRpc$;

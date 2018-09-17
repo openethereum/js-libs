@@ -1,33 +1,43 @@
 
 
-# Variables
+# Functions
 
 <a id="onaccountschanged_"></a>
 
-## `<Const>` onAccountsChanged$
+##  onAccountsChanged$
 
-**● onAccountsChanged$**: *[FrequencyObservable](../interfaces/_types_.frequencyobservable.md)<`string`[]>* =  createOnFromPubsub<Address[]>(
-  'eth_accounts',
-  api
-)
+▸ **onAccountsChanged$**(options?: *[FrequencyObservableOptions](../interfaces/_types_.frequencyobservableoptions.md)*): `Observable`<`string`[]>
 
-*Defined in [frequency/accounts.ts:13](https://github.com/paritytech/js-libs/blob/70247e1/packages/light.js/src/frequency/accounts.ts#L13)*
+*Defined in [frequency/accounts.ts:14](https://github.com/paritytech/js-libs/blob/3a885fe/packages/light.js/src/frequency/accounts.ts#L14)*
 
 Observable that emits each time the default account changes
+
+**Parameters:**
+
+| Param | Type | Description |
+| ------ | ------ | ------ |
+| `Optional` options | [FrequencyObservableOptions](../interfaces/_types_.frequencyobservableoptions.md) |  Options to pass to [FrequencyObservable](../interfaces/_types_.frequencyobservable.md). |
+
+**Returns:** `Observable`<`string`[]>
 
 ___
 <a id="onaccountsinfochanged_"></a>
 
-## `<Const>` onAccountsInfoChanged$
+##  onAccountsInfoChanged$
 
-**● onAccountsInfoChanged$**: *[FrequencyObservable](../interfaces/_types_.frequencyobservable.md)<`object`>* =  createOnFromPubsub<AccountsInfo>(
-  'parity_accountsInfo',
-  api
-)
+▸ **onAccountsInfoChanged$**(options?: *[FrequencyObservableOptions](../interfaces/_types_.frequencyobservableoptions.md)*): `Observable`<`object`>
 
-*Defined in [frequency/accounts.ts:22](https://github.com/paritytech/js-libs/blob/70247e1/packages/light.js/src/frequency/accounts.ts#L22)*
+*Defined in [frequency/accounts.ts:23](https://github.com/paritytech/js-libs/blob/3a885fe/packages/light.js/src/frequency/accounts.ts#L23)*
 
 Observable that emits each time the default account changes
+
+**Parameters:**
+
+| Param | Type | Description |
+| ------ | ------ | ------ |
+| `Optional` options | [FrequencyObservableOptions](../interfaces/_types_.frequencyobservableoptions.md) |  Options to pass to [FrequencyObservable](../interfaces/_types_.frequencyobservable.md). |
+
+**Returns:** `Observable`<`object`>
 
 ___
 

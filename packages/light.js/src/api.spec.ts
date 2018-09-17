@@ -3,21 +3,23 @@
 //
 // SPDX-License-Identifier: MIT
 
-import { getApi, NullProvider, setApi } from './api';
+import * as Api from '@parity/api';
+
+import { getApi, setApi, setProvider } from './api';
 import { resolveApi } from './utils/testHelpers/mockApi';
 
 it('should return the Null provider', () => {
-  expect(getApi().provider instanceof NullProvider).toBe(true);
+  expect(getApi).toThrow();
 });
 
-it('should correctly set a new Api', () => {
-  const mockApi = resolveApi(undefined, false); // Pubsub
-  setApi(mockApi);
-  expect(getApi()).toBe(mockApi);
+it('should correctly set a new api', () => {
+  const api = resolveApi();
+  setApi(api);
+  expect(getApi()).toBe(api);
 });
 
-it('should correctly set a new Api', () => {
-  const mockApi = resolveApi(undefined, false); // Not pubsub
-  setApi(mockApi);
-  expect(getApi()).toBe(mockApi);
+it('should correctly set a new provider', () => {
+  const provider = new Api.Provider.Ws('ws://127.0.0.1:8546');
+  setProvider(provider);
+  expect(getApi().provider).toBe(provider);
 });

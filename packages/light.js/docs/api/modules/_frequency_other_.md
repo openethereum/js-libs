@@ -1,16 +1,24 @@
 
 
-# Variables
+# Functions
 
 <a id="onstartup_"></a>
 
-## `<Const>` onStartup$
+##  onStartup$
 
-**● onStartup$**: *[FrequencyObservable](../interfaces/_types_.frequencyobservable.md)<`number`>* =  of(0) as FrequencyObservable<number>
+▸ **onStartup$**(_?: *[FrequencyObservableOptions](../interfaces/_types_.frequencyobservableoptions.md)*): `Observable`<`number`>
 
-*Defined in [frequency/other.ts:13](https://github.com/paritytech/js-libs/blob/70247e1/packages/light.js/src/frequency/other.ts#L13)*
+*Defined in [frequency/other.ts:16](https://github.com/paritytech/js-libs/blob/3a885fe/packages/light.js/src/frequency/other.ts#L16)*
 
 Observable that emits only once.
+
+**Parameters:**
+
+| Param | Type |
+| ------ | ------ |
+| `Optional` _ | [FrequencyObservableOptions](../interfaces/_types_.frequencyobservableoptions.md) |
+
+**Returns:** `Observable`<`number`>
 
 ___
 

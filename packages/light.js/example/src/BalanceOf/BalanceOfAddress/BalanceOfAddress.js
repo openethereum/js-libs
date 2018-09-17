@@ -6,12 +6,15 @@
 import React, { Component } from 'react';
 import { map } from 'rxjs/operators';
 
-import { balanceOf$ } from '../../light.js';
+import { balanceOf$, withoutLoading } from '../../light.js';
 import light from '../../hoc';
 
 @light({
   balance: ownProps =>
-    balanceOf$(ownProps.address, { withoutLoading: true }).pipe(map(_ => +_))
+    balanceOf$(ownProps.address).pipe(
+      withoutLoading(),
+      map(_ => +_)
+    )
 })
 class BalanceOfAddress extends Component {
   render() {

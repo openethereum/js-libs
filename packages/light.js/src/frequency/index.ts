@@ -3,8 +3,6 @@
 //
 // SPDX-License-Identifier: MIT
 
-export * from './accounts';
-export * from './blocks';
-export * from './health';
-export * from './other';
-export * from './time';
+import frequency from './frequency';
+
+export default frequency;
