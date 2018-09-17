@@ -87,7 +87,7 @@ const makeContractWithApi = memoizee(
                 contract.instance[name].call(options, args)
               )
             ]
-          })()(...args);
+          })({ provider: api.provider })(...args);
         } else {
           return post$({
             to: address,
