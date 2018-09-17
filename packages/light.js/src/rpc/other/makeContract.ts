@@ -35,7 +35,6 @@ interface MakeContract {
 const getContract = memoizee(
   (address: Address, abiJson: any[], api: any) =>
     api.newContract(abiJson, address), // use types from @parity/abi
-  { length: 1 } // Only memoize by address
 );
 
 /**
