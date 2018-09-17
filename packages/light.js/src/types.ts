@@ -70,7 +70,6 @@ export type RpcMap = { [index in RpcKey]: RpcObservable<any, any> };
 
 export interface RpcObservableOptions {
   provider?: any; // TODO types from @parity/abi
-  withoutLoading?: boolean;
 }
 
 // TODO This should be on @parity/api
