@@ -5,11 +5,10 @@
 
 import { isFunction } from '@parity/api/lib/util/types';
 import * as memoizee from 'memoizee';
-import { merge, ReplaySubject, Observable, OperatorFunction } from 'rxjs';
-import { multicast, refCount } from 'rxjs/operators';
+import { merge, Observable, OperatorFunction } from 'rxjs';
 
 import { createApiFromProvider, getApi } from '../../api';
-import { distinctValues } from '../../utils/operators';
+import { distinctReplayRefCount } from '../../utils/operators';
 import { Metadata, RpcObservableOptions } from '../../types';
 
 /**
@@ -32,17 +31,12 @@ const createRpcWithApi = memoizee(
       ? metadata.dependsOn(...args, { provider: api.provider })
       : merge(...metadata.frequency.map(f => f({ provider: api.provider })));
 
-    // A RpcObservable is: a source$ Observable, a single subject$ that
-    // subscribes to this source, and this subject$ multicasts the fired values
-    // to all Observers.
-    const subject$ = new ReplaySubject<Out>(1);
-
     // The pipes to add
     const pipes: OperatorFunction<any, any>[] = [];
     if (metadata.pipes && isFunction(metadata.pipes)) {
       pipes.push(...metadata.pipes(api));
     }
-    pipes.push(multicast(() => subject$), refCount(), distinctValues());
+    pipes.push(distinctReplayRefCount());
 
     return source$.pipe(...pipes) as Observable<Out>;
   },
