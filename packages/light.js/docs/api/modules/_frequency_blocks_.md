@@ -8,7 +8,7 @@
 
 ▸ **onEveryBlock$**(options?: *[FrequencyObservableOptions](../interfaces/_types_.frequencyobservableoptions.md)*): `Observable`<`BigNumber`>
 
-*Defined in [frequency/blocks.ts:16](https://github.com/paritytech/js-libs/blob/3a885fe/packages/light.js/src/frequency/blocks.ts#L16)*
+*Defined in [frequency/blocks.ts:16](https://github.com/paritytech/js-libs/blob/f113b04/packages/light.js/src/frequency/blocks.ts#L16)*
 
 Observable that emits on every new block.
 

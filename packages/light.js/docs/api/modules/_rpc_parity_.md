@@ -8,7 +8,7 @@
 
 ▸ **accountsInfo$**(options?: *[RpcObservableOptions](../interfaces/_types_.rpcobservableoptions.md)*): `Observable`<`object`>
 
-*Defined in [rpc/parity.ts:17](https://github.com/paritytech/js-libs/blob/3a885fe/packages/light.js/src/rpc/parity.ts#L17)*
+*Defined in [rpc/parity.ts:17](https://github.com/paritytech/js-libs/blob/f113b04/packages/light.js/src/rpc/parity.ts#L17)*
 
 Get accounts info. Calls `parity_accountsInfo`.
 
@@ -29,7 +29,7 @@ ___
 
 ▸ **chainName$**(options?: *[RpcObservableOptions](../interfaces/_types_.rpcobservableoptions.md)*): `Observable`<`string`>
 
-*Defined in [rpc/parity.ts:30](https://github.com/paritytech/js-libs/blob/3a885fe/packages/light.js/src/rpc/parity.ts#L30)*
+*Defined in [rpc/parity.ts:30](https://github.com/paritytech/js-libs/blob/f113b04/packages/light.js/src/rpc/parity.ts#L30)*
 
 Get the name of the current chain. Calls `parity_netChain`.
 

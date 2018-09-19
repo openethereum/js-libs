@@ -11,7 +11,7 @@ import { FrequencyObservableOptions } from '../types';
 /**
  * Observable that emits on every second.
  */
-function onEverySecond$(_?: FrequencyObservableOptions) {
+function onEverySecond$(options?: FrequencyObservableOptions) {
   return timer(0, 1000);
 }
 // @ts-ignore
@@ -20,7 +20,7 @@ onEverySecond$ = memoizee(onEverySecond$);
 /**
  * Observable that emits on every other second.
  */
-function onEvery2Seconds$(_?: FrequencyObservableOptions) {
+function onEvery2Seconds$(options?: FrequencyObservableOptions) {
   return timer(0, 2000);
 }
 // @ts-ignore
@@ -29,7 +29,7 @@ onEvery2Seconds$ = memoizee(onEvery2Seconds$);
 /**
  * Observable that emits every five seconds.
  */
-function onEvery5Seconds$(_?: FrequencyObservableOptions) {
+function onEvery5Seconds$(options?: FrequencyObservableOptions) {
   return timer(0, 5000);
 }
 // @ts-ignore
