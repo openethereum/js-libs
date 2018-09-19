@@ -8,7 +8,7 @@
 
 ▸ **post$**(tx: *[Tx](_types_.md#tx)*, options?: *[PostOptions](../interfaces/_rpc_other_post_.postoptions.md)*): `Observable`<[TxStatus](../interfaces/_types_.txstatus.md)>
 
-*Defined in [rpc/other/post.ts:26](https://github.com/paritytech/js-libs/blob/3a885fe/packages/light.js/src/rpc/other/post.ts#L26)*
+*Defined in [rpc/other/post.ts:26](https://github.com/paritytech/js-libs/blob/f113b04/packages/light.js/src/rpc/other/post.ts#L26)*
 
 Post a transaction to the network.
 

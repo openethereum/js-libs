@@ -10,10 +10,9 @@
 * =  memoizee(
   (address: Address, abiJson: any[], api: any) =>
     api.newContract(abiJson, address), // use types from @parity/abi
-  { length: 1 } // Only memoize by address
 )
 
-*Defined in [rpc/other/makeContract.ts:35](https://github.com/paritytech/js-libs/blob/3a885fe/packages/light.js/src/rpc/other/makeContract.ts#L35)*
+*Defined in [rpc/other/makeContract.ts:35](https://github.com/paritytech/js-libs/blob/f113b04/packages/light.js/src/rpc/other/makeContract.ts#L35)*
 
 Cache contracts, so that they are:
 
@@ -37,7 +36,7 @@ ___
 
 ▸ **makeContract**(address: *[Address](_types_.md#address)*, abiJson: *`any`[]*, options?: *`object`*): [MakeContract](../interfaces/_rpc_other_makecontract_.makecontract.md)
 
-*Defined in [rpc/other/makeContract.ts:119](https://github.com/paritytech/js-libs/blob/3a885fe/packages/light.js/src/rpc/other/makeContract.ts#L119)*
+*Defined in [rpc/other/makeContract.ts:118](https://github.com/paritytech/js-libs/blob/f113b04/packages/light.js/src/rpc/other/makeContract.ts#L118)*
 
 Create a contract.
 

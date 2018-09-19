@@ -6,17 +6,17 @@
 
 ##  onStartup$
 
-▸ **onStartup$**(_?: *[FrequencyObservableOptions](../interfaces/_types_.frequencyobservableoptions.md)*): `Observable`<`number`>
+▸ **onStartup$**(options?: *[FrequencyObservableOptions](../interfaces/_types_.frequencyobservableoptions.md)*): `Observable`<`number`>
 
-*Defined in [frequency/other.ts:16](https://github.com/paritytech/js-libs/blob/3a885fe/packages/light.js/src/frequency/other.ts#L16)*
+*Defined in [frequency/other.ts:16](https://github.com/paritytech/js-libs/blob/f113b04/packages/light.js/src/frequency/other.ts#L16)*
 
 Observable that emits only once.
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| `Optional` _ | [FrequencyObservableOptions](../interfaces/_types_.frequencyobservableoptions.md) |
+| Param | Type | Description |
+| ------ | ------ | ------ |
+| `Optional` options | [FrequencyObservableOptions](../interfaces/_types_.frequencyobservableoptions.md) |  Options to pass to [FrequencyObservable](../interfaces/_types_.frequencyobservable.md). |
 
 **Returns:** `Observable`<`number`>
 
