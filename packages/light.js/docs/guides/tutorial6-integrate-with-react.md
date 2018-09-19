@@ -47,7 +47,12 @@ You can of course let your component subscribe to multiple RpcObservablse:
 
 ```javascript
 import React from 'react';
-import { blockNumber$, isNullOrLoading, makeContract } from '@parity/light.js';
+import {
+  blockNumber$,
+  isNullOrLoading,
+  makeContract,
+  withoutLoading
+} from '@parity/light.js';
 import erc20Abi from '@parity/contracts/lib/abi/eip20';
 import { filter } from 'rxjs/operators';
 import light from '@parity/light.js-react';
@@ -70,7 +75,7 @@ export default light({
   myGavcoinBalance: ({ myAddress }) =>
     makeContract('0x4733659a5cB7896A65c918Add6f59C5148FB5ffa', erc20Abi)
       .balanceOf$(myAddress)
-      .pipe(filter(value => !isNullOrLoading(value))) // Equivalent of withoutLoading for contract methods
+      .pipe(withoutLoading())
 })(MyComponent);
 ```
 

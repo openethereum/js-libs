@@ -19,6 +19,8 @@ light.setProvider(/* put your Ethereum provider here */);
 balanceOf$('0xbb9bc244d798123fde783fcc1c72d3bb8c189413').subscribe(console.log);
 ```
 
+Be sure to define your provider before using any of the other functions in `@parity/light.js`, or else the library will throw an error!
+
 Here are some examples of providers you can use.
 
 ### Provider 1: Your own Light Client (Recommended Way for development)
