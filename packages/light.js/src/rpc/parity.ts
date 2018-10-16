@@ -9,7 +9,8 @@ import frequency from '../frequency';
 import { switchMapPromise } from '../utils/operators';
 
 /**
- * Get accounts info. Calls `parity_accountsInfo`.
+ * Get accounts info. Calls `parity_accountsInfo`. Works only with a Parity
+ * node.
  *
  * @return - An Observable containing all info that can be
  * accessed by user concerning accounts.
@@ -22,7 +23,8 @@ export function accountsInfo$(options?: RpcObservableOptions) {
 }
 
 /**
- * Get the name of the current chain. Calls `parity_netChain`.
+ * Get the name of the current chain. Calls `parity_netChain`. Works only with
+ * a Parity node.
  *
  * @return - An Observable containing the name of the
  * current chain.
