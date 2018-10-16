@@ -54,7 +54,7 @@ gavcoinContract
   .subscribe(balance => console.log('balance', balance));
 ```
 
-See this snippet in action: https://codesandbox.io/s/852wn25mj.
+See this snippet in action: https://codesandbox.io/s/mq8rwkqzxp.
 
 ## Calling state-changing function
 
