@@ -10,7 +10,6 @@
   - [Tutorial Part 6: Integrate with React](guides/tutorial6-integrate-with-react.md)
   - [Redux Integration](guides/redux-integration.md)
   - [Angular Integration](guides/angular-integration.md)
-  - [Overview of Active RpcObservables](guides/ovewview-of-active-rpcobservables.md)
 - Concepts
   - [Light Client Development](concepts/light-client-development.md)
   - [Reactive Programming](concepts/reactive-programming.md)

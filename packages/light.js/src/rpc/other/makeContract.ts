@@ -27,6 +27,7 @@ interface MakeContract {
  * - further calls/transactions to the same contract doesn't recreate the
  *   contract
  *
+ * @ignore
  * @param address - The contract address.
  * @param abiJson - The contract abi.
  * @param api - The api Object.
@@ -34,7 +35,7 @@ interface MakeContract {
  */
 const getContract = memoizee(
   (address: Address, abiJson: any[], api: any) =>
-    api.newContract(abiJson, address), // use types from @parity/abi
+    api.newContract(abiJson, address) // use types from @parity/abi
 );
 
 /**
@@ -46,7 +47,7 @@ const getContract = memoizee(
  * @param abiJson - The contract abi.
  * @param api - The api Object.
  * @return - An object whose keys are all the functions of the
- * contract, and each function return an Observable which will fire when the
+ * contract, and each function returns an Observable which will fire when the
  * function resolves.
  */
 const makeContractWithApi = memoizee(
