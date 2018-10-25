@@ -50,7 +50,7 @@ export function post$(tx: Tx, options: PostOptions = {}) {
         // We poll `eth_getTransactionReceipt` for 20s, until we get a valid receipt
         const receipt = await asyncRetry(
           async (_, attempt) => {
-            debug('@parity/light.js:api')(
+            debug('@parity/light.js:post$')(
               `Attempt #${attempt} to eth_getTransactionReceipt.`
             );
             const rcpt = await api.eth.getTransactionReceipt(transactionHash);
