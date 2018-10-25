@@ -3,6 +3,8 @@
 //
 // SPDX-License-Identifier: MIT
 
+import * as asyncRetry from 'async-retry';
+import * as debug from 'debug';
 import { Observable, Observer } from 'rxjs';
 
 import { createApiFromProvider, getApi } from '../../api';
@@ -44,13 +46,24 @@ export function post$(tx: Tx, options: PostOptions = {}) {
         observer.next({ signed: transactionHash, schedule: tx.condition });
       } else {
         observer.next({ signed: transactionHash });
-        const receipt = await api.pollMethod(
-          'eth_getTransactionReceipt',
-          transactionHash,
-          (
-            receipt: any // TODO Receipt use @parity/api type
-          ) => receipt && receipt.blockNumber && !receipt.blockNumber.eq(0)
+
+        // We poll `eth_getTransactionReceipt` for 20s, until we get a valid receipt
+        const receipt = await asyncRetry(
+          async (_, attempt) => {
+            debug('@parity/light.js:post$')(
+              `Attempt #${attempt} to eth_getTransactionReceipt.`
+            );
+            const rcpt = await api.eth.getTransactionReceipt(transactionHash);
+            if (!rcpt || !rcpt.blockNumber || rcpt.blockNumber.eq(0)) {
+              throw new Error('Receipt is invalid.');
+            }
+            return rcpt;
+          },
+          {
+            retries: 20
+          }
         );
+
         observer.next({ confirmed: receipt });
       }
 
