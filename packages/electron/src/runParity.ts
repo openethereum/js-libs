@@ -67,47 +67,59 @@ export async function runParity(
     /* Do nothing if error. */
   }
 
-  let logLastLine = ''; // Always contains last line of the Parity logs
+  return new Promise((resolve, reject) => {
 
-  // Run an instance of parity with the correct flags
-  parity = spawn(parityPath, flags);
-  logger()('@parity/electron:main')(logCommand(parityPath, flags));
+    let logLastLine = ''; // Always contains last line of the Parity logs
 
-  // Save in memory the last line of the log file, for handling error
-  const callback = (data: Buffer) => {
-    if (data && data.length) {
-      logLastLine = data.toString();
-    }
-    logger()('@parity/parity')(data.toString());
-  };
-  parity.stdout.on('data', callback);
-  parity.stderr.on('data', callback);
+    // Run an instance of parity with the correct flags
+    parity = spawn(parityPath, flags);
+    logger()('@parity/electron:main')(logCommand(parityPath, flags));
 
-  parity.on('error', err => {
-    onParityError(err);
-  });
-  parity.on('close', (exitCode, signal) => {
-    if (exitCode === 0) {
-      return;
-    }
+    // Save in memory the last line of the log file, for handling error
+    const callback = (data: Buffer) => {
+      // `parity signer new-token` requires Parity's folders to have already
+      // been created. In order to be able to run `parity signer new-token`
+      // right after runParity resolves, we want runParity to resolve once
+      // Parity was launched and has set up its folders (if it's a first run).
+      // As a heuristic, we resolve as soon as Parity outputs to stdout/stderr:
+      // this happens just after the directories have been set up,
+      // see https://git.io/fx9JE
+      resolve();
 
-    // When there's already an instance of parity running, then the log
-    // is logging a particular line, see below. In this case, we just
-    // silently ignore our local instance, and let the 1st parity
-    // instance be the main one.
-    if (
-      logLastLine &&
-      catchableErrors.some(error => logLastLine.includes(error))
-    ) {
-      logger()('@parity/electron:main')(
-        'Another instance of parity is running, closing local instance.'
-      );
-      return;
-    }
+      if (data && data.length) {
+        logLastLine = data.toString();
+      }
+      logger()('@parity/parity')(data.toString());
+    };
+    parity.stdout.on('data', callback);
+    parity.stderr.on('data', callback);
 
-    // Otherwise, if the exit code is not 0, then we show some error message
-    onParityError(new Error(`Exit code ${exitCode}, with signal ${signal}.`));
-  });
+    parity.on('error', err => {
+      onParityError(err);
+    });
+    parity.on('close', (exitCode, signal) => {
+      if (exitCode === 0) {
+        return;
+      }
+
+      // When there's already an instance of parity running, then the log
+      // is logging a particular line, see below. In this case, we just
+      // silently ignore our local instance, and let the 1st parity
+      // instance be the main one.
+      if (
+        logLastLine &&
+        catchableErrors.some(error => logLastLine.includes(error))
+      ) {
+        logger()('@parity/electron:main')(
+          'Another instance of parity is running, closing local instance.'
+        );
+        return;
+      }
+
+      // Otherwise, if the exit code is not 0, then we show some error message
+      onParityError(new Error(`Exit code ${exitCode}, with signal ${signal}.`));
+    });
+  })
 }
 
 /**
