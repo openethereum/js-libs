@@ -1,7 +1,7 @@
 {
   "name": "@parity/light.js",
   "description": "A high-level reactive JS library optimized for light clients",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "author": "Parity Team <admin@parity.io>",
   "license": "MIT",
   "repository": "https://github.com/paritytech/js-libs/tree/master/packages/light.js",
