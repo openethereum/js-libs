@@ -8,7 +8,7 @@ import * as debug from 'debug';
 import { Observable, Observer } from 'rxjs';
 
 import { createApiFromProvider, getApi } from '../../api';
-import { distinctReplayRefCount } from '../../utils/operators';
+import { distinctReplayRefCountDelay } from '../../utils/operators';
 import { RpcObservableOptions, Tx, TxStatus } from '../../types';
 
 interface PostOptions extends RpcObservableOptions {
@@ -71,7 +71,7 @@ export function post$ (tx: Tx, options: PostOptions) {
       observer.next({ failed: error });
       observer.error(error);
     }
-  }).pipe(distinctReplayRefCount());
+  }).pipe(distinctReplayRefCountDelay());
 
   source$.subscribe(); // Run this Observable immediately;
   return source$ as Observable<TxStatus>;
@@ -104,7 +104,7 @@ export function postRaw$ (rawTx: string, options: RpcObservableOptions = {}) {
       observer.next({ failed: error });
       observer.error(error);
     }
-  }).pipe(distinctReplayRefCount());
+  }).pipe(distinctReplayRefCountDelay());
 
   source$.subscribe(); // Run this Observable immediately;
   return source$ as Observable<TxStatus>;

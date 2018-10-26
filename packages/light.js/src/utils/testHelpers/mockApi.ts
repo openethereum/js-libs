@@ -34,18 +34,22 @@ const listOfMockRps: { [index: string]: string[] } = {
  * @ignore
  */
 const createApi = (
-  resolveWith: string | object | { error: string } | Error,
+  resolveValueOrFunction: string | object | (() => any) | { error: string } | Error,
   isPubSub: boolean,
   isError: boolean
 ) => {
+
+  const getResolveValue = () =>
+    (typeof resolveValueOrFunction === 'function' ? resolveValueOrFunction() : resolveValueOrFunction);
+
   const result = Object.keys(listOfMockRps).reduce(
     (apiObject, namespace: string) => {
       // Create methods on apiObject
       apiObject[namespace] = {};
       listOfMockRps[namespace].forEach(method => {
         apiObject[namespace][method] = isError
-          ? () => Promise.reject(resolveWith)
-          : () => Promise.resolve(resolveWith);
+          ? () => Promise.reject(getResolveValue())
+          : () => Promise.resolve(getResolveValue());
       });
 
       // Create pubsub on apiObject
@@ -56,11 +60,11 @@ const createApi = (
       listOfMockRps[namespace].forEach(method => {
         apiObject.pubsub[namespace][method] = isError
           ? (callback: Function) => {
-            callback(resolveWith, null);
+            callback(getResolveValue(), null);
             return Promise.resolve(1); // Resolves to subscriptionId
           }
           : (callback: Function) => {
-            callback(null, resolveWith);
+            callback(null, getResolveValue());
             return Promise.resolve(1); // Resolves to subscriptionId
           };
       });
@@ -77,8 +81,8 @@ const createApi = (
       isPubSub,
       pollMethod () {
         return isError
-          ? Promise.reject(resolveWith)
-          : Promise.resolve(resolveWith);
+          ? Promise.reject(getResolveValue())
+          : Promise.resolve(getResolveValue());
       },
       provider: {
         id: ++providerCount,
@@ -92,6 +96,8 @@ const createApi = (
     } as { [index: string]: any }
   );
 
+  result.resolveWith = resolveValueOrFunction.toString();
+
   return result;
 };
 
@@ -101,9 +107,9 @@ const createApi = (
  * @ignore
  */
 export const rejectApi = (
-  resolveWith = new Error('bar'),
+  resolveValueOrFunction = new Error('bar'),
   isPubsub: boolean = true
-) => createApi(resolveWith, isPubsub, true);
+) => createApi(resolveValueOrFunction, isPubsub, true);
 
 /**
  * Mock api that resolves.
@@ -111,6 +117,6 @@ export const rejectApi = (
  * @ignore
  */
 export const resolveApi = (
-  resolveWith: string | object | { error: string } = 'foo',
+  resolveValueOrFunction: string | object | (() => any) | { error: string } = 'foo',
   isPubsub: boolean = true
-) => createApi(resolveWith, isPubsub, false);
+) => createApi(resolveValueOrFunction, isPubsub, false);
