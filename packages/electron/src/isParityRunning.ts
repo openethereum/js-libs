@@ -4,9 +4,10 @@
 // SPDX-License-Identifier: MIT
 
 import axios from 'axios';
-import * as retry from 'async-retry';
 
 import logger from './utils/logger';
+
+const TIMEOUT_MS = 1000;
 
 interface IsParityRunningOptions {
   wsInterface: string;
@@ -23,36 +24,34 @@ export async function isParityRunning(
     wsPort: '8546'
   }
 ) {
-  const { wsInterface, wsPort } = {
-    wsInterface: '127.0.0.1',
-    wsPort: '8546',
-    ...options
-  };
+  return new Promise((resolve, reject) => {
+    const { wsInterface, wsPort } = {
+      wsInterface: '127.0.0.1',
+      wsPort: '8546',
+      ...options
+    };
 
-  /**
-   * Try to ping these hosts to test if Parity is running.
-   */
-  const hostsToPing = [
-    'http://127.0.0.1:8545',
-    'http://127.0.0.1:8546',
-    `http://${wsInterface}:${wsPort}`
-  ];
+    /**
+     * Try to ping these hosts to test if Parity is running.
+     */
+    const hostsToPing = [
+      'http://127.0.0.1:8545',
+      'http://127.0.0.1:8546',
+      `http://${wsInterface}:${wsPort}`
+    ];
 
-  try {
-    // Retry to ping as many times as there are hosts in `hostsToPing`
-    await retry(
-      async (_, attempt: number) => {
-        const host = hostsToPing[attempt - 1]; // Attempt starts with 1
-        await axios.get(host);
-        logger()('@parity/electron:main')(
-          `Another instance of parity is already running on ${host}, skip running local instance.`
-        );
-      },
-      { retries: hostsToPing.length }
+    setTimeout(() => resolve(false), TIMEOUT_MS);
+
+    hostsToPing.map(host =>
+      axios.get(host)
+        .then(_ => {
+          logger()('@parity/electron:main')(
+            `Another instance of parity is already running on ${host}, skip running local instance.`
+          );
+          resolve(true)
+        })
+        .catch(() => { })
     );
 
-    return true;
-  } catch (e) {
-    return false;
-  }
+  })
 }
