@@ -50,7 +50,7 @@ export async function isParityRunning(
           );
           resolve(true)
         })
-        .catch(() => { })
+        .catch(() => { return null; })
     );
 
   })
