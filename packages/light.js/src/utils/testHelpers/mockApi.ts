@@ -25,7 +25,7 @@ const listOfMockRps: { [index: string]: string[] } = {
   eth: ['accounts', 'blockNumber', 'getBalance', 'syncing'],
   fake: ['method'],
   net: ['peerCount'],
-  parity: ['accountsInfo', 'netChain', 'postTransaction']
+  parity: ['accountsInfo', 'chain', 'postTransaction']
 };
 
 /**

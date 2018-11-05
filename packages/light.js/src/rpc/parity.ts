@@ -23,7 +23,7 @@ export function accountsInfo$(options?: RpcObservableOptions) {
 }
 
 /**
- * Get the name of the current chain. Calls `parity_netChain`. Works only with
+ * Get the name of the current chain. Calls `parity_chain`. Works only with
  * a Parity node.
  *
  * @return - An Observable containing the name of the
@@ -31,9 +31,9 @@ export function accountsInfo$(options?: RpcObservableOptions) {
  */
 export function chainName$(options?: RpcObservableOptions) {
   return createRpc$<any, string>({
-    calls: ['parity_netChain'],
+    calls: ['parity_chain'],
     frequency: [frequency.onStartup$],
     name: 'chainName$',
-    pipes: api => [switchMapPromise(() => api.parity.netChain())]
+    pipes: api => [switchMapPromise(() => api.parity.chain())]
   })(options)();
 }
