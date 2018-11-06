@@ -5,6 +5,7 @@
 
 import BigNumber from 'bignumber.js';
 
+import createDormant from './utils/createDormant';
 import createPubsubObservable from './utils/createPubsubObservable';
 import { FrequencyObservableOptions } from '../types';
 
@@ -14,5 +15,8 @@ import { FrequencyObservableOptions } from '../types';
  * @param options - Options to pass to {@link FrequencyObservable}.
  */
 export function onEveryBlock$(options?: FrequencyObservableOptions) {
-  return createPubsubObservable<BigNumber>('eth_blockNumber', options);
+  return createDormant(
+    createPubsubObservable<BigNumber>('eth_blockNumber', options),
+    options
+  );
 }

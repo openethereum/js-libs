@@ -4,6 +4,7 @@
 // SPDX-License-Identifier: MIT
 
 import { AccountsInfo, Address, FrequencyObservableOptions } from '../types';
+import createDormant from './utils/createDormant';
 import createPubsubObservable from './utils/createPubsubObservable';
 
 /**
@@ -12,7 +13,10 @@ import createPubsubObservable from './utils/createPubsubObservable';
  * @param options - Options to pass to {@link FrequencyObservable}.
  */
 export function onAccountsChanged$(options?: FrequencyObservableOptions) {
-  return createPubsubObservable<Address[]>('eth_accounts', options);
+  return createDormant(
+    createPubsubObservable<Address[]>('eth_accounts', options),
+    options
+  );
 }
 
 /**
@@ -21,5 +25,8 @@ export function onAccountsChanged$(options?: FrequencyObservableOptions) {
  * @param options - Options to pass to {@link FrequencyObservable}.
  */
 export function onAccountsInfoChanged$(options?: FrequencyObservableOptions) {
-  return createPubsubObservable<AccountsInfo>('parity_accountsInfo', options);
+  return createDormant(
+    createPubsubObservable<AccountsInfo>('parity_accountsInfo', options),
+    options
+  );
 }
