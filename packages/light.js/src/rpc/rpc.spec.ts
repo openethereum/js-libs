@@ -43,7 +43,7 @@ const testRpc = (name: string, rpc$: RpcObservable<any, any>) =>
 
     it('result Observable should return values', done => {
       rpc$({}).subscribe(data => {
-        expect(data).toBeTruthy();
+        expect(data).not.toBeNull();
         done();
       });
     });
