@@ -65,6 +65,12 @@ const createApi = (
             };
       });
 
+      // For eth.syncing pubsub, always return false
+      apiObject.pubsub.eth.syncing = (callback: Function) => {
+        callback(null, false);
+        return Promise.resolve(1);
+      };
+
       return apiObject;
     },
     {
