@@ -20,10 +20,13 @@ import { onSyncingChanged$ } from './health';
  */
 const onEveryBlockWithApi$ = memoizee(
   (api: any, options: FrequencyObservableOptions) =>
-    onSyncingChanged$(options).pipe(
-      filter((isSyncing: boolean) => isSyncing === false),
-      withLatestFrom(createPubsubObservable('eth_blockNumber', options)),
-      map(([_, blockNumber]) => blockNumber)
+    createPubsubObservable('eth_blockNumber', options).pipe(
+      withLatestFrom(
+        onSyncingChanged$(options).pipe(
+          filter((isSyncing: boolean) => isSyncing === false)
+        )
+      ),
+      map(([blockNumber]) => blockNumber)
     ) as Observable<BigNumber>,
   { length: 1 } // Only memoize by api
 );
