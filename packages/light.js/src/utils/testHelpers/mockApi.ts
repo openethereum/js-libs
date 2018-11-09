@@ -48,7 +48,7 @@ const createApi = (
           : () => Promise.resolve(resolveWith);
       });
 
-      // Create pubsub on apiObject
+      // Create pub-sub on apiObject
       apiObject.pubsub = apiObject.pubsub || {
         unsubscribe: () => Promise.resolve()
       };

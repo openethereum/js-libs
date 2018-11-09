@@ -5,7 +5,7 @@
 
 import BigNumber from 'bignumber.js';
 
-import { BlockNumber } from '../types';
+import { BlockNumber, InputDeriveHashMap, InputOptions, InputOptionsConditions, InputTrace, InputTraceHashMap } from '../types';
 import { isArray, isHex, isInstanceOf, isString } from '../util/types';
 import { padLeft, toHex } from '../util/format';
 
@@ -56,7 +56,7 @@ export const inHash = (hash: string) => {
   return inHex(hash);
 };
 
-export const inTopics = topics => {
+export const inTopics = (topics: Array<any>): Array<any> | string | null => {
   return (topics || []).filter(topic => topic === null || topic).map(topic => {
     if (topic === null) {
       return null;
@@ -70,29 +70,29 @@ export const inTopics = topics => {
   });
 };
 
-export const inFilter = options => {
+export const inFilter = (options: InputOptions) => {
   if (options) {
     Object.keys(options).forEach(key => {
       switch (key) {
         case 'address':
           if (isArray(options[key])) {
-            options[key] = options[key].map(inAddress);
+            options[key] = (options[key] as Array<string | number>).map(inAddress);
           } else {
-            options[key] = inAddress(options[key]);
+            options[key] = inAddress(options[key] as string);
           }
           break;
 
         case 'fromBlock':
         case 'toBlock':
-          options[key] = inBlockNumber(options[key]);
+          options[key] = inBlockNumber(options[key] as BlockNumber);
           break;
 
         case 'limit':
-          options[key] = inNumber10(options[key]);
+          options[key] = inNumber10(options[key] as BlockNumber);
           break;
 
         case 'topics':
-          options[key] = inTopics(options[key]);
+          options[key] = inTopics(options[key] as Array<any>);
       }
     });
   }
@@ -140,7 +140,7 @@ export const inOptionsCondition = (condition: {
   return null;
 };
 
-export const inOptions = (_options = {}) => {
+export const inOptions = (_options: InputOptions = {}) => {
   const options = Object.assign({}, _options);
 
   Object.keys(options).forEach(key => {
@@ -149,30 +149,30 @@ export const inOptions = (_options = {}) => {
         // Don't encode the `to` option if it's empty
         // (eg. contract deployments)
         if (options[key]) {
-          options.to = inAddress(options[key]);
+          options.to = inAddress(options[key] as string);
         }
         break;
 
       case 'from':
-        options[key] = inAddress(options[key]);
+        options[key] = inAddress(options[key] as string);
         break;
 
       case 'condition':
-        options[key] = inOptionsCondition(options[key]);
+        options[key] = inOptionsCondition(options[key] as InputOptionsConditions);
         break;
 
       case 'gas':
       case 'gasPrice':
-        options[key] = inNumber16(new BigNumber(options[key]).round());
+        options[key] = inNumber16(new BigNumber(options[key] as string).toFixed() as BlockNumber);
         break;
 
       case 'value':
       case 'nonce':
-        options[key] = inNumber16(options[key]);
+        options[key] = inNumber16(options[key] as BlockNumber);
         break;
 
       case 'data':
-        options[key] = inData(options[key]);
+        options[key] = inData(options[key] as string);
         break;
     }
   });
@@ -180,7 +180,7 @@ export const inOptions = (_options = {}) => {
   return options;
 };
 
-export const inTraceFilter = filterObject => {
+export const inTraceFilter = (filterObject: InputTraceHashMap) => {
   if (filterObject) {
     Object.keys(filterObject).forEach(key => {
       switch (key) {
@@ -193,7 +193,7 @@ export const inTraceFilter = filterObject => {
 
         case 'toBlock':
         case 'fromBlock':
-          filterObject[key] = inBlockNumber(filterObject[key]);
+          filterObject[key] = inBlockNumber(filterObject[key] as BlockNumber);
           break;
       }
     });
@@ -202,7 +202,7 @@ export const inTraceFilter = filterObject => {
   return filterObject;
 };
 
-export const inTraceType = whatTrace => {
+export const inTraceType = (whatTrace: InputTrace): InputTrace => {
   if (isString(whatTrace)) {
     return [whatTrace];
   }
@@ -210,13 +210,15 @@ export const inTraceType = whatTrace => {
   return whatTrace;
 };
 
-export const inDeriveType = derive => {
+export const inDeriveType = (derive: InputDeriveHashMap): string => {
   return derive && derive.type === 'hard' ? 'hard' : 'soft';
 };
 
-export const inDeriveHash = derive => {
-  const hash = derive && derive.hash ? derive.hash : derive;
-  const type = inDeriveType(derive);
+export const inDeriveHash = (derive: InputDeriveHashMap | string): InputDeriveHashMap => {
+  const hash = derive && (derive as InputDeriveHashMap).hash
+    ? ((derive as InputDeriveHashMap).hash) as string
+    : derive as string;
+  const type = inDeriveType(derive as InputDeriveHashMap);
 
   return {
     hash: inHex(hash),
@@ -224,7 +226,7 @@ export const inDeriveHash = derive => {
   };
 };
 
-export const inDeriveIndex = derive => {
+export const inDeriveIndex = (derive: Array<InputDeriveHashMap | BlockNumber> | InputDeriveHashMap): Array<InputDeriveIndexHashMap | number | null> => {
   if (!derive) {
     return [];
   }
@@ -233,12 +235,14 @@ export const inDeriveIndex = derive => {
     derive = [derive];
   }
 
-  return derive.map(item => {
-    const index = inNumber10(item && item.index ? item.index : item);
+  return (derive as Array<InputDeriveHashMap | BlockNumber>).map(item => {
+    const index = inNumber10(item && ((item as InputDeriveHashMap).index) as BlockNumber
+      ? ((item as InputDeriveHashMap).index) as BlockNumber
+      : (item as BlockNumber));
 
     return {
       index,
-      type: inDeriveType(item)
+      type: inDeriveType(item as InputDeriveHashMap)
     };
   });
 };

@@ -3,7 +3,7 @@
 //
 // SPDX-License-Identifier: MIT
 
-import { Api, ContractInstance } from './types';
+import { Api, ContractInstance } from '@parity/api/src/types';
 import mockApi from './utils/testHelpers';
 import Registry from './registry';
 

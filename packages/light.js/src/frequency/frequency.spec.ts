@@ -88,6 +88,6 @@ Object.keys(frequency).forEach(key =>
   testFrequency(
     key,
     (frequency as FrequencyMap)[key as FrequencyKey],
-    key.includes('Account') ? ['foo'] : 4 // Give string[] for accounts pubsub, or number elsewhere
+    key.includes('Account') ? ['foo'] : 4 // Give string[] for accounts pub-sub, or number elsewhere
   )
 );

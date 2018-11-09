@@ -92,7 +92,7 @@ class Ws extends JsonRpcBase {
     this._connected = false;
     this._lastError = null;
 
-    // rpc secure API
+    // RPC secure API
     if (this._token) {
       const time = parseInt(new Date().getTime() / 1000, 10);
       const sha3 = keccak_256(`${this._token}:${time}`);
@@ -215,7 +215,7 @@ class Ws extends JsonRpcBase {
     const { result: res, id, method, params } = result;
     const msg = this._messages[id];
 
-    // initial pubsub ACK
+    // initial pub-sub ACK
     if (id && msg.subscription) {
       // save subscription to map subId -> messageId
       this._subscriptions[msg.subscription] = this._subscriptions[msg.subscription] || {};
@@ -232,7 +232,7 @@ class Ws extends JsonRpcBase {
       return msg;
     }
 
-    // pubsub format
+    // pub-sub format
     if (this._subscriptions[method]) {
       const messageId = this._messages[this._subscriptions[method][params.subscription]];
 

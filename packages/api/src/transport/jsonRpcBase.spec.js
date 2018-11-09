@@ -1,4 +1,4 @@
-// Copyright 2015-2017 Parity Technologies (UK) Ltd.
+// Copyright 2015-2018 Parity Technologies (UK) Ltd.
 // This file is part of Parity.
 
 // Parity is free software: you can redistribute it and/or modify
@@ -36,7 +36,7 @@ describe('transport/JsonRpcBase', () => {
       });
     });
 
-    it('intialises Middleware added', (done) => {
+    it('initialises Middleware added', (done) => {
       const base2 = new JsonRpcBase();
 
       class Middleware {

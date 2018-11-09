@@ -30,7 +30,7 @@ These are the most important fields of `MetaData`, which we will explain.
 
 ## Main Idea
 
-We believe that data streams are an intuitive way to express events happening on the Ethereum blockchain. The most obvious example is the pubsub pattern we described [before](/concepts/light-client-development.html#pubsub), where we wanted to fetch the balance on every new block.
+We believe that data streams are an intuitive way to express events happening on the Ethereum blockchain. The most obvious example is the pub-sub pattern we described [before](/concepts/light-client-development.html#pubsub), where we wanted to fetch the balance on every new block.
 
 It's intuitive to have an Observable, called `onEveryBlock$`, that would fire an event each time it receives a new block from the network. Then, every time it fires, we declaratively make an JSONRPC call to `eth_getBalance`. Into code, it looks like this:
 

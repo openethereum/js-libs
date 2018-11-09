@@ -1,4 +1,4 @@
-// Copyright 2015-2017 Parity Technologies (UK) Ltd.
+// Copyright 2015-2018 Parity Technologies (UK) Ltd.
 // This file is part of Parity.
 
 // Parity is free software: you can redistribute it and/or modify
@@ -16,6 +16,7 @@
 
 /* eslint-disable no-unused-expressions */
 
+// FIXME - where is this file '../../test/e2e/ethapi'
 const { createHttpApi } = require('../../test/e2e/ethapi');
 
 describe('ethapi.parity', () => {
@@ -48,6 +49,7 @@ describe('ethapi.parity', () => {
   });
 
   describe('netChain', () => {
+    // FIXME - should this be 'returns and translates the chain'
     it('returns and the chain', () => {
       return ethapi.parity.netChain().then((value) => {
         expect(value).toEqual('morden');

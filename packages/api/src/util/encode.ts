@@ -61,7 +61,7 @@ export const abiEncode = (
 /**
  * Unencode a method.
  *
- * @param abi - The Abi to unencode.
+ * @param abi - The ABI to unencode.
  * @param data - The data passed to this method.
  */
 export const abiUnencode = (abi: AbiObject, data: string) => {
@@ -98,7 +98,7 @@ export const abiUnencode = (abi: AbiObject, data: string) => {
 };
 
 /**
- * Get the signature of an Abi method.
+ * Get the signature of an ABI method.
  *
  * @param name - The name of the method.
  * @param inputs - The inputs' types of this method.

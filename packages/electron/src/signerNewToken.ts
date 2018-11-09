@@ -10,7 +10,7 @@ import logCommand from './utils/logCommand';
 import logger from './utils/logger';
 
 /**
- * Runs parity signer new-token and resolves with a new secure token to be
+ * Runs `parity signer new-token` and resolves with a new secure token to be
  * used in a dapp. Rejects if no token could be extracted.
  */
 export function signerNewToken(): Promise<string> {

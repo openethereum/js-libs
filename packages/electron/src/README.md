@@ -1,6 +1,6 @@
 # @parity/electron
 
-Control the Parity Ethereum client from electron.
+Control the Parity Ethereum client from Electron.
 
 [![Build Status](https://travis-ci.org/paritytech/js-libs.svg?branch=master)](https://travis-ci.org/paritytech/js-libs)
 [![npm (scoped)](https://img.shields.io/npm/v/@parity/electron.svg)](https://www.npmjs.com/package/@parity/electron)

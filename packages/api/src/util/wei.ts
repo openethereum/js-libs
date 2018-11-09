@@ -22,9 +22,9 @@ const UNITS: EtherDenomination[] = [
 ];
 
 /**
- * Returns the multiplication factor from wei to another ether denomination.
+ * Returns the multiplication factor from wei to another Ether denomination.
  *
- * @param unit - An ether denomiation.
+ * @param unit - An Ether denomination.
  * @example
  * _getUnitMultiplier('wei'); // 1
  * _getUnitMultiplier('ether'); // 10^^18
@@ -41,10 +41,10 @@ export const _getUnitMultiplier = (unit: EtherDenomination) => {
 };
 
 /**
- * Convert from wei to another ether denomination.
+ * Convert from wei to another Ether denomination.
  *
  * @param value - The value in wei.
- * @param unit - The ether denomination to convert to.
+ * @param unit - The Ether denomination to convert to.
  */
 export const fromWei = (
   value: string | number | BigNumber,
@@ -52,10 +52,10 @@ export const fromWei = (
 ) => new BigNumber(value).dividedBy(_getUnitMultiplier(unit));
 
 /**
- * Convert a value from an ether denomination to wei.
+ * Convert a value from an Ether denomination to wei.
  *
- * @param value - The value in the ether denomination.
- * @param unit - The ether denomination to convert to.
+ * @param value - The value in the Ether denomination.
+ * @param unit - The Ether denomination to convert to.
  */
 export const toWei = (
   value: string | number | BigNumber,

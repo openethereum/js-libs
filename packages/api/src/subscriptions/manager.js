@@ -1,4 +1,4 @@
-// Copyright 2015-2017 Parity Technologies (UK) Ltd.
+// Copyright 2015-2018 Parity Technologies (UK) Ltd.
 // This file is part of Parity.
 
 // Parity is free software: you can redistribute it and/or modify
@@ -46,7 +46,7 @@ class Manager {
       };
     });
 
-    // in the case of a pubsub compliant, don't use the engines
+    // in the case of a pub-sub compliant, don't use the engines
     if (this._api.isPubSub) {
       return;
     }

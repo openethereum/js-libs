@@ -4,7 +4,7 @@
 // SPDX-License-Identifier: MIT
 
 import * as abis from './abi';
-import { Api, Contract, ContractInstance } from './types';
+import { Api, Contract, ContractInstance } from '@parity/api/src/types';
 
 interface QueueItem {
   resolve(...args: any[]): void;

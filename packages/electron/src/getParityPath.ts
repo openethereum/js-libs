@@ -17,7 +17,7 @@ import logger from './utils/logger';
 const fsStat = promisify(stat);
 
 /**
- * The default path to install parity, in case there's no other instance found
+ * The default path to install Parity Ethereum, in case there's no other instance found
  * on the machine.
  */
 export function defaultParityPath() {
@@ -29,7 +29,7 @@ export function defaultParityPath() {
 }
 
 /**
- * The real parity path, will be populated after doesParityExist Promise resolves.
+ * The real Parity Ethereum path, will be populated after doesParityExist Promise resolves.
  *
  * @ignore
  */
@@ -49,12 +49,12 @@ const isParityInPath = async () => {
 };
 
 /**
- * Test if Parity is in the common OS locations.
+ * Test if Parity Ethereum is in the common OS locations.
  *
  * @ignore
  */
 const isParityInOs = async (): Promise<string> => {
-  // OS locations to test if parity binary exists
+  // OS locations to test if `parity` binary exists
   const locations: {
     [key: string]: string[];
   } = {
@@ -70,7 +70,7 @@ const isParityInOs = async (): Promise<string> => {
 };
 
 /**
- * Test is Parity is already downloaded in electron app's userData folder.
+ * Test if Parity Ethereum is already downloaded in Electron app's userData folder.
  *
  * @ignore
  */
@@ -81,25 +81,25 @@ const isParityInUserData = async () => {
 };
 
 /**
- * This function checks if parity has been installed on the local machine:
+ * This function checks if Parity Ethereum has been installed on the local machine:
  * - first check if the program is in $PATH, using `command-exists`
- * - then check the OS default installation dir if a parity folder exists
- * - finally check fether's own userData folder
+ * - then check the OS default installation dir if a Parity Ethereum folder exists
+ * - finally check Fether's own userData folder
  * This function should run in node env.
  *
  * @ignore
- * @return Promise<string> - Resolves to a string which is the command to run parity.
+ * @return Promise<string> - Resolves to a string which is the command to run Parity Ethereum.
  */
 const doesParityExist = () =>
   isParityInPath()
     .catch(isParityInOs)
     .catch(isParityInUserData)
     .catch(_ => {
-      throw new Error('Parity not found.');
+      throw new Error('Parity Ethereum not found.');
     });
 
 /**
- * Returns the path to Parity, or throws if parity is not found.
+ * Returns the path to Parity Ethereum, or throws if Parity Ethereum is not found.
  */
 export async function getParityPath() {
   if (parityPath) {
@@ -109,11 +109,11 @@ export async function getParityPath() {
     const path = await doesParityExist();
     parityPath = path; // Save the final result in module variable
     logger()('@parity/electron:main')(
-      `Parity found on machine, can be run with "${path}".`
+      `Parity Ethereum found on machine, can be run with "${path}".`
     );
     return path;
   } catch (err) {
-    logger()('@parity/electron:main')(`Parity not found on machine.`);
+    logger()('@parity/electron:main')(`Parity Ethereum not found on machine.`);
     throw err;
   }
 }

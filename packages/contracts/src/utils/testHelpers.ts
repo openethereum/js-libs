@@ -5,7 +5,7 @@
 
 import * as apiutil from '@parity/api/lib/util';
 
-import { ContractInstance } from '../types';
+import { ContractInstance } from '@parity/api/src/types';
 
 /**
  * @ignore

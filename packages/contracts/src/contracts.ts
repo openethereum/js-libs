@@ -3,7 +3,7 @@
 //
 // SPDX-License-Identifier: MIT
 
-import { Api } from './types';
+import { Api } from '@parity/api/src/types';
 import DappReg from './dappreg';
 import Registry from './registry';
 import SignatureReg from './signaturereg';

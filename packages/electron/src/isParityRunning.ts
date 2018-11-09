@@ -15,7 +15,7 @@ interface IsParityRunningOptions {
 }
 
 /**
- * Detect if another instance of parity is already running or not. To achieve
+ * Detect if another instance of Parity Ethereum is already running or not. To achieve
  * that, we just ping on the common hosts.
  */
 export async function isParityRunning(
@@ -32,7 +32,7 @@ export async function isParityRunning(
     };
 
     /**
-     * Try to ping these hosts to test if Parity is running.
+     * Try to ping these hosts to test if Parity Ethereum is running.
      */
     const hostsToPing = [
       'http://127.0.0.1:8545',
@@ -46,7 +46,7 @@ export async function isParityRunning(
       axios.get(host)
         .then(_ => {
           logger()('@parity/electron:main')(
-            `Another instance of parity is already running on ${host}, skip running local instance.`
+            `Another instance of Parity Ethereum is already running on ${host}, skip running local instance.`
           );
           resolve(true)
         })

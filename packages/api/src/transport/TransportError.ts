@@ -42,7 +42,7 @@ class TransportError extends Error {
    */
   public method: string;
   /**
-   * The message of the
+   * The message of the RPC call.
    */
   public text: string;
   /**

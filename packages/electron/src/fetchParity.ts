@@ -79,19 +79,19 @@ const getOs = () => {
 };
 
 /**
- * Remove parity binary or partial binary in the userData folder, if it exists.
+ * Remove Parity Ethereum binary or partial binary in the userData folder, if it exists.
  */
 export async function deleteParity() {
   const parityPath = await defaultParityPath();
 
-  // Remove parity binary
+  // Remove Parity Ethereum binary
   try {
     await fsUnlink(parityPath);
   } catch (e) {
     /* Do nothing if error. */
   }
 
-  // Remove parity partial binary (download was still in progress)
+  // Remove Parity Ethereum partial binary (download was still in progress)
   try {
     await fsUnlink(`${parityPath}.part`);
   } catch (e) {
@@ -100,7 +100,7 @@ export async function deleteParity() {
 }
 
 /**
- * Downloads Parity, saves it to Electron's `userData` folder, and returns the
+ * Downloads Parity Ethereum, saves it to Electron's `userData` folder, and returns the
  * path to the downloaded binary once finished.
  */
 export async function fetchParity(
@@ -127,11 +127,11 @@ export async function fetchParity(
           logger()('@parity/electron:main')('Retrying.');
         }
 
-        // Delete any old Parity if it exists, otherwise electron-dl will
+        // Delete any old Parity Ethereum if it exists, otherwise electron-dl will
         // download the new binary with a (1) at the end of the filename
         await deleteParity();
 
-        // Fetch the metadata of the correct version of parity
+        // Fetch the metadata of the correct version of Parity Ethereum
         const metadataUrl = `${VANITY_URL}?version=${parityChannel}&os=${getOs()}&architecture=${getArch()}`;
         logger()('@parity/electron:main')(`Downloading from ${metadataUrl}.`);
         const { data } = await axios.get(metadataUrl);
@@ -178,7 +178,7 @@ export async function fetchParity(
         // Binary is ready to be used: remove `.part` from filename
         await fsRename(downloadPath, await defaultParityPath());
 
-        // Double-check that Parity exists now.
+        // Double-check that Parity Ethereum exists now.
         return getParityPath();
       },
       {

@@ -24,11 +24,11 @@ const fsChmod = promisify(chmod);
 /**
  * @ignore
  */
-let parity: ChildProcess = null; // Will hold the running parity instance
+let parity: ChildProcess = null; // Will hold the running Parity Ethereum instance
 
 /**
- * These are errors output by parity, which we should ignore (i.e. don't
- * panic). They happen when an instance of parity is already running, and
+ * These are errors output by Parity Etherum, which we should ignore (i.e. don't
+ * panic). They happen when an instance of Parity Ethereum is already running, and
  * parity-electron tries to launch another one.
  *
  * @ignore
@@ -39,7 +39,7 @@ const catchableErrors = [
 ];
 
 /**
- * Spawns a child process to run Parity.
+ * Spawns a child process to run Parity Ethereum.
  */
 export async function runParity(
   options: RunParityOptions = {
@@ -58,7 +58,7 @@ export async function runParity(
   };
   const parityPath = await getParityPath();
 
-  // Some users somehow had no +x on the parity binary after downloading
+  // Some users somehow had no +x on the `parity` binary after downloading
   // it. We try to set it here (no guarantee it will work, we might not
   // have rights to do it).
   try {
@@ -69,20 +69,20 @@ export async function runParity(
 
   return new Promise((resolve, reject) => {
 
-    let logLastLine = ''; // Always contains last line of the Parity logs
+    let logLastLine = ''; // Always contains last line of the Parity Ethereum logs
 
-    // Run an instance of parity with the correct flags
+    // Run an instance of Parity Ethereum with the correct flags
     parity = spawn(parityPath, flags);
     logger()('@parity/electron:main')(logCommand(parityPath, flags));
 
     // Save in memory the last line of the log file, for handling error
     const callback = (data: Buffer) => {
-      // `parity signer new-token` requires Parity's folders to have already
-      // been created. In order to be able to run `parity signer new-token`
-      // right after runParity resolves, we want runParity to resolve once
-      // Parity was launched and has set up its folders (if it's a first run).
-      // As a heuristic, we resolve as soon as Parity outputs to stdout/stderr:
-      // this happens just after the directories have been set up,
+      // `parity signer new-token` requires Parity Ethereum's folders to have
+      // already been created. In order to be able to run `parity signer new-token`
+      // right after runParity resolves, we want runParity to resolve once Parity
+      // Ethereum was launched and has set up its folders (if it's a first run).
+      // As a heuristic, we resolve as soon as Parity Ethereum outputs to
+      // stdout/stderr: this happens just after the directories have been set up,
       // see https://git.io/fx9JE
       resolve();
 
@@ -102,16 +102,16 @@ export async function runParity(
         return;
       }
 
-      // When there's already an instance of parity running, then the log
+      // When there's already an instance of `parity` running, then the log
       // is logging a particular line, see below. In this case, we just
-      // silently ignore our local instance, and let the 1st parity
+      // silently ignore our local instance, and let the 1st `parity`
       // instance be the main one.
       if (
         logLastLine &&
         catchableErrors.some(error => logLastLine.includes(error))
       ) {
         logger()('@parity/electron:main')(
-          'Another instance of parity is running, closing local instance.'
+          'Another instance of Parity Ethereum is running, closing local instance.'
         );
         return;
       }

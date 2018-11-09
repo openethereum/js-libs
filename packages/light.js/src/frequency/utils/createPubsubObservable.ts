@@ -13,7 +13,7 @@ import { createApiFromProvider, getApi } from '../../api';
 import { distinctReplayRefCount } from '../../utils/operators/distinctReplayRefCount';
 
 /**
- * Given an api, returns an Observable that emits on each pubsub event.
+ * Given an api, returns an Observable that emits on each pub-sub event.
  * Pure function version of {@link createPubsubObservable}.
  *
  * @ignore
@@ -22,7 +22,7 @@ const createPubsubObservableWithApi = memoizee(
   <T>(pubsub: string, api: any) => {
     const [namespace, method] = pubsub.split('_');
 
-    // There's a chance the provider doesn't support pubsub, for example
+    // There's a chance the provider doesn't support pub-sub, for example
     // MetaMaskProvider. In this case, as suggested on their Github, the best
     // solution for now is to poll.
     if (!api.isPubSub) {
@@ -57,7 +57,7 @@ const createPubsubObservableWithApi = memoizee(
 );
 
 /**
- * Given a provider, returns an Observable that emits on each pubsub event.
+ * Given a provider, returns an Observable that emits on each pub-sub event.
  *
  * @ignore
  * @example onAccountsChanged$, onEveryBlock$...

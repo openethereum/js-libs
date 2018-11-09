@@ -62,9 +62,9 @@ setTimeout(function update() {
 });
 ```
 
-### 3. Pubsub
+### 3. Pub-sub
 
-A more intelligent way would be to have a "push" mechanism instead of a "pull" mechanism. With pubsub, we can subscribe to changes on the network. Here, we subscribing to new headers, and updating balance each time we receive a new header.
+A more intelligent way would be to have a "push" mechanism instead of a "pull" mechanism. With pub-sub, we can subscribe to changes on the network. Here, we subscribing to new headers, and updating balance each time we receive a new header.
 
 ```javascript
 const contract = web3.eth.Contract(ABI, '0x00..ff');

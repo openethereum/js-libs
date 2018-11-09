@@ -78,13 +78,13 @@ import { blockNumber$ } from '@parity/light.js';
 
 const myObs$ = blockNumber$();
 console.log(blockNumber$.frequency); // [onEveryBlock$]
-// Note: onEveryBlock$ creates a pubsub on `eth_blockNumber`
+// Note: onEveryBlock$ creates a pub-sub on `eth_blockNumber`
 
 const subscription = myObs$.subscribe(console.log);
-// Creates a pubsub subscription
+// Creates a pub-sub subscription
 
 // Some other code...
 
 subscription.unsubscribe();
-// Drops the pubsub subscription
+// Drops the pub-sub subscription
 ```
