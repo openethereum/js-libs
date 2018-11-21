@@ -34,7 +34,7 @@ const listOfMockRps: { [index: string]: string[] } = {
  * @ignore
  */
 const createApi = (
-  resolveWith: string | { error: string } | Error,
+  resolveWith: string | object | { error: string } | Error,
   isPubSub: boolean,
   isError: boolean
 ) => {
@@ -111,6 +111,6 @@ export const rejectApi = (
  * @ignore
  */
 export const resolveApi = (
-  resolveWith: string | { error: string } = 'foo',
+  resolveWith: string | object | { error: string } = 'foo',
   isPubsub: boolean = true
 ) => createApi(resolveWith, isPubsub, false);
