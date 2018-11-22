@@ -43,12 +43,7 @@ export const methodSignature = (
  *
  * @param name - Name to parse.
  */
-export const parseName = (
-  name: string | undefined
-): {
-  strName: string;
-  name: string;
-} => {
+export const parseName = (name: string | undefined) => {
   const strName = `${name || ''}`;
   const index = strName.indexOf('(');
 
