@@ -13,7 +13,7 @@ import logger from './utils/logger';
  * Runs parity signer new-token and resolves with a new secure token to be
  * used in a dapp. Rejects if no token could be extracted.
  */
-export function signerNewToken(): Promise<string> {
+export function signerNewToken (): Promise<string> {
   return new Promise(async (resolve, reject) => {
     logger()('@parity/electron:main')('Requesting new token.');
 

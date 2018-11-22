@@ -24,7 +24,7 @@ const fsChmod = promisify(chmod);
 /**
  * @ignore
  */
-let parity: ChildProcess = null; // Will hold the running parity instance
+let parity: ChildProcess | null = null; // Will hold the running parity instance
 
 /**
  * These are errors output by parity, which we should ignore (i.e. don't
@@ -41,7 +41,7 @@ const catchableErrors = [
 /**
  * Spawns a child process to run Parity.
  */
-export async function runParity(
+export async function runParity (
   options: RunParityOptions = {
     flags: [],
     onParityError: () => {
@@ -68,7 +68,6 @@ export async function runParity(
   }
 
   return new Promise((resolve, reject) => {
-
     let logLastLine = ''; // Always contains last line of the Parity logs
 
     // Run an instance of parity with the correct flags
@@ -119,7 +118,7 @@ export async function runParity(
       // Otherwise, if the exit code is not 0, then we show some error message
       onParityError(new Error(`Exit code ${exitCode}, with signal ${signal}.`));
     });
-  })
+  });
 }
 
 /**
@@ -127,7 +126,7 @@ export async function runParity(
  * process. However, there's no guarantee that Parity has been cleanly killed,
  * and the Promise resolves instantly.
  */
-export function killParity() {
+export function killParity () {
   if (parity) {
     logger()('Stopping parity.');
     parity.kill();

@@ -20,7 +20,7 @@ const fsStat = promisify(stat);
  * The default path to install parity, in case there's no other instance found
  * on the machine.
  */
-export function defaultParityPath() {
+export function defaultParityPath () {
   return Promise.resolve(
     `${app.getPath('userData')}/parity${
       process.platform === 'win32' ? '.exe' : ''
@@ -33,7 +33,7 @@ export function defaultParityPath() {
  *
  * @ignore
  */
-let parityPath: string;
+let parityPath: string | undefined;
 
 /**
  * Test if `parity` command is in $PATH.
@@ -45,6 +45,8 @@ const isParityInPath = async () => {
   if (parityCommandExists) {
     // If yes, return `parity` as command to launch parity
     return 'parity';
+  } else {
+    throw new Error('Parity not in path.');
   }
 };
 
@@ -101,7 +103,7 @@ const doesParityExist = () =>
 /**
  * Returns the path to Parity, or throws if parity is not found.
  */
-export async function getParityPath() {
+export async function getParityPath () {
   if (parityPath) {
     return parityPath;
   }
