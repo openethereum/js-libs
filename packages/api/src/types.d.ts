@@ -12,7 +12,8 @@ export type BlockNumber =
   | 'latest'
   | 'pending'
   | number
-  | BigNumber;
+  | BigNumber
+  | string;
 
 export type EtherDenomination =
   | 'wei'
