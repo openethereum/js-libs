@@ -10,18 +10,18 @@ export default class SignatureReg {
   private _api: Api;
   private _registry: Registry;
 
-  constructor(api: Api, registry: Registry) {
+  constructor (api: Api, registry: Registry) {
     this._api = api;
     this._registry = registry;
 
     this.getInstance();
   }
 
-  getInstance() {
+  getInstance () {
     return this._registry.getContractInstance('signaturereg');
   }
 
-  lookup(signature: string) {
+  lookup (signature: string) {
     return this.getInstance().then((instance: ContractInstance) => {
       return instance.entries.call({}, [signature]);
     });

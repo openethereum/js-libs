@@ -11,7 +11,7 @@ import TokenReg from './tokenreg';
 import GithubHint from './githubhint';
 import BadgeReg from './badgereg';
 
-let instance: Contracts = null;
+let instance: Contracts | undefined;
 
 export default class Contracts {
   private _api: Api;
@@ -22,7 +22,7 @@ export default class Contracts {
   private _signaturereg: SignatureReg;
   private _tokenreg: TokenReg;
 
-  constructor(api: Api) {
+  constructor (api: Api) {
     instance = this;
 
     this._api = api;
@@ -34,31 +34,31 @@ export default class Contracts {
     this._badgeReg = new BadgeReg(api, this._registry);
   }
 
-  get registry() {
+  get registry () {
     return this._registry;
   }
 
-  get badgeReg() {
+  get badgeReg () {
     return this._badgeReg;
   }
 
-  get dappReg() {
+  get dappReg () {
     return this._dappreg;
   }
 
-  get signatureReg() {
+  get signatureReg () {
     return this._signaturereg;
   }
 
-  get tokenReg() {
+  get tokenReg () {
     return this._tokenreg;
   }
 
-  get githubHint() {
+  get githubHint () {
     return this._githubhint;
   }
 
-  static get(api: Api) {
+  static get (api: Api) {
     if (!instance) {
       instance = new Contracts(api);
     }

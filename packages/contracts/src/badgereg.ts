@@ -27,21 +27,21 @@ export default class BadgeReg {
   public certifiers: Metadata[] = [];
   public contracts: {
     [key: string]: Contract;
-  };
+  } = {};
   private _registry: Registry;
 
-  constructor(api: Api, registry: Registry) {
+  constructor (api: Api, registry: Registry) {
     this._api = api;
     this._registry = registry;
 
     registry.getContract('badgereg');
   }
 
-  getContract() {
+  getContract () {
     return this._registry.getContract('badgereg');
   }
 
-  certifierCount() {
+  certifierCount () {
     return this.getContract().then((badgeReg: Contract) => {
       return badgeReg.instance.badgeCount
         .call({}, [])
@@ -49,7 +49,7 @@ export default class BadgeReg {
     });
   }
 
-  fetchCertifier(id: number) {
+  fetchCertifier (id: number) {
     if (this.certifiers[id]) {
       return Promise.resolve(this.certifiers[id]);
     }
@@ -75,7 +75,7 @@ export default class BadgeReg {
       });
   }
 
-  fetchCertifierByName(name: string) {
+  fetchCertifierByName (name: string) {
     return this.getContract()
       .then((badgeReg: Contract) => {
         return badgeReg.instance.fromName.call({}, [name]);
@@ -94,7 +94,7 @@ export default class BadgeReg {
       });
   }
 
-  fetchMeta(id: number) {
+  fetchMeta (id: number) {
     return this.getContract()
       .then((badgeReg: Contract) => {
         return Promise.all([
@@ -106,15 +106,17 @@ export default class BadgeReg {
         title = bytesToHex(title).replace(/(00)+$/, '');
         title = title === ZERO32 ? null : hexToAscii(title);
 
+        let resultIcon: string | null = icon;
+
         if (bytesToHex(icon) === ZERO32) {
-          icon = null;
+          resultIcon = null;
         }
 
         return { title, icon };
       });
   }
 
-  checkIfCertified(certifier: string, address: string) {
+  checkIfCertified (certifier: string, address: string) {
     if (!this.contracts[certifier]) {
       this.contracts[certifier] = this._api.newContract(ABI, certifier);
     }
