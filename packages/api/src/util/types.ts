@@ -3,5 +3,4 @@
 //
 // SPDX-License-Identifier: MIT
 
-// TODO '@parity/abi/lib/util/types' doesn't pass tests
-export * from '@parity/abi/src/util/types';
+export * from '@parity/abi/lib/util/types';

@@ -9,6 +9,8 @@ import { BlockNumber } from '../types';
 import { isArray, isHex, isInstanceOf, isString } from '../util/types';
 import { padLeft, toHex } from '../util/format';
 
+type Topic = string | undefined;
+
 /**
  * Validate input address.
  *
@@ -56,18 +58,20 @@ export const inHash = (hash: string) => {
   return inHex(hash);
 };
 
-export const inTopics = topics => {
-  return (topics || []).filter(topic => topic === null || topic).map(topic => {
-    if (topic === null) {
-      return null;
-    }
+export const inTopics = (topics: Topic[]): Topic[] => {
+  return (topics || [])
+    .filter(topic => topic === null || topic)
+    .map(topic => {
+      if (topic === null) {
+        return null;
+      }
 
-    if (Array.isArray(topic)) {
-      return inTopics(topic);
-    }
+      if (Array.isArray(topic)) {
+        return inTopics(topic);
+      }
 
-    return padLeft(topic, 32);
-  });
+      return padLeft(topic, 32);
+    });
 };
 
 export const inFilter = options => {
@@ -112,7 +116,7 @@ export const inNumber10 = (n: BlockNumber) => {
 
 export const inNumber16 = (n: BlockNumber) => {
   const bn = isInstanceOf(n, BigNumber)
-    ? n as BigNumber
+    ? (n as BigNumber)
     : new BigNumber(n || 0);
 
   if (!bn.isInteger()) {

@@ -39,7 +39,7 @@ describe('util/decode', () => {
 
   describe('decodeMethodInput', () => {
     it('expects a valid ABI', () => {
-      expect(() => decodeMethodInput(null, null)).toThrow(
+      expect(() => decodeMethodInput(null as any, null as any)).toThrow(
         /should receive valid method/
       );
     });
@@ -51,7 +51,7 @@ describe('util/decode', () => {
     });
 
     it('correct decodes null inputs', () => {
-      expect(decodeMethodInput({}, null)).toEqual([]);
+      expect(decodeMethodInput({})).toEqual([]);
     });
 
     it('correct decodes empty inputs', () => {

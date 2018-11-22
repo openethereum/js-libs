@@ -58,7 +58,7 @@ describe('util/encode', () => {
     });
 
     it('encodes only the data with null name', () => {
-      expect(abiEncode(null, ['uint256', 'bool'], [0x123, true])).toEqual(
+      expect(abiEncode(undefined, ['uint256', 'bool'], [0x123, true])).toEqual(
         `0x${RESULT.substr(8)}`
       );
     });
