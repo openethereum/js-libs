@@ -17,9 +17,8 @@
 import BigNumber from 'bignumber.js';
 import { isAddress } from '@parity/abi/lib/util/address';
 
+import { FilterOptions, Options } from '../types';
 import {
-  FilterOptions,
-  Options,
   inAddress,
   inAddresses,
   inBlockNumber,

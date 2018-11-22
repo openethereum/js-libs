@@ -5,46 +5,19 @@
 
 import BigNumber from 'bignumber.js';
 
-import { BlockNumber } from '../types';
+import {
+  BlockNumber,
+  Condition,
+  DeriveObject,
+  Derive,
+  FilterObject,
+  FilterOptions,
+  Options,
+  Topic
+} from '../types';
 import { isArray, isHex, isInstanceOf, isString } from '../util/types';
 import { padLeft, toHex } from '../util/format';
-
-export type Condition = {
-  block?: BlockNumber;
-  time?: Date;
-} | null;
-export interface DeriveObject {
-  hash?: number;
-  index?: number;
-  type?: string;
-}
-export type Derive = number | string | DeriveObject | null;
-export interface FilterObject {
-  fromAddress?: string;
-  fromBlock?: BlockNumber;
-  toAddress?: string;
-  toBlock?: BlockNumber;
-}
-export interface FilterOptions {
-  address?: string | string[];
-  extraData?: string;
-  fromBlock?: BlockNumber;
-  limit?: BlockNumber;
-  toBlock?: BlockNumber;
-  topics?: Topic[];
-}
-export interface Options {
-  extraData?: string;
-  from?: string;
-  condition?: Condition;
-  gas?: BlockNumber;
-  gasPrice?: BlockNumber;
-  value?: BlockNumber;
-  nonce?: BlockNumber;
-  to?: string;
-  data?: any;
-}
-export type Topic = string | null;
+import { SerializedCondition, SerializedTransaction } from './types.serialized';
 
 /**
  * Validate input address.
@@ -178,14 +151,14 @@ export const inNumber16 = (n?: BlockNumber) => {
   return inHex(bn.toString(16));
 };
 
-export const inOptionsCondition = (condition?: Condition) => {
+export const inOptionsCondition = (condition?: Condition | null) => {
   if (condition) {
     return {
       block: condition.block ? inNumber10(condition.block) : null,
       time: condition.time
         ? inNumber10(Math.floor(condition.time.getTime() / 1000))
         : null
-    };
+    } as SerializedCondition;
   }
 
   return null;
@@ -194,20 +167,7 @@ export const inOptionsCondition = (condition?: Condition) => {
 export const inOptions = (_options: Options = {}) => {
   const options = Object.assign({}, _options);
 
-  const result: {
-    extraData?: string;
-    to?: string;
-    from?: string;
-    condition?: {
-      block?: number | null;
-      time?: number | null;
-    } | null;
-    gas?: string;
-    gasPrice?: string;
-    value?: string;
-    nonce?: string;
-    data?: string;
-  } = {};
+  const result: SerializedTransaction = {};
 
   Object.keys(options).forEach(key => {
     switch (key) {

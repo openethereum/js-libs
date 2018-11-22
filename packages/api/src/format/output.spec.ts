@@ -14,12 +14,29 @@
 // You should have received a copy of the GNU General Public License
 // along with Parity.  If not, see <http://www.gnu.org/licenses/>.
 
-/* eslint-disable no-unused-expressions */
+import BigNumber from 'bignumber.js';
+import { isAddress } from '@parity/abi/lib/util/address';
+import { isInstanceOf } from '@parity/abi/lib/util/types';
 
-const BigNumber = require('bignumber.js');
-
-const { outBlock, outAccountInfo, outAddress, outChainStatus, outDate, outHistogram, outHwAccountInfo, outNodeKind, outNumber, outPeer, outPeers, outReceipt, outRecentDapps, outSyncing, outTransaction, outTrace, outVaultMeta } = require('./output');
-const { isAddress, isBigNumber, isInstanceOf } = require('../../test/types');
+import {
+  outBlock,
+  outAccountInfo,
+  outAddress,
+  outChainStatus,
+  outDate,
+  outHistogram,
+  outHwAccountInfo,
+  outNodeKind,
+  outNumber,
+  outPeer,
+  outPeers,
+  outReceipt,
+  outSyncing,
+  outTransaction,
+  outTrace,
+  outVaultMeta
+} from './output';
+import { SerializedBlock } from './types.serialized';
 
 describe('format/output', () => {
   const address = '0x63cf90d3f0410092fc0fca41846f596223979195';
@@ -27,21 +44,29 @@ describe('format/output', () => {
 
   describe('outAccountInfo', () => {
     it('returns meta objects parsed', () => {
-      expect(outAccountInfo(
-        { '0x63cf90d3f0410092fc0fca41846f596223979195': {
-          name: 'name', uuid: 'uuid', meta: '{"name":"456"}' }
-        }
-      )).toEqual({
+      expect(
+        outAccountInfo({
+          '0x63cf90d3f0410092fc0fca41846f596223979195': {
+            name: 'name',
+            uuid: 'uuid',
+            meta: '{"name":"456"}'
+          }
+        })
+      ).toEqual({
         '0x63Cf90D3f0410092FC0fca41846f596223979195': {
-          name: 'name', uuid: 'uuid', meta: { name: '456' }
+          name: 'name',
+          uuid: 'uuid',
+          meta: { name: '456' }
         }
       });
     });
 
     it('returns objects without meta & uuid as required', () => {
-      expect(outAccountInfo(
-        { '0x63cf90d3f0410092fc0fca41846f596223979195': { name: 'name' } }
-      )).toEqual({
+      expect(
+        outAccountInfo({
+          '0x63cf90d3f0410092fc0fca41846f596223979195': { name: 'name' }
+        })
+      ).toEqual({
         '0x63Cf90D3f0410092FC0fca41846f596223979195': { name: 'name' }
       });
     });
@@ -58,44 +83,53 @@ describe('format/output', () => {
   });
 
   describe('outBlock', () => {
-    ['author', 'miner'].forEach((input) => {
+    ['author', 'miner'].forEach(input => {
       it(`formats ${input} address as address`, () => {
-        const block = {};
+        const block: SerializedBlock = {};
 
-        block[input] = address;
-        const formatted = outBlock(block)[input];
+        block[input as keyof SerializedBlock] = address;
+        const formatted = outBlock(block)[input as keyof SerializedBlock];
 
-        expect(isAddress(formatted)).toBe.true;
+        expect(isAddress(formatted)).toBe(true);
         expect(formatted).toEqual(checksum);
       });
     });
 
-    ['difficulty', 'gasLimit', 'gasUsed', 'number', 'nonce', 'totalDifficulty'].forEach((input) => {
+    [
+      'difficulty',
+      'gasLimit',
+      'gasUsed',
+      'number',
+      'nonce',
+      'totalDifficulty'
+    ].forEach(input => {
       it(`formats ${input} number as hexnumber`, () => {
-        const block = {};
+        const block: SerializedBlock = {};
 
-        block[input] = 0x123;
-        const formatted = outBlock(block)[input];
+        block[input as keyof SerializedBlock] = 0x123;
+        const formatted = outBlock(block)[input as keyof SerializedBlock];
 
-        expect(isInstanceOf(formatted, BigNumber)).toBe.true;
+        expect(isInstanceOf(formatted, BigNumber)).toBe(true);
         expect(formatted.toString(16)).toEqual('123');
       });
     });
 
-    ['timestamp'].forEach((input) => {
+    ['timestamp'].forEach(input => {
       it(`formats ${input} number as Date`, () => {
-        const block = {};
+        const block: SerializedBlock = {};
 
-        block[input] = 0x57513668;
-        const formatted = outBlock(block)[input];
+        block[input as keyof SerializedBlock] = 0x57513668;
+        const formatted = outBlock(block)[input as keyof SerializedBlock];
 
-        expect(isInstanceOf(formatted, Date)).toBe.true;
+        expect(isInstanceOf(formatted, Date)).toBe(true);
         expect(formatted.getTime()).toEqual(1464940136000);
       });
     });
 
     it('ignores and passes through unknown keys', () => {
-      expect(outBlock({ someRandom: 'someRandom' })).toEqual({ someRandom: 'someRandom' });
+      expect(outBlock({ someRandom: 'someRandom' } as any)).toEqual({
+        someRandom: 'someRandom'
+      });
     });
 
     it('formats a block with all the info converted', () => {
@@ -154,12 +188,14 @@ describe('format/output', () => {
   });
 
   describe('outHistogram', () => {
-    ['bucketBounds', 'counts'].forEach((type) => {
+    ['bucketBounds', 'counts'].forEach(type => {
       it(`formats ${type} as number arrays`, () => {
-        expect(
-          outHistogram({ [type]: [0x123, 0x456, 0x789] })
-        ).toEqual({
-          [type]: [new BigNumber(0x123), new BigNumber(0x456), new BigNumber(0x789)]
+        expect(outHistogram({ [type]: [0x123, 0x456, 0x789] })).toEqual({
+          [type]: [
+            new BigNumber(0x123),
+            new BigNumber(0x456),
+            new BigNumber(0x789)
+          ]
         });
       });
     });
@@ -167,10 +203,18 @@ describe('format/output', () => {
 
   describe('outHwAccountInfo', () => {
     it('returns objects with formatted addresses', () => {
-      expect(outHwAccountInfo(
-        { '0x63cf90d3f0410092fc0fca41846f596223979195': { manufacturer: 'mfg', name: 'type' } }
-      )).toEqual({
-        '0x63Cf90D3f0410092FC0fca41846f596223979195': { manufacturer: 'mfg', name: 'type' }
+      expect(
+        outHwAccountInfo({
+          '0x63cf90d3f0410092fc0fca41846f596223979195': {
+            manufacturer: 'mfg',
+            name: 'type'
+          }
+        })
+      ).toEqual({
+        '0x63Cf90D3f0410092FC0fca41846f596223979195': {
+          manufacturer: 'mfg',
+          name: 'type'
+        }
       });
     });
   });
@@ -187,33 +231,35 @@ describe('format/output', () => {
     it('returns a BigNumber equalling the value', () => {
       const bn = outNumber('0x123456');
 
-      expect(isBigNumber(bn)).toBe.true;
-      expect(bn.eq(0x123456)).toBe.true;
+      expect(isBigNumber(bn)).toBe(true);
+      expect(bn.eq(0x123456)).toBe(true);
     });
 
     it('assumes 0 when ivalid input', () => {
-      expect(outNumber().eq(0)).toBe.true;
+      expect(outNumber().eq(0)).toBe(true);
     });
   });
 
   describe('outPeer', () => {
     it('converts all internal numbers to BigNumbers', () => {
-      expect(outPeer({
-        caps: ['par/1'],
-        id: '0x01',
-        name: 'Parity',
-        network: {
-          localAddress: '10.0.0.1',
-          remoteAddress: '10.0.0.1'
-        },
-        protocols: {
-          par: {
-            difficulty: '0x0f',
-            head: '0x02',
-            version: 63
+      expect(
+        outPeer({
+          caps: ['par/1'],
+          id: '0x01',
+          name: 'Parity',
+          network: {
+            localAddress: '10.0.0.1',
+            remoteAddress: '10.0.0.1'
+          },
+          protocols: {
+            par: {
+              difficulty: '0x0f',
+              head: '0x02',
+              version: 63
+            }
           }
-        }
-      })).toEqual({
+        })
+      ).toEqual({
         caps: ['par/1'],
         id: '0x01',
         name: 'Parity',
@@ -232,18 +278,20 @@ describe('format/output', () => {
     });
 
     it('does not output null protocols', () => {
-      expect(outPeer({
-        caps: ['par/1'],
-        id: '0x01',
-        name: 'Parity',
-        network: {
-          localAddress: '10.0.0.1',
-          remoteAddress: '10.0.0.1'
-        },
-        protocols: {
-          les: null
-        }
-      })).toEqual({
+      expect(
+        outPeer({
+          caps: ['par/1'],
+          id: '0x01',
+          name: 'Parity',
+          network: {
+            localAddress: '10.0.0.1',
+            remoteAddress: '10.0.0.1'
+          },
+          protocols: {
+            les: null
+          }
+        })
+      ).toEqual({
         caps: ['par/1'],
         id: '0x01',
         name: 'Parity',
@@ -258,30 +306,32 @@ describe('format/output', () => {
 
   describe('outPeers', () => {
     it('converts all internal numbers to BigNumbers', () => {
-      expect(outPeers({
-        active: 789,
-        connected: '456',
-        max: 0x7b,
-        peers: [
-          {
-            caps: ['par/1'],
-            id: '0x01',
-            name: 'Parity',
-            network: {
-              localAddress: '10.0.0.1',
-              remoteAddress: '10.0.0.1'
-            },
-            protocols: {
-              par: {
-                difficulty: '0x0f',
-                head: '0x02',
-                version: 63
+      expect(
+        outPeers({
+          active: 789,
+          connected: '456',
+          max: 0x7b,
+          peers: [
+            {
+              caps: ['par/1'],
+              id: '0x01',
+              name: 'Parity',
+              network: {
+                localAddress: '10.0.0.1',
+                remoteAddress: '10.0.0.1'
               },
-              les: null
+              protocols: {
+                par: {
+                  difficulty: '0x0f',
+                  head: '0x02',
+                  version: 63
+                },
+                les: null
+              }
             }
-          }
-        ]
-      })).toEqual({
+          ]
+        })
+      ).toEqual({
         active: new BigNumber(789),
         connected: new BigNumber(456),
         max: new BigNumber(123),
@@ -308,32 +358,40 @@ describe('format/output', () => {
   });
 
   describe('outReceipt', () => {
-    ['contractAddress'].forEach((input) => {
+    ['contractAddress'].forEach(input => {
       it(`formats ${input} address as address`, () => {
-        const block = {};
+        const block: SerializedBlock = {};
 
         block[input] = address;
         const formatted = outReceipt(block)[input];
 
-        expect(isAddress(formatted)).toBe.true;
+        expect(isAddress(formatted)).toBe(true);
         expect(formatted).toEqual(checksum);
       });
     });
 
-    ['blockNumber', 'cumulativeGasUsed', 'cumulativeGasUsed', 'gasUsed', 'transactionIndex'].forEach((input) => {
+    [
+      'blockNumber',
+      'cumulativeGasUsed',
+      'cumulativeGasUsed',
+      'gasUsed',
+      'transactionIndex'
+    ].forEach(input => {
       it(`formats ${input} number as hexnumber`, () => {
-        const block = {};
+        const block: SerializedBlock = {};
 
         block[input] = 0x123;
         const formatted = outReceipt(block)[input];
 
-        expect(isInstanceOf(formatted, BigNumber)).toBe.true;
+        expect(isInstanceOf(formatted, BigNumber)).toBe(true);
         expect(formatted.toString(16)).toEqual('123');
       });
     });
 
     it('ignores and passes through unknown keys', () => {
-      expect(outReceipt({ someRandom: 'someRandom' })).toEqual({ someRandom: 'someRandom' });
+      expect(outReceipt({ someRandom: 'someRandom' })).toEqual({
+        someRandom: 'someRandom'
+      });
     });
 
     it('formats a receipt with all the info converted', () => {
@@ -366,7 +424,13 @@ describe('format/output', () => {
   });
 
   describe('outSyncing', () => {
-    ['currentBlock', 'highestBlock', 'startingBlock', 'warpChunksAmount', 'warpChunksProcessed'].forEach((input) => {
+    [
+      'currentBlock',
+      'highestBlock',
+      'startingBlock',
+      'warpChunksAmount',
+      'warpChunksProcessed'
+    ].forEach(input => {
       it(`formats ${input} numbers as a number`, () => {
         expect(outSyncing({ [input]: '0x123' })).toEqual({
           [input]: new BigNumber('0x123')
@@ -382,26 +446,33 @@ describe('format/output', () => {
   });
 
   describe('outTransaction', () => {
-    ['from', 'to'].forEach((input) => {
+    ['from', 'to'].forEach(input => {
       it(`formats ${input} address as address`, () => {
-        const block = {};
+        const block: SerializedBlock = {};
 
         block[input] = address;
         const formatted = outTransaction(block)[input];
 
-        expect(isAddress(formatted)).toBe.true;
+        expect(isAddress(formatted)).toBe(true);
         expect(formatted).toEqual(checksum);
       });
     });
 
-    ['blockNumber', 'gasPrice', 'gas', 'nonce', 'transactionIndex', 'value'].forEach((input) => {
+    [
+      'blockNumber',
+      'gasPrice',
+      'gas',
+      'nonce',
+      'transactionIndex',
+      'value'
+    ].forEach(input => {
       it(`formats ${input} number as hexnumber`, () => {
-        const block = {};
+        const block: SerializedBlock = {};
 
         block[input] = 0x123;
         const formatted = outTransaction(block)[input];
 
-        expect(isInstanceOf(formatted, BigNumber)).toBe.true;
+        expect(isInstanceOf(formatted, BigNumber)).toBe(true);
         expect(formatted.toString(16)).toEqual('123');
       });
     });
@@ -411,7 +482,9 @@ describe('format/output', () => {
     });
 
     it('ignores and passes through unknown keys', () => {
-      expect(outTransaction({ someRandom: 'someRandom' })).toEqual({ someRandom: 'someRandom' });
+      expect(outTransaction({ someRandom: 'someRandom' })).toEqual({
+        someRandom: 'someRandom'
+      });
     });
 
     it('formats a transaction with all the info converted', () => {
@@ -443,7 +516,9 @@ describe('format/output', () => {
 
   describe('outTrace', () => {
     it('ignores and passes through unknown keys', () => {
-      expect(outTrace({ someRandom: 'someRandom' })).toEqual({ someRandom: 'someRandom' });
+      expect(outTrace({ someRandom: 'someRandom' })).toEqual({
+        someRandom: 'someRandom'
+      });
     });
 
     it('formats a trace with all the info converted', () => {
@@ -461,25 +536,27 @@ describe('format/output', () => {
           gasUsed: '0x08',
           output: '0x5678'
         },
-        traceAddress: [ '0x2' ],
+        traceAddress: ['0x2'],
         subtraces: 3,
         transactionPosition: '0xb',
-        transactionHash: '0x000000000000000000000000000000000000000000000000000000000000000c',
+        transactionHash:
+          '0x000000000000000000000000000000000000000000000000000000000000000c',
         blockNumber: '0x0d',
-        blockHash: '0x000000000000000000000000000000000000000000000000000000000000000e'
+        blockHash:
+          '0x000000000000000000000000000000000000000000000000000000000000000e'
       });
 
-      expect(isBigNumber(formatted.action.gas)).toBe.true;
+      expect(isBigNumber(formatted.action.gas)).toBe(true);
       expect(formatted.action.gas.toNumber()).toEqual(7);
-      expect(isBigNumber(formatted.action.value)).toBe.true;
+      expect(isBigNumber(formatted.action.value)).toBe(true);
       expect(formatted.action.value.toNumber()).toEqual(6);
 
       expect(formatted.action.from).toEqual(checksum);
       expect(formatted.action.to).toEqual(checksum);
 
-      expect(isBigNumber(formatted.blockNumber)).toBe.true;
+      expect(isBigNumber(formatted.blockNumber)).toBe(true);
       expect(formatted.blockNumber.toNumber()).toEqual(13);
-      expect(isBigNumber(formatted.transactionPosition)).toBe.true;
+      expect(isBigNumber(formatted.transactionPosition)).toBe(true);
       expect(formatted.transactionPosition.toNumber()).toEqual(11);
     });
   });

@@ -22,19 +22,19 @@ const HEXDIGITS = [
   'f'
 ];
 
-export function isArray<T> (input: any): input is Array<T> {
+export function isArray<T> (input?: any): input is Array<T> {
   return Array.isArray(input);
 }
 
-export function isError (input: any): input is Error {
+export function isError (input?: any): input is Error {
   return input instanceof Error;
 }
 
-export function isFunction (input: any): input is Function {
+export function isFunction (input?: any): input is Function {
   return typeof input === 'function';
 }
 
-export function isHex (input: any): boolean {
+export function isHex (input?: any): boolean {
   if (!isString(input)) {
     return false;
   }
@@ -52,11 +52,11 @@ export function isHex (input: any): boolean {
 
   return hex;
 }
-export function isObject (input: any): input is object {
+export function isObject (input?: any): input is object {
   return Object.prototype.toString.call(input) === '[object Object]';
 }
 
-export function isString (input: any): input is string {
+export function isString (input?: any): input is string {
   return typeof input === 'string';
 }
 
