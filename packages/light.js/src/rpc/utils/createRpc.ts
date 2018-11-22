@@ -10,7 +10,11 @@ import { merge, Observable, OperatorFunction } from 'rxjs';
 
 import { createApiFromProvider, getApi } from '../../api';
 import { distinctReplayRefCount } from '../../utils/operators';
-import { Metadata, RpcObservableOptions } from '../../types';
+import {
+  FrequencyObservable,
+  Metadata,
+  RpcObservableOptions
+} from '../../types';
 
 /**
  * Add metadata to an RpcObservable, and transform it into a ReplaySubject(1).
@@ -25,12 +29,24 @@ import { Metadata, RpcObservableOptions } from '../../types';
  */
 const createRpcWithApi = memoizeeWeak(
   <Source, Out>(api: any, metadata: Metadata<Source, Out>, ...args: any[]) => {
+    if (!metadata.dependsOn && !metadata.frequency) {
+      throw new Error(
+        `Rpc$ '${
+          metadata.name
+        }' needs either a 'dependsOn' or a 'frequency' field.`
+      );
+    }
+
     // The source Observable can either be another RpcObservable (in the
     // `dependsOn` field), or anObservable built by merging all the
     // FrequencyObservables
     const source$ = metadata.dependsOn
       ? metadata.dependsOn(...args, { provider: api.provider })
-      : merge(...metadata.frequency.map(f => f({ provider: api.provider })));
+      : merge(
+          ...(metadata.frequency as FrequencyObservable<Source>[]).map(f =>
+            f({ provider: api.provider })
+          )
+        );
 
     // The pipes to add
     const pipes: OperatorFunction<any, any>[] = [];
