@@ -77,11 +77,11 @@ class Func {
     return this._signature;
   }
 
-  decodeInput (data: string) {
+  decodeInput (data?: string) {
     return Decoder.decode(this.inputParamTypes(), data);
   }
 
-  decodeOutput (data: string) {
+  decodeOutput (data?: string) {
     return Decoder.decode(this.outputParamTypes(), data);
   }
 

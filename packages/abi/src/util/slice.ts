@@ -10,7 +10,7 @@ import { padAddress } from './pad';
  *
  * @param data - Data to slice.
  */
-export const sliceData = (data: string): string[] | null => {
+export const sliceData = (data?: string): string[] | null => {
   if (!data || !data.length) {
     return [];
   }

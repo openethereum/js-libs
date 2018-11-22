@@ -100,7 +100,7 @@ export type TokenValue =
 export interface AbiItem {
   anonymous?: boolean;
   constant?: boolean;
-  inputs: AbiInput[];
+  inputs?: AbiInput[];
   name?: string;
   payable?: boolean;
   outputs?: AbiInput[];
