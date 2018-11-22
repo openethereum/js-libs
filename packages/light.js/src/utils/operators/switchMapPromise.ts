@@ -29,7 +29,7 @@ export const switchMapPromise = <T>(promise: () => Promise<T>) => (
           return Promise.resolve(result);
         })
       ).pipe(
-        startWith(RPC_LOADING),
+        startWith(RPC_LOADING as any),
         catchError(err => {
           console.group();
           console.error({ call: promise.toString(), err });

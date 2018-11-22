@@ -58,7 +58,7 @@ const makeContractWithApi = memoizee(
     const result: MakeContract = {
       abi,
       address,
-      get contractObject() {
+      get contractObject () {
         return getContract(address, abiJson, api);
       }
     };

@@ -23,7 +23,7 @@ it('should fire an event when pubsub publishes', done => {
 
 it('should fire an error when pubsub errors', done => {
   setApi(rejectApi());
-  createPubsubObservable('fake_method').subscribe(null, err => {
+  createPubsubObservable('fake_method').subscribe(undefined, err => {
     expect(err).toEqual(new Error('bar'));
     done();
   });
@@ -47,7 +47,7 @@ it('should fire an event when polling pubsub publishes, with object', done => {
 
 it('should fire an error when polling pubsub errors', done => {
   setApi(rejectApi(new Error('bar'), false));
-  createPubsubObservable('fake_method').subscribe(null, err => {
+  createPubsubObservable('fake_method').subscribe(undefined, err => {
     expect(err).toEqual(new Error('bar'));
     done();
   });

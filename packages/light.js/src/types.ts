@@ -63,7 +63,7 @@ export type RpcKey = keyof typeof rpc;
 export interface RpcObservable<Source, Out> {
   (...args: any[]): Observable<Out>;
   metadata?: Metadata<Source, Out>;
-  setFrequency?(frequency: FrequencyObservable<Source>[]): void; // post$, makeContract... don't have setFrequency
+  setFrequency? (frequency: FrequencyObservable<Source>[]): void; // post$, makeContract... don't have setFrequency
 }
 
 export type RpcMap = { [index in RpcKey]: RpcObservable<any, any> };

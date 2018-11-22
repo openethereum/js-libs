@@ -18,7 +18,7 @@ import { switchMapPromise } from '../utils/operators';
  * @param options - Options to pass to {@link RpcObservableOptions}.
  * @return - An Observable containing the number.
  */
-export function peerCount$(options?: RpcObservableOptions) {
+export function peerCount$ (options?: RpcObservableOptions) {
   return createRpc$<number, BigNumber>({
     calls: ['net_peerCount'],
     frequency: [frequency.onEvery5Seconds$],
