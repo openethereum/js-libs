@@ -3,7 +3,7 @@
     "declaration": true,
     "lib": ["dom", "es2015", "es2017"],
     "moduleResolution": "node",
-    "noImplicitAny": true,
+    "strict": true,
     "target": "es5"
   },
   "exclude": ["*.spec.ts"]
