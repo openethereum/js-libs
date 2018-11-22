@@ -8,7 +8,7 @@ import TYPES from '../spec/paramType/types';
 
 class Token {
   private _type: TokenTypeEnum;
-  private _value: TokenValue;
+  private _value: TokenValue | undefined;
 
   constructor (type: TokenTypeEnum, value?: TokenValue) {
     Token.validateType(type);

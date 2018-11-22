@@ -9,13 +9,15 @@ import Token from './token';
 
 export interface AbiInput {
   indexed?: boolean;
-  name?: string;
+  name: string;
   type: TokenTypeEnum;
 }
 
 export type AbiItemType = 'function' | 'event' | 'constructor' | 'fallback';
 
 export type MediateType = 'raw' | 'prefixed' | 'fixedArray' | 'array';
+
+export type Slices = string[] | null | undefined;
 
 // Elementary types
 export type TokenTypeEnum =

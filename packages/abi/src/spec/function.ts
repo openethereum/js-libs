@@ -23,7 +23,7 @@ class Func {
   constructor (abi: AbiItem) {
     this._abi = abi;
     this._constant = !!abi.constant;
-    this._payable = abi.payable;
+    this._payable = abi.payable || false;
     this._inputs = Param.toParams(abi.inputs || []);
     this._outputs = Param.toParams(abi.outputs || []);
 
@@ -31,6 +31,14 @@ class Func {
       abi.name,
       this.inputParamTypes()
     );
+
+    if (!name) {
+      throw new Error(
+        `Event constructor: abi item does not have a name: ${JSON.stringify(
+          abi
+        )}`
+      );
+    }
 
     this._id = id;
     this._name = name;

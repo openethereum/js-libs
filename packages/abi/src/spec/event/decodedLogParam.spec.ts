@@ -14,7 +14,7 @@ describe('spec/event/DecodedLogParam', () => {
 
     it('disallows kind not instanceof ParamType', () => {
       expect(
-        () => new DecodedLogParam('test', 'param' as any, undefined)
+        () => new DecodedLogParam('test', 'param' as any, undefined as any)
       ).toThrow(/ParamType/);
     });
 

@@ -51,7 +51,7 @@ describe('spec/event/Event', () => {
     it('returns all the types', () => {
       expect(event.inputParamTypes()).toEqual([
         new ParamType('bool'),
-        new ParamType('uint', null, 256, true)
+        new ParamType('uint', undefined, 256, true)
       ]);
     });
   });
@@ -98,12 +98,12 @@ describe('spec/event/Event', () => {
       expect(decoded.params).toEqual([
         new DecodedLogParam(
           'a',
-          new ParamType('int', null, 256),
+          new ParamType('int', undefined, 256),
           new Token('int', new BigNumber(3))
         ),
         new DecodedLogParam(
           'b',
-          new ParamType('int', null, 256, true),
+          new ParamType('int', undefined, 256, true),
           new Token('int', new BigNumber(2))
         ),
         new DecodedLogParam(
@@ -113,7 +113,7 @@ describe('spec/event/Event', () => {
         ),
         new DecodedLogParam(
           'd',
-          new ParamType('address', null, 0, true),
+          new ParamType('address', undefined, 0, true),
           new Token('address', '0x1111111111111111111111111111111111111111')
         )
       ]);
@@ -134,7 +134,7 @@ describe('spec/event/Event', () => {
       expect(decoded.params).toEqual([
         new DecodedLogParam(
           'a',
-          new ParamType('int', null, 256),
+          new ParamType('int', undefined, 256),
           new Token('int', new BigNumber(3))
         )
       ]);
