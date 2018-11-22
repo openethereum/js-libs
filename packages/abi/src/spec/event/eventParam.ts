@@ -11,7 +11,7 @@ import { toParamType } from '../paramType/format';
 class EventParam {
   private _indexed: boolean;
   private _kind: ParamType;
-  private _name: string;
+  private _name: string | undefined;
 
   static toEventParams (params: (Param | AbiInput)[]) {
     return params.map(
@@ -26,7 +26,7 @@ class EventParam {
     );
   }
 
-  constructor (name: string, type: TokenTypeEnum, indexed = false) {
+  constructor (name: string | undefined, type: TokenTypeEnum, indexed = false) {
     this._name = name;
     this._indexed = indexed;
     this._kind = toParamType(type, indexed);

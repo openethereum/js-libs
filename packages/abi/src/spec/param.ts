@@ -9,9 +9,9 @@ import { toParamType } from './paramType/format';
 
 class Param {
   private _kind: ParamType;
-  private _name: string;
+  private _name: string | undefined;
 
-  constructor (name: string, type: string) {
+  constructor (name: string | undefined, type: string) {
     this._name = name;
     this._kind = toParamType(type);
   }

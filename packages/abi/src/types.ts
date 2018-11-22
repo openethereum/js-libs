@@ -9,7 +9,7 @@ import Token from './token';
 
 export interface AbiInput {
   indexed?: boolean;
-  name: string;
+  name?: string;
   type: TokenTypeEnum;
 }
 
@@ -100,7 +100,7 @@ export type TokenValue =
 export interface AbiItem {
   anonymous?: boolean;
   constant?: boolean;
-  inputs?: AbiInput[];
+  inputs: AbiInput[];
   name?: string;
   payable?: boolean;
   outputs?: AbiInput[];
