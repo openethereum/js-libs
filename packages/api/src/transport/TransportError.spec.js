@@ -3,16 +3,16 @@
 //
 // SPDX-License-Identifier: MIT
 
-import TransportError from './TransportError';
+const TransportError = require('./error');
 
-describe('transport/TransportError', () => {
+describe('transport/Error', () => {
   describe('requestRejected', () => {
     it('creates a Request Rejected error', () => {
       const error = TransportError.requestRejected('method');
 
-      expect(error.code).toEqual(TransportError.ERROR_CODES.REQUEST_REJECTED);
-      expect(error.message).toMatch(/been rejected/);
-      expect(error.method).toEqual('method');
+      expect(error.code).to.equal(TransportError.ERROR_CODES.REQUEST_REJECTED);
+      expect(error.message).to.match(/been rejected/);
+      expect(error.method).to.equal('method');
     });
   });
 });
