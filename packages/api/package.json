@@ -59,9 +59,7 @@
     "ts-node": "^7.0.1"
   },
   "dependencies": {
-    "@parity/abi": "~2.1.4",
-    "@parity/jsonrpc": "2.1.x",
-    "@parity/wordlist": "1.1.x",
+    "@parity/abi": "^3.0.0",
     "bignumber.js": "^7",
     "blockies": "0.0.2",
     "es6-error": "4.0.2",
