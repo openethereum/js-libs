@@ -59,8 +59,8 @@ describe('subscriptions/manager', () => {
 
   describe('constructor', () => {
     it('sets up the subscription types & defaults', () => {
-      expect(manager.subscriptions).toBe.an.array;
-      expect(Object.keys(manager.values)).toEqual(Object.keys(events));
+      expect(manager.subscriptions).to.be.an.array;
+      expect(Object.keys(manager.values)).to.deep.equal(Object.keys(events));
     });
   });
 
@@ -93,7 +93,7 @@ describe('subscriptions/manager', () => {
           });
 
           it('returns a subscriptionId', () => {
-            expect(subscriptionId).toBe.a.number;
+            expect(subscriptionId).to.be.a.number;
           });
 
           it('calls the subscription callback with updated values', () => {

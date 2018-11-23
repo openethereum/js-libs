@@ -1,7 +1,18 @@
 // Copyright 2015-2018 Parity Technologies (UK) Ltd.
 // This file is part of Parity.
-//
-// SPDX-License-Identifier: MIT
+
+// Parity is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+
+// Parity is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+
+// You should have received a copy of the GNU General Public License
+// along with Parity.  If not, see <http://www.gnu.org/licenses/>.
 
 const ExtendableError = require('es6-error');
 
@@ -38,8 +49,9 @@ class TransportError extends ExtendableError {
     super(m);
 
     this.code = code;
-    this.type =
-      Object.keys(ERROR_CODES).find(key => ERROR_CODES[key] === code) || '';
+    this.type = Object
+      .keys(ERROR_CODES)
+      .find((key) => ERROR_CODES[key] === code) || '';
 
     this.method = method;
     this.text = message;
@@ -49,11 +61,7 @@ class TransportError extends ExtendableError {
 TransportError.ERROR_CODES = ERROR_CODES;
 
 TransportError.requestRejected = function (method = null) {
-  return new TransportError(
-    method,
-    ERROR_CODES.REQUEST_REJECTED,
-    'Request has been rejected.'
-  );
+  return new TransportError(method, ERROR_CODES.REQUEST_REJECTED, 'Request has been rejected.');
 };
 
 module.exports = TransportError;

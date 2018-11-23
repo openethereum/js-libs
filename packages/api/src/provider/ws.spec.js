@@ -31,7 +31,7 @@ describe('provider/Ws', () => {
 
   describe('isParity', () => {
     it('return true', () => {
-      expect(provider.isParity).toBe.true;
+      expect(provider.isParity).to.be.true;
     });
   });
 });

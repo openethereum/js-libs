@@ -32,8 +32,8 @@ describe('transport/JsonRpcEncoder', () => {
         params: ['param1', 'param2']
       };
 
-      expect(bdy).toEqual(enc);
-      expect(encoder.id - id).toEqual(1);
+      expect(bdy).to.deep.equal(enc);
+      expect(encoder.id - id).to.equal(1);
     });
   });
 
@@ -43,8 +43,8 @@ describe('transport/JsonRpcEncoder', () => {
       const bdy = encoder.encode('someMethod', ['param1', 'param2']);
       const enc = `{"id":${id},"jsonrpc":"2.0","method":"someMethod","params":["param1","param2"]}`;
 
-      expect(bdy).toEqual(enc);
-      expect(encoder.id - id).toEqual(1);
+      expect(bdy).to.equal(enc);
+      expect(encoder.id - id).to.equal(1);
     });
   });
 });

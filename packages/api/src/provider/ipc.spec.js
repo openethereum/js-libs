@@ -16,33 +16,14 @@
 
 /* eslint-disable no-unused-expressions */
 
-const { createHttpApi } = require('../../test/e2e/ethapi');
-const { isBoolean } = require('../../test/types');
+const IpcProvider = require('./ipc');
 
-describe('ethapi.net', () => {
-  const ethapi = createHttpApi();
+function createProvider () {
+  return new IpcProvider('ipc://test.com', '123', false);
+}
 
-  describe('listening', () => {
-    it('returns the listening status', () => {
-      return ethapi.net.listening().then((status) => {
-        expect(isBoolean(status)).to.be.true;
-      });
-    });
-  });
-
-  describe('peerCount', () => {
-    it('returns the peer count', () => {
-      return ethapi.net.peerCount().then((count) => {
-        expect(count.gte(0)).to.be.true;
-      });
-    });
-  });
-
-  describe('version', () => {
-    it('returns the version', () => {
-      return ethapi.net.version().then((version) => {
-        expect(version).to.be.ok;
-      });
-    });
+describe('provider/IpcProvider', () => {
+  it('throws error if not Electron', () => {
+    expect(createProvider).to.throw('IpcProvider must be used in Electron environment.');
   });
 });

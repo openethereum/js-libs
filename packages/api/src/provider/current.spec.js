@@ -28,7 +28,7 @@ function initProvider (sendAsync, isParity = false) { // eslint-disable-line sta
 describe('provider/Current', () => {
   describe('isParity', () => {
     it('returns the value of the embedded provider', () => {
-      expect(initProvider(null, true).isParity).toBe.true;
+      expect(initProvider(null, true).isParity).to.be.true;
     });
   });
 
@@ -39,8 +39,8 @@ describe('provider/Current', () => {
       };
 
       initProvider(sendAsync).send('method', ['params'], (error, payload) => {
-        expect(error).not.toBe.ok;
-        expect(payload).toEqual({
+        expect(error).not.to.be.ok;
+        expect(payload).to.deep.equal({
           id: 1,
           jsonrpc: '2.0',
           method: 'method',
@@ -56,8 +56,8 @@ describe('provider/Current', () => {
       });
 
       initProvider(sendAsync).send('', [], (error, result) => {
-        expect(error).not.toBe.ok;
-        expect(result).toEqual('xyz');
+        expect(error).not.to.be.ok;
+        expect(result).to.equal('xyz');
         done();
       });
     });
@@ -66,8 +66,8 @@ describe('provider/Current', () => {
       const sendAsync = (payload, callback) => callback(null, 'xyz');
 
       initProvider(sendAsync).send('', [], (error, result) => {
-        expect(error).not.toBe.ok;
-        expect(result).toEqual('xyz');
+        expect(error).not.to.be.ok;
+        expect(result).to.equal('xyz');
         done();
       });
     });
@@ -78,7 +78,7 @@ describe('provider/Current', () => {
       };
 
       initProvider(sendAsync).send('method', ['params'], (error, payload) => {
-        expect(error).toEqual('error');
+        expect(error).to.equal('error');
         done();
       });
     });

@@ -35,7 +35,7 @@ describe('transport/Http', () => {
         body: `{"id":${transport._id - 1},"jsonrpc":"2.0","method":"someMethod","params":["param"]}`
       };
 
-      expect(opt).toEqual(enc);
+      expect(opt).to.deep.equal(enc);
     });
   });
 
@@ -76,27 +76,27 @@ describe('transport/Http', () => {
     });
 
     it('makes POST', () => {
-      expect(scope.isDone()).toBe.true;
+      expect(scope.isDone()).to.be.true;
     });
 
     it('sets jsonrpc', () => {
-      expect(scope.body.eth_call.jsonrpc).toEqual('2.0');
+      expect(scope.body.eth_call.jsonrpc).to.equal('2.0');
     });
 
     it('sets the method', () => {
-      expect(scope.body.eth_call.method).toEqual('eth_call');
+      expect(scope.body.eth_call.method).to.equal('eth_call');
     });
 
     it('passes the params', () => {
-      expect(scope.body.eth_call.params).toEqual([1, 2, 3, 'test']);
+      expect(scope.body.eth_call.params).to.deep.equal([1, 2, 3, 'test']);
     });
 
     it('increments the id', () => {
-      expect(scope.body.eth_call.id).not.toEqual(0);
+      expect(scope.body.eth_call.id).not.to.equal(0);
     });
 
     it('passes the actual result back', () => {
-      expect(result).toEqual(RESULT);
+      expect(result).to.deep.equal(RESULT);
     });
   });
 
@@ -115,7 +115,7 @@ describe('transport/Http', () => {
     });
 
     it('returns HTTP errors as throws', () => {
-      expect(scope.isDone()).toBe.true;
+      expect(scope.isDone()).to.be.true;
       expect(error.message).to.match(/Internal Server Error/);
     });
   });
@@ -137,7 +137,7 @@ describe('transport/Http', () => {
     });
 
     it('returns RPC errors as throws', () => {
-      expect(scope.isDone()).toBe.true;
+      expect(scope.isDone()).to.be.true;
       expect(error.message).to.match(/RPC failure/);
     });
   });

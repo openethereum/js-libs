@@ -14,25 +14,30 @@
 // You should have received a copy of the GNU General Public License
 // along with Parity.  If not, see <http://www.gnu.org/licenses/>.
 
-const { TEST_HTTP_URL, mockHttp } = require('../../../test/mockRpc');
+const BigNumber = require('bignumber.js');
 
-const { Http, PromiseProvider } = require('../../provider');
-const Web3 = require('./web3');
+const UNITS = ['wei', 'ada', 'babbage', 'shannon', 'szabo', 'finney', 'ether', 'kether', 'mether', 'gether', 'tether'];
 
-const instance = new Web3(new PromiseProvider(new Http(TEST_HTTP_URL, -1)));
+function _getUnitMultiplier (unit) {
+  const position = UNITS.indexOf(unit.toLowerCase());
 
-describe('rpc/Web3', () => {
-  let scope;
+  if (position === -1) {
+    throw new Error(`Unknown unit ${unit} passed to wei formatter`);
+  }
 
-  describe('sha3', () => {
-    beforeEach(() => {
-      scope = mockHttp([{ method: 'web3_sha3', reply: { result: [] } }]);
-    });
+  return Math.pow(10, position * 3);
+}
 
-    it('formats the inputs correctly', () => {
-      return instance.sha3('1234').then(() => {
-        expect(scope.body.web3_sha3.params).to.deep.equal(['0x1234']);
-      });
-    });
-  });
-});
+function fromWei (value, unit = 'ether') {
+  return new BigNumber(value).div(_getUnitMultiplier(unit));
+}
+
+function toWei (value, unit = 'ether') {
+  return new BigNumber(value).mul(_getUnitMultiplier(unit));
+}
+
+module.exports = {
+  _getUnitMultiplier,
+  fromWei,
+  toWei
+};

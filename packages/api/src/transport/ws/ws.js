@@ -20,7 +20,7 @@ const { keccak_256 } = require('js-sha3'); // eslint-disable-line camelcase
 
 const { Logging } = require('../../subscriptions');
 const JsonRpcBase = require('../jsonRpcBase');
-const TransportError = require('../TransportError');
+const TransportError = require('../error');
 
 /* global WebSocket */
 class Ws extends JsonRpcBase {

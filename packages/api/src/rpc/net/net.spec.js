@@ -30,8 +30,8 @@ describe('rpc/Net', () => {
       mockHttp([{ method: 'net_peerCount', reply: { result: '0x123456' } }]);
 
       return instance.peerCount().then((count) => {
-        expect(isBigNumber(count)).toBe.true;
-        expect(count.eq(0x123456)).toBe.true;
+        expect(isBigNumber(count)).to.be.true;
+        expect(count.eq(0x123456)).to.be.true;
       });
     });
   });

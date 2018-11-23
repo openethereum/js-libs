@@ -14,25 +14,9 @@
 // You should have received a copy of the GNU General Public License
 // along with Parity.  If not, see <http://www.gnu.org/licenses/>.
 
-const { TEST_HTTP_URL, mockHttp } = require('../../../test/mockRpc');
+const { isAddress, toChecksumAddress } = require('@parity/abi/lib/util/address');
 
-const { Http, PromiseProvider } = require('../../provider');
-const Web3 = require('./web3');
-
-const instance = new Web3(new PromiseProvider(new Http(TEST_HTTP_URL, -1)));
-
-describe('rpc/Web3', () => {
-  let scope;
-
-  describe('sha3', () => {
-    beforeEach(() => {
-      scope = mockHttp([{ method: 'web3_sha3', reply: { result: [] } }]);
-    });
-
-    it('formats the inputs correctly', () => {
-      return instance.sha3('1234').then(() => {
-        expect(scope.body.web3_sha3.params).to.deep.equal(['0x1234']);
-      });
-    });
-  });
-});
+module.exports = {
+  isAddress,
+  toChecksumAddress
+};

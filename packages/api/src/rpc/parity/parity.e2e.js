@@ -24,7 +24,7 @@ describe('ethapi.parity', () => {
   describe('chainStatus', () => {
     it('returns and translates the status', () => {
       return ethapi.parity.chainStatus().then((value) => {
-        expect(value).toBe.ok;
+        expect(value).to.be.ok;
       });
     });
   });
@@ -32,7 +32,7 @@ describe('ethapi.parity', () => {
   describe('gasFloorTarget', () => {
     it('returns and translates the target', () => {
       return ethapi.parity.gasFloorTarget().then((value) => {
-        expect(value.gt(0)).toBe.true;
+        expect(value.gt(0)).to.be.true;
       });
     });
   });
@@ -40,9 +40,9 @@ describe('ethapi.parity', () => {
   describe('gasPriceHistogram', () => {
     it('returns and translates the target', () => {
       return ethapi.parity.gasPriceHistogram().then((result) => {
-        expect(Object.keys(result)).toEqual(['bucketBounds', 'counts']);
-        expect(result.bucketBounds.length > 0).toBe.true;
-        expect(result.counts.length > 0).toBe.true;
+        expect(Object.keys(result)).to.deep.equal(['bucketBounds', 'counts']);
+        expect(result.bucketBounds.length > 0).to.be.true;
+        expect(result.counts.length > 0).to.be.true;
       });
     });
   });
@@ -50,7 +50,7 @@ describe('ethapi.parity', () => {
   describe('netChain', () => {
     it('returns and the chain', () => {
       return ethapi.parity.netChain().then((value) => {
-        expect(value).toEqual('morden');
+        expect(value).to.equal('morden');
       });
     });
   });
@@ -58,7 +58,7 @@ describe('ethapi.parity', () => {
   describe('netPort', () => {
     it('returns and translates the port', () => {
       return ethapi.parity.netPort().then((value) => {
-        expect(value.gt(0)).toBe.true;
+        expect(value.gt(0)).to.be.true;
       });
     });
   });
@@ -66,7 +66,7 @@ describe('ethapi.parity', () => {
   describe('transactionsLimit', () => {
     it('returns and translates the limit', () => {
       return ethapi.parity.transactionsLimit().then((value) => {
-        expect(value.gt(0)).toBe.true;
+        expect(value.gt(0)).to.be.true;
       });
     });
   });
@@ -74,7 +74,7 @@ describe('ethapi.parity', () => {
   describe('rpcSettings', () => {
     it('returns and translates the settings', () => {
       return ethapi.parity.rpcSettings().then((value) => {
-        expect(value).toBe.ok;
+        expect(value).to.be.ok;
       });
     });
   });

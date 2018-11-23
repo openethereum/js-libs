@@ -38,7 +38,7 @@ describe('rpc/parity', () => {
       } }]);
 
       return instance.accountsInfo().then((result) => {
-        expect(result).toEqual({
+        expect(result).to.deep.equal({
           '0x63Cf90D3f0410092FC0fca41846f596223979195': {
             name: 'name', uuid: 'uuid', meta: {
               data: 'data'
@@ -58,7 +58,7 @@ describe('rpc/parity', () => {
       } }]);
 
       return instance.chainStatus().then((result) => {
-        expect(result).toEqual({
+        expect(result).to.deep.equal({
           'blockGap': [new BigNumber(0x123), new BigNumber(0x456)]
         });
       });
@@ -70,8 +70,8 @@ describe('rpc/parity', () => {
       mockHttp([{ method: 'parity_gasFloorTarget', reply: { result: '0x123456' } }]);
 
       return instance.gasFloorTarget().then((count) => {
-        expect(isBigNumber(count)).toBe.true;
-        expect(count.eq(0x123456)).toBe.true;
+        expect(isBigNumber(count)).to.be.true;
+        expect(count.eq(0x123456)).to.be.true;
       });
     });
   });
@@ -86,7 +86,7 @@ describe('rpc/parity', () => {
 
     it('passes the addresses through', () => {
       return instance.importGethAccounts(ACCOUNTS).then((result) => {
-        expect(scope.body['parity_importGethAccounts'].params).toEqual([ACCOUNTS]);
+        expect(scope.body['parity_importGethAccounts'].params).to.deep.equal([ACCOUNTS]);
       });
     });
   });
@@ -96,8 +96,8 @@ describe('rpc/parity', () => {
       mockHttp([{ method: 'parity_minGasPrice', reply: { result: '0x123456' } }]);
 
       return instance.minGasPrice().then((count) => {
-        expect(isBigNumber(count)).toBe.true;
-        expect(count.eq(0x123456)).toBe.true;
+        expect(isBigNumber(count)).to.be.true;
+        expect(count.eq(0x123456)).to.be.true;
       });
     });
   });
@@ -107,8 +107,8 @@ describe('rpc/parity', () => {
       mockHttp([{ method: 'parity_netMaxPeers', reply: { result: 25 } }]);
 
       return instance.netMaxPeers().then((count) => {
-        expect(isBigNumber(count)).toBe.true;
-        expect(count.eq(25)).toBe.true;
+        expect(isBigNumber(count)).to.be.true;
+        expect(count.eq(25)).to.be.true;
       });
     });
   });
@@ -118,9 +118,9 @@ describe('rpc/parity', () => {
       mockHttp([{ method: 'parity_netPeers', reply: { result: { active: 123, connected: 456, max: 789, peers: [] } } }]);
 
       return instance.netPeers().then((peers) => {
-        expect(peers.active.eq(123)).toBe.true;
-        expect(peers.connected.eq(456)).toBe.true;
-        expect(peers.max.eq(789)).toBe.true;
+        expect(peers.active.eq(123)).to.be.true;
+        expect(peers.connected.eq(456)).to.be.true;
+        expect(peers.max.eq(789)).to.be.true;
       });
     });
   });
@@ -130,8 +130,8 @@ describe('rpc/parity', () => {
       mockHttp([{ method: 'parity_netPort', reply: { result: 33030 } }]);
 
       return instance.netPort().then((count) => {
-        expect(isBigNumber(count)).toBe.true;
-        expect(count.eq(33030)).toBe.true;
+        expect(isBigNumber(count)).to.be.true;
+        expect(count.eq(33030)).to.be.true;
       });
     });
   });
@@ -141,8 +141,8 @@ describe('rpc/parity', () => {
       mockHttp([{ method: 'parity_transactionsLimit', reply: { result: 1024 } }]);
 
       return instance.transactionsLimit().then((count) => {
-        expect(isBigNumber(count)).toBe.true;
-        expect(count.eq(1024)).toBe.true;
+        expect(isBigNumber(count)).to.be.true;
+        expect(count.eq(1024)).to.be.true;
       });
     });
   });

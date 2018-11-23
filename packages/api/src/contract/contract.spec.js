@@ -99,22 +99,22 @@ describe('contract/Contract', () => {
 
       it('sets EthApi & parsed interface', () => {
         expect(contract.address).to.not.be.ok;
-        expect(contract.api).toEqual(eth);
-        expect(isInstanceOf(contract.abi, Abi)).toBe.ok;
+        expect(contract.api).to.deep.equal(eth);
+        expect(isInstanceOf(contract.abi, Abi)).to.be.ok;
       });
 
       it('attaches functions', () => {
-        expect(contract.functions.length).toEqual(2);
-        expect(contract.functions[0].name).toEqual('test');
+        expect(contract.functions.length).to.equal(2);
+        expect(contract.functions[0].name).to.equal('test');
       });
 
       it('attaches constructors', () => {
-        expect(contract.constructors.length).toEqual(1);
+        expect(contract.constructors.length).to.equal(1);
       });
 
       it('attaches events', () => {
-        expect(contract.events.length).toEqual(2);
-        expect(contract.events[0].name).toEqual('baz');
+        expect(contract.events.length).to.equal(2);
+        expect(contract.events[0].name).to.equal('baz');
       });
     });
   });
@@ -149,14 +149,14 @@ describe('contract/Contract', () => {
 
       contract.at('6789');
 
-      expect(Object.keys(contract.instance)).toEqual([
+      expect(Object.keys(contract.instance)).to.deep.equal([
         'Drained',
         /^(?:0x)(.+)$/.exec(sha3('Drained(uint256)'))[1],
         'balanceOf',
         /^(?:0x)(.+)$/.exec(sha3('balanceOf(address)'))[1].substr(0, 8),
         'address'
       ]);
-      expect(contract.address).toEqual('6789');
+      expect(contract.address).to.equal('6789');
     });
   });
 
@@ -199,9 +199,9 @@ describe('contract/Contract', () => {
       });
       const log = decoded.logs[0];
 
-      expect(log.event).toEqual('Message');
-      expect(log.address).toEqual('0x22bff18ec62281850546a664bb63a5c06ac5f76c');
-      expect(log.params).toEqual({
+      expect(log.event).to.equal('Message');
+      expect(log.address).to.equal('0x22bff18ec62281850546a664bb63a5c06ac5f76c');
+      expect(log.params).to.deep.equal({
         at: { type: 'uint', value: new BigNumber('1457965151') },
         message: { type: 'string', value: 'post(message)' },
         messageId: { type: 'uint', value: new BigNumber('281474976731085') },
@@ -238,15 +238,15 @@ describe('contract/Contract', () => {
       });
 
       it('sends multiple getTransactionReceipt calls', () => {
-        expect(scope.isDone()).toBe.true;
+        expect(scope.isDone()).to.be.true;
       });
 
       it('passes the txhash through', () => {
-        expect(scope.body.eth_getTransactionReceipt.params[0]).toEqual('0x123');
+        expect(scope.body.eth_getTransactionReceipt.params[0]).to.equal('0x123');
       });
 
       it('receives the final receipt', () => {
-        expect(receipt).toEqual(EXPECT);
+        expect(receipt).to.deep.equal(EXPECT);
       });
     });
 
@@ -287,7 +287,7 @@ describe('contract/Contract', () => {
       });
 
       it('passes the options through to postTransaction (incl. gas calculation)', () => {
-        expect(scope.body.parity_postTransaction.params[0].data).toEqual(CODE);
+        expect(scope.body.parity_postTransaction.params[0].data).to.equal(CODE);
       });
     });
   });
@@ -318,17 +318,17 @@ describe('contract/Contract', () => {
       });
 
       it('calls estimateGas, postTransaction, checkRequest, getTransactionReceipt & getCode in order', () => {
-        expect(scope.isDone()).toBe.true;
+        expect(scope.isDone()).to.be.true;
       });
 
       it('passes the options through to postTransaction (incl. gas calculation)', () => {
-        expect(scope.body.parity_postTransaction.params).toEqual([
+        expect(scope.body.parity_postTransaction.params).to.deep.equal([
           { data: `0x123${CALLDATA}`, gas: '0x4b0' }
         ]);
       });
 
       it('sets the address of the contract', () => {
-        expect(contract.address).toEqual(ADDRESS);
+        expect(contract.address).to.equal(ADDRESS);
       });
     });
 
@@ -380,37 +380,37 @@ describe('contract/Contract', () => {
 
     describe('_addOptionsTo', () => {
       it('works on no object specified', () => {
-        expect(contract._addOptionsTo()).toEqual({ to: ADDR });
+        expect(contract._addOptionsTo()).to.deep.equal({ to: ADDR });
       });
 
       it('uses the contract address when none specified', () => {
-        expect(contract._addOptionsTo({ from: 'me' })).toEqual({ to: ADDR, from: 'me' });
+        expect(contract._addOptionsTo({ from: 'me' })).to.deep.equal({ to: ADDR, from: 'me' });
       });
 
       it('overrides the contract address when specified', () => {
-        expect(contract._addOptionsTo({ to: 'you', from: 'me' })).toEqual({ to: 'you', from: 'me' });
+        expect(contract._addOptionsTo({ to: 'you', from: 'me' })).to.deep.equal({ to: 'you', from: 'me' });
       });
     });
 
     describe('attachments', () => {
       it('attaches .call, .postTransaction & .estimateGas to constructors', () => {
-        expect(isFunction(cons.call)).toBe.true;
-        expect(isFunction(cons.postTransaction)).toBe.true;
-        expect(isFunction(cons.estimateGas)).toBe.true;
+        expect(isFunction(cons.call)).to.be.true;
+        expect(isFunction(cons.postTransaction)).to.be.true;
+        expect(isFunction(cons.estimateGas)).to.be.true;
       });
 
       it('attaches .call, .postTransaction & .estimateGas to functions', () => {
-        expect(isFunction(func.call)).toBe.true;
-        expect(isFunction(func.postTransaction)).toBe.true;
-        expect(isFunction(func.estimateGas)).toBe.true;
+        expect(isFunction(func.call)).to.be.true;
+        expect(isFunction(func.postTransaction)).to.be.true;
+        expect(isFunction(func.estimateGas)).to.be.true;
       });
 
       it('attaches .call only to constant functions', () => {
         func = (new Contract(eth, [{ type: 'function', name: 'test', constant: true }])).functions[0];
 
-        expect(isFunction(func.call)).toBe.true;
-        expect(isFunction(func.postTransaction)).toBe.false;
-        expect(isFunction(func.estimateGas)).toBe.false;
+        expect(isFunction(func.call)).to.be.true;
+        expect(isFunction(func.postTransaction)).to.be.false;
+        expect(isFunction(func.estimateGas)).to.be.false;
       });
     });
 
@@ -423,8 +423,8 @@ describe('contract/Contract', () => {
         return func
           .postTransaction({ someExtras: 'foo' }, VALUES)
           .then(() => {
-            expect(scope.isDone()).toBe.true;
-            expect(scope.body.parity_postTransaction.params[0]).toEqual({
+            expect(scope.isDone()).to.be.true;
+            expect(scope.body.parity_postTransaction.params[0]).to.deep.equal({
               someExtras: 'foo',
               to: ADDR,
               data: ENCODED
@@ -442,9 +442,9 @@ describe('contract/Contract', () => {
         return func
           .estimateGas({ someExtras: 'foo' }, VALUES)
           .then((amount) => {
-            expect(scope.isDone()).toBe.true;
-            expect(amount.toString(16)).toEqual('123');
-            expect(scope.body.eth_estimateGas.params).toEqual([{
+            expect(scope.isDone()).to.be.true;
+            expect(amount.toString(16)).to.equal('123');
+            expect(scope.body.eth_estimateGas.params).to.deep.equal([{
               someExtras: 'foo',
               to: ADDR,
               data: ENCODED
@@ -460,13 +460,13 @@ describe('contract/Contract', () => {
         return func
           .call({ someExtras: 'foo' }, VALUES)
           .then((result) => {
-            expect(scope.isDone()).toBe.true;
-            expect(scope.body.eth_call.params).toEqual([{
+            expect(scope.isDone()).to.be.true;
+            expect(scope.body.eth_call.params).to.deep.equal([{
               someExtras: 'foo',
               to: ADDR,
               data: ENCODED
             }, 'latest']);
-            expect(result.toString(16)).toEqual('123456');
+            expect(result.toString(16)).to.equal('123456');
           });
       });
 
@@ -476,10 +476,10 @@ describe('contract/Contract', () => {
         return contract.functions[1]
           .call({}, [])
           .then((result) => {
-            expect(scope.isDone()).toBe.true;
-            expect(result.length).toEqual(2);
-            expect(result[0].toString(16)).toEqual('123456');
-            expect(result[1].toString(16)).toEqual('456789');
+            expect(scope.isDone()).to.be.true;
+            expect(result.length).to.equal(2);
+            expect(result[0].toString(16)).to.equal('123456');
+            expect(result[1].toString(16)).to.equal('456789');
           });
       });
     });
@@ -576,7 +576,7 @@ describe('contract/Contract', () => {
         return contract
           .subscribe('Message', { toBlock: 'pending' }, cbe)
           .then((subscriptionId) => {
-            expect(subscriptionId).toEqual(1);
+            expect(subscriptionId).to.equal(1);
           });
       });
 
@@ -584,7 +584,7 @@ describe('contract/Contract', () => {
         return contract
           .subscribe('Message', { toBlock: 'pending' }, cbe)
           .then((subscriptionId) => {
-            expect(scope.isDone()).toBe.true;
+            expect(scope.isDone()).to.be.true;
           });
       });
 

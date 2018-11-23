@@ -14,25 +14,27 @@
 // You should have received a copy of the GNU General Public License
 // along with Parity.  If not, see <http://www.gnu.org/licenses/>.
 
-const { TEST_HTTP_URL, mockHttp } = require('../../../test/mockRpc');
+const { keccak_256 } = require('js-sha3'); // eslint-disable-line
 
-const { Http, PromiseProvider } = require('../../provider');
-const Web3 = require('./web3');
+const { hexToBytes } = require('./format');
+const { isHex } = require('./types');
 
-const instance = new Web3(new PromiseProvider(new Http(TEST_HTTP_URL, -1)));
+function sha3 (value, options) {
+  const forceHex = options && options.encoding === 'hex';
 
-describe('rpc/Web3', () => {
-  let scope;
+  if (forceHex || (!options && isHex(value))) {
+    const bytes = hexToBytes(value);
 
-  describe('sha3', () => {
-    beforeEach(() => {
-      scope = mockHttp([{ method: 'web3_sha3', reply: { result: [] } }]);
-    });
+    return sha3(bytes);
+  }
 
-    it('formats the inputs correctly', () => {
-      return instance.sha3('1234').then(() => {
-        expect(scope.body.web3_sha3.params).to.deep.equal(['0x1234']);
-      });
-    });
-  });
-});
+  const hash = keccak_256(value);
+
+  return `0x${hash}`;
+}
+
+sha3.text = (val) => sha3(val, { encoding: 'raw' });
+
+module.exports = {
+  sha3
+};

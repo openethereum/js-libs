@@ -31,7 +31,7 @@ describe('subscriptions/logging', () => {
 
   describe('constructor', () => {
     it('starts the instance in a started state', () => {
-      expect(logging.isStarted).toBe.true;
+      expect(logging.isStarted).to.be.true;
     });
   });
 

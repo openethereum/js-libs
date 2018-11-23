@@ -31,7 +31,7 @@ describe('rpc/Db', () => {
 
     it('formats the inputs correctly', () => {
       return instance.putHex('db', 'key', '1234').then(() => {
-        expect(scope.body.db_putHex.params).toEqual(['db', 'key', '0x1234']);
+        expect(scope.body.db_putHex.params).to.deep.equal(['db', 'key', '0x1234']);
       });
     });
   });

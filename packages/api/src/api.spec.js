@@ -36,6 +36,6 @@ describe('Api', () => {
   });
 
   it('exposes util as static property', () => {
-    expect(Api.util).toEqual(util);
+    expect(Api.util).to.equal(util);
   });
 });

@@ -14,25 +14,21 @@
 // You should have received a copy of the GNU General Public License
 // along with Parity.  If not, see <http://www.gnu.org/licenses/>.
 
-const { TEST_HTTP_URL, mockHttp } = require('../../../test/mockRpc');
+const blockies = require('blockies');
 
-const { Http, PromiseProvider } = require('../../provider');
-const Web3 = require('./web3');
+// jsdom doesn't have all the browser features, blockies fail
+const TEST_ENV = process.env.NODE_ENV === 'test';
 
-const instance = new Web3(new PromiseProvider(new Http(TEST_HTTP_URL, -1)));
+function createIdentityImg (address, scale = 8) {
+  return TEST_ENV
+    ? 'test-createIdentityImg'
+    : blockies({
+      seed: (address || '').toLowerCase(),
+      size: 8,
+      scale
+    }).toDataURL();
+}
 
-describe('rpc/Web3', () => {
-  let scope;
-
-  describe('sha3', () => {
-    beforeEach(() => {
-      scope = mockHttp([{ method: 'web3_sha3', reply: { result: [] } }]);
-    });
-
-    it('formats the inputs correctly', () => {
-      return instance.sha3('1234').then(() => {
-        expect(scope.body.web3_sha3.params).to.deep.equal(['0x1234']);
-      });
-    });
-  });
-});
+module.exports = {
+  createIdentityImg
+};

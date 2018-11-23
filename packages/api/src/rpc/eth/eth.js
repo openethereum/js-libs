@@ -14,325 +14,309 @@
 // You should have received a copy of the GNU General Public License
 // along with Parity.  If not, see <http://www.gnu.org/licenses/>.
 
-const {
-  inAddress,
-  inBlockNumber,
-  inData,
-  inFilter,
-  inHash,
-  inHex,
-  inNumber16,
-  inOptions
-} = require('../../format/input');
-const {
-  outAddress,
-  outBlock,
-  outLog,
-  outNumber,
-  outReceipt,
-  outSyncing,
-  outTransaction
-} = require('../../format/output');
+const { inAddress, inBlockNumber, inData, inFilter, inHash, inHex, inNumber16, inOptions } = require('../../format/input');
+const { outAddress, outBlock, outLog, outNumber, outReceipt, outSyncing, outTransaction } = require('../../format/output');
 
 class Eth {
-  constructor(provider) {
+  constructor (provider) {
     this._provider = provider;
   }
 
-  accounts() {
+  accounts () {
     return this._provider
       .send('eth_accounts')
-      .then(accounts => (accounts || []).map(outAddress));
+      .then((accounts) => (accounts || []).map(outAddress));
   }
 
-  blockNumber() {
-    return this._provider.send('eth_blockNumber').then(outNumber);
+  blockNumber () {
+    return this._provider
+      .send('eth_blockNumber')
+      .then(outNumber);
   }
 
-  call(options, blockNumber = 'latest') {
-    return this._provider.send(
-      'eth_call',
-      inOptions(options),
-      inBlockNumber(blockNumber)
-    );
+  call (options, blockNumber = 'latest') {
+    return this._provider
+      .send('eth_call', inOptions(options), inBlockNumber(blockNumber));
   }
 
-  coinbase() {
-    return this._provider.send('eth_coinbase').then(outAddress);
+  coinbase () {
+    return this._provider
+      .send('eth_coinbase')
+      .then(outAddress);
   }
 
-  compileLLL(code) {
-    return this._provider.send('eth_compileLLL', inData(code));
+  compileLLL (code) {
+    return this._provider
+      .send('eth_compileLLL', inData(code));
   }
 
-  compileSerpent(code) {
-    return this._provider.send('eth_compileSerpent', inData(code));
+  compileSerpent (code) {
+    return this._provider
+      .send('eth_compileSerpent', inData(code));
   }
 
-  compileSolidity(code) {
-    return this._provider.send('eth_compileSolidity', inData(code));
+  compileSolidity (code) {
+    return this._provider
+      .send('eth_compileSolidity', inData(code));
   }
 
-  estimateGas(options) {
+  estimateGas (options) {
     return this._provider
       .send('eth_estimateGas', inOptions(options))
       .then(outNumber);
   }
 
-  fetchQueuedTransactions() {
-    return this._provider.send('eth_fetchQueuedTransactions');
+  fetchQueuedTransactions () {
+    return this._provider
+      .send('eth_fetchQueuedTransactions');
   }
 
-  flush() {
-    return this._provider.send('eth_flush');
+  flush () {
+    return this._provider
+      .send('eth_flush');
   }
 
-  gasPrice() {
-    return this._provider.send('eth_gasPrice').then(outNumber);
+  gasPrice () {
+    return this._provider
+      .send('eth_gasPrice')
+      .then(outNumber);
   }
 
-  getBalance(address, blockNumber = 'latest') {
+  getBalance (address, blockNumber = 'latest') {
     return this._provider
       .send('eth_getBalance', inAddress(address), inBlockNumber(blockNumber))
       .then(outNumber);
   }
 
-  getBlockByHash(hash, full = false) {
+  getBlockByHash (hash, full = false) {
     return this._provider
       .send('eth_getBlockByHash', inHex(hash), full)
       .then(outBlock);
   }
 
-  getBlockByNumber(blockNumber = 'latest', full = false) {
+  getBlockByNumber (blockNumber = 'latest', full = false) {
     return this._provider
       .send('eth_getBlockByNumber', inBlockNumber(blockNumber), full)
       .then(outBlock);
   }
 
-  getBlockTransactionCountByHash(hash) {
+  getBlockTransactionCountByHash (hash) {
     return this._provider
       .send('eth_getBlockTransactionCountByHash', inHex(hash))
       .then(outNumber);
   }
 
-  getBlockTransactionCountByNumber(blockNumber = 'latest') {
+  getBlockTransactionCountByNumber (blockNumber = 'latest') {
     return this._provider
       .send('eth_getBlockTransactionCountByNumber', inBlockNumber(blockNumber))
       .then(outNumber);
   }
 
-  getCode(address, blockNumber = 'latest') {
-    return this._provider.send(
-      'eth_getCode',
-      inAddress(address),
-      inBlockNumber(blockNumber)
-    );
+  getCode (address, blockNumber = 'latest') {
+    return this._provider
+      .send('eth_getCode', inAddress(address), inBlockNumber(blockNumber));
   }
 
-  getCompilers() {
-    return this._provider.send('eth_getCompilers');
+  getCompilers () {
+    return this._provider
+      .send('eth_getCompilers');
   }
 
-  getFilterChanges(filterId) {
+  getFilterChanges (filterId) {
     return this._provider
       .send('eth_getFilterChanges', inNumber16(filterId))
-      .then(logs => logs.map(outLog));
+      .then((logs) => logs.map(outLog));
   }
 
-  getFilterChangesEx(filterId) {
-    return this._provider.send('eth_getFilterChangesEx', inNumber16(filterId));
+  getFilterChangesEx (filterId) {
+    return this._provider
+      .send('eth_getFilterChangesEx', inNumber16(filterId));
   }
 
-  getFilterLogs(filterId) {
+  getFilterLogs (filterId) {
     return this._provider
       .send('eth_getFilterLogs', inNumber16(filterId))
-      .then(logs => logs.map(outLog));
+      .then((logs) => logs.map(outLog));
   }
 
-  getFilterLogsEx(filterId) {
-    return this._provider.send('eth_getFilterLogsEx', inNumber16(filterId));
+  getFilterLogsEx (filterId) {
+    return this._provider
+      .send('eth_getFilterLogsEx', inNumber16(filterId));
   }
 
-  getLogs(options) {
+  getLogs (options) {
     return this._provider
       .send('eth_getLogs', inFilter(options))
-      .then(logs => logs.map(outLog));
+      .then((logs) => logs.map(outLog));
   }
 
-  getLogsEx(options) {
-    return this._provider.send('eth_getLogsEx', inFilter(options));
-  }
-
-  getStorageAt(address, index = 0, blockNumber = 'latest') {
-    return this._provider.send(
-      'eth_getStorageAt',
-      inAddress(address),
-      inNumber16(index),
-      inBlockNumber(blockNumber)
-    );
-  }
-
-  getTransactionByBlockHashAndIndex(hash, index = 0) {
+  getLogsEx (options) {
     return this._provider
-      .send(
-        'eth_getTransactionByBlockHashAndIndex',
-        inHex(hash),
-        inNumber16(index)
-      )
+      .send('eth_getLogsEx', inFilter(options));
+  }
+
+  getStorageAt (address, index = 0, blockNumber = 'latest') {
+    return this._provider
+      .send('eth_getStorageAt', inAddress(address), inNumber16(index), inBlockNumber(blockNumber));
+  }
+
+  getTransactionByBlockHashAndIndex (hash, index = 0) {
+    return this._provider
+      .send('eth_getTransactionByBlockHashAndIndex', inHex(hash), inNumber16(index))
       .then(outTransaction);
   }
 
-  getTransactionByBlockNumberAndIndex(blockNumber = 'latest', index = 0) {
+  getTransactionByBlockNumberAndIndex (blockNumber = 'latest', index = 0) {
     return this._provider
-      .send(
-        'eth_getTransactionByBlockNumberAndIndex',
-        inBlockNumber(blockNumber),
-        inNumber16(index)
-      )
+      .send('eth_getTransactionByBlockNumberAndIndex', inBlockNumber(blockNumber), inNumber16(index))
       .then(outTransaction);
   }
 
-  getTransactionByHash(hash) {
+  getTransactionByHash (hash) {
     return this._provider
       .send('eth_getTransactionByHash', inHex(hash))
       .then(outTransaction);
   }
 
-  getTransactionCount(address, blockNumber = 'latest') {
+  getTransactionCount (address, blockNumber = 'latest') {
     return this._provider
-      .send(
-        'eth_getTransactionCount',
-        inAddress(address),
-        inBlockNumber(blockNumber)
-      )
+      .send('eth_getTransactionCount', inAddress(address), inBlockNumber(blockNumber))
       .then(outNumber);
   }
 
-  getTransactionReceipt(txhash) {
+  getTransactionReceipt (txhash) {
     return this._provider
       .send('eth_getTransactionReceipt', inHex(txhash))
       .then(outReceipt);
   }
 
-  getUncleByBlockHashAndIndex(hash, index = 0) {
-    return this._provider.send(
-      'eth_getUncleByBlockHashAndIndex',
-      inHex(hash),
-      inNumber16(index)
-    );
+  getUncleByBlockHashAndIndex (hash, index = 0) {
+    return this._provider
+      .send('eth_getUncleByBlockHashAndIndex', inHex(hash), inNumber16(index));
   }
 
-  getUncleByBlockNumberAndIndex(blockNumber = 'latest', index = 0) {
-    return this._provider.send(
-      'eth_getUncleByBlockNumberAndIndex',
-      inBlockNumber(blockNumber),
-      inNumber16(index)
-    );
+  getUncleByBlockNumberAndIndex (blockNumber = 'latest', index = 0) {
+    return this._provider
+      .send('eth_getUncleByBlockNumberAndIndex', inBlockNumber(blockNumber), inNumber16(index));
   }
 
-  getUncleCountByBlockHash(hash) {
+  getUncleCountByBlockHash (hash) {
     return this._provider
       .send('eth_getUncleCountByBlockHash', inHex(hash))
       .then(outNumber);
   }
 
-  getUncleCountByBlockNumber(blockNumber = 'latest') {
+  getUncleCountByBlockNumber (blockNumber = 'latest') {
     return this._provider
       .send('eth_getUncleCountByBlockNumber', inBlockNumber(blockNumber))
       .then(outNumber);
   }
 
-  getWork() {
-    return this._provider.send('eth_getWork');
+  getWork () {
+    return this._provider
+      .send('eth_getWork');
   }
 
-  hashrate() {
-    return this._provider.send('eth_hashrate').then(outNumber);
+  hashrate () {
+    return this._provider
+      .send('eth_hashrate')
+      .then(outNumber);
   }
 
-  inspectTransaction() {
-    return this._provider.send('eth_inspectTransaction');
+  inspectTransaction () {
+    return this._provider
+      .send('eth_inspectTransaction');
   }
 
-  mining() {
-    return this._provider.send('eth_mining');
+  mining () {
+    return this._provider
+      .send('eth_mining');
   }
 
-  newBlockFilter() {
-    return this._provider.send('eth_newBlockFilter');
+  newBlockFilter () {
+    return this._provider
+      .send('eth_newBlockFilter');
   }
 
-  newFilter(options) {
-    return this._provider.send('eth_newFilter', inFilter(options));
+  newFilter (options) {
+    return this._provider
+      .send('eth_newFilter', inFilter(options));
   }
 
-  newFilterEx(options) {
-    return this._provider.send('eth_newFilterEx', inFilter(options));
+  newFilterEx (options) {
+    return this._provider
+      .send('eth_newFilterEx', inFilter(options));
   }
 
-  newPendingTransactionFilter() {
-    return this._provider.send('eth_newPendingTransactionFilter');
+  newPendingTransactionFilter () {
+    return this._provider
+      .send('eth_newPendingTransactionFilter');
   }
 
-  notePassword() {
-    return this._provider.send('eth_notePassword');
+  notePassword () {
+    return this._provider
+      .send('eth_notePassword');
   }
 
-  pendingTransactions() {
-    return this._provider.send('eth_pendingTransactions');
+  pendingTransactions () {
+    return this._provider
+      .send('eth_pendingTransactions');
   }
 
-  protocolVersion() {
-    return this._provider.send('eth_protocolVersion');
+  protocolVersion () {
+    return this._provider
+      .send('eth_protocolVersion');
   }
 
-  register() {
-    return this._provider.send('eth_register');
+  register () {
+    return this._provider
+      .send('eth_register');
   }
 
-  sendRawTransaction(data) {
-    return this._provider.send('eth_sendRawTransaction', inData(data));
+  sendRawTransaction (data) {
+    return this._provider
+      .send('eth_sendRawTransaction', inData(data));
   }
 
-  sendTransaction(options) {
-    return this._provider.send('eth_sendTransaction', inOptions(options));
+  sendTransaction (options) {
+    return this._provider
+      .send('eth_sendTransaction', inOptions(options));
   }
 
-  sign(address, hash) {
-    return this._provider.send('eth_sign', inAddress(address), inHash(hash));
+  sign (address, hash) {
+    return this._provider
+      .send('eth_sign', inAddress(address), inHash(hash));
   }
 
-  signTransaction(options) {
-    return this._provider.send('eth_signTransaction', inOptions(options));
+  signTransaction (options) {
+    return this._provider
+      .send('eth_signTransaction', inOptions(options));
   }
 
-  submitHashrate(hashrate, clientId) {
-    return this._provider.send(
-      'eth_submitHashrate',
-      inNumber16(hashrate),
-      clientId
-    );
+  submitHashrate (hashrate, clientId) {
+    return this._provider
+      .send('eth_submitHashrate', inNumber16(hashrate), clientId);
   }
 
-  submitWork(nonce, powHash, mixDigest) {
-    return this._provider.send(
-      'eth_submitWork',
-      inNumber16(nonce),
-      powHash,
-      mixDigest
-    );
+  submitWork (nonce, powHash, mixDigest) {
+    return this._provider
+      .send('eth_submitWork', inNumber16(nonce), powHash, mixDigest);
   }
 
-  syncing() {
-    return this._provider.send('eth_syncing').then(outSyncing);
+  syncing () {
+    return this._provider
+      .send('eth_syncing')
+      .then(outSyncing);
   }
 
-  uninstallFilter(filterId) {
-    return this._provider.send('eth_uninstallFilter', inHex(filterId));
+  uninstallFilter (filterId) {
+    return this._provider
+      .send('eth_uninstallFilter', inHex(filterId));
   }
 
-  unregister() {
-    return this._provider.send('eth_unregister');
+  unregister () {
+    return this._provider
+      .send('eth_unregister');
   }
 }
 

@@ -27,7 +27,7 @@ describe('ethapi.web3', () => {
       return ethapi.web3.clientVersion().then((version) => {
         const [client] = version.split('/');
 
-        expect(client === 'Parity' || client === 'Geth').toBe.ok;
+        expect(client === 'Parity' || client === 'Geth').to.be.ok;
       });
     });
   });
@@ -38,8 +38,8 @@ describe('ethapi.web3', () => {
       const hexStr = 'baz()'.split('').map((char) => char.charCodeAt(0).toString(16)).join('');
 
       return ethapi.web3.sha3(`0x${hexStr}`).then((hash) => {
-        expect(isHexNumber(hash)).toBe.true;
-        expect(hash).toEqual(sha);
+        expect(isHexNumber(hash)).to.be.true;
+        expect(hash).to.equal(sha);
       });
     });
   });
