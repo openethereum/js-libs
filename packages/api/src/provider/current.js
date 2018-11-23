@@ -17,25 +17,28 @@
 const JsonRpcEncoder = require('../transport/jsonRpcEncoder');
 
 class Current extends JsonRpcEncoder {
-  constructor (currentProvider) {
+  constructor(currentProvider) {
     super();
 
     this._currentProvider = currentProvider;
   }
 
-  send (method, params, callback) {
-    this._currentProvider.sendAsync(this.encodeObject(method, params), (error, result) => {
-      if (error) {
-        callback(error);
-      } else if (result && result.result) {
-        callback(null, result.result);
-      } else {
-        callback(null, result);
+  send(method, params, callback) {
+    this._currentProvider.sendAsync(
+      this.encodeObject(method, params),
+      (error, result) => {
+        if (error) {
+          callback(error);
+        } else if (result && result.result !== undefined) {
+          callback(null, result.result);
+        } else {
+          callback(null, result);
+        }
       }
-    });
+    );
   }
 
-  get isParity () {
+  get isParity() {
     return !!this._currentProvider.isParity;
   }
 }
