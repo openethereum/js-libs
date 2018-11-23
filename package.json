@@ -22,7 +22,7 @@
     "lint": "tslint 'packages/**/*.ts'",
     "postinstall": "yarn build",
     "test": "jest",
-    "test:api": "lerna exec --package api yarn test",
+    "test:api": "cd packages/api && yarn test",
     "update-docs": "scripts/update-docs.sh"
   },
   "devDependencies": {
