@@ -112,7 +112,7 @@ export default class BadgeReg {
           resultIcon = null;
         }
 
-        return { title, icon };
+        return { title, icon: resultIcon };
       });
   }
 
