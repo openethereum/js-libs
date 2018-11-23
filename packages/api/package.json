@@ -22,7 +22,7 @@
     "lint": "npm run lint:css && npm run lint:js",
     "lint:css": "echo \"WARN: npm run lint:css skipped\"",
     "lint:js": "eslint src",
-    "test": "cross-env NODE_ENV=test mocha 'src/*.spec.js' 'src/**/*.spec.js'",
+    "test": "cross-env NODE_ENV=test mocha -r ts-node/register 'src/*.spec.js' 'src/**/*.spec.js'",
     "test:coverage": "cross-env NODE_ENV=test istanbul cover _mocha 'src/*.spec.js' 'src/**/*.spec.js' && coveralls < coverage/lcov.info"
   },
   "devDependencies": {
@@ -55,13 +55,14 @@
     "rimraf": "^2.6.2",
     "sinon": "1.17.7",
     "sinon-as-promised": "4.0.2",
-    "sinon-chai": "2.8.0"
+    "sinon-chai": "2.8.0",
+    "ts-node": "^7.0.1"
   },
   "dependencies": {
     "@parity/abi": "~2.1.4",
     "@parity/jsonrpc": "2.1.x",
     "@parity/wordlist": "1.1.x",
-    "bignumber.js": "4.1.0",
+    "bignumber.js": "^7",
     "blockies": "0.0.2",
     "es6-error": "4.0.2",
     "es6-promise": "^4.1.1",

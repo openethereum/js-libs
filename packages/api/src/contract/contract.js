@@ -14,12 +14,12 @@
 // You should have received a copy of the GNU General Public License
 // along with Parity.  If not, see <http://www.gnu.org/licenses/>.
 
-const Abi = require('@parity/abi');
+const Abi = require('@parity/abi').default;
 
 let nextSubscriptionId = 0;
 
 class Contract {
-  constructor (api, abi) {
+  constructor(api, abi) {
     if (!api) {
       throw new Error('API instance needs to be provided to Contract');
     }
@@ -49,12 +49,12 @@ class Contract {
 
     this._instance = {};
 
-    this._events.forEach((evt) => {
+    this._events.forEach(evt => {
       this._instance[evt.name] = evt;
       this._instance[evt.signature] = evt;
     });
 
-    this._functions.forEach((fn) => {
+    this._functions.forEach(fn => {
       this._instance[fn.name] = fn;
       this._instance[fn.signature] = fn;
     });
@@ -70,55 +70,53 @@ class Contract {
     }
   }
 
-  get address () {
+  get address() {
     return this._address;
   }
 
-  get constructors () {
+  get constructors() {
     return this._constructors;
   }
 
-  get events () {
+  get events() {
     return this._events;
   }
 
-  get functions () {
+  get functions() {
     return this._functions;
   }
 
-  get receipt () {
+  get receipt() {
     return this._receipt;
   }
 
-  get instance () {
+  get instance() {
     this._instance.address = this._address;
     return this._instance;
   }
 
-  get api () {
+  get api() {
     return this._api;
   }
 
-  get abi () {
+  get abi() {
     return this._abi;
   }
 
-  at (address) {
+  at(address) {
     this._address = address;
     return this;
   }
 
-  deployEstimateGas (options, values) {
+  deployEstimateGas(options, values) {
     const _options = this._encodeOptions(this.constructors[0], options, values);
 
-    return this._api.eth
-      .estimateGas(_options)
-      .then((gasEst) => {
-        return [gasEst, gasEst.mul(1.2)];
-      });
+    return this._api.eth.estimateGas(_options).then(gasEst => {
+      return [gasEst, gasEst.mul(1.2)];
+    });
   }
 
-  deploy (options, values, statecb = () => {}, skipGasEstimate = false) {
+  deploy(options, values, statecb = () => {}, skipGasEstimate = false) {
     let gasEstPromise;
 
     if (skipGasEstimate) {
@@ -126,66 +124,72 @@ class Contract {
     } else {
       statecb(null, { state: 'estimateGas' });
 
-      gasEstPromise = this.deployEstimateGas(options, values)
-        .then(([gasEst, gas]) => gas);
+      gasEstPromise = this.deployEstimateGas(options, values).then(
+        ([gasEst, gas]) => gas
+      );
     }
 
-    return gasEstPromise
-      .then((_gas) => {
-        if (_gas) {
-          options.gas = _gas.toFixed(0);
-        }
+    return gasEstPromise.then(_gas => {
+      if (_gas) {
+        options.gas = _gas.toFixed(0);
+      }
 
-        const gas = _gas || options.gas;
+      const gas = _gas || options.gas;
 
-        statecb(null, { state: 'postTransaction', gas });
+      statecb(null, { state: 'postTransaction', gas });
 
-        const encodedOptions = this._encodeOptions(this.constructors[0], options, values);
+      const encodedOptions = this._encodeOptions(
+        this.constructors[0],
+        options,
+        values
+      );
 
-        return this._api.parity
-          .postTransaction(encodedOptions)
-          .then((requestId) => {
-            if (requestId.length !== 66) {
-              statecb(null, { state: 'checkRequest', requestId });
-              return this._pollCheckRequest(requestId);
-            }
+      return this._api.parity
+        .postTransaction(encodedOptions)
+        .then(requestId => {
+          if (requestId.length !== 66) {
+            statecb(null, { state: 'checkRequest', requestId });
+            return this._pollCheckRequest(requestId);
+          }
 
-            return requestId;
-          })
-          .then((txhash) => {
-            statecb(null, { state: 'getTransactionReceipt', txhash });
-            return this._pollTransactionReceipt(txhash, gas);
-          })
-          .then((receipt) => {
-            if (receipt.gasUsed.eq(gas)) {
-              throw new Error(`Contract not deployed, gasUsed == ${gas.toFixed(0)}`);
-            }
+          return requestId;
+        })
+        .then(txhash => {
+          statecb(null, { state: 'getTransactionReceipt', txhash });
+          return this._pollTransactionReceipt(txhash, gas);
+        })
+        .then(receipt => {
+          if (receipt.gasUsed.eq(gas)) {
+            throw new Error(
+              `Contract not deployed, gasUsed == ${gas.toFixed(0)}`
+            );
+          }
 
-            statecb(null, { state: 'hasReceipt', receipt });
-            this._receipt = receipt;
-            this._address = receipt.contractAddress;
-            return this._address;
-          })
-          .then((address) => {
-            statecb(null, { state: 'getCode' });
-            return this._api.eth.getCode(this._address);
-          })
-          .then((code) => {
-            if (code === '0x') {
-              throw new Error('Contract not deployed, getCode returned 0x');
-            }
+          statecb(null, { state: 'hasReceipt', receipt });
+          this._receipt = receipt;
+          this._address = receipt.contractAddress;
+          return this._address;
+        })
+        .then(address => {
+          statecb(null, { state: 'getCode' });
+          return this._api.eth.getCode(this._address);
+        })
+        .then(code => {
+          if (code === '0x') {
+            throw new Error('Contract not deployed, getCode returned 0x');
+          }
 
-            statecb(null, { state: 'completed' });
-            return this._address;
-          });
-      });
+          statecb(null, { state: 'completed' });
+          return this._address;
+        });
+    });
   }
 
-  parseEventLogs (logs) {
+  parseEventLogs(logs) {
     return logs
-      .map((log) => {
+      .map(log => {
         const signature = log.topics[0].substr(2);
-        const event = this.events.find((evt) => evt.signature === signature);
+        const event = this.events.find(evt => evt.signature === signature);
 
         if (!event) {
           console.warn(`Unable to find event matching signature ${signature}`);
@@ -213,21 +217,21 @@ class Contract {
           return null;
         }
       })
-      .filter((log) => log);
+      .filter(log => log);
   }
 
-  parseTransactionEvents (receipt) {
+  parseTransactionEvents(receipt) {
     receipt.logs = this.parseEventLogs(receipt.logs);
 
     return receipt;
   }
 
-  _pollCheckRequest (requestId) {
+  _pollCheckRequest(requestId) {
     return this._api.pollMethod('parity_checkRequest', requestId);
   }
 
-  _pollTransactionReceipt (txhash, gas) {
-    return this.api.pollMethod('eth_getTransactionReceipt', txhash, (receipt) => {
+  _pollTransactionReceipt(txhash, gas) {
+    return this.api.pollMethod('eth_getTransactionReceipt', txhash, receipt => {
       if (!receipt || !receipt.blockNumber || receipt.blockNumber.eq(0)) {
         return false;
       }
@@ -236,10 +240,12 @@ class Contract {
     });
   }
 
-  getCallData (func, options, values) {
+  getCallData(func, options, values) {
     let data = options.data;
 
-    const tokens = func ? Abi.encodeTokens(func.inputParamTypes(), values) : null;
+    const tokens = func
+      ? Abi.encodeTokens(func.inputParamTypes(), values)
+      : null;
     const call = tokens ? func.encodeCall(tokens) : null;
 
     if (data && data.substr(0, 2) === '0x') {
@@ -249,19 +255,22 @@ class Contract {
     return `0x${data || ''}${call || ''}`;
   }
 
-  _encodeOptions (func, options, values) {
+  _encodeOptions(func, options, values) {
     const data = this.getCallData(func, options, values);
 
     return Object.assign({}, options, { data });
   }
 
-  _addOptionsTo (options = {}) {
-    return Object.assign({
-      to: this._address
-    }, options);
+  _addOptionsTo(options = {}) {
+    return Object.assign(
+      {
+        to: this._address
+      },
+      options
+    );
   }
 
-  _bindFunction (func) {
+  _bindFunction(func) {
     func.contract = this;
 
     func.call = (_options = {}, values = []) => {
@@ -273,23 +282,27 @@ class Contract {
       let callParams;
 
       try {
-        callParams = this._encodeOptions(func, this._addOptionsTo(options), values);
+        callParams = this._encodeOptions(
+          func,
+          this._addOptionsTo(options),
+          values
+        );
       } catch (error) {
         return Promise.reject(error);
       }
 
       return this._api.eth
         .call(callParams)
-        .then((encoded) => func.decodeOutput(encoded))
-        .then((tokens) => {
+        .then(encoded => func.decodeOutput(encoded))
+        .then(tokens => {
           if (rawTokens) {
             return tokens;
           }
 
-          return tokens.map((token) => token.value);
+          return tokens.map(token => token.value);
         })
-        .then((returns) => returns.length === 1 ? returns[0] : returns)
-        .catch((error) => {
+        .then(returns => (returns.length === 1 ? returns[0] : returns))
+        .catch(error => {
           console.warn(`${func.name}.call`, values, error);
           throw error;
         });
@@ -300,40 +313,44 @@ class Contract {
         let _options;
 
         try {
-          _options = this._encodeOptions(func, this._addOptionsTo(options), values);
+          _options = this._encodeOptions(
+            func,
+            this._addOptionsTo(options),
+            values
+          );
         } catch (error) {
           return Promise.reject(error);
         }
 
-        return this._api.parity
-          .postTransaction(_options)
-          .catch((error) => {
-            console.warn(`${func.name}.postTransaction`, values, error);
-            throw error;
-          });
+        return this._api.parity.postTransaction(_options).catch(error => {
+          console.warn(`${func.name}.postTransaction`, values, error);
+          throw error;
+        });
       };
 
       func.estimateGas = (options, values = []) => {
-        const _options = this._encodeOptions(func, this._addOptionsTo(options), values);
+        const _options = this._encodeOptions(
+          func,
+          this._addOptionsTo(options),
+          values
+        );
 
-        return this._api.eth
-          .estimateGas(_options)
-          .catch((error) => {
-            console.warn(`${func.name}.estimateGas`, values, error);
-            throw error;
-          });
+        return this._api.eth.estimateGas(_options).catch(error => {
+          console.warn(`${func.name}.estimateGas`, values, error);
+          throw error;
+        });
       };
     }
 
     return func;
   }
 
-  _bindEvent (event) {
+  _bindEvent(event) {
     event.subscribe = (options = {}, callback, autoRemove) => {
       return this._subscribe(event, options, callback, autoRemove);
     };
 
-    event.unsubscribe = (subscriptionId) => {
+    event.unsubscribe = subscriptionId => {
       return this.unsubscribe(subscriptionId);
     };
 
@@ -344,7 +361,7 @@ class Contract {
     return event;
   }
 
-  getAllLogs (event, _options) {
+  getAllLogs(event, _options) {
     // Options as first parameter
     if (!_options && event && event.topics) {
       return this.getAllLogs(null, event);
@@ -357,31 +374,35 @@ class Contract {
 
     return this._api.eth
       .getLogs(options)
-      .then((logs) => this.parseEventLogs(logs));
+      .then(logs => this.parseEventLogs(logs));
   }
 
-  _findEvent (eventName = null) {
+  _findEvent(eventName = null) {
     const event = eventName
-      ? this._events.find((evt) => evt.name === eventName)
+      ? this._events.find(evt => evt.name === eventName)
       : null;
 
     if (eventName && !event) {
-      const events = this._events.map((evt) => evt.name).join(', ');
+      const events = this._events.map(evt => evt.name).join(', ');
 
-      throw new Error(`${eventName} is not a valid eventName, subscribe using one of ${events} (or null to include all)`);
+      throw new Error(
+        `${eventName} is not a valid eventName, subscribe using one of ${events} (or null to include all)`
+      );
     }
 
     return event;
   }
 
-  _getFilterOptions (event = null, _options = {}) {
+  _getFilterOptions(event = null, _options = {}) {
     const optionTopics = _options.topics || [];
     const signature = (event && event.signature) || null;
 
     // If event provided, remove the potential event signature
     // as the first element of the topics
     const topics = signature
-      ? [ signature ].concat(optionTopics.filter((t, index) => index > 0 || t !== signature))
+      ? [signature].concat(
+          optionTopics.filter((t, index) => index > 0 || t !== signature)
+        )
       : optionTopics;
 
     const options = Object.assign({}, _options, {
@@ -392,13 +413,13 @@ class Contract {
     return options;
   }
 
-  _createEthFilter (event = null, _options) {
+  _createEthFilter(event = null, _options) {
     const options = this._getFilterOptions(event, _options);
 
     return this._api.eth.newFilter(options);
   }
 
-  subscribe (eventName = null, options = {}, callback, autoRemove) {
+  subscribe(eventName = null, options = {}, callback, autoRemove) {
     try {
       const event = this._findEvent(eventName);
 
@@ -408,7 +429,7 @@ class Contract {
     }
   }
 
-  _sendData (subscriptionId, error, logs) {
+  _sendData(subscriptionId, error, logs) {
     const { autoRemove, callback } = this._subscriptions[subscriptionId];
     let result = true;
 
@@ -423,15 +444,14 @@ class Contract {
     }
   }
 
-  _subscribe (event = null, _options, callback, autoRemove = false) {
+  _subscribe(event = null, _options, callback, autoRemove = false) {
     const subscriptionId = nextSubscriptionId++;
     const { skipInitFetch } = _options;
 
     delete _options['skipInitFetch'];
 
-    return this
-      ._createEthFilter(event, _options)
-      .then((filterId) => {
+    return this._createEthFilter(event, _options)
+      .then(filterId => {
         this._subscriptions[subscriptionId] = {
           options: _options,
           autoRemove,
@@ -445,24 +465,22 @@ class Contract {
           return subscriptionId;
         }
 
-        return this._api.eth
-          .getFilterLogs(filterId)
-          .then((logs) => {
-            this._sendData(subscriptionId, null, this.parseEventLogs(logs));
-            this._subscribeToChanges();
-            return subscriptionId;
-          });
+        return this._api.eth.getFilterLogs(filterId).then(logs => {
+          this._sendData(subscriptionId, null, this.parseEventLogs(logs));
+          this._subscribeToChanges();
+          return subscriptionId;
+        });
       })
-      .catch((error) => {
+      .catch(error => {
         console.warn('subscribe', event, _options, error);
         throw error;
       });
   }
 
-  unsubscribe (subscriptionId) {
+  unsubscribe(subscriptionId) {
     return this._api.eth
       .uninstallFilter(this._subscriptions[subscriptionId].filterId)
-      .catch((error) => {
+      .catch(error => {
         console.error('unsubscribe', error);
       })
       .then(() => {
@@ -471,14 +489,16 @@ class Contract {
       });
   }
 
-  _subscribeToChanges () {
+  _subscribeToChanges() {
     const subscriptions = Object.values(this._subscriptions);
 
-    const pendingSubscriptions = subscriptions
-      .filter((s) => s.options.toBlock && s.options.toBlock === 'pending');
+    const pendingSubscriptions = subscriptions.filter(
+      s => s.options.toBlock && s.options.toBlock === 'pending'
+    );
 
-    const otherSubscriptions = subscriptions
-      .filter((s) => !(s.options.toBlock && s.options.toBlock === 'pending'));
+    const otherSubscriptions = subscriptions.filter(
+      s => !(s.options.toBlock && s.options.toBlock === 'pending')
+    );
 
     if (pendingSubscriptions.length > 0 && !this._subscribedToPendings) {
       this._subscribedToPendings = true;
@@ -491,14 +511,16 @@ class Contract {
     }
   }
 
-  _unsubscribeFromChanges () {
+  _unsubscribeFromChanges() {
     const subscriptions = Object.values(this._subscriptions);
 
-    const pendingSubscriptions = subscriptions
-      .filter((s) => s.options.toBlock && s.options.toBlock === 'pending');
+    const pendingSubscriptions = subscriptions.filter(
+      s => s.options.toBlock && s.options.toBlock === 'pending'
+    );
 
-    const otherSubscriptions = subscriptions
-      .filter((s) => !(s.options.toBlock && s.options.toBlock === 'pending'));
+    const otherSubscriptions = subscriptions.filter(
+      s => !(s.options.toBlock && s.options.toBlock === 'pending')
+    );
 
     if (pendingSubscriptions.length === 0 && this._subscribedToPendings) {
       this._subscribedToPendings = false;
@@ -511,59 +533,63 @@ class Contract {
     }
   }
 
-  _subscribeToBlock () {
+  _subscribeToBlock() {
     this._api
-      .subscribe('eth_blockNumber', (error) => {
+      .subscribe('eth_blockNumber', error => {
         if (error) {
           console.error('::_subscribeToBlock', error, error && error.stack);
         }
 
-        const subscriptions = Object.values(this._subscriptions)
-          .filter((s) => !(s.options.toBlock && s.options.toBlock === 'pending'));
+        const subscriptions = Object.values(this._subscriptions).filter(
+          s => !(s.options.toBlock && s.options.toBlock === 'pending')
+        );
 
         this._sendSubscriptionChanges(subscriptions);
       })
-      .then((blockSubId) => {
+      .then(blockSubId => {
         this._blockSubscriptionId = blockSubId;
       })
-      .catch((e) => {
+      .catch(e => {
         console.error('::_subscribeToBlock', e, e && e.stack);
       });
   }
 
-  _subscribeToPendings () {
-    const subscriptions = Object.values(this._subscriptions)
-      .filter((s) => s.options.toBlock && s.options.toBlock === 'pending');
+  _subscribeToPendings() {
+    const subscriptions = Object.values(this._subscriptions).filter(
+      s => s.options.toBlock && s.options.toBlock === 'pending'
+    );
 
     const timeout = () => setTimeout(() => this._subscribeToPendings(), 1000);
 
-    this._sendSubscriptionChanges(subscriptions)
-      .then(() => {
-        this._pendingsSubscriptionId = timeout();
-      });
+    this._sendSubscriptionChanges(subscriptions).then(() => {
+      this._pendingsSubscriptionId = timeout();
+    });
   }
 
-  _sendSubscriptionChanges (subscriptions) {
-    return Promise
-      .all(
-        subscriptions.map((subscription) => {
-          return this._api.eth.getFilterChanges(subscription.filterId);
-        })
-      )
-      .then((logsArray) => {
+  _sendSubscriptionChanges(subscriptions) {
+    return Promise.all(
+      subscriptions.map(subscription => {
+        return this._api.eth.getFilterChanges(subscription.filterId);
+      })
+    )
+      .then(logsArray => {
         logsArray.forEach((logs, index) => {
           if (!logs || !logs.length) {
             return;
           }
 
           try {
-            this._sendData(subscriptions[index].id, null, this.parseEventLogs(logs));
+            this._sendData(
+              subscriptions[index].id,
+              null,
+              this.parseEventLogs(logs)
+            );
           } catch (error) {
             console.error('_sendSubscriptionChanges', error);
           }
         });
       })
-      .catch((error) => {
+      .catch(error => {
         console.error('_sendSubscriptionChanges', error);
       });
   }
