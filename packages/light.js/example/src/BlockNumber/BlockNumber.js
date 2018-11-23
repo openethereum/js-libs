@@ -4,9 +4,8 @@
 // SPDX-License-Identifier: MIT
 
 import React, { Component } from 'react';
-
-import { blockNumber$ } from '../light.js';
-import light from '../hoc';
+import { blockNumber$ } from '@parity/light.js';
+import light from '@parity/light.js-react';
 
 @light({
   blockNumber: blockNumber$

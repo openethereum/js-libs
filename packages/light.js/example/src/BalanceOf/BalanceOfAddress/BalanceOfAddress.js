@@ -5,9 +5,8 @@
 
 import React, { Component } from 'react';
 import { map } from 'rxjs/operators';
-
-import { balanceOf$, withoutLoading } from '../../light.js';
-import light from '../../hoc';
+import { balanceOf$, withoutLoading } from '@parity/light.js';
+import light from '@parity/light.js-react';
 
 @light({
   balance: ownProps =>
