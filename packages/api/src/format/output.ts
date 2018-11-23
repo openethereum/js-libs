@@ -349,10 +349,11 @@ export function outSignerRequest (request: SerializedSignerRequest) {
   return result;
 }
 
-export function outSyncing (syncing: SerializedSyncing) {
-  const result: Syncing = {};
+export function outSyncing (syncing: SerializedSyncing | false) {
+  let result: Syncing | false = false;
 
   if (syncing && syncing !== 'false') {
+    result = {};
     Object.keys(syncing).forEach(key => {
       switch (key) {
         case 'currentBlock':
@@ -360,11 +361,11 @@ export function outSyncing (syncing: SerializedSyncing) {
         case 'startingBlock':
         case 'warpChunksAmount':
         case 'warpChunksProcessed':
-          result[key] = outNumber(syncing[key]);
+          (result as Syncing)[key] = outNumber(syncing[key]);
           break;
 
         case 'blockGap':
-          result[key] = syncing[key]
+          (result as Syncing)[key] = syncing[key]
             ? (syncing[key] as number[]).map(outNumber)
             : undefined;
           break;
