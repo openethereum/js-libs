@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with Parity.  If not, see <http://www.gnu.org/licenses/>.
 
-import BigNumber from 'bignumber.js';
+export type SerializedNumber = number | string;
 
 export interface SerializedAccountInfo {
   [address: string]: { meta?: string; name: string; uuid?: string };
@@ -24,7 +24,7 @@ export interface SerializedBlock {
   author?: string;
   miner?: string;
   difficulty?: string;
-  extraData: string;
+  extraData?: string;
   gasLimit?: string;
   gasUsed?: string;
   nonce?: string;
@@ -40,13 +40,13 @@ export interface SerializedChainStatus {
 }
 
 export type SerializedCondition = {
-  block?: number;
-  time?: number;
+  block?: SerializedNumber;
+  time?: SerializedNumber;
 };
 
 export interface SerializedHistogram {
-  bucketBounds: number[];
-  counts: number[];
+  bucketBounds?: number[];
+  counts?: number[];
 }
 
 export interface SerializedHwAccountInfo {
@@ -55,46 +55,52 @@ export interface SerializedHwAccountInfo {
 
 export interface SerializedLog {
   address: string;
-  blockNumber: number;
-  logIndex: number;
-  transactionIndex: number;
+  blockNumber: SerializedNumber;
+  logIndex: SerializedNumber;
+  transactionIndex: SerializedNumber;
 }
 
 export interface SerializedPeer {
-  caps: string[];
-  id: number;
-  name: string;
-  network: {
+  caps?: string[];
+  id?: string;
+  name?: string;
+  network?: {
     localAddress: string;
     remoteAddress: string;
   };
   protocols: {
-    par: {
-      difficulty: number;
-      head: number;
-      version: number;
-    };
+    les?: {
+      difficulty: SerializedNumber;
+      head: SerializedNumber;
+      version: SerializedNumber;
+    } | null;
+    par?: {
+      difficulty: SerializedNumber;
+      head: SerializedNumber;
+      version: SerializedNumber;
+    } | null;
   };
 }
 
 export interface SerializedPeers {
-  active: number;
-  connected: number;
-  max: number;
+  active: SerializedNumber;
+  connected: SerializedNumber;
+  max: SerializedNumber;
   peers: SerializedPeer[];
 }
 
 export interface SerializedReceipt {
+  blockNumber?: SerializedNumber;
   contractAddress?: string;
-  blockNumber: number;
-  cumulativeGasUsed: number;
-  gasUsed: number;
-  transactionIndex: number;
-  status: number;
+  cumulativeGasUsed?: SerializedNumber;
+  extraData?: string;
+  gasUsed?: SerializedNumber;
+  transactionIndex?: SerializedNumber;
+  status?: SerializedNumber;
 }
 
 export interface SerializedSignerRequest {
-  id?: number;
+  id?: SerializedNumber;
   origin?: {
     [index: string]: string;
   };
@@ -112,22 +118,28 @@ export interface SerializedSigningPayload {
 
 export interface SerializedTrace {
   action?: {
-    gas?: number;
-    value?: number;
-    balance?: number;
+    callType?: string;
+    gas?: SerializedNumber;
+    value?: SerializedNumber;
+    balance?: SerializedNumber;
     from?: string;
+    input?: string;
     to?: string;
     address?: string;
     refundAddress?: string;
   };
+  blockHash?: string;
+  blockNumber?: SerializedNumber;
   result?: {
     address?: string;
-    gasUsed?: number;
+    gasUsed?: SerializedNumber;
+    output?: string;
   };
-  traceAddress?: number[];
-  subtraces?: number;
-  transactionPosition?: number;
-  blockNumber?: number;
+  traceAddress?: SerializedNumber[];
+  subtraces?: SerializedNumber;
+  transactionHash?: string;
+  transactionPosition?: SerializedNumber;
+  type?: string;
 }
 
 export interface SerializedTraceReplay {
@@ -135,7 +147,7 @@ export interface SerializedTraceReplay {
 }
 
 export interface SerializedTransaction {
-  blockNumber?: number;
+  blockNumber?: SerializedNumber;
   creates?: string;
   extraData?: string;
   to?: string;
@@ -143,19 +155,19 @@ export interface SerializedTransaction {
   condition?: SerializedCondition | null;
   gas?: string;
   gasPrice?: string;
-  transactionIndex?: number;
+  transactionIndex?: SerializedNumber;
   value?: string;
   nonce?: string;
   data?: string;
 }
 
 export interface SerializedSyncing {
-  currentBlock?: number;
-  highestBlock?: number;
-  startingBlock?: number;
-  warpChunksAmount?: number;
-  warpChunksProcessed?: number;
+  currentBlock?: SerializedNumber;
+  highestBlock?: SerializedNumber;
+  startingBlock?: SerializedNumber;
+  warpChunksAmount?: SerializedNumber;
+  warpChunksProcessed?: SerializedNumber;
   blockGap?: SerializedBlockGap | null;
 }
 
-export type SerializedVaultMeta = string;
+export type SerializedVaultMeta = string | { [key: string]: any } | null;

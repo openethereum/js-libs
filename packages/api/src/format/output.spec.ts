@@ -18,6 +18,7 @@ import BigNumber from 'bignumber.js';
 import { isAddress } from '@parity/abi/lib/util/address';
 import { isInstanceOf } from '@parity/abi/lib/util/types';
 
+import { Block, Receipt } from '../types';
 import {
   outBlock,
   outAccountInfo,
@@ -36,7 +37,11 @@ import {
   outTrace,
   outVaultMeta
 } from './output';
-import { SerializedBlock } from './types.serialized';
+import {
+  SerializedBlock,
+  SerializedReceipt,
+  SerializedTransaction
+} from './types.serialized';
 
 describe('format/output', () => {
   const address = '0x63cf90d3f0410092fc0fca41846f596223979195';
@@ -88,9 +93,9 @@ describe('format/output', () => {
         const block: SerializedBlock = {};
 
         block[input as keyof SerializedBlock] = address;
-        const formatted = outBlock(block)[input as keyof SerializedBlock];
+        const formatted = outBlock(block)[input as keyof Block];
 
-        expect(isAddress(formatted)).toBe(true);
+        expect(isAddress(formatted as string)).toBe(true);
         expect(formatted).toEqual(checksum);
       });
     });
@@ -107,9 +112,10 @@ describe('format/output', () => {
         const block: SerializedBlock = {};
 
         block[input as keyof SerializedBlock] = 0x123;
-        const formatted = outBlock(block)[input as keyof SerializedBlock];
+        const formatted = outBlock(block)[input as keyof Block];
 
         expect(isInstanceOf(formatted, BigNumber)).toBe(true);
+        // @ts-ignore
         expect(formatted.toString(16)).toEqual('123');
       });
     });
@@ -119,10 +125,10 @@ describe('format/output', () => {
         const block: SerializedBlock = {};
 
         block[input as keyof SerializedBlock] = 0x57513668;
-        const formatted = outBlock(block)[input as keyof SerializedBlock];
+        const formatted = outBlock(block)[input as keyof Block];
 
         expect(isInstanceOf(formatted, Date)).toBe(true);
-        expect(formatted.getTime()).toEqual(1464940136000);
+        expect((formatted as Date).getTime()).toEqual(1464940136000);
       });
     });
 
@@ -174,7 +180,7 @@ describe('format/output', () => {
 
     it('handles null blockGap values', () => {
       const status = {
-        blockGap: null
+        blockGap: undefined
       };
 
       expect(outChainStatus(status)).toEqual(status);
@@ -231,7 +237,7 @@ describe('format/output', () => {
     it('returns a BigNumber equalling the value', () => {
       const bn = outNumber('0x123456');
 
-      expect(isBigNumber(bn)).toBe(true);
+      expect(isInstanceOf(bn, BigNumber)).toBe(true);
       expect(bn.eq(0x123456)).toBe(true);
     });
 
@@ -360,12 +366,12 @@ describe('format/output', () => {
   describe('outReceipt', () => {
     ['contractAddress'].forEach(input => {
       it(`formats ${input} address as address`, () => {
-        const block: SerializedBlock = {};
+        const block: SerializedReceipt = {};
 
-        block[input] = address;
-        const formatted = outReceipt(block)[input];
+        block[input as keyof SerializedReceipt] = address;
+        const formatted = outReceipt(block)[input as keyof Receipt];
 
-        expect(isAddress(formatted)).toBe(true);
+        expect(isAddress(formatted as string)).toBe(true);
         expect(formatted).toEqual(checksum);
       });
     });
@@ -378,17 +384,19 @@ describe('format/output', () => {
       'transactionIndex'
     ].forEach(input => {
       it(`formats ${input} number as hexnumber`, () => {
-        const block: SerializedBlock = {};
+        const block: SerializedReceipt = {};
 
-        block[input] = 0x123;
-        const formatted = outReceipt(block)[input];
+        block[input as keyof SerializedReceipt] = 0x123;
+        const formatted = outReceipt(block)[input as keyof Receipt];
 
         expect(isInstanceOf(formatted, BigNumber)).toBe(true);
+        // @ts-ignore
         expect(formatted.toString(16)).toEqual('123');
       });
     });
 
     it('ignores and passes through unknown keys', () => {
+      // @ts-ignore
       expect(outReceipt({ someRandom: 'someRandom' })).toEqual({
         someRandom: 'someRandom'
       });
@@ -411,14 +419,6 @@ describe('format/output', () => {
         gasUsed: new BigNumber('0x102'),
         transactionIndex: new BigNumber('0x103'),
         extraData: 'someExtraStuffInHere'
-      });
-    });
-  });
-
-  describe('outRecentDapps', () => {
-    it('formats the URLs with timestamps', () => {
-      expect(outRecentDapps({ testing: 0x57513668 })).toEqual({
-        testing: new Date('2016-06-03T07:48:56.000Z')
       });
     });
   });
@@ -448,12 +448,14 @@ describe('format/output', () => {
   describe('outTransaction', () => {
     ['from', 'to'].forEach(input => {
       it(`formats ${input} address as address`, () => {
-        const block: SerializedBlock = {};
+        const block: SerializedTransaction = {};
 
-        block[input] = address;
-        const formatted = outTransaction(block)[input];
+        block[input as keyof SerializedTransaction] = address;
+        const formatted = outTransaction(block)[
+          input as keyof SerializedTransaction
+        ];
 
-        expect(isAddress(formatted)).toBe(true);
+        expect(isAddress(formatted as string)).toBe(true);
         expect(formatted).toEqual(checksum);
       });
     });
@@ -467,12 +469,15 @@ describe('format/output', () => {
       'value'
     ].forEach(input => {
       it(`formats ${input} number as hexnumber`, () => {
-        const block: SerializedBlock = {};
+        const block: SerializedTransaction = {};
 
-        block[input] = 0x123;
-        const formatted = outTransaction(block)[input];
+        block[input as keyof SerializedTransaction] = 0x123;
+        const formatted = outTransaction(block)[
+          input as keyof SerializedTransaction
+        ];
 
         expect(isInstanceOf(formatted, BigNumber)).toBe(true);
+        // @ts-ignore
         expect(formatted.toString(16)).toEqual('123');
       });
     });
@@ -482,6 +487,7 @@ describe('format/output', () => {
     });
 
     it('ignores and passes through unknown keys', () => {
+      // @ts-ignore
       expect(outTransaction({ someRandom: 'someRandom' })).toEqual({
         someRandom: 'someRandom'
       });
@@ -516,6 +522,7 @@ describe('format/output', () => {
 
   describe('outTrace', () => {
     it('ignores and passes through unknown keys', () => {
+      // @ts-ignore
       expect(outTrace({ someRandom: 'someRandom' })).toEqual({
         someRandom: 'someRandom'
       });
@@ -546,17 +553,27 @@ describe('format/output', () => {
           '0x000000000000000000000000000000000000000000000000000000000000000e'
       });
 
-      expect(isBigNumber(formatted.action.gas)).toBe(true);
+      // @ts-ignore
+      expect(isInstanceOf(formatted.action.gas, BigNumber)).toBe(true);
+      // @ts-ignore
       expect(formatted.action.gas.toNumber()).toEqual(7);
-      expect(isBigNumber(formatted.action.value)).toBe(true);
+      // @ts-ignore
+      expect(isInstanceOf(formatted.action.value, BigNumber)).toBe(true);
+      // @ts-ignore
       expect(formatted.action.value.toNumber()).toEqual(6);
 
+      // @ts-ignore
       expect(formatted.action.from).toEqual(checksum);
+      // @ts-ignore
       expect(formatted.action.to).toEqual(checksum);
 
-      expect(isBigNumber(formatted.blockNumber)).toBe(true);
+      // @ts-ignore
+      expect(isInstanceOf(formatted.blockNumber, BigNumber)).toBe(true);
+      // @ts-ignore
       expect(formatted.blockNumber.toNumber()).toEqual(13);
-      expect(isBigNumber(formatted.transactionPosition)).toBe(true);
+      // @ts-ignore
+      expect(isInstanceOf(formatted.transactionPosition, BigNumber)).toBe(true);
+      // @ts-ignore
       expect(formatted.transactionPosition.toNumber()).toEqual(11);
     });
   });

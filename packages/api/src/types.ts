@@ -115,20 +115,25 @@ export interface Options {
   data?: any;
 }
 
+export type PeerProtocol = 'par' | 'les';
+
+export interface PeerProtocolItem {
+  difficulty: BigNumber;
+  head: BigNumber;
+  version: BigNumber;
+}
+
 export interface Peer {
   caps: string[];
-  id: BigNumber;
+  id: string;
   name: string;
   network: {
     localAddress: string;
     remoteAddress: string;
   };
-  protocols: {
-    par: {
-      difficulty: BigNumber;
-      head: BigNumber;
-      version: BigNumber;
-    };
+  protocols?: {
+    les?: PeerProtocolItem | null;
+    par?: PeerProtocolItem | null;
   };
 }
 

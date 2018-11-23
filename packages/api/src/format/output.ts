@@ -28,6 +28,8 @@ import {
   Log,
   NodeKind,
   Peer,
+  PeerProtocolItem,
+  PeerProtocol,
   Peers,
   Receipt,
   SignerRequest,
@@ -55,7 +57,8 @@ import {
   SerializedTrace,
   SerializedTraceReplay,
   SerializedTransaction,
-  SerializedVaultMeta
+  SerializedVaultMeta,
+  SerializedNumber
 } from './types.serialized';
 
 export function outAccountInfo (infos: SerializedAccountInfo) {
@@ -116,6 +119,10 @@ export function outBlock (block: SerializedBlock) {
         case 'timestamp':
           result[key] = outDate(block[key]);
           break;
+
+        default:
+          // @ts-ignore Here, we explicitly pass down extra keys, if they exist
+          result[key] = block[key];
       }
     });
   }
@@ -167,6 +174,7 @@ export function outHistogram (histogram: SerializedHistogram) {
       switch (key) {
         case 'bucketBounds':
         case 'counts':
+          // @ts-ignore "Object is possibly 'undefined'." No it's not.
           result[key] = histogram[key].map(outNumber);
           break;
       }
@@ -212,27 +220,39 @@ export function outNodeKind (info: NodeKind) {
   return info;
 }
 
-export function outNumber (n?: string | number) {
+export function outNumber (n?: SerializedNumber) {
   return new BigNumber(n || 0);
 }
 
 export function outPeer (peer: SerializedPeer) {
   const protocols = Object.keys(peer.protocols).reduce(
     (obj, key) => {
-      if (peer.protocols[key]) {
-        obj[key] = Object.assign({}, peer.protocols[key], {
-          difficulty: outNumber(peer.protocols[key].difficulty)
-        });
+      if (peer.protocols[key as PeerProtocol]) {
+        // @ts-ignore
+        obj[key as PeerProtocol] = Object.assign(
+          {},
+          peer.protocols[key as PeerProtocol],
+          {
+            difficulty: outNumber(
+              // @ts-ignore "Object is possibly 'undefined'." No it's not.
+              peer.protocols[key as PeerProtocol].difficulty
+            )
+          }
+        );
       }
 
       return obj;
     },
-    {} as Peer
+    {} as { les?: PeerProtocolItem; par?: PeerProtocolItem }
   );
 
-  return Object.assign({}, peer, {
+  return {
+    caps: peer.caps,
+    id: peer.id,
+    name: peer.name,
+    network: peer.network,
     protocols
-  });
+  } as Peer;
 }
 
 export function outPeers (peers: SerializedPeers) {
@@ -259,7 +279,7 @@ export function outPrivateReceipt (receipt: SerializedReceipt) {
 
         default:
           // @ts-ignore Here, we explicitly pass down extra keys, if they exist
-          result[key] = log[key];
+          result[key] = receipt[key];
       }
     });
   }
@@ -285,7 +305,7 @@ export function outReceipt (receipt: SerializedReceipt) {
 
         default:
           // @ts-ignore Here, we explicitly pass down extra keys, if they exist
-          result[key] = log[key];
+          result[key] = receipt[key];
       }
     });
   }
@@ -404,7 +424,7 @@ export function outTransaction (tx: SerializedTransaction) {
 
         default:
           // @ts-ignore Here, we explicitly pass down extra keys, if they exist
-          result[key] = log[key];
+          result[key] = tx[key];
       }
     });
   }
@@ -423,7 +443,7 @@ export function outSigningPayload (payload: SerializedSigningPayload) {
 
         default:
           // @ts-ignore Here, we explicitly pass down extra keys, if they exist
-          result[key] = log[key];
+          result[key] = payload[key];
       }
     });
   }
@@ -434,6 +454,20 @@ export function outSigningPayload (payload: SerializedSigningPayload) {
 export function outTrace (trace: SerializedTrace) {
   const result: Trace = {};
   if (trace) {
+    Object.keys(trace).forEach(key => {
+      switch (key) {
+        case 'subtraces':
+        case 'transactionPosition':
+        case 'blockNumber':
+          result[key] = outNumber(trace[key]);
+          break;
+
+        default:
+          // @ts-ignore Here, we explicitly pass down extra keys, if they exist
+          result[key] = trace[key];
+      }
+    });
+
     if (trace.action) {
       result.action = {};
       Object.keys(trace.action).forEach(key => {
@@ -452,6 +486,10 @@ export function outTrace (trace: SerializedTrace) {
             // @ts-ignore "Object is possibly 'undefined'." No it's not.
             result.action[key] = outAddress(trace.action[key]);
             break;
+
+          default:
+            // @ts-ignore Here, we explicitly pass down extra keys, if they exist
+            result.action[key] = trace.action[key];
         }
       });
     }
@@ -469,6 +507,10 @@ export function outTrace (trace: SerializedTrace) {
             // @ts-ignore "Object is possibly 'undefined'." No it's not.
             result.action[key] = outAddress(trace.action[key]);
             break;
+
+          default:
+            // @ts-ignore Here, we explicitly pass down extra keys, if they exist
+            result.result[key] = trace.result[key];
         }
       });
     }
@@ -480,16 +522,6 @@ export function outTrace (trace: SerializedTrace) {
         result.traceAddress[index] = outNumber(address);
       });
     }
-
-    Object.keys(trace).forEach(key => {
-      switch (key) {
-        case 'subtraces':
-        case 'transactionPosition':
-        case 'blockNumber':
-          result[key] = outNumber(trace[key]);
-          break;
-      }
-    });
   }
 
   return result;
