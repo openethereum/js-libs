@@ -5,10 +5,18 @@ module.exports = {
     '!**/*.d.ts',
     '!**/index.ts'
   ],
+  // Adding this because "Cannot use namespace '...' as a type."
+  globals: {
+    'ts-jest': {
+      diagnostics: {
+        warnOnly: true
+      }
+    }
+  },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
   rootDir: '.',
   transform: {
-    '^.+\\.tsx?$': 'ts-jest'
+    '^.+\\.(ts|tsx)$': 'ts-jest'
   },
   testRegex: 'spec\\.(ts|tsx)$'
 };
