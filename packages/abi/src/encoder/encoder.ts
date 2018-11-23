@@ -24,7 +24,7 @@ import {
 } from '../types';
 
 class Encoder {
-  static encode (tokens?: Token[]) {
+  static encode (tokens: Token[]) {
     if (!isArray(tokens)) {
       throw new Error('tokens should be array of Token');
     }

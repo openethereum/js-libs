@@ -105,7 +105,7 @@ describe('encoder/Encoder', () => {
 
   describe('encode', () => {
     it('requires tokens array', () => {
-      expect(() => Encoder.encode(undefined)).toThrow(/array/);
+      expect(() => Encoder.encode(undefined as any)).toThrow(/array/);
     });
 
     describe('addresses', () => {
