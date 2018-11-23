@@ -44,7 +44,7 @@ class Encoder {
     return `${inits}${closings}`;
   }
 
-  static encodeToken (token?: Token, index = 0): Mediate {
+  static encodeToken (token: Token, index = 0): Mediate {
     if (!token || !isInstanceOf(token, Token)) {
       throw new Error('token should be instanceof Token');
     }

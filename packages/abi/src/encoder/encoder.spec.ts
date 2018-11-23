@@ -10,7 +10,7 @@ import { padAddress, padFixedBytes, padU32 } from '../util/pad';
 describe('encoder/Encoder', () => {
   describe('encodeToken', () => {
     it('requires token as Token', () => {
-      expect(() => Encoder.encodeToken(undefined)).toThrow(/Token/);
+      expect(() => Encoder.encodeToken(undefined as any)).toThrow(/Token/);
     });
 
     it('encodes address tokens in Mediate(raw)', () => {
