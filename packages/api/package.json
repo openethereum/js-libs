@@ -17,7 +17,7 @@
     "access": "public"
   },
   "scripts": {
-    "build": "rimraf lib && babel src --out-dir lib --ignore *.spec.js",
+    "build": "rimraf lib && tsc",
     "ci:makeshift": "makeshift",
     "lint": "npm run lint:css && npm run lint:js",
     "lint:css": "echo \"WARN: npm run lint:css skipped\"",
