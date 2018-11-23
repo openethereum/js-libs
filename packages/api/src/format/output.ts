@@ -379,14 +379,15 @@ export function outSyncing (syncing: SerializedSyncing) {
     });
   }
 
-  return syncing;
+  return result;
 }
 
 export function outTransactionCondition (
   condition?: SerializedCondition | null
 ) {
-  const result: Condition = {};
+  let result: Condition | null = null;
   if (condition) {
+    result = {};
     if (condition.block) {
       result.block = outNumber(condition.block);
     } else if (condition.time) {
