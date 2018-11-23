@@ -28,6 +28,14 @@ class Event {
       this.inputParamTypes()
     );
 
+    if (!name) {
+      throw new Error(
+        `Event constructor: abi item does not have a name: ${JSON.stringify(
+          abi
+        )}`
+      );
+    }
+
     this._id = id;
     this._name = name;
     this._signature = signature;
@@ -69,7 +77,7 @@ class Event {
     const topicParams = this.indexedParams(true);
     const dataParams = this.indexedParams(false);
 
-    let address;
+    let address = '';
     let toSkip: number;
 
     if (!this.anonymous) {

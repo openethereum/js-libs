@@ -18,7 +18,7 @@ export const MAX_TIME_DRIFT = 10000; // milliseconds
 /**
  * Use SNTP to check if the local clock is synchronized; return the time drift.
  */
-export async function checkClockSync(): Promise<CheckClockSyncResult> {
+export async function checkClockSync (): Promise<CheckClockSyncResult> {
   const { t: timeDrift }: { t: number } = await time();
   return {
     isClockSync: timeDrift < MAX_TIME_DRIFT,

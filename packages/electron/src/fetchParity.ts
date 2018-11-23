@@ -81,7 +81,7 @@ const getOs = () => {
 /**
  * Remove parity binary or partial binary in the userData folder, if it exists.
  */
-export async function deleteParity() {
+export async function deleteParity () {
   const parityPath = await defaultParityPath();
 
   // Remove parity binary
@@ -103,7 +103,7 @@ export async function deleteParity() {
  * Downloads Parity, saves it to Electron's `userData` folder, and returns the
  * path to the downloaded binary once finished.
  */
-export async function fetchParity(
+export async function fetchParity (
   mainWindow: BrowserWindow,
   options: FetchParityOptions = {
     onProgress: () => {

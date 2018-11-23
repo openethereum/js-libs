@@ -8,13 +8,13 @@ import TYPES from './types';
 
 class ParamType {
   private _indexed?: boolean;
-  private _length?: number;
+  private _length: number;
   private _subtype?: ParamType;
   private _type: TokenTypeEnum;
 
   constructor (
     type: TokenTypeEnum,
-    subtype: ParamType = null,
+    subtype: ParamType | undefined = undefined,
     length = 0,
     indexed = false
   ) {

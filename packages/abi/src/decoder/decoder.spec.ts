@@ -12,7 +12,11 @@ import { padU32 } from '../util/pad';
 
 describe('decoder/Decoder', () => {
   const stringToBytes = function (str: string) {
-    return str.match(/.{1,2}/g).map(code => parseInt(code, 16));
+    const matches = str.match(/.{1,2}/g);
+    if (!matches) {
+      throw new Error('stringToBytes: mo matches');
+    }
+    return matches.map(code => parseInt(code, 16));
   };
 
   const address1 =
@@ -118,9 +122,9 @@ describe('decoder/Decoder', () => {
 
   describe('decodeParam', () => {
     it('throws an error on non ParamType param', () => {
-      expect(() => Decoder.decodeParam({} as ParamType, undefined, undefined)).toThrow(
-        /ParamType/
-      );
+      expect(() =>
+        Decoder.decodeParam({} as ParamType, undefined, undefined)
+      ).toThrow(/ParamType/);
     });
 
     it('throws an error on invalid param type', () => {
@@ -172,8 +176,11 @@ describe('decoder/Decoder', () => {
 
     it('decodes fixedBytes', () => {
       expect(
-        Decoder.decodeParam(new ParamType('fixedBytes', null, 2), [bytes1], 0)
-          .token
+        Decoder.decodeParam(
+          new ParamType('fixedBytes', undefined, 2),
+          [bytes1],
+          0
+        ).token
       ).toEqual(tokenFixedBytes1);
     });
 
@@ -209,10 +216,14 @@ describe('decoder/Decoder', () => {
 
     it('decodes string (indexed)', () => {
       expect(
-        Decoder.decodeParam(new ParamType('string', null, 0, true), [bytes1], 0)
+        Decoder.decodeParam(
+          new ParamType('string', undefined, 0, true),
+          [bytes1],
+          0
+        )
       ).toEqual(
         Decoder.decodeParam(
-          new ParamType('fixedBytes', null, 32, true),
+          new ParamType('fixedBytes', undefined, 32, true),
           [bytes1],
           0
         )
@@ -222,7 +233,7 @@ describe('decoder/Decoder', () => {
 
   describe('decode', () => {
     it('throws an error on invalid params', () => {
-      expect(() => Decoder.decode(null, '123')).toThrow(/array/);
+      expect(() => Decoder.decode(undefined, '123')).toThrow(/array/);
     });
 
     describe('address', () => {
@@ -300,7 +311,10 @@ describe('decoder/Decoder', () => {
     describe('fixedBytes', () => {
       it('decodes fixedBytes', () => {
         expect(
-          Decoder.decode([new ParamType('fixedBytes', null, 2)], `${bytes1}`)
+          Decoder.decode(
+            [new ParamType('fixedBytes', undefined, 2)],
+            `${bytes1}`
+          )
         ).toEqual([tokenFixedBytes1]);
       });
     });

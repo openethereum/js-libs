@@ -25,7 +25,7 @@ interface PostOptions extends RpcObservableOptions {
  * @param options? - Options to pass to the {@link RpcObservable}.
  * @return - The status of the transaction.
  */
-export function post$(tx: Tx, options: PostOptions = {}) {
+export function post$ (tx: Tx, options: PostOptions = {}) {
   const { estimate, provider } = options;
   const api = provider ? createApiFromProvider(provider) : getApi();
 

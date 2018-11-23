@@ -19,7 +19,7 @@ import { onSyncingChanged$ } from './health';
  * @ignore
  */
 const onEveryBlockWithApi$ = memoizee(
-  (api: any, options: FrequencyObservableOptions) =>
+  (api: any, options?: FrequencyObservableOptions) =>
     createPubsubObservable('eth_blockNumber', options).pipe(
       withLatestFrom(onSyncingChanged$(options)),
       filter(([_, isSyncing]) => isSyncing === false),
@@ -34,7 +34,7 @@ const onEveryBlockWithApi$ = memoizee(
  *
  * @param options - Options to pass to {@link FrequencyObservable}.
  */
-export function onEveryBlock$(options?: FrequencyObservableOptions) {
+export function onEveryBlock$ (options?: FrequencyObservableOptions) {
   const api =
     options && options.provider
       ? createApiFromProvider(options.provider)

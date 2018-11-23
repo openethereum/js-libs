@@ -22,7 +22,7 @@ interface ParityElectronOptions {
  * Set default options for @parity/electron. Can be skipped if we don't want to
  * override default options.
  */
-function parityElectron(options: ParityElectronOptions = { logger: debug }) {
+function parityElectron (options: ParityElectronOptions = { logger: debug }) {
   if (options.logger) {
     setLogger(options.logger);
   }

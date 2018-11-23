@@ -18,7 +18,7 @@ interface IsParityRunningOptions {
  * Detect if another instance of parity is already running or not. To achieve
  * that, we just ping on the common hosts.
  */
-export async function isParityRunning(
+export async function isParityRunning (
   options: IsParityRunningOptions = {
     wsInterface: '127.0.0.1',
     wsPort: '8546'
@@ -43,15 +43,17 @@ export async function isParityRunning(
     setTimeout(() => resolve(false), TIMEOUT_MS);
 
     hostsToPing.map(host =>
-      axios.get(host)
+      axios
+        .get(host)
         .then(_ => {
           logger()('@parity/electron:main')(
             `Another instance of parity is already running on ${host}, skip running local instance.`
           );
-          resolve(true)
+          resolve(true);
         })
-        .catch(() => { return null; })
+        .catch(() => {
+          return null;
+        })
     );
-
-  })
+  });
 }

@@ -15,7 +15,7 @@ import { switchMapPromise } from '../utils/operators';
  * @return - An Observable containing all info that can be
  * accessed by user concerning accounts.
  */
-export function accountsInfo$(options?: RpcObservableOptions) {
+export function accountsInfo$ (options?: RpcObservableOptions) {
   return createRpc$<AccountsInfo, AccountsInfo>({
     frequency: [frequency.onAccountsInfoChanged$],
     name: 'accountsInfo$'
@@ -29,7 +29,7 @@ export function accountsInfo$(options?: RpcObservableOptions) {
  * @return - An Observable containing the name of the
  * current chain.
  */
-export function chainName$(options?: RpcObservableOptions) {
+export function chainName$ (options?: RpcObservableOptions) {
   return createRpc$<any, string>({
     calls: ['parity_chain'],
     frequency: [frequency.onStartup$],

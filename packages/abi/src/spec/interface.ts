@@ -23,7 +23,7 @@ class Interface {
         return new Token(
           paramType.type,
           (value as TokenValue[]).map(entry =>
-            createToken(paramType.subtype, entry)
+            createToken(paramType.subtype as ParamType, entry)
           )
         );
       }

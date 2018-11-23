@@ -3,7 +3,7 @@
 //
 // SPDX-License-Identifier: MIT
 
-import { AbiInput, TokenTypeEnum } from '../types';
+import { AbiInput } from '../types';
 import ParamType from './paramType';
 import { toParamType } from './paramType/format';
 

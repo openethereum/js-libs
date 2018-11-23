@@ -12,12 +12,12 @@ import ParamType from '../spec/paramType/paramType';
 import { sliceData } from '../util/slice';
 import { asAddress, asBool, asI32, asU32 } from '../util/sliceAs';
 import { isArray, isInstanceOf } from '../util/types';
-import { TokenValue } from '../types';
+import { Slices } from '../types';
 
 const NULL = '0000000000000000000000000000000000000000000000000000000000000000';
 
 class Decoder {
-  static decode (params: ParamType[], data: string) {
+  static decode (params: ParamType[] | undefined, data: string) {
     if (!isArray(params)) {
       throw new Error('Parameters should be array of ParamType');
     }
@@ -33,7 +33,7 @@ class Decoder {
     });
   }
 
-  static peek (slices: string[], position: number) {
+  static peek (slices: Slices, position: number) {
     if (!slices || !slices[position]) {
       return NULL;
     }
@@ -41,7 +41,7 @@ class Decoder {
     return slices[position];
   }
 
-  static takeBytes (slices: string[], position: number, length: number) {
+  static takeBytes (slices: Slices, position: number, length: number) {
     const slicesLength = Math.floor((length + 31) / 32);
     let bytesStr = '';
 
@@ -58,8 +58,8 @@ class Decoder {
 
   static decodeParam (
     param: ParamType,
-    slices: string[],
-    offset: number
+    slices: Slices,
+    offset: number = 0
   ): DecodeResult {
     if (!isInstanceOf(param, ParamType)) {
       throw new Error('param should be instanceof ParamType');
@@ -96,15 +96,15 @@ class Decoder {
           offset + 1
         );
 
-      case 'fixedBytes':
+      case 'fixedBytes': {
         taken = Decoder.takeBytes(slices, offset, param.length);
 
         return new DecodeResult(
           new Token(param.type, taken.bytes),
           taken.newOffset
         );
-
-      case 'bytes':
+      }
+      case 'bytes': {
         lengthOffset = asU32(Decoder.peek(slices, offset))
           .div(32)
           .toNumber();
@@ -112,8 +112,8 @@ class Decoder {
         taken = Decoder.takeBytes(slices, lengthOffset + 1, length);
 
         return new DecodeResult(new Token(param.type, taken.bytes), offset + 1);
-
-      case 'string':
+      }
+      case 'string': {
         if (param.indexed) {
           taken = Decoder.takeBytes(slices, offset, 32);
 
@@ -142,8 +142,14 @@ class Decoder {
         }
 
         return new DecodeResult(new Token(param.type, decoded), offset + 1);
+      }
+      case 'array': {
+        if (!param.subtype) {
+          throw new Error(
+            `decodeParam: param of type '${param.type}' must have a subtype`
+          );
+        }
 
-      case 'array':
         lengthOffset = asU32(Decoder.peek(slices, offset))
           .div(32)
           .toNumber();
@@ -158,8 +164,14 @@ class Decoder {
         }
 
         return new DecodeResult(new Token(param.type, tokens), offset + 1);
+      }
+      case 'fixedArray': {
+        if (!param.subtype) {
+          throw new Error(
+            `decodeParam: param of type '${param.type}' must have a subtype`
+          );
+        }
 
-      case 'fixedArray':
         newOffset = offset;
 
         for (let index = 0; index < param.length; index++) {
@@ -170,7 +182,7 @@ class Decoder {
         }
 
         return new DecodeResult(new Token(param.type, tokens), newOffset);
-
+      }
       default:
         throw new Error(`Invalid param type ${param.type} in decodeParam`);
     }

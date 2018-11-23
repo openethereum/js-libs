@@ -15,7 +15,7 @@ let providerCount = 0;
  * @ignore
  */
 export class MockProvider extends EventEmitter {
-  send() {
+  send () {
     return Promise.resolve();
   }
 }
@@ -56,13 +56,13 @@ const createApi = (
       listOfMockRps[namespace].forEach(method => {
         apiObject.pubsub[namespace][method] = isError
           ? (callback: Function) => {
-              callback(resolveWith, null);
-              return Promise.resolve(1); // Resolves to subscriptionId
-            }
+            callback(resolveWith, null);
+            return Promise.resolve(1); // Resolves to subscriptionId
+          }
           : (callback: Function) => {
-              callback(null, resolveWith);
-              return Promise.resolve(1); // Resolves to subscriptionId
-            };
+            callback(null, resolveWith);
+            return Promise.resolve(1); // Resolves to subscriptionId
+          };
       });
 
       // For eth.syncing pubsub, always return false
@@ -75,7 +75,7 @@ const createApi = (
     },
     {
       isPubSub,
-      pollMethod() {
+      pollMethod () {
         return isError
           ? Promise.reject(resolveWith)
           : Promise.resolve(resolveWith);

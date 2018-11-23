@@ -18,7 +18,9 @@ describe('util/signature', () => {
     });
 
     it('encodes signature baz(uint32) correctly', () => {
-      expect(eventSignature('baz', [new ParamType('uint', null, 32)])).toEqual({
+      expect(
+        eventSignature('baz', [new ParamType('uint', undefined, 32)])
+      ).toEqual({
         id: 'baz(uint32)',
         name: 'baz',
         signature:
@@ -29,7 +31,7 @@ describe('util/signature', () => {
     it('encodes signature baz(uint32, bool) correctly', () => {
       expect(
         eventSignature('baz', [
-          new ParamType('uint', null, 32),
+          new ParamType('uint', undefined, 32),
           new ParamType('bool')
         ])
       ).toEqual({
@@ -67,19 +69,19 @@ describe('util/signature', () => {
     });
 
     it('encodes signature baz(uint32) correctly', () => {
-      expect(methodSignature('baz', [new ParamType('uint', null, 32)])).toEqual(
-        {
-          id: 'baz(uint32)',
-          name: 'baz',
-          signature: '7d68785e'
-        }
-      );
+      expect(
+        methodSignature('baz', [new ParamType('uint', undefined, 32)])
+      ).toEqual({
+        id: 'baz(uint32)',
+        name: 'baz',
+        signature: '7d68785e'
+      });
     });
 
     it('encodes signature baz(uint32, bool) correctly', () => {
       expect(
         methodSignature('baz', [
-          new ParamType('uint', null, 32),
+          new ParamType('uint', undefined, 32),
           new ParamType('bool')
         ])
       ).toEqual({
@@ -92,7 +94,7 @@ describe('util/signature', () => {
     it('encodes signature in name correctly', () => {
       expect(
         methodSignature('baz(uint32,bool)', [
-          new ParamType('uint', null, 32),
+          new ParamType('uint', undefined, 32),
           new ParamType('bool')
         ])
       ).toEqual({

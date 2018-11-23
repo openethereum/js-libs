@@ -24,6 +24,9 @@ describe('util/slice', () => {
 
     it('returns an array with the slices otherwise', () => {
       const sliced = sliceData(`${slice1}${slice2}`);
+      if (!sliced) {
+        throw new Error('No matches');
+      }
 
       expect(sliced.length).toEqual(2);
       expect(sliced[0]).toEqual(slice1);
@@ -32,6 +35,9 @@ describe('util/slice', () => {
 
     it('removes leading 0x when passed in', () => {
       const sliced = sliceData(`0x${slice1}${slice2}`);
+      if (!sliced) {
+        throw new Error('No matches');
+      }
 
       expect(sliced.length).toEqual(2);
       expect(sliced[0]).toEqual(slice1);

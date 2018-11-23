@@ -15,7 +15,7 @@ let api: Api;
 let instance: ContractInstance;
 let registry: Registry;
 
-function create() {
+function create () {
   instance = {
     __id: 'testInstance',
     get: {

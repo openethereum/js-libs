@@ -22,7 +22,7 @@ import { switchMapPromise } from '../utils/operators';
  * @param options - Options to pass to {@link RpcObservableOptions}.
  * @return - An Observable containing the list of public addresses.
  */
-export function accounts$(options?: RpcObservableOptions) {
+export function accounts$ (options?: RpcObservableOptions) {
   return createRpc$<Address[], Address[]>({
     frequency: [frequency.onAccountsChanged$],
     name: 'accounts$'
@@ -36,7 +36,7 @@ export function accounts$(options?: RpcObservableOptions) {
  * @param options - Options to pass to {@link RpcObservableOptions}.
  * @return - An Observable containing the balance.
  */
-export function balanceOf$(address: Address, options?: RpcObservableOptions) {
+export function balanceOf$ (address: Address, options?: RpcObservableOptions) {
   return createRpc$<any, BigNumber | Symbol>({
     calls: ['eth_getBalance'],
     frequency: [frequency.onEveryBlock$, frequency.onStartup$],
@@ -52,7 +52,7 @@ export function balanceOf$(address: Address, options?: RpcObservableOptions) {
  * @return - An Observable containing the public address
  * of the default account.
  */
-export function defaultAccount$(options?: RpcObservableOptions) {
+export function defaultAccount$ (options?: RpcObservableOptions) {
   return createRpc$<Address[], Address>({
     dependsOn: accounts$,
     name: 'defaultAccount$',
@@ -65,7 +65,7 @@ export function defaultAccount$(options?: RpcObservableOptions) {
  *
  * @return {Observable<Number>} - An Observable containing the block height.
  */
-export function blockNumber$(options?: RpcObservableOptions) {
+export function blockNumber$ (options?: RpcObservableOptions) {
   return createRpc$<BigNumber, BigNumber>({
     frequency: [frequency.onEveryBlock$],
     name: 'blockNumber$'
@@ -75,7 +75,7 @@ export function blockNumber$(options?: RpcObservableOptions) {
 /**
  * Shorthand for fetching the current account's balance.
  */
-export function myBalance$(options?: RpcObservableOptions) {
+export function myBalance$ (options?: RpcObservableOptions) {
   return createRpc$<Address, BigNumber | Symbol>({
     calls: [`eth_getBalance`],
     dependsOn: defaultAccount$,
@@ -96,7 +96,7 @@ export function myBalance$(options?: RpcObservableOptions) {
  *
  * @return - An Observable containing the syncing state object, or false.
  */
-export function syncStatus$(options?: RpcObservableOptions) {
+export function syncStatus$ (options?: RpcObservableOptions) {
   return createRpc$<object | boolean, object | boolean>({
     frequency: [frequency.onSyncingChanged$],
     name: 'syncStatus$'

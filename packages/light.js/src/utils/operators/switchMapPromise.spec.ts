@@ -13,7 +13,7 @@ import { switchMapPromise } from './switchMapPromise';
 it('should not error when the promise resolves with an error', done => {
   mockRpc$()
     .pipe(switchMapPromise(resolveApi({ error: 'bar' }).fake.method))
-    .subscribe(null, () => done.fail('It should not error.'));
+    .subscribe(undefined, () => done.fail('It should not error.'));
 
   // If after 0.1s, nothing has been called, then our Observable has not fired
   // any event, which is what we want
@@ -23,7 +23,7 @@ it('should not error when the promise resolves with an error', done => {
 it('should not error when the promise rejects', done => {
   mockRpc$()
     .pipe(switchMapPromise(rejectApi().fake.method))
-    .subscribe(null, () => done.fail('It should not error.'));
+    .subscribe(undefined, () => done.fail('It should not error.'));
 
   // If after 0.1s, nothing has been called, then our Observable has not fired
   // any event, which is what we want

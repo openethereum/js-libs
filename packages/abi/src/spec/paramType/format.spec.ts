@@ -45,19 +45,19 @@ describe('spec/paramType/format', () => {
 
     describe('length types', () => {
       it('converts int32 to int32', () => {
-        const pt = new ParamType('int', null, 32);
+        const pt = new ParamType('int', undefined, 32);
 
         expect(fromParamType(pt)).toEqual('int32');
       });
 
       it('converts uint64 to int64', () => {
-        const pt = new ParamType('uint', null, 64);
+        const pt = new ParamType('uint', undefined, 64);
 
         expect(fromParamType(pt)).toEqual('uint64');
       });
 
       it('converts fixedBytes8 to bytes8', () => {
-        const pt = new ParamType('fixedBytes', null, 8);
+        const pt = new ParamType('fixedBytes', undefined, 8);
 
         expect(fromParamType(pt)).toEqual('bytes8');
       });
@@ -171,6 +171,9 @@ describe('spec/paramType/format', () => {
       describe('fixed arrays', () => {
         it('creates fixed array', () => {
           const pt = toParamType('bytes[8]');
+          if (!pt.subtype) {
+            throw new Error('No subtype.');
+          }
 
           expect(pt.type).toEqual('fixedArray');
           expect(pt.subtype.type).toEqual('bytes');
@@ -179,11 +182,18 @@ describe('spec/paramType/format', () => {
 
         it('creates fixed arrays of fixed arrays', () => {
           const pt = toParamType('bytes[45][3]');
+          if (!pt.subtype) {
+            throw new Error('No subtype.');
+          }
 
           expect(pt.type).toEqual('fixedArray');
           expect(pt.length).toEqual(3);
           expect(pt.subtype.type).toEqual('fixedArray');
           expect(pt.subtype.length).toEqual(45);
+
+          if (!pt.subtype.subtype) {
+            throw new Error('No subtype.');
+          }
           expect(pt.subtype.subtype.type).toEqual('bytes');
         });
       });
@@ -191,6 +201,9 @@ describe('spec/paramType/format', () => {
       describe('dynamic arrays', () => {
         it('creates a dynamic array', () => {
           const pt = toParamType('bytes[]');
+          if (!pt.subtype) {
+            throw new Error('No subtype.');
+          }
 
           expect(pt.type).toEqual('array');
           expect(pt.subtype.type).toEqual('bytes');
@@ -198,9 +211,16 @@ describe('spec/paramType/format', () => {
 
         it('creates a dynamic array of dynamic arrays', () => {
           const pt = toParamType('bool[][]');
+          if (!pt.subtype) {
+            throw new Error('No subtype.');
+          }
 
           expect(pt.type).toEqual('array');
           expect(pt.subtype.type).toEqual('array');
+
+          if (!pt.subtype.subtype) {
+            throw new Error('No subtype.');
+          }
           expect(pt.subtype.subtype.type).toEqual('bool');
         });
       });
@@ -208,19 +228,33 @@ describe('spec/paramType/format', () => {
       describe('mixed arrays', () => {
         it('creates a fixed dynamic array', () => {
           const pt = toParamType('bool[][3]');
+          if (!pt.subtype) {
+            throw new Error('No subtype.');
+          }
 
           expect(pt.type).toEqual('fixedArray');
           expect(pt.length).toEqual(3);
           expect(pt.subtype.type).toEqual('array');
+
+          if (!pt.subtype.subtype) {
+            throw new Error('No subtype.');
+          }
           expect(pt.subtype.subtype.type).toEqual('bool');
         });
 
         it('creates a dynamic fixed array', () => {
           const pt = toParamType('bool[3][]');
+          if (!pt.subtype) {
+            throw new Error('No subtype.');
+          }
 
           expect(pt.type).toEqual('array');
           expect(pt.subtype.type).toEqual('fixedArray');
           expect(pt.subtype.length).toEqual(3);
+
+          if (!pt.subtype.subtype) {
+            throw new Error('No subtype.');
+          }
           expect(pt.subtype.subtype.type).toEqual('bool');
         });
       });

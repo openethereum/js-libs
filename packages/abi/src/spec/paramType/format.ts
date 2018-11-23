@@ -30,31 +30,31 @@ export const toParamType = (type: string, indexed?: boolean): ParamType => {
     case 'bool':
     case 'bytes':
     case 'string':
-      return new ParamType(type, null, 0, indexed);
+      return new ParamType(type, undefined, 0, indexed);
 
     case 'int':
     case 'uint':
-      return new ParamType(type, null, 256, indexed);
+      return new ParamType(type, undefined, 256, indexed);
 
     default:
       if (type.indexOf('uint') === 0) {
         return new ParamType(
           'uint',
-          null,
+          undefined,
           parseInt(type.substr(4), 10),
           indexed
         );
       } else if (type.indexOf('int') === 0) {
         return new ParamType(
           'int',
-          null,
+          undefined,
           parseInt(type.substr(3), 10),
           indexed
         );
       } else if (type.indexOf('bytes') === 0) {
         return new ParamType(
           'fixedBytes',
-          null,
+          undefined,
           parseInt(type.substr(5), 10),
           indexed
         );
@@ -84,11 +84,23 @@ export const fromParamType = (paramType: ParamType): string => {
     case 'fixedBytes':
       return `bytes${paramType.length}`;
 
-    case 'fixedArray':
+    case 'fixedArray': {
+      if (!paramType.subtype) {
+        throw new Error(
+          `decodeParam: param of type '${paramType.type}' must have a subtype`
+        );
+      }
       return `${fromParamType(paramType.subtype)}[${paramType.length}]`;
+    }
 
-    case 'array':
+    case 'array': {
+      if (!paramType.subtype) {
+        throw new Error(
+          `decodeParam: param of type '${paramType.type}' must have a subtype`
+        );
+      }
       return `${fromParamType(paramType.subtype)}[]`;
+    }
 
     default:
       throw new Error(`Cannot convert from ParamType ${paramType.type}`);

@@ -11,18 +11,18 @@ export default class GithubHint {
   private _instance: ContractInstance = null;
   private _registry: Registry;
 
-  constructor(api: Api, registry: Registry) {
+  constructor (api: Api, registry: Registry) {
     this._api = api;
     this._registry = registry;
 
     this.getInstance();
   }
 
-  getContract() {
+  getContract () {
     return this._registry.getContract('githubhint');
   }
 
-  getInstance() {
+  getInstance () {
     if (this._instance) {
       return Promise.resolve(this._instance);
     }
@@ -33,7 +33,7 @@ export default class GithubHint {
     });
   }
 
-  getEntry(entryId: string) {
+  getEntry (entryId: string) {
     return this.getInstance().then((instance: ContractInstance) => {
       return instance.entries.call({}, [entryId]);
     });

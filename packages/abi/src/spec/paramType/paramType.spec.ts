@@ -59,14 +59,14 @@ describe('spec/paramType/ParamType', () => {
     });
 
     it('sets the type of the object', () => {
-      expect(new ParamType('bool', null, 1).type).toEqual('bool');
+      expect(new ParamType('bool', undefined, 1).type).toEqual('bool');
     });
 
     it('sets the subtype of the object', () => {
       expect(new ParamType('array', new ParamType('bool'), 1).subtype).toEqual({
         _indexed: false,
         _length: 0,
-        _subtype: null,
+        _subtype: undefined,
         _type: 'bool'
       });
     });
@@ -86,7 +86,7 @@ describe('spec/paramType/ParamType', () => {
     it('sets default values where none supplied', () => {
       expect(Object.values(new ParamType('string'))).toEqual([
         'string',
-        null,
+        undefined,
         0,
         false
       ]);

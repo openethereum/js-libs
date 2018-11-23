@@ -45,7 +45,7 @@ class Encoder {
   }
 
   static encodeToken (token: Token, index = 0): Mediate {
-    if (!isInstanceOf(token, Token)) {
+    if (!token || !isInstanceOf(token, Token)) {
       throw new Error('token should be instanceof Token');
     }
 

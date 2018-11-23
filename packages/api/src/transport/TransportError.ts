@@ -50,7 +50,7 @@ class TransportError extends Error {
    */
   public type: string;
 
-  constructor(method: string, code: number, message: string) {
+  constructor (method: string, code: number, message: string) {
     const m = `${method}: ${code}: ${message}`;
 
     super(m);
@@ -73,7 +73,7 @@ class TransportError extends Error {
    *
    * @param method - The method for which we create a `REQUEST_REJECTED` error.
    */
-  static requestRejected(method: string = null) {
+  static requestRejected (method: string = null) {
     return new TransportError(
       method,
       ERROR_CODES.REQUEST_REJECTED,

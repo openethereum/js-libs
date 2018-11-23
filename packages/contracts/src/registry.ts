@@ -7,7 +7,7 @@ import * as abis from './abi';
 import { Api, Contract, ContractInstance } from './types';
 
 interface QueueItem {
-  resolve(...args: any[]): void;
+  resolve (...args: any[]): void;
 }
 
 const REGISTRY_V1_HASHES = [
@@ -26,15 +26,15 @@ export default class Registry {
     [key: string]: Promise<Contract>;
   } = {};
   private _queue: QueueItem[] = [];
-  private _registryContract: Contract = null;
+  private _registryContract: Contract | null = null;
 
-  constructor(api: Api) {
+  constructor (api: Api) {
     this._api = api;
 
     this.getInstance();
   }
 
-  getInstance() {
+  getInstance () {
     if (this._instance) {
       return Promise.resolve(this._instance);
     }
@@ -61,7 +61,7 @@ export default class Registry {
     });
   }
 
-  getContract(_name: string) {
+  getContract (_name: string) {
     const name = _name.toLowerCase();
 
     if (this._contracts[name]) {
@@ -86,13 +86,13 @@ export default class Registry {
     return promise;
   }
 
-  getContractInstance(_name: string) {
+  getContractInstance (_name: string) {
     return this.getContract(_name).then(
       (contract: Contract) => contract.instance
     );
   }
 
-  fetchContract() {
+  fetchContract () {
     if (this._registryContract) {
       return Promise.resolve(this._registryContract);
     }
@@ -133,14 +133,14 @@ export default class Registry {
       });
   }
 
-  _createGetParams(_name: string, key: string) {
+  _createGetParams (_name: string, key: string) {
     const name = _name.toLowerCase();
     const sha3 = this._api.util.sha3.text(name);
 
     return [sha3, key];
   }
 
-  lookupAddress(name: string) {
+  lookupAddress (name: string) {
     return this.getInstance()
       .then((instance: ContractInstance) => {
         return instance.getAddress.call({}, this._createGetParams(name, 'A'));
@@ -151,7 +151,7 @@ export default class Registry {
       });
   }
 
-  lookupMeta(name: string, key: string) {
+  lookupMeta (name: string, key: string) {
     return this.getInstance().then((instance: ContractInstance) => {
       return instance.get.call({}, this._createGetParams(name, key));
     });

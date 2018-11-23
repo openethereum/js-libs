@@ -11,7 +11,10 @@ import ParamType from '../spec/paramType';
 /**
  * Get event signature.
  */
-export const eventSignature = (eventName: string, params: ParamType[]) => {
+export const eventSignature = (
+  eventName: string | undefined,
+  params: ParamType[] = []
+) => {
   const { strName, name } = parseName(eventName);
   const types = (params || []).map(fromParamType).join(',');
   const id = `${strName}(${types})`;
@@ -26,7 +29,10 @@ export const eventSignature = (eventName: string, params: ParamType[]) => {
  * @param methodName - The method name.
  * @param params - The list of params
  */
-export const methodSignature = (methodName: string, params: ParamType[]) => {
+export const methodSignature = (
+  methodName: string | undefined,
+  params: ParamType[] = []
+) => {
   const { id, name, signature } = eventSignature(methodName, params);
 
   return { id, name, signature: signature.substr(0, 8) };
@@ -37,7 +43,7 @@ export const methodSignature = (methodName: string, params: ParamType[]) => {
  *
  * @param name - Name to parse.
  */
-export const parseName = (name: string) => {
+export const parseName = (name: string | undefined) => {
   const strName = `${name || ''}`;
   const index = strName.indexOf('(');
 

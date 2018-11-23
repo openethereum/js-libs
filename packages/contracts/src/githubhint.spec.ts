@@ -12,7 +12,7 @@ let githubHint: GithubHint;
 let instance: ContractInstance;
 let registry: Registry;
 
-function create() {
+function create () {
   instance = {
     __id: 'testInstance',
     entries: {

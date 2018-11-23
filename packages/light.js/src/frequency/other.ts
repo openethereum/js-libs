@@ -13,7 +13,7 @@ import { FrequencyObservableOptions } from '../types';
  *
  * @param options - Options to pass to {@link FrequencyObservable}.
  */
-function onStartup$(options?: FrequencyObservableOptions) {
+function onStartup$ (options?: FrequencyObservableOptions) {
   return of(0);
 }
 // @ts-ignore

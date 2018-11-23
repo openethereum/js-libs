@@ -11,7 +11,7 @@ export const RPC_LOADING = Symbol('Fetching RPC...');
  * @param {Any} value - The value to test.
  * @return {Boolean} - Returns true if it's loading.
  */
-export function isLoading(value: any) {
+export function isLoading (value: any) {
   return value === RPC_LOADING;
 }
 
@@ -21,6 +21,6 @@ export function isLoading(value: any) {
  * @param {Any} value - The value to test.
  * @return {Boolean} - Returns true if it's `null, `undefined` or loading.
  */
-export function isNullOrLoading(value: any) {
+export function isNullOrLoading (value: any) {
   return value == null || isLoading(value);
 }
