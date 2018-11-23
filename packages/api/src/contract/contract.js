@@ -112,7 +112,7 @@ class Contract {
     const _options = this._encodeOptions(this.constructors[0], options, values);
 
     return this._api.eth.estimateGas(_options).then(gasEst => {
-      return [gasEst, gasEst.mul(1.2)];
+      return [gasEst, gasEst.multipliedBy(1.2)];
     });
   }
 

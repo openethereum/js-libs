@@ -19,7 +19,7 @@
 const BigNumber = require('bignumber.js');
 const sinon = require('sinon');
 
-const Abi = require('@parity/abi');
+const Abi = require('@parity/abi').default;
 
 const { TEST_HTTP_URL, mockHttp } = require('../../test/mockRpc');
 

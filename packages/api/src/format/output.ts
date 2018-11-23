@@ -186,6 +186,10 @@ export function outLog (log: SerializedLog) {
       case 'address':
         result[key] = outAddress(log[key]);
         break;
+
+      default:
+        // @ts-ignore Here, we explicitly pass down extra keys, if they exist
+        result[key] = log[key];
     }
   });
 
