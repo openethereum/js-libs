@@ -4,5 +4,5 @@
 
 set -e # Quits if there's an error
 
-lerna version patch --yes -m "Publish %s"
+lerna version patch --yes -m "[ci skip] Publish %s"
 lerna publish from-git --yes
