@@ -9,7 +9,7 @@ import Token from './token';
 
 export interface AbiInput {
   indexed?: boolean;
-  name: string;
+  name?: string;
   type: TokenTypeEnum;
 }
 

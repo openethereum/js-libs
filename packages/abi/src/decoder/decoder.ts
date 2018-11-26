@@ -17,7 +17,7 @@ import { Slices } from '../types';
 const NULL = '0000000000000000000000000000000000000000000000000000000000000000';
 
 class Decoder {
-  static decode (params: ParamType[] | undefined, data: string) {
+  static decode (params: ParamType[] | undefined, data?: string) {
     if (!isArray(params)) {
       throw new Error('Parameters should be array of ParamType');
     }

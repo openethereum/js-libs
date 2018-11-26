@@ -62,7 +62,7 @@ describe('provider/PostMessage', () => {
   describe('getters', () => {
     describe('isParity', () => {
       it('returns true', () => {
-        expect(provider.isParity).toBe.true;
+        expect(provider.isParity).to.be.true;
       });
     });
 
@@ -70,7 +70,7 @@ describe('provider/PostMessage', () => {
       it('returns the internal connected status', () => {
         provider._connected = 'connected';
 
-        expect(provider.isConnected).toEqual('connected');
+        expect(provider.isConnected).to.equal('connected');
       });
     });
   });
@@ -85,11 +85,11 @@ describe('provider/PostMessage', () => {
     });
 
     it('sets the connected status', () => {
-      expect(provider.isConnected).toBe.false;
+      expect(provider.isConnected).to.be.false;
 
       provider.setToken('123');
 
-      expect(provider.isConnected).toBe.true;
+      expect(provider.isConnected).to.be.true;
     });
 
     it('sends all queued messages', () => {
@@ -108,16 +108,16 @@ describe('provider/PostMessage', () => {
 
   describe('send', () => {
     it('queues messages before token is available', () => {
-      expect(provider.queuedCount).toEqual(0);
+      expect(provider.queuedCount).to.equal(0);
 
       provider.send('method', 'params', () => {});
 
       expect(destination.postMessage).not.to.have.been.called;
-      expect(provider.queuedCount).toEqual(1);
+      expect(provider.queuedCount).to.equal(1);
     });
 
     it('sends queued messages as token is available', () => {
-      expect(provider.queuedCount).toEqual(0);
+      expect(provider.queuedCount).to.equal(0);
 
       provider.send('method', 'params', () => {});
       provider.setToken('123');
@@ -128,7 +128,7 @@ describe('provider/PostMessage', () => {
           params: 'params'
         }), '*'
       );
-      expect(provider.queuedCount).toEqual(0);
+      expect(provider.queuedCount).to.equal(0);
     });
   });
 });

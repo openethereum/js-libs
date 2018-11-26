@@ -31,7 +31,7 @@ describe('rpc/Personal', () => {
       scope = mockHttp([{ method: 'personal_listAccounts', reply: { result: [account] } }]);
 
       return instance.listAccounts().then((result) => {
-        expect(result).toEqual([checksum]);
+        expect(result).to.deep.equal([checksum]);
       });
     });
 
@@ -39,7 +39,7 @@ describe('rpc/Personal', () => {
       scope = mockHttp([{ method: 'personal_listAccounts', reply: { result: null } }]);
 
       return instance.listAccounts().then((result) => {
-        expect(result).toEqual([]);
+        expect(result).to.deep.equal([]);
       });
     });
   });
@@ -49,8 +49,8 @@ describe('rpc/Personal', () => {
       scope = mockHttp([{ method: 'personal_newAccount', reply: { result: account } }]);
 
       return instance.newAccount('password').then((result) => {
-        expect(scope.body.personal_newAccount.params).toEqual(['password']);
-        expect(result).toEqual(checksum);
+        expect(scope.body.personal_newAccount.params).to.deep.equal(['password']);
+        expect(result).to.equal(checksum);
       });
     });
   });
@@ -62,13 +62,13 @@ describe('rpc/Personal', () => {
 
     it('passes account, password & duration', () => {
       return instance.unlockAccount(account, 'password', 0xf).then(() => {
-        expect(scope.body.personal_unlockAccount.params).toEqual([account, 'password', '0xf']);
+        expect(scope.body.personal_unlockAccount.params).to.deep.equal([account, 'password', '0xf']);
       });
     });
 
     it('provides a default duration when not specified', () => {
       return instance.unlockAccount(account, 'password').then(() => {
-        expect(scope.body.personal_unlockAccount.params).toEqual([account, 'password', '0x1']);
+        expect(scope.body.personal_unlockAccount.params).to.deep.equal([account, 'password', '0x1']);
       });
     });
   });

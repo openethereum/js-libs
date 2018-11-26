@@ -31,13 +31,13 @@ describe('rpc/Trace', () => {
 
     it('assumes latest blockNumber when not specified', () => {
       return instance.block().then(() => {
-        expect(scope.body.trace_block.params).toEqual(['latest']);
+        expect(scope.body.trace_block.params).to.deep.equal(['latest']);
       });
     });
 
     it('passed specified blockNumber', () => {
       return instance.block(0x123).then(() => {
-        expect(scope.body.trace_block.params).toEqual(['0x123']);
+        expect(scope.body.trace_block.params).to.deep.equal(['0x123']);
       });
     });
   });

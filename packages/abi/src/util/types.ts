@@ -22,15 +22,19 @@ const HEXDIGITS = [
   'f'
 ];
 
-export const isArray = (input: any): input is Array<any> =>
-  Array.isArray(input);
+export function isArray<T> (input?: any): input is Array<T> {
+  return Array.isArray(input);
+}
 
-export const isError = (input: any): input is Error => input instanceof Error;
+export function isError (input?: any): input is Error {
+  return input instanceof Error;
+}
 
-export const isFunction = (input: any): input is Function =>
-  typeof input === 'function';
+export function isFunction (input?: any): input is Function {
+  return typeof input === 'function';
+}
 
-export const isHex = (input: any): boolean => {
+export function isHex (input?: any): boolean {
   if (!isString(input)) {
     return false;
   }
@@ -47,11 +51,15 @@ export const isHex = (input: any): boolean => {
   }
 
   return hex;
-};
-export const isObject = (input: any): input is object =>
-  Object.prototype.toString.call(input) === '[object Object]';
+}
+export function isObject (input?: any): input is object {
+  return Object.prototype.toString.call(input) === '[object Object]';
+}
 
-export const isString = (input: any): input is string =>
-  typeof input === 'string';
+export function isString (input?: any): input is string {
+  return typeof input === 'string';
+}
 
-export const isInstanceOf = (input: any, clazz: any) => input instanceof clazz;
+export function isInstanceOf (input: any, clazz: any) {
+  return input instanceof clazz;
+}

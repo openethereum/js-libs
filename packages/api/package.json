@@ -18,22 +18,36 @@
   },
   "scripts": {
     "prebuild": "rimraf lib",
-    "build": "echo Skipped for now.",
-    "test": "jest"
+    "build": "tsc",
+    "test": "cross-env NODE_ENV=test mocha -r ts-node/register 'src/*.spec.js' 'src/**/*.spec.js'"
   },
   "devDependencies": {
-    "@types/lodash-es": "^4.17.1",
-    "@types/node": "^10.5.2"
+    "chai": "3.5.0",
+    "chai-as-promised": "6.0.0",
+    "coveralls": "^3.0.0",
+    "cross-env": "^5.1.1",
+    "jsdom": "^11.1.0",
+    "mocha": "^3.4.2",
+    "mock-local-storage": "1.0.2",
+    "mock-socket": "6.0.4",
+    "nock": "9.0.7",
+    "rimraf": "^2.6.2",
+    "sinon": "1.17.7",
+    "sinon-as-promised": "4.0.2",
+    "sinon-chai": "2.8.0",
+    "ts-node": "^7.0.1"
   },
   "dependencies": {
     "@parity/abi": "^3.0.0",
-    "@parity/jsonrpc": "2.1.x",
-    "@parity/wordlist": "1.1.x",
-    "bignumber.js": "7.2.1",
-    "eventemitter3": "^3.1.0",
-    "js-sha3": "0.7.0",
-    "lodash": "^4.17.10",
+    "bignumber.js": "^7",
+    "blockies": "0.0.2",
+    "es6-error": "4.0.2",
+    "es6-promise": "^4.1.1",
+    "eventemitter3": "^2.0.2",
+    "isomorphic-fetch": "^2.2.1",
+    "js-sha3": "0.5.5",
+    "lodash": "^4.17.4",
     "store": "^2.0.12",
-    "websocket": "^1.0.26"
+    "websocket": "^1.0.25"
   }
 }

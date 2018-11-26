@@ -135,7 +135,7 @@ export default class Registry {
 
   _createGetParams (_name: string, key: string) {
     const name = _name.toLowerCase();
-    const sha3 = this._api.util.sha3.text(name);
+    const sha3 = this._api.util.sha3Text(name);
 
     return [sha3, key];
   }

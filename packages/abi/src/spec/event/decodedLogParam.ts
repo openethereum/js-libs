@@ -9,10 +9,10 @@ import Token from '../../token';
 
 class DecodedLogParam {
   private _kind: ParamType;
-  private _name: string;
+  private _name: string | undefined;
   private _token: Token;
 
-  constructor (name: string, kind: ParamType, token: Token) {
+  constructor (name: string | undefined, kind: ParamType, token: Token) {
     if (!isInstanceOf(kind, ParamType)) {
       throw new Error('kind not instanceof ParamType');
     } else if (!isInstanceOf(token, Token)) {

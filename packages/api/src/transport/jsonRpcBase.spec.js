@@ -31,7 +31,7 @@ describe('transport/JsonRpcBase', () => {
 
       base2.addMiddleware(null);
       base2._middlewareList.then((list) => {
-        expect(list).toEqual([]);
+        expect(list).to.deep.equal([]);
         done();
       });
     });
@@ -41,14 +41,14 @@ describe('transport/JsonRpcBase', () => {
 
       class Middleware {
         constructor (parent) {
-          expect(parent).toEqual(base2);
+          expect(parent).to.equal(base2);
         }
       }
 
       base2.addMiddleware(Middleware);
       base2._middlewareList.then((list) => {
-        expect(list.length).toEqual(1);
-        expect(isInstanceOf(list[0], Middleware)).toBe.true;
+        expect(list.length).to.equal(1);
+        expect(isInstanceOf(list[0], Middleware)).to.be.true;
         done();
       });
     });
@@ -56,19 +56,19 @@ describe('transport/JsonRpcBase', () => {
 
   describe('setDebug', () => {
     it('starts with disabled flag', () => {
-      expect(base.isDebug).toBe.false;
+      expect(base.isDebug).to.be.false;
     });
 
     it('true flag switches on', () => {
       base.setDebug(true);
-      expect(base.isDebug).toBe.true;
+      expect(base.isDebug).to.be.true;
     });
 
     it('false flag switches off', () => {
       base.setDebug(true);
-      expect(base.isDebug).toBe.true;
+      expect(base.isDebug).to.be.true;
       base.setDebug(false);
-      expect(base.isDebug).toBe.false;
+      expect(base.isDebug).to.be.false;
     });
 
     describe('logging', () => {
@@ -97,13 +97,13 @@ describe('transport/JsonRpcBase', () => {
       it('does log errors with flag on', () => {
         base.setDebug(true);
         base.log('error');
-        expect(console.log).toBe.called;
+        expect(console.log).to.be.called;
       });
 
       it('does log errors with flag on', () => {
         base.setDebug(true);
         base.error('error');
-        expect(console.error).toBe.called;
+        expect(console.error).to.be.called;
       });
     });
   });

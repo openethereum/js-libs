@@ -16,7 +16,7 @@ class Event {
   private _anonymous: boolean;
   private _id: string;
   private _inputs: EventParam[];
-  private _name: string;
+  private _name: string | undefined;
   private _signature: string;
 
   constructor (abi: AbiItem) {
@@ -27,14 +27,6 @@ class Event {
       abi.name,
       this.inputParamTypes()
     );
-
-    if (!name) {
-      throw new Error(
-        `Event constructor: abi item does not have a name: ${JSON.stringify(
-          abi
-        )}`
-      );
-    }
 
     this._id = id;
     this._name = name;

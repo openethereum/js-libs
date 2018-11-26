@@ -5,11 +5,18 @@ module.exports = {
     '!**/*.d.ts',
     '!**/index.ts'
   ],
+  // Adding this because "Cannot use namespace '...' as a type."
+  globals: {
+    'ts-jest': {
+      diagnostics: {
+        warnOnly: true
+      }
+    }
+  },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
   rootDir: '.',
   transform: {
-    '^.+\\.tsx?$': 'ts-jest'
+    '^.+\\.(ts|tsx)$': 'ts-jest'
   },
-  // testRegex: 'spec\\.(ts|tsx)$' // TODO Skip api/ tests for now, as it's still WIP
-  testRegex: `packages/(abi|contracts|electron|light\.js|light\.js-react)/.*spec\\.(ts|tsx)$`
+  testRegex: 'spec\\.(ts|tsx)$'
 };

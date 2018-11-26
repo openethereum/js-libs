@@ -28,7 +28,7 @@ describe.skip('ethapi.personal', () => {
     it('creates a new account', () => {
       return ethapi.personal.newAccount(password).then((_address) => {
         address = _address;
-        expect(isAddress(address)).toBe.ok;
+        expect(isAddress(address)).to.be.ok;
       });
     });
   });
@@ -36,9 +36,9 @@ describe.skip('ethapi.personal', () => {
   describe('listAccounts', () => {
     it('has the newly-created account', () => {
       return ethapi.personal.listAccounts(password).then((accounts) => {
-        expect(accounts.filter((_address) => _address === address)).toEqual([address]);
+        expect(accounts.filter((_address) => _address === address)).to.deep.equal([address]);
         accounts.forEach((account) => {
-          expect(isAddress(account)).toBe.true;
+          expect(isAddress(account)).to.be.true;
         });
       });
     });
@@ -47,8 +47,8 @@ describe.skip('ethapi.personal', () => {
   describe('unlockAccount', () => {
     it('unlocks the newly-created account', () => {
       return ethapi.personal.unlockAccount(address, password).then((result) => {
-        expect(isBoolean(result)).toBe.true;
-        expect(result).toBe.true;
+        expect(isBoolean(result)).to.be.true;
+        expect(result).to.be.true;
       });
     });
   });

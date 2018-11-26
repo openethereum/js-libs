@@ -28,7 +28,7 @@ export const cleanupValue = (value: string | number | Bytes, type: string) => {
   // TODO: make work with arbitrary depth arrays
   if (value instanceof Array && type.match(/bytes[0-9]+/)) {
     // figure out if it's an ASCII string hiding in there:
-    let ascii = '';
+    let ascii: string | null = '';
     let ended = false;
 
     for (let index = 0; index < value.length && ascii !== null; ++index) {
@@ -131,7 +131,7 @@ export const padRight = (input: string, length: number) => {
  * @param input - The input string to pad.
  * @param length - The number of zeros to pad.
  */
-export const padLeft = (input: string, length: number) => {
+export const padLeft = (input: string | undefined, length: number) => {
   const hexLength = length * 2;
   const value = toHex(input).substr(2, hexLength);
 
@@ -149,7 +149,7 @@ export const padLeft = (input: string, length: number) => {
  *
  * @param str - The string to convert.
  */
-export const toHex = (str: string) => {
+export const toHex = (str?: string) => {
   if (str && str.toString) {
     // TODO string has no toString(16)
     // @ts-ignore

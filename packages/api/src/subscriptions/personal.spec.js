@@ -95,7 +95,7 @@ describe('subscriptions/personal', () => {
 
   describe('constructor', () => {
     it('starts the instance in a stopped state', () => {
-      expect(personal.isStarted).toBe.false;
+      expect(personal.isStarted).to.be.false;
     });
   });
 
@@ -106,19 +106,19 @@ describe('subscriptions/personal', () => {
       });
 
       it('sets the started status', () => {
-        expect(personal.isStarted).toBe.true;
+        expect(personal.isStarted).to.be.true;
       });
 
       it('calls parity_accountsInfo', () => {
-        expect(api._calls.accountsInfo.length).toBe.ok;
+        expect(api._calls.accountsInfo.length).to.be.ok;
       });
 
       it('calls parity_allAccountsInfo', () => {
-        expect(api._calls.allAccountsInfo.length).toBe.ok;
+        expect(api._calls.allAccountsInfo.length).to.be.ok;
       });
 
       it('calls eth_accounts', () => {
-        expect(api._calls.listAccounts.length).toBe.ok;
+        expect(api._calls.listAccounts.length).to.be.ok;
       });
 
       it('updates subscribers', () => {
@@ -137,23 +137,23 @@ describe('subscriptions/personal', () => {
       });
 
       it('sets the started status', () => {
-        expect(personal.isStarted).toBe.true;
+        expect(personal.isStarted).to.be.true;
       });
 
       it('calls parity_defaultAccount', () => {
-        expect(api._calls.defaultAccount.length).toBe.ok;
+        expect(api._calls.defaultAccount.length).to.be.ok;
       });
 
       it('calls personal_accountsInfo', () => {
-        expect(api._calls.accountsInfo.length).toBe.ok;
+        expect(api._calls.accountsInfo.length).to.be.ok;
       });
 
       it('calls personal_allAccountsInfo', () => {
-        expect(api._calls.allAccountsInfo.length).toBe.ok;
+        expect(api._calls.allAccountsInfo.length).to.be.ok;
       });
 
       it('calls personal_listAccounts', () => {
-        expect(api._calls.listAccounts.length).toBe.ok;
+        expect(api._calls.listAccounts.length).to.be.ok;
       });
     });
   });

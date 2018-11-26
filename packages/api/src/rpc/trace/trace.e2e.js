@@ -24,13 +24,13 @@ describe('ethapi.trace', () => {
   describe('block', () => {
     it('returns the latest block traces', () => {
       return ethapi.trace.block().then((traces) => {
-        expect(traces).toBe.ok;
+        expect(traces).to.be.ok;
       });
     });
 
     it('returns traces for a specified block', () => {
       return ethapi.trace.block('0x65432').then((traces) => {
-        expect(traces).toBe.ok;
+        expect(traces).to.be.ok;
       });
     });
   });
@@ -39,7 +39,7 @@ describe('ethapi.trace', () => {
     it('returns traces for a specific transaction', () => {
       return ethapi.eth.getBlockByNumber().then((latestBlock) => {
         return ethapi.trace.replayTransaction(latestBlock.transactions[0]).then((traces) => {
-          expect(traces).toBe.ok;
+          expect(traces).to.be.ok;
         });
       });
     });

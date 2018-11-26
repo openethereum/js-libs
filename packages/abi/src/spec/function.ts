@@ -15,7 +15,7 @@ class Func {
   private _constant: boolean;
   private _id: string;
   private _inputs: Param[];
-  private _name: string;
+  private _name: string | undefined;
   private _outputs: Param[];
   private _payable: boolean;
   private _signature: string;
@@ -31,14 +31,6 @@ class Func {
       abi.name,
       this.inputParamTypes()
     );
-
-    if (!name) {
-      throw new Error(
-        `Event constructor: abi item does not have a name: ${JSON.stringify(
-          abi
-        )}`
-      );
-    }
 
     this._id = id;
     this._name = name;
@@ -77,11 +69,11 @@ class Func {
     return this._signature;
   }
 
-  decodeInput (data: string) {
+  decodeInput (data?: string) {
     return Decoder.decode(this.inputParamTypes(), data);
   }
 
-  decodeOutput (data: string) {
+  decodeOutput (data?: string) {
     return Decoder.decode(this.outputParamTypes(), data);
   }
 

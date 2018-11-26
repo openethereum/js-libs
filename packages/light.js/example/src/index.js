@@ -3,12 +3,13 @@
 //
 // SPDX-License-Identifier: MIT
 
-import React from 'react';
-import ReactDOM from 'react-dom';
 import 'symbol-observable'; // TODO Remove this once https://github.com/acdlite/recompose/pull/660 is merged
 
+import React from 'react';
+import ReactDOM from 'react-dom';
+import light from '@parity/light.js';
+
 import App from './App';
-import light from './light.js';
 import provider from './provider';
 
 light.setProvider(provider);

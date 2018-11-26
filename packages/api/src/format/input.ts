@@ -5,16 +5,26 @@
 
 import BigNumber from 'bignumber.js';
 
-import { BlockNumber } from '../types';
+import {
+  BlockNumber,
+  Condition,
+  DeriveObject,
+  Derive,
+  FilterObject,
+  FilterOptions,
+  Options,
+  Topic
+} from '../types';
 import { isArray, isHex, isInstanceOf, isString } from '../util/types';
 import { padLeft, toHex } from '../util/format';
+import { SerializedCondition, SerializedTransaction } from './types.serialized';
 
 /**
  * Validate input address.
  *
  * @param address - Input address to validate.
  */
-export const inAddress = (address: string) => {
+export const inAddress = (address?: string) => {
   // TODO: address validation if we have upper-lower addresses
   return inHex(address);
 };
@@ -24,11 +34,11 @@ export const inAddress = (address: string) => {
  *
  * @param addresses - Input addresses to validate.
  */
-export const inAddresses = (addresses: string[]) => {
+export const inAddresses = (addresses?: (string | undefined)[]) => {
   return (addresses || []).map(inAddress);
 };
 
-export const inBlockNumber = (blockNumber: BlockNumber) => {
+export const inBlockNumber = (blockNumber?: BlockNumber) => {
   if (isString(blockNumber)) {
     switch (blockNumber) {
       case 'earliest':
@@ -56,53 +66,70 @@ export const inHash = (hash: string) => {
   return inHex(hash);
 };
 
-export const inTopics = topics => {
-  return (topics || []).filter(topic => topic === null || topic).map(topic => {
-    if (topic === null) {
-      return null;
-    }
+export const inTopics = (topics?: (Topic | Topic[])[]): (string | null)[] => {
+  if (!topics) {
+    return [] as string[];
+  }
 
-    if (Array.isArray(topic)) {
-      return inTopics(topic);
-    }
+  // @ts-ignore I don't want to deal with resursive nested arrays
+  // TODO https://stackoverflow.com/questions/52638149/recursive-nested-array-type-can-it-be-done
+  return topics
+    .filter((topic: Topic | Topic[]) => topic === null || topic)
+    .map((topic: Topic | Topic[]) => {
+      if (topic === null) {
+        return null;
+      }
 
-    return padLeft(topic, 32);
-  });
+      if (Array.isArray(topic)) {
+        return inTopics(topic);
+      }
+
+      return padLeft(topic, 32);
+    });
 };
 
-export const inFilter = options => {
+export const inFilter = (options: FilterOptions) => {
+  const result: {
+    [key in keyof FilterOptions]: number | string | string[] | Topic[]
+  } = {};
+
   if (options) {
     Object.keys(options).forEach(key => {
       switch (key) {
         case 'address':
           if (isArray(options[key])) {
-            options[key] = options[key].map(inAddress);
+            result[key] = (options[key] as string[]).map(inAddress);
           } else {
-            options[key] = inAddress(options[key]);
+            result[key] = inAddress(options[key] as string);
           }
           break;
 
         case 'fromBlock':
         case 'toBlock':
-          options[key] = inBlockNumber(options[key]);
+          result[key] = inBlockNumber(options[key]);
           break;
 
         case 'limit':
-          options[key] = inNumber10(options[key]);
+          result[key] = inNumber10(options[key]);
           break;
 
         case 'topics':
-          options[key] = inTopics(options[key]);
+          result[key] = inTopics(options[key]);
+          break;
+
+        default:
+          // @ts-ignore Here, we explicitly pass down extra keys, if they exist
+          result[key] = options[key];
       }
     });
   }
 
-  return options;
+  return result;
 };
 
-export const inHex = (str: string) => toHex(str);
+export const inHex = (str?: string) => toHex(str);
 
-export const inNumber10 = (n: BlockNumber) => {
+export const inNumber10 = (n?: BlockNumber) => {
   if (isInstanceOf(n, BigNumber)) {
     return (n as BigNumber).toNumber();
   }
@@ -110,9 +137,9 @@ export const inNumber10 = (n: BlockNumber) => {
   return new BigNumber(n || 0).toNumber();
 };
 
-export const inNumber16 = (n: BlockNumber) => {
+export const inNumber16 = (n?: BlockNumber) => {
   const bn = isInstanceOf(n, BigNumber)
-    ? n as BigNumber
+    ? (n as BigNumber)
     : new BigNumber(n || 0);
 
   if (!bn.isInteger()) {
@@ -124,24 +151,23 @@ export const inNumber16 = (n: BlockNumber) => {
   return inHex(bn.toString(16));
 };
 
-export const inOptionsCondition = (condition: {
-  block?: BlockNumber;
-  time?: Date;
-}) => {
+export const inOptionsCondition = (condition?: Condition | null) => {
   if (condition) {
     return {
       block: condition.block ? inNumber10(condition.block) : null,
       time: condition.time
         ? inNumber10(Math.floor(condition.time.getTime() / 1000))
         : null
-    };
+    } as SerializedCondition;
   }
 
   return null;
 };
 
-export const inOptions = (_options = {}) => {
+export const inOptions = (_options: Options = {}) => {
   const options = Object.assign({}, _options);
+
+  const result: SerializedTransaction = {};
 
   Object.keys(options).forEach(key => {
     switch (key) {
@@ -149,60 +175,72 @@ export const inOptions = (_options = {}) => {
         // Don't encode the `to` option if it's empty
         // (eg. contract deployments)
         if (options[key]) {
-          options.to = inAddress(options[key]);
+          result.to = inAddress(options[key]);
         }
         break;
 
       case 'from':
-        options[key] = inAddress(options[key]);
+        result[key] = inAddress(options[key]);
         break;
 
       case 'condition':
-        options[key] = inOptionsCondition(options[key]);
+        result[key] = inOptionsCondition(options[key]);
         break;
 
       case 'gas':
       case 'gasPrice':
-        options[key] = inNumber16(new BigNumber(options[key]).round());
+        result[key] = inNumber16(
+          new BigNumber(options[key] as BigNumber) // TODO Round number
+        );
         break;
 
       case 'value':
       case 'nonce':
-        options[key] = inNumber16(options[key]);
+        result[key] = inNumber16(options[key]);
         break;
 
       case 'data':
-        options[key] = inData(options[key]);
+        result[key] = inData(options[key]);
         break;
+
+      default:
+        // @ts-ignore Here, we explicitly pass down extra keys, if they exist
+        result[key] = options[key];
     }
   });
 
-  return options;
+  return result;
 };
 
-export const inTraceFilter = filterObject => {
+export const inTraceFilter = (filterObject: FilterObject) => {
+  const result: { [key in keyof FilterObject]: string | string[] } = {};
+
   if (filterObject) {
     Object.keys(filterObject).forEach(key => {
       switch (key) {
         case 'fromAddress':
         case 'toAddress':
-          filterObject[key] = []
-            .concat(filterObject[key])
+          result[key] = ([] as string[])
+            .concat(filterObject[key] as string)
             .map(address => inAddress(address));
           break;
 
         case 'toBlock':
         case 'fromBlock':
-          filterObject[key] = inBlockNumber(filterObject[key]);
+          result[key] = inBlockNumber(filterObject[key]);
           break;
+
+        default:
+          // @ts-ignore Here, we explicitly pass down extra keys, if they exist
+          result[key] = options[key];
       }
     });
   }
 
-  return filterObject;
+  return result;
 };
 
-export const inTraceType = whatTrace => {
+export const inTraceType = (whatTrace: string | string[]) => {
   if (isString(whatTrace)) {
     return [whatTrace];
   }
@@ -210,31 +248,36 @@ export const inTraceType = whatTrace => {
   return whatTrace;
 };
 
-export const inDeriveType = derive => {
-  return derive && derive.type === 'hard' ? 'hard' : 'soft';
+export const inDeriveType = (derive?: Derive) => {
+  return derive && (derive as DeriveObject).type === 'hard' ? 'hard' : 'soft';
 };
 
-export const inDeriveHash = derive => {
-  const hash = derive && derive.hash ? derive.hash : derive;
-  const type = inDeriveType(derive);
+export const inDeriveHash = (derive?: Derive | string) => {
+  const hash =
+    derive && (derive as DeriveObject).hash
+      ? (derive as DeriveObject).hash
+      : (derive as string);
+  const type = inDeriveType(derive as Derive);
 
   return {
-    hash: inHex(hash),
+    hash: inHex(hash as string),
     type
   };
 };
 
-export const inDeriveIndex = derive => {
+export const inDeriveIndex = (derive: Derive | Derive[]) => {
   if (!derive) {
     return [];
   }
 
-  if (!isArray(derive)) {
-    derive = [derive];
-  }
+  const deriveAsArray: Derive[] = isArray(derive) ? derive : [derive];
 
-  return derive.map(item => {
-    const index = inNumber10(item && item.index ? item.index : item);
+  return deriveAsArray.map(item => {
+    const index = inNumber10(
+      item && (item as DeriveObject).index
+        ? (item as DeriveObject).index
+        : (item as number)
+    );
 
     return {
       index,

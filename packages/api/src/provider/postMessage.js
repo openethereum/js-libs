@@ -16,8 +16,6 @@
 
 const EventEmitter = require('eventemitter3');
 
-const METHOD_REQUEST_TOKEN = 'shell_requestNewToken';
-
 class PostMessage extends EventEmitter {
   constructor (appId, destination, source) {
     super();
@@ -63,19 +61,6 @@ class PostMessage extends EventEmitter {
   addMiddleware () {
   }
 
-  requestNewToken () {
-    return new Promise((resolve, reject) => {
-      this.send(METHOD_REQUEST_TOKEN, [], (error, token) => {
-        if (error) {
-          reject(error);
-        } else {
-          this.setToken(token);
-          resolve(token);
-        }
-      });
-    });
-  }
-
   _constructMessage (id, data) {
     return Object.assign({}, data, {
       id,
@@ -86,7 +71,7 @@ class PostMessage extends EventEmitter {
   }
 
   _send (message) {
-    if (!this._token && message.data.method !== METHOD_REQUEST_TOKEN) {
+    if (!this._token) {
       this._queued.push(message);
 
       return;

@@ -1,25 +1,28 @@
 // Copyright 2015-2018 Parity Technologies (UK) Ltd.
 // This file is part of Parity.
+//
+// SPDX-License-Identifier: MIT
 
-// Parity is free software: you can redistribute it and/or modify
-// it under the terms of the GNU General Public License as published by
-// the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
+import BigNumber from 'bignumber.js';
+import { isAddress } from '@parity/abi/lib/util/address';
 
-// Parity is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU General Public License for more details.
-
-// You should have received a copy of the GNU General Public License
-// along with Parity.  If not, see <http://www.gnu.org/licenses/>.
-
-/* eslint-disable no-unused-expressions */
-
-const BigNumber = require('bignumber.js');
-
-const { inAddress, inAddresses, inBlockNumber, inData, inFilter, inHash, inHex, inNumber10, inNumber16, inOptions, inTraceType, inDeriveHash, inDeriveIndex, inTopics } = require('./input');
-const { isAddress } = require('../../test/types');
+import { FilterOptions, Options } from '../types';
+import {
+  inAddress,
+  inAddresses,
+  inBlockNumber,
+  inData,
+  inFilter,
+  inHash,
+  inHex,
+  inNumber10,
+  inNumber16,
+  inOptions,
+  inTraceType,
+  inDeriveHash,
+  inDeriveIndex,
+  inTopics
+} from './input';
 
 describe('format/input', () => {
   const address = '0x63cf90d3f0410092fc0fca41846f596223979195';
@@ -52,10 +55,7 @@ describe('format/input', () => {
     it('handles mapping of all addresses in array', () => {
       const address = '63cf90d3f0410092fc0fca41846f596223979195';
 
-      expect(inAddresses([null, address])).toEqual([
-        '0x',
-        `0x${address}`
-      ]);
+      expect(inAddresses([undefined, address])).toEqual(['0x', `0x${address}`]);
     });
   });
 
@@ -125,21 +125,21 @@ describe('format/input', () => {
   });
 
   describe('inFilter', () => {
-    ['address'].forEach((input) => {
+    ['address' as keyof FilterOptions].forEach(input => {
       it(`formats ${input} address as address`, () => {
-        const block = {};
+        const block: FilterOptions = {};
 
         block[input] = address;
         const formatted = inFilter(block)[input];
 
-        expect(isAddress(formatted)).toBe.true;
+        expect(isAddress(formatted as string)).toBe(true);
         expect(formatted).toEqual(address);
       });
     });
 
-    ['fromBlock', 'toBlock'].forEach((input) => {
+    (['fromBlock', 'toBlock'] as (keyof FilterOptions)[]).forEach(input => {
       it(`formats ${input} number as blockNumber`, () => {
-        const block = {};
+        const block: FilterOptions = {};
 
         block[input] = 0x123;
         const formatted = inFilter(block)[input];
@@ -149,7 +149,9 @@ describe('format/input', () => {
     });
 
     it('ignores and passes through unknown keys', () => {
-      expect(inFilter({ someRandom: 'someRandom' })).toEqual({ someRandom: 'someRandom' });
+      expect(inFilter({ someRandom: 'someRandom' } as any)).toEqual({
+        someRandom: 'someRandom'
+      });
     });
 
     it('formats an filter options object with relevant entries converted', () => {
@@ -208,9 +210,9 @@ describe('format/input', () => {
   });
 
   describe('inOptions', () => {
-    ['data'].forEach((input) => {
+    ['data' as keyof Options].forEach(input => {
       it(`converts ${input} to hex data`, () => {
-        const block = {};
+        const block: Options = {};
 
         block[input] = '1234';
         const formatted = inData(block[input]);
@@ -219,14 +221,14 @@ describe('format/input', () => {
       });
     });
 
-    ['from', 'to'].forEach((input) => {
+    (['from', 'to'] as (keyof Options)[]).forEach(input => {
       it(`formats ${input} address as address`, () => {
-        const block = {};
+        const block: Options = {};
 
         block[input] = address;
-        const formatted = inOptions(block)[input];
+        const formatted = inOptions(block)[input] as string;
 
-        expect(isAddress(formatted)).toBe.true;
+        expect(isAddress(formatted)).toBe(true);
         expect(formatted).toEqual(address);
       });
     });
@@ -235,26 +237,30 @@ describe('format/input', () => {
       const options = { to: '' };
       const formatted = inOptions(options);
 
-      expect(formatted.to).toEqual('');
+      expect(formatted.to).toEqual(undefined);
     });
 
-    ['gas', 'gasPrice', 'value', 'nonce'].forEach((input) => {
-      it(`formats ${input} number as hexnumber`, () => {
-        const block = {};
+    (['gas', 'gasPrice', 'value', 'nonce'] as (keyof Options)[]).forEach(
+      input => {
+        it(`formats ${input} number as hexnumber`, () => {
+          const block: Options = {};
 
-        block[input] = 0x123;
-        const formatted = inOptions(block)[input];
+          block[input] = 0x123;
+          const formatted = inOptions(block)[input];
 
-        expect(formatted).toEqual('0x123');
-      });
-    });
+          expect(formatted).toEqual('0x123');
+        });
+      }
+    );
 
     it('passes condition as null when specified as such', () => {
       expect(inOptions({ condition: null })).toEqual({ condition: null });
     });
 
     it('ignores and passes through unknown keys', () => {
-      expect(inOptions({ someRandom: 'someRandom' })).toEqual({ someRandom: 'someRandom' });
+      expect(inOptions({ someRandom: 'someRandom' } as any)).toEqual({
+        someRandom: 'someRandom'
+      });
     });
 
     it('formats an options object with relevant entries converted', () => {
@@ -308,17 +314,21 @@ describe('format/input', () => {
         type: 'soft'
       });
 
-      expect(inDeriveHash({
-        hash: 5
-      })).toEqual({
+      expect(
+        inDeriveHash({
+          hash: 5
+        })
+      ).toEqual({
         hash: '0x5',
         type: 'soft'
       });
 
-      expect(inDeriveHash({
-        hash: 5,
-        type: 'hard'
-      })).toEqual({
+      expect(
+        inDeriveHash({
+          hash: 5,
+          type: 'hard'
+        })
+      ).toEqual({
         hash: '0x5',
         type: 'hard'
       });
@@ -330,22 +340,33 @@ describe('format/input', () => {
       expect(inDeriveIndex(null)).toEqual([]);
       expect(inDeriveIndex([])).toEqual([]);
 
-      expect(inDeriveIndex([1])).toEqual([{
-        index: 1,
-        type: 'soft'
-      }]);
+      expect(inDeriveIndex([1])).toEqual([
+        {
+          index: 1,
+          type: 'soft'
+        }
+      ]);
 
-      expect(inDeriveIndex({
-        index: 1
-      })).toEqual([{
-        index: 1,
-        type: 'soft'
-      }]);
+      expect(
+        inDeriveIndex({
+          index: 1
+        })
+      ).toEqual([
+        {
+          index: 1,
+          type: 'soft'
+        }
+      ]);
 
-      expect(inDeriveIndex([{
-        index: 1,
-        type: 'hard'
-      }, 5])).toEqual([
+      expect(
+        inDeriveIndex([
+          {
+            index: 1,
+            type: 'hard'
+          },
+          5
+        ])
+      ).toEqual([
         {
           index: 1,
           type: 'hard'

@@ -58,7 +58,7 @@ describe('subscriptions/eth', () => {
 
   describe('constructor', () => {
     it('starts the instance in a stopped state', () => {
-      expect(eth.isStarted).toBe.false;
+      expect(eth.isStarted).to.be.false;
     });
   });
 
@@ -69,11 +69,11 @@ describe('subscriptions/eth', () => {
       });
 
       it('sets the started status', () => {
-        expect(eth.isStarted).toBe.true;
+        expect(eth.isStarted).to.be.true;
       });
 
       it('calls eth_blockNumber', () => {
-        expect(api._calls.blockNumber.length).toBe.ok;
+        expect(api._calls.blockNumber.length).to.be.ok;
       });
 
       it('updates subscribers', () => {
@@ -89,15 +89,15 @@ describe('subscriptions/eth', () => {
       });
 
       it('sets the started status', () => {
-        expect(eth.isStarted).toBe.true;
+        expect(eth.isStarted).to.be.true;
       });
 
       it('calls eth_blockNumber', () => {
-        expect(api._calls.blockNumber.length).toBe.ok;
+        expect(api._calls.blockNumber.length).to.be.ok;
       });
 
       it('does not update subscribers', () => {
-        expect(cb).not.toBeen.called;
+        expect(cb).not.to.been.called;
       });
     });
   });

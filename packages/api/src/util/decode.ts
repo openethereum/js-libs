@@ -51,7 +51,7 @@ export const decodeCallData = (
  */
 export const decodeMethodInput = (
   methodAbi: AbiItem,
-  paramdata: string
+  paramdata?: string
 ): TokenValue[] => {
   if (!methodAbi) {
     throw new Error(
@@ -71,7 +71,7 @@ export const decodeMethodInput = (
 
   return new Func(methodAbi)
     .decodeInput(paramdata)
-    .map(decoded => decoded.value);
+    .map(decoded => decoded.value) as TokenValue[];
 };
 
 /**
@@ -102,11 +102,13 @@ export const methodToAbi = (method: string) => {
   const types = method
     .substr(typesStart + 1, length - (typesStart + 1) - 1)
     .split(',');
-  const inputs = types.filter(_type => _type.length).map(_type => {
-    const type = fromParamType(toParamType(_type));
+  const inputs = types
+    .filter(_type => _type.length)
+    .map(_type => {
+      const type = fromParamType(toParamType(_type));
 
-    return { type };
-  });
+      return { type };
+    });
 
   return { type: 'function', name, inputs };
 };

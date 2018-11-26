@@ -30,7 +30,7 @@ describe('ethapi.eth', () => {
     it('returns the available accounts', () => {
       return ethapi.eth.accounts().then((accounts) => {
         accounts.forEach((account) => {
-          expect(isAddress(account)).toBe.true;
+          expect(isAddress(account)).to.be.true;
         });
       });
     });
@@ -40,7 +40,7 @@ describe('ethapi.eth', () => {
     it('returns the current blockNumber', () => {
       return ethapi.eth.blockNumber().then((blockNumber) => {
         latestBlockNumber = blockNumber;
-        expect(blockNumber.gt(0xabcde)).toBe.true;
+        expect(blockNumber.gt(0xabcde)).to.be.true;
       });
     });
   });
@@ -48,7 +48,7 @@ describe('ethapi.eth', () => {
   describe('coinbase', () => {
     it('returns the coinbase', () => {
       return ethapi.eth.coinbase().then((coinbase) => {
-        expect(isAddress(coinbase)).toBe.true;
+        expect(isAddress(coinbase)).to.be.true;
       });
     });
   });
@@ -56,7 +56,7 @@ describe('ethapi.eth', () => {
   describe('gasPrice', () => {
     it('returns the current gasPrice', () => {
       return ethapi.eth.gasPrice().then((gasPrice) => {
-        expect(gasPrice.gt(0)).toBe.true;
+        expect(gasPrice.gt(0)).to.be.true;
       });
     });
   });
@@ -64,7 +64,7 @@ describe('ethapi.eth', () => {
   describe('getBalance', () => {
     it('returns the balance for latest block', () => {
       return ethapi.eth.getBalance(address).then((balance) => {
-        expect(balance.gt(0)).toBe.true;
+        expect(balance.gt(0)).to.be.true;
       });
     });
 
@@ -75,7 +75,7 @@ describe('ethapi.eth', () => {
       return ethapi.eth
         .getBalance(address, atBlock)
         .then((balance) => {
-          expect(balance.toString(16)).toEqual(atValue);
+          expect(balance.toString(16)).to.equal(atValue);
         })
         .catch((error) => {
           // Parity doesn't support pruned-before-block balance lookups
@@ -87,7 +87,7 @@ describe('ethapi.eth', () => {
       return ethapi.eth
         .getBalance(address, latestBlockNumber.minus(1000))
         .then((balance) => {
-          expect(balance.gt(0)).toBe.true;
+          expect(balance.gt(0)).to.be.true;
         });
     });
   });
@@ -95,20 +95,20 @@ describe('ethapi.eth', () => {
   describe('getBlockByNumber', () => {
     it('returns the latest block', () => {
       return ethapi.eth.getBlockByNumber().then((block) => {
-        expect(block).toBe.ok;
+        expect(block).to.be.ok;
       });
     });
 
     it('returns a block by blockNumber', () => {
       return ethapi.eth.getBlockByNumber(latestBlockNumber).then((block) => {
         latestBlockHash = block.hash;
-        expect(block).toBe.ok;
+        expect(block).to.be.ok;
       });
     });
 
     it('returns a block by blockNumber (full)', () => {
       return ethapi.eth.getBlockByNumber(latestBlockNumber, true).then((block) => {
-        expect(block).toBe.ok;
+        expect(block).to.be.ok;
       });
     });
   });
@@ -116,15 +116,15 @@ describe('ethapi.eth', () => {
   describe('getBlockByHash', () => {
     it('returns the specified block', () => {
       return ethapi.eth.getBlockByHash(latestBlockHash).then((block) => {
-        expect(block).toBe.ok;
-        expect(block.hash).toEqual(latestBlockHash);
+        expect(block).to.be.ok;
+        expect(block.hash).to.equal(latestBlockHash);
       });
     });
 
     it('returns the specified block (full)', () => {
       return ethapi.eth.getBlockByHash(latestBlockHash, true).then((block) => {
-        expect(block).toBe.ok;
-        expect(block.hash).toEqual(latestBlockHash);
+        expect(block).to.be.ok;
+        expect(block.hash).to.equal(latestBlockHash);
       });
     });
   });
@@ -132,8 +132,8 @@ describe('ethapi.eth', () => {
   describe('getBlockTransactionCountByHash', () => {
     it('returns the transactions of the specified hash', () => {
       return ethapi.eth.getBlockTransactionCountByHash(latestBlockHash).then((count) => {
-        expect(count).toBe.ok;
-        expect(count.gte(0)).toBe.true;
+        expect(count).to.be.ok;
+        expect(count.gte(0)).to.be.true;
       });
     });
   });
@@ -141,15 +141,15 @@ describe('ethapi.eth', () => {
   describe('getBlockTransactionCountByNumber', () => {
     it('returns the transactions of latest', () => {
       return ethapi.eth.getBlockTransactionCountByNumber().then((count) => {
-        expect(count).toBe.ok;
-        expect(count.gte(0)).toBe.true;
+        expect(count).to.be.ok;
+        expect(count.gte(0)).to.be.true;
       });
     });
 
     it('returns the transactions of a specified number', () => {
       return ethapi.eth.getBlockTransactionCountByNumber(latestBlockNumber).then((count) => {
-        expect(count).toBe.ok;
-        expect(count.gte(0)).toBe.true;
+        expect(count).to.be.ok;
+        expect(count.gte(0)).to.be.true;
       });
     });
   });
@@ -157,15 +157,15 @@ describe('ethapi.eth', () => {
   describe('getTransactionCount', () => {
     it('returns the count for an address', () => {
       return ethapi.eth.getTransactionCount(address).then((count) => {
-        expect(count).toBe.ok;
-        expect(count.gte(0x1000c2)).toBe.ok;
+        expect(count).to.be.ok;
+        expect(count.gte(0x1000c2)).to.be.ok;
       });
     });
 
     it('returns the count for an address at specified blockNumber', () => {
       return ethapi.eth.getTransactionCount(address, latestBlockNumber).then((count) => {
-        expect(count).toBe.ok;
-        expect(count.gte(0x1000c2)).toBe.ok;
+        expect(count).to.be.ok;
+        expect(count.gte(0x1000c2)).to.be.ok;
       });
     });
   });

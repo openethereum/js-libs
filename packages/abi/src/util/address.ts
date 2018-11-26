@@ -33,7 +33,7 @@ export const isChecksumValid = (address: string) => {
  *
  * @param address - The address to verify.
  */
-export const isAddress = (address: string) => {
+export const isAddress = (address?: string) => {
   if (address && address.length === 42) {
     if (!/^(0x)?[0-9a-f]{40}$/i.test(address)) {
       return false;

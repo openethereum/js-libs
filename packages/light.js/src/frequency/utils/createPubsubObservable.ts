@@ -33,17 +33,7 @@ const createPubsubObservableWithApi = memoizee(
       );
 
       return timer(0, 1000).pipe(
-        switchMap(() =>
-          api[namespace][method]().then((response: any) => {
-            // For responses by MetaMask, the object is not parsed by
-            // `@parity/api`. We parse it manually here.
-            // TODO Put this logic in `@parity/api`
-            if (typeof response === 'object' && response.result !== undefined) {
-              return response.result;
-            }
-            return response;
-          })
-        )
+        switchMap(() => api[namespace][method]())
       ) as Observable<T>;
     }
 

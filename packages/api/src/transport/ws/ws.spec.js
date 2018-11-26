@@ -73,27 +73,27 @@ describe('transport/ws', () => {
     });
 
     it('makes call', () => {
-      expect(scope.isDone()).toBe.true;
+      expect(scope.isDone()).to.be.true;
     });
 
     it('sets jsonrpc', () => {
-      expect(scope.body.test_anyCall.jsonrpc).toEqual('2.0');
+      expect(scope.body.test_anyCall.jsonrpc).to.equal('2.0');
     });
 
     it('sets the method', () => {
-      expect(scope.body.test_anyCall.method).toEqual('test_anyCall');
+      expect(scope.body.test_anyCall.method).to.equal('test_anyCall');
     });
 
     it('passes the params', () => {
-      expect(scope.body.test_anyCall.params).toEqual([1, 2, 3]);
+      expect(scope.body.test_anyCall.params).to.deep.equal([1, 2, 3]);
     });
 
     it('increments the id', () => {
-      expect(scope.body.test_anyCall.id).not.toEqual(0);
+      expect(scope.body.test_anyCall.id).not.to.equal(0);
     });
 
     it('passes the actual result back', () => {
-      expect(result).toEqual('TestResult');
+      expect(result).to.equal('TestResult');
     });
   });
 

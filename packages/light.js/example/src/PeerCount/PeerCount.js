@@ -4,9 +4,8 @@
 // SPDX-License-Identifier: MIT
 
 import React, { Component } from 'react';
-
-import { peerCount$, withoutLoading } from '../light.js/index.js';
-import light from '../hoc';
+import { peerCount$, withoutLoading } from '@parity/light.js';
+import light from '@parity/light.js-react';
 
 @light({
   peerCount: () => peerCount$().pipe(withoutLoading())
