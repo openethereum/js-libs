@@ -51,6 +51,7 @@ do
     cd $PROJECT_DIR
 done
 
-
-
-exit 0
+# Docs are updated, we commit back to repo
+git checkout master
+git add .
+git commit -m "[ci skip] Update docs"

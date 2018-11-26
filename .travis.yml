@@ -17,12 +17,10 @@ script:
   - yarn test:api
   - yarn test --silent --coverage --coverageReporters=text-lcov | coveralls ; test ${PIPESTATUS[0]} -eq 0
 before_deploy:
-  - npm install --global gitbook-cli
+  - npm install --global gitbook-cli lerna
 deploy:
   provider: script
   skip_cleanup: true
-  script:
-    - yarn update-docs --scope=abi,light.js
-    - ./scripts/lerna-publish.sh
+  script: yarn update-docs --scope=abi,light.js && ./scripts/lerna-publish.sh
   on:
     branch: master
