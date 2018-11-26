@@ -5,4 +5,4 @@
 set -e # Quits if there's an error
 
 lerna version patch --yes -m "Publish %s"
-lerna publish --yes
+lerna publish from-git --yes
