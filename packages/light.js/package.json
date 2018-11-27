@@ -30,7 +30,7 @@
     "@parity/api": "^3.0.1",
     "async-retry": "^1.2.3",
     "bignumber.js": "^8.0.1",
-    "debug": "^3.1.0",
+    "debug": "^4.1.0",
     "memoizee": "^0.4.12"
   },
   "devDependencies": {
