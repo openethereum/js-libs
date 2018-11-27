@@ -8,7 +8,7 @@
 
 **● RPC_LOADING**: *`unique symbol`* =  Symbol('Fetching RPC...')
 
-*Defined in [utils/isLoading.ts:6](https://github.com/paritytech/js-libs/blob/f113b04/packages/light.js/src/utils/isLoading.ts#L6)*
+*Defined in [utils/isLoading.ts:6](https://github.com/paritytech/js-libs/blob/6b72611/packages/light.js/src/utils/isLoading.ts#L6)*
 
 ___
 
@@ -16,17 +16,17 @@ ___
 
 <a id="isloading"></a>
 
-## `<Const>` isLoading
+##  isLoading
 
 ▸ **isLoading**(value: *`any`*): `boolean`
 
-*Defined in [utils/isLoading.ts:14](https://github.com/paritytech/js-libs/blob/f113b04/packages/light.js/src/utils/isLoading.ts#L14)*
+*Defined in [utils/isLoading.ts:14](https://github.com/paritytech/js-libs/blob/6b72611/packages/light.js/src/utils/isLoading.ts#L14)*
 
 Check if a rpc$ value is loading.
 
 **Parameters:**
 
-| Param | Type | Description |
+| Name | Type | Description |
 | ------ | ------ | ------ |
 | value | `any` |  The value to test. |
 
@@ -36,17 +36,17 @@ Check if a rpc$ value is loading.
 ___
 <a id="isnullorloading"></a>
 
-## `<Const>` isNullOrLoading
+##  isNullOrLoading
 
 ▸ **isNullOrLoading**(value: *`any`*): `boolean`
 
-*Defined in [utils/isLoading.ts:22](https://github.com/paritytech/js-libs/blob/f113b04/packages/light.js/src/utils/isLoading.ts#L22)*
+*Defined in [utils/isLoading.ts:24](https://github.com/paritytech/js-libs/blob/6b72611/packages/light.js/src/utils/isLoading.ts#L24)*
 
-Check if a rpc$ value is `null,`undefined` or loading.
+Check if a rpc$ value is `null,`undefined\` or loading.
 
 **Parameters:**
 
-| Param | Type | Description |
+| Name | Type | Description |
 | ------ | ------ | ------ |
 | value | `any` |  The value to test. |
 

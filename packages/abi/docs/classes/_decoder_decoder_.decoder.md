@@ -10,16 +10,16 @@
 
 ## `<Static>` decode
 
-▸ **decode**(params: *[ParamType](_spec_paramtype_paramtype_.paramtype.md)[]*, data: *`string`*): [Token](_token_token_.token.md)[]
+▸ **decode**(params: * [ParamType](_spec_paramtype_paramtype_.paramtype.md)[] &#124; `undefined`*, data?: * `undefined` &#124; `string`*): [Token](_token_token_.token.md)[]
 
-*Defined in [decoder/decoder.ts:20](https://github.com/paritytech/js-libs/blob/79a5f83/packages/abi/src/decoder/decoder.ts#L20)*
+*Defined in [decoder/decoder.ts:20](https://github.com/paritytech/js-libs/blob/6b72611/packages/abi/src/decoder/decoder.ts#L20)*
 
 **Parameters:**
 
-| Param | Type |
+| Name | Type |
 | ------ | ------ |
-| params | [ParamType](_spec_paramtype_paramtype_.paramtype.md)[] |
-| data | `string` |
+| params |  [ParamType](_spec_paramtype_paramtype_.paramtype.md)[] &#124; `undefined`|
+| `Optional` data |  `undefined` &#124; `string`|
 
 **Returns:** [Token](_token_token_.token.md)[]
 
@@ -28,17 +28,17 @@ ___
 
 ## `<Static>` decodeParam
 
-▸ **decodeParam**(param: *[ParamType](_spec_paramtype_paramtype_.paramtype.md)*, slices: *`string`[]*, offset: *`number`*): [DecodeResult](_decoder_decoderesult_.decoderesult.md)
+▸ **decodeParam**(param: *[ParamType](_spec_paramtype_paramtype_.paramtype.md)*, slices: *[Slices](../modules/_types_.md#slices)*, offset?: *`number`*): [DecodeResult](_decoder_decoderesult_.decoderesult.md)
 
-*Defined in [decoder/decoder.ts:59](https://github.com/paritytech/js-libs/blob/79a5f83/packages/abi/src/decoder/decoder.ts#L59)*
+*Defined in [decoder/decoder.ts:59](https://github.com/paritytech/js-libs/blob/6b72611/packages/abi/src/decoder/decoder.ts#L59)*
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| param | [ParamType](_spec_paramtype_paramtype_.paramtype.md) |
-| slices | `string`[] |
-| offset | `number` |
+| Name | Type | Default value |
+| ------ | ------ | ------ |
+| param | [ParamType](_spec_paramtype_paramtype_.paramtype.md) | - |
+| slices | [Slices](../modules/_types_.md#slices) | - |
+| `Default value` offset | `number` | 0 |
 
 **Returns:** [DecodeResult](_decoder_decoderesult_.decoderesult.md)
 
@@ -47,15 +47,15 @@ ___
 
 ## `<Static>` peek
 
-▸ **peek**(slices: *`string`[]*, position: *`number`*): `string`
+▸ **peek**(slices: *[Slices](../modules/_types_.md#slices)*, position: *`number`*): `string`
 
-*Defined in [decoder/decoder.ts:36](https://github.com/paritytech/js-libs/blob/79a5f83/packages/abi/src/decoder/decoder.ts#L36)*
+*Defined in [decoder/decoder.ts:36](https://github.com/paritytech/js-libs/blob/6b72611/packages/abi/src/decoder/decoder.ts#L36)*
 
 **Parameters:**
 
-| Param | Type |
+| Name | Type |
 | ------ | ------ |
-| slices | `string`[] |
+| slices | [Slices](../modules/_types_.md#slices) |
 | position | `number` |
 
 **Returns:** `string`
@@ -65,15 +65,15 @@ ___
 
 ## `<Static>` takeBytes
 
-▸ **takeBytes**(slices: *`string`[]*, position: *`number`*, length: *`number`*): [BytesTaken](_decoder_bytestaken_.bytestaken.md)
+▸ **takeBytes**(slices: *[Slices](../modules/_types_.md#slices)*, position: *`number`*, length: *`number`*): [BytesTaken](_decoder_bytestaken_.bytestaken.md)
 
-*Defined in [decoder/decoder.ts:44](https://github.com/paritytech/js-libs/blob/79a5f83/packages/abi/src/decoder/decoder.ts#L44)*
+*Defined in [decoder/decoder.ts:44](https://github.com/paritytech/js-libs/blob/6b72611/packages/abi/src/decoder/decoder.ts#L44)*
 
 **Parameters:**
 
-| Param | Type |
+| Name | Type |
 | ------ | ------ |
-| slices | `string`[] |
+| slices | [Slices](../modules/_types_.md#slices) |
 | position | `number` |
 | length | `number` |
 

@@ -8,13 +8,13 @@
 
 ▸ **onEvery2Seconds$**(options?: *[FrequencyObservableOptions](../interfaces/_types_.frequencyobservableoptions.md)*): `Observable`<`number`>
 
-*Defined in [frequency/time.ts:23](https://github.com/paritytech/js-libs/blob/f113b04/packages/light.js/src/frequency/time.ts#L23)*
+*Defined in [frequency/time.ts:23](https://github.com/paritytech/js-libs/blob/6b72611/packages/light.js/src/frequency/time.ts#L23)*
 
 Observable that emits on every other second.
 
 **Parameters:**
 
-| Param | Type |
+| Name | Type |
 | ------ | ------ |
 | `Optional` options | [FrequencyObservableOptions](../interfaces/_types_.frequencyobservableoptions.md) |
 
@@ -27,13 +27,13 @@ ___
 
 ▸ **onEvery5Seconds$**(options?: *[FrequencyObservableOptions](../interfaces/_types_.frequencyobservableoptions.md)*): `Observable`<`number`>
 
-*Defined in [frequency/time.ts:32](https://github.com/paritytech/js-libs/blob/f113b04/packages/light.js/src/frequency/time.ts#L32)*
+*Defined in [frequency/time.ts:32](https://github.com/paritytech/js-libs/blob/6b72611/packages/light.js/src/frequency/time.ts#L32)*
 
 Observable that emits every five seconds.
 
 **Parameters:**
 
-| Param | Type |
+| Name | Type |
 | ------ | ------ |
 | `Optional` options | [FrequencyObservableOptions](../interfaces/_types_.frequencyobservableoptions.md) |
 
@@ -46,13 +46,13 @@ ___
 
 ▸ **onEverySecond$**(options?: *[FrequencyObservableOptions](../interfaces/_types_.frequencyobservableoptions.md)*): `Observable`<`number`>
 
-*Defined in [frequency/time.ts:14](https://github.com/paritytech/js-libs/blob/f113b04/packages/light.js/src/frequency/time.ts#L14)*
+*Defined in [frequency/time.ts:14](https://github.com/paritytech/js-libs/blob/6b72611/packages/light.js/src/frequency/time.ts#L14)*
 
 Observable that emits on every second.
 
 **Parameters:**
 
-| Param | Type |
+| Name | Type |
 | ------ | ------ |
 | `Optional` options | [FrequencyObservableOptions](../interfaces/_types_.frequencyobservableoptions.md) |
 

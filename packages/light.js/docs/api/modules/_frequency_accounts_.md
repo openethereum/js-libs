@@ -8,13 +8,13 @@
 
 ▸ **onAccountsChanged$**(options?: *[FrequencyObservableOptions](../interfaces/_types_.frequencyobservableoptions.md)*): `Observable`<`string`[]>
 
-*Defined in [frequency/accounts.ts:14](https://github.com/paritytech/js-libs/blob/f113b04/packages/light.js/src/frequency/accounts.ts#L14)*
+*Defined in [frequency/accounts.ts:14](https://github.com/paritytech/js-libs/blob/6b72611/packages/light.js/src/frequency/accounts.ts#L14)*
 
 Observable that emits each time the default account changes
 
 **Parameters:**
 
-| Param | Type | Description |
+| Name | Type | Description |
 | ------ | ------ | ------ |
 | `Optional` options | [FrequencyObservableOptions](../interfaces/_types_.frequencyobservableoptions.md) |  Options to pass to [FrequencyObservable](../interfaces/_types_.frequencyobservable.md). |
 
@@ -27,13 +27,13 @@ ___
 
 ▸ **onAccountsInfoChanged$**(options?: *[FrequencyObservableOptions](../interfaces/_types_.frequencyobservableoptions.md)*): `Observable`<`object`>
 
-*Defined in [frequency/accounts.ts:23](https://github.com/paritytech/js-libs/blob/f113b04/packages/light.js/src/frequency/accounts.ts#L23)*
+*Defined in [frequency/accounts.ts:23](https://github.com/paritytech/js-libs/blob/6b72611/packages/light.js/src/frequency/accounts.ts#L23)*
 
 Observable that emits each time the default account changes
 
 **Parameters:**
 
-| Param | Type | Description |
+| Name | Type | Description |
 | ------ | ------ | ------ |
 | `Optional` options | [FrequencyObservableOptions](../interfaces/_types_.frequencyobservableoptions.md) |  Options to pass to [FrequencyObservable](../interfaces/_types_.frequencyobservable.md). |
 

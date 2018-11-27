@@ -12,11 +12,11 @@
 
 ⊕ **new Mediate**(type: *[MediateType](../modules/_types_.md#mediatetype)*, value: *[MediateValue](../modules/_encoder_mediate_.md#mediatevalue)*): [Mediate](_encoder_mediate_.mediate.md)
 
-*Defined in [encoder/mediate.ts:15](https://github.com/paritytech/js-libs/blob/79a5f83/packages/abi/src/encoder/mediate.ts#L15)*
+*Defined in [encoder/mediate.ts:15](https://github.com/paritytech/js-libs/blob/6b72611/packages/abi/src/encoder/mediate.ts#L15)*
 
 **Parameters:**
 
-| Param | Type |
+| Name | Type |
 | ------ | ------ |
 | type | [MediateType](../modules/_types_.md#mediatetype) |
 | value | [MediateValue](../modules/_encoder_mediate_.md#mediatevalue) |
@@ -33,7 +33,7 @@ ___
 
 gettype():  "fixedArray" &#124; "array" &#124; "raw" &#124; "prefixed"
 
-*Defined in [encoder/mediate.ts:150](https://github.com/paritytech/js-libs/blob/79a5f83/packages/abi/src/encoder/mediate.ts#L150)*
+*Defined in [encoder/mediate.ts:150](https://github.com/paritytech/js-libs/blob/6b72611/packages/abi/src/encoder/mediate.ts#L150)*
 
 **Returns:**  "fixedArray" &#124; "array" &#124; "raw" &#124; "prefixed"
 
@@ -44,7 +44,7 @@ ___
 
 getvalue():  `string` &#124; `number` &#124; `Boolean` &#124; `number`[] &#124; `BigNumber` &#124; ( `string` &#124; `number` &#124; `false` &#124; `true` &#124; `BigNumber` &#124; [Token](_token_token_.token.md))[] &#124; ( `string` &#124; `number` &#124; `false` &#124; `true` &#124; `BigNumber` &#124; [Token](_token_token_.token.md))[][] &#124; [Mediate](_encoder_mediate_.mediate.md)[]
 
-*Defined in [encoder/mediate.ts:154](https://github.com/paritytech/js-libs/blob/79a5f83/packages/abi/src/encoder/mediate.ts#L154)*
+*Defined in [encoder/mediate.ts:154](https://github.com/paritytech/js-libs/blob/6b72611/packages/abi/src/encoder/mediate.ts#L154)*
 
 **Returns:**  `string` &#124; `number` &#124; `Boolean` &#124; `number`[] &#124; `BigNumber` &#124; ( `string` &#124; `number` &#124; `false` &#124; `true` &#124; `BigNumber` &#124; [Token](_token_token_.token.md))[] &#124; ( `string` &#124; `number` &#124; `false` &#124; `true` &#124; `BigNumber` &#124; [Token](_token_token_.token.md))[][] &#124; [Mediate](_encoder_mediate_.mediate.md)[]
 
@@ -58,11 +58,11 @@ ___
 
 ▸ **closing**(offset: *`number`*): `string`
 
-*Defined in [encoder/mediate.ts:105](https://github.com/paritytech/js-libs/blob/79a5f83/packages/abi/src/encoder/mediate.ts#L105)*
+*Defined in [encoder/mediate.ts:105](https://github.com/paritytech/js-libs/blob/6b72611/packages/abi/src/encoder/mediate.ts#L105)*
 
 **Parameters:**
 
-| Param | Type |
+| Name | Type |
 | ------ | ------ |
 | offset | `number` |
 
@@ -75,7 +75,7 @@ ___
 
 ▸ **closingLength**(): `number`
 
-*Defined in [encoder/mediate.ts:64](https://github.com/paritytech/js-libs/blob/79a5f83/packages/abi/src/encoder/mediate.ts#L64)*
+*Defined in [encoder/mediate.ts:64](https://github.com/paritytech/js-libs/blob/6b72611/packages/abi/src/encoder/mediate.ts#L64)*
 
 **Returns:** `number`
 
@@ -86,11 +86,11 @@ ___
 
 ▸ **init**(suffixOffset: *`number`*): `string`
 
-*Defined in [encoder/mediate.ts:84](https://github.com/paritytech/js-libs/blob/79a5f83/packages/abi/src/encoder/mediate.ts#L84)*
+*Defined in [encoder/mediate.ts:84](https://github.com/paritytech/js-libs/blob/6b72611/packages/abi/src/encoder/mediate.ts#L84)*
 
 **Parameters:**
 
-| Param | Type |
+| Name | Type |
 | ------ | ------ |
 | suffixOffset | `number` |
 
@@ -103,7 +103,7 @@ ___
 
 ▸ **initLength**(): `number`
 
-*Defined in [encoder/mediate.ts:48](https://github.com/paritytech/js-libs/blob/79a5f83/packages/abi/src/encoder/mediate.ts#L48)*
+*Defined in [encoder/mediate.ts:48](https://github.com/paritytech/js-libs/blob/6b72611/packages/abi/src/encoder/mediate.ts#L48)*
 
 **Returns:** `number`
 
@@ -114,11 +114,11 @@ ___
 
 ▸ **offsetFor**(mediates: *[Mediate](_encoder_mediate_.mediate.md)[]*, position: *`number`*): `number`
 
-*Defined in [encoder/mediate.ts:24](https://github.com/paritytech/js-libs/blob/79a5f83/packages/abi/src/encoder/mediate.ts#L24)*
+*Defined in [encoder/mediate.ts:24](https://github.com/paritytech/js-libs/blob/6b72611/packages/abi/src/encoder/mediate.ts#L24)*
 
 **Parameters:**
 
-| Param | Type |
+| Name | Type |
 | ------ | ------ |
 | mediates | [Mediate](_encoder_mediate_.mediate.md)[] |
 | position | `number` |
@@ -132,11 +132,11 @@ ___
 
 ▸ **validateType**(type: *[MediateType](../modules/_types_.md#mediatetype)*): `boolean`
 
-*Defined in [encoder/mediate.ts:40](https://github.com/paritytech/js-libs/blob/79a5f83/packages/abi/src/encoder/mediate.ts#L40)*
+*Defined in [encoder/mediate.ts:40](https://github.com/paritytech/js-libs/blob/6b72611/packages/abi/src/encoder/mediate.ts#L40)*
 
 **Parameters:**
 
-| Param | Type |
+| Name | Type |
 | ------ | ------ |
 | type | [MediateType](../modules/_types_.md#mediatetype) |
 

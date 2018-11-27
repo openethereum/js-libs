@@ -25,7 +25,7 @@
   'f'
 ]
 
-*Defined in [util/types.ts:6](https://github.com/paritytech/js-libs/blob/79a5f83/packages/abi/src/util/types.ts#L6)*
+*Defined in [util/types.ts:6](https://github.com/paritytech/js-libs/blob/6b72611/packages/abi/src/util/types.ts#L6)*
 
 ___
 
@@ -33,83 +33,86 @@ ___
 
 <a id="isarray"></a>
 
-## `<Const>` isArray
+##  isArray
 
-▸ **isArray**(input: *`any`*): `boolean`
+▸ **isArray**<`T`>(input?: *`any`*): `boolean`
 
-*Defined in [util/types.ts:25](https://github.com/paritytech/js-libs/blob/79a5f83/packages/abi/src/util/types.ts#L25)*
+*Defined in [util/types.ts:25](https://github.com/paritytech/js-libs/blob/6b72611/packages/abi/src/util/types.ts#L25)*
 
+**Type parameters:**
+
+#### T 
 **Parameters:**
 
-| Param | Type |
+| Name | Type |
 | ------ | ------ |
-| input | `any` |
+| `Optional` input | `any` |
 
 **Returns:** `boolean`
 
 ___
 <a id="iserror"></a>
 
-## `<Const>` isError
+##  isError
 
-▸ **isError**(input: *`any`*): `boolean`
+▸ **isError**(input?: *`any`*): `boolean`
 
-*Defined in [util/types.ts:28](https://github.com/paritytech/js-libs/blob/79a5f83/packages/abi/src/util/types.ts#L28)*
+*Defined in [util/types.ts:29](https://github.com/paritytech/js-libs/blob/6b72611/packages/abi/src/util/types.ts#L29)*
 
 **Parameters:**
 
-| Param | Type |
+| Name | Type |
 | ------ | ------ |
-| input | `any` |
+| `Optional` input | `any` |
 
 **Returns:** `boolean`
 
 ___
 <a id="isfunction"></a>
 
-## `<Const>` isFunction
+##  isFunction
 
-▸ **isFunction**(input: *`any`*): `boolean`
+▸ **isFunction**(input?: *`any`*): `boolean`
 
-*Defined in [util/types.ts:30](https://github.com/paritytech/js-libs/blob/79a5f83/packages/abi/src/util/types.ts#L30)*
+*Defined in [util/types.ts:33](https://github.com/paritytech/js-libs/blob/6b72611/packages/abi/src/util/types.ts#L33)*
 
 **Parameters:**
 
-| Param | Type |
+| Name | Type |
 | ------ | ------ |
-| input | `any` |
+| `Optional` input | `any` |
 
 **Returns:** `boolean`
 
 ___
 <a id="ishex"></a>
 
-## `<Const>` isHex
+##  isHex
 
-▸ **isHex**(input: *`any`*): `boolean`
+▸ **isHex**(input?: *`any`*): `boolean`
 
-*Defined in [util/types.ts:33](https://github.com/paritytech/js-libs/blob/79a5f83/packages/abi/src/util/types.ts#L33)*
+*Defined in [util/types.ts:37](https://github.com/paritytech/js-libs/blob/6b72611/packages/abi/src/util/types.ts#L37)*
 
 **Parameters:**
 
-| Param | Type |
+| Name | Type |
 | ------ | ------ |
-| input | `any` |
+| `Optional` input | `any` |
 
 **Returns:** `boolean`
 
 ___
 <a id="isinstanceof"></a>
 
-## `<Const>` isInstanceOf
+##  isInstanceOf
 
 ▸ **isInstanceOf**(input: *`any`*, clazz: *`any`*): `boolean`
 
-*Defined in [util/types.ts:57](https://github.com/paritytech/js-libs/blob/79a5f83/packages/abi/src/util/types.ts#L57)*
+*Defined in [util/types.ts:63](https://github.com/paritytech/js-libs/blob/6b72611/packages/abi/src/util/types.ts#L63)*
 
 **Parameters:**
 
-| Param | Type |
+| Name | Type |
 | ------ | ------ |
 | input | `any` |
 | clazz | `any` |
@@ -119,34 +122,34 @@ ___
 ___
 <a id="isobject"></a>
 
-## `<Const>` isObject
+##  isObject
 
-▸ **isObject**(input: *`any`*): `boolean`
+▸ **isObject**(input?: *`any`*): `boolean`
 
-*Defined in [util/types.ts:51](https://github.com/paritytech/js-libs/blob/79a5f83/packages/abi/src/util/types.ts#L51)*
+*Defined in [util/types.ts:55](https://github.com/paritytech/js-libs/blob/6b72611/packages/abi/src/util/types.ts#L55)*
 
 **Parameters:**
 
-| Param | Type |
+| Name | Type |
 | ------ | ------ |
-| input | `any` |
+| `Optional` input | `any` |
 
 **Returns:** `boolean`
 
 ___
 <a id="isstring"></a>
 
-## `<Const>` isString
+##  isString
 
-▸ **isString**(input: *`any`*): `boolean`
+▸ **isString**(input?: *`any`*): `boolean`
 
-*Defined in [util/types.ts:54](https://github.com/paritytech/js-libs/blob/79a5f83/packages/abi/src/util/types.ts#L54)*
+*Defined in [util/types.ts:59](https://github.com/paritytech/js-libs/blob/6b72611/packages/abi/src/util/types.ts#L59)*
 
 **Parameters:**
 
-| Param | Type |
+| Name | Type |
 | ------ | ------ |
-| input | `any` |
+| `Optional` input | `any` |
 
 **Returns:** `boolean`
 

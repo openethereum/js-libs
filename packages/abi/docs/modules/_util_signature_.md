@@ -6,18 +6,18 @@
 
 ## `<Const>` eventSignature
 
-▸ **eventSignature**(eventName: *`string`*, params: *[ParamType](../classes/_spec_paramtype_paramtype_.paramtype.md)[]*): `object`
+▸ **eventSignature**(eventName: * `string` &#124; `undefined`*, params?: *[ParamType](../classes/_spec_paramtype_paramtype_.paramtype.md)[]*): `object`
 
-*Defined in [util/signature.ts:14](https://github.com/paritytech/js-libs/blob/79a5f83/packages/abi/src/util/signature.ts#L14)*
+*Defined in [util/signature.ts:14](https://github.com/paritytech/js-libs/blob/6b72611/packages/abi/src/util/signature.ts#L14)*
 
 Get event signature.
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| eventName | `string` |
-| params | [ParamType](../classes/_spec_paramtype_paramtype_.paramtype.md)[] |
+| Name | Type | Default value |
+| ------ | ------ | ------ |
+| eventName |  `string` &#124; `undefined`| - |
+| `Default value` params | [ParamType](../classes/_spec_paramtype_paramtype_.paramtype.md)[] |  [] |
 
 **Returns:** `object`
 
@@ -26,18 +26,18 @@ ___
 
 ## `<Const>` methodSignature
 
-▸ **methodSignature**(methodName: *`string`*, params: *[ParamType](../classes/_spec_paramtype_paramtype_.paramtype.md)[]*): `object`
+▸ **methodSignature**(methodName: * `string` &#124; `undefined`*, params?: *[ParamType](../classes/_spec_paramtype_paramtype_.paramtype.md)[]*): `object`
 
-*Defined in [util/signature.ts:29](https://github.com/paritytech/js-libs/blob/79a5f83/packages/abi/src/util/signature.ts#L29)*
+*Defined in [util/signature.ts:32](https://github.com/paritytech/js-libs/blob/6b72611/packages/abi/src/util/signature.ts#L32)*
 
 Get method signature.
 
 **Parameters:**
 
-| Param | Type | Description |
-| ------ | ------ | ------ |
-| methodName | `string` |  The method name. |
-| params | [ParamType](../classes/_spec_paramtype_paramtype_.paramtype.md)[] |  The list of params |
+| Name | Type | Default value | Description |
+| ------ | ------ | ------ | ------ |
+| methodName |  `string` &#124; `undefined`| - |  The method name. |
+| `Default value` params | [ParamType](../classes/_spec_paramtype_paramtype_.paramtype.md)[] |  [] |  The list of params |
 
 **Returns:** `object`
 
@@ -46,17 +46,17 @@ ___
 
 ## `<Const>` parseName
 
-▸ **parseName**(name: *`string`*): `object`
+▸ **parseName**(name: * `string` &#124; `undefined`*): `object`
 
-*Defined in [util/signature.ts:40](https://github.com/paritytech/js-libs/blob/79a5f83/packages/abi/src/util/signature.ts#L40)*
+*Defined in [util/signature.ts:46](https://github.com/paritytech/js-libs/blob/6b72611/packages/abi/src/util/signature.ts#L46)*
 
 Parse name.
 
 **Parameters:**
 
-| Param | Type | Description |
+| Name | Type | Description |
 | ------ | ------ | ------ |
-| name | `string` |  Name to parse. |
+| name |  `string` &#124; `undefined`|  Name to parse. |
 
 **Returns:** `object`
 

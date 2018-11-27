@@ -31,6 +31,6 @@ Implementation
 ### Differences to original Rust version
 
 *   internally the library operates on string binary representations as opposed to Vector bytes, lengths are therefore 64 bytes as opposed to 32 bytes
-*   function names are adapted from the Rust standard snake_case to the JavaScript standard camelCase
+*   function names are adapted from the Rust standard snake\_case to the JavaScript standard camelCase
 *   due to the initial library focus, the cli component (as implemented by the original) is not supported nor implemented
 

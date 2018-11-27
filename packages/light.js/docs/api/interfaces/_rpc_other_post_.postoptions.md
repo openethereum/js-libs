@@ -12,9 +12,10 @@
 
 ## `<Optional>` estimate
 
-**● estimate**: *`boolean`*
+**● estimate**: * `undefined` &#124; `false` &#124; `true`
+*
 
-*Defined in [rpc/other/post.ts:13](https://github.com/paritytech/js-libs/blob/f113b04/packages/light.js/src/rpc/other/post.ts#L13)*
+*Defined in [rpc/other/post.ts:15](https://github.com/paritytech/js-libs/blob/6b72611/packages/light.js/src/rpc/other/post.ts#L15)*
 
 ___
 <a id="provider"></a>
@@ -25,7 +26,7 @@ ___
 
 *Inherited from [RpcObservableOptions](_types_.rpcobservableoptions.md).[provider](_types_.rpcobservableoptions.md#provider)*
 
-*Defined in [types.ts:72](https://github.com/paritytech/js-libs/blob/f113b04/packages/light.js/src/types.ts#L72)*
+*Defined in [types.ts:72](https://github.com/paritytech/js-libs/blob/6b72611/packages/light.js/src/types.ts#L72)*
 
 ___
 

@@ -8,7 +8,7 @@
 
 **● ZERO_64**: *"0000000000000000000000000000000000000000000000000000000000000000"* = "0000000000000000000000000000000000000000000000000000000000000000"
 
-*Defined in [util/pad.ts:18](https://github.com/paritytech/js-libs/blob/79a5f83/packages/abi/src/util/pad.ts#L18)*
+*Defined in [util/pad.ts:18](https://github.com/paritytech/js-libs/blob/6b72611/packages/abi/src/util/pad.ts#L18)*
 
 ___
 
@@ -20,13 +20,13 @@ ___
 
 ▸ **padAddress**(input: *[AddressValue](_types_.md#addressvalue)*): `string`
 
-*Defined in [util/pad.ts:26](https://github.com/paritytech/js-libs/blob/79a5f83/packages/abi/src/util/pad.ts#L26)*
+*Defined in [util/pad.ts:26](https://github.com/paritytech/js-libs/blob/6b72611/packages/abi/src/util/pad.ts#L26)*
 
 Pad an address with zeros on the left.
 
 **Parameters:**
 
-| Param | Type | Description |
+| Name | Type | Description |
 | ------ | ------ | ------ |
 | input | [AddressValue](_types_.md#addressvalue) |  The input address to pad. |
 
@@ -39,13 +39,13 @@ ___
 
 ▸ **padBool**(input: *[BoolValue](_types_.md#boolvalue)*): `string`
 
-*Defined in [util/pad.ts:37](https://github.com/paritytech/js-libs/blob/79a5f83/packages/abi/src/util/pad.ts#L37)*
+*Defined in [util/pad.ts:37](https://github.com/paritytech/js-libs/blob/6b72611/packages/abi/src/util/pad.ts#L37)*
 
 Pad a boolean with zeros on the left.
 
 **Parameters:**
 
-| Param | Type | Description |
+| Name | Type | Description |
 | ------ | ------ | ------ |
 | input | [BoolValue](_types_.md#boolvalue) |  The input address to pad. |
 
@@ -58,13 +58,13 @@ ___
 
 ▸ **padBytes**(input: *[BytesValue](_types_.md#bytesvalue)*): `string`
 
-*Defined in [util/pad.ts:91](https://github.com/paritytech/js-libs/blob/79a5f83/packages/abi/src/util/pad.ts#L91)*
+*Defined in [util/pad.ts:91](https://github.com/paritytech/js-libs/blob/6b72611/packages/abi/src/util/pad.ts#L91)*
 
 Pad bytes with zeros on the left.
 
 **Parameters:**
 
-| Param | Type | Description |
+| Name | Type | Description |
 | ------ | ------ | ------ |
 | input | [BytesValue](_types_.md#bytesvalue) |  The input bytes to pad. |
 
@@ -77,13 +77,13 @@ ___
 
 ▸ **padFixedBytes**(input: *[BytesValue](_types_.md#bytesvalue)*): `string`
 
-*Defined in [util/pad.ts:102](https://github.com/paritytech/js-libs/blob/79a5f83/packages/abi/src/util/pad.ts#L102)*
+*Defined in [util/pad.ts:102](https://github.com/paritytech/js-libs/blob/6b72611/packages/abi/src/util/pad.ts#L102)*
 
 Pad fixed bytes.
 
 **Parameters:**
 
-| Param | Type | Description |
+| Name | Type | Description |
 | ------ | ------ | ------ |
 | input | [BytesValue](_types_.md#bytesvalue) |  Input bytes to pad. |
 
@@ -96,13 +96,13 @@ ___
 
 ▸ **padString**(input: *`string`*): `string`
 
-*Defined in [util/pad.ts:117](https://github.com/paritytech/js-libs/blob/79a5f83/packages/abi/src/util/pad.ts#L117)*
+*Defined in [util/pad.ts:117](https://github.com/paritytech/js-libs/blob/6b72611/packages/abi/src/util/pad.ts#L117)*
 
 Pad string.
 
 **Parameters:**
 
-| Param | Type | Description |
+| Name | Type | Description |
 | ------ | ------ | ------ |
 | input | `string` |  String to pad. |
 
@@ -115,13 +115,13 @@ ___
 
 ▸ **padU32**(input: * [IntValue](_types_.md#intvalue) &#124; [UintValue](_types_.md#uintvalue)*): `string`
 
-*Defined in [util/pad.ts:46](https://github.com/paritytech/js-libs/blob/79a5f83/packages/abi/src/util/pad.ts#L46)*
+*Defined in [util/pad.ts:46](https://github.com/paritytech/js-libs/blob/6b72611/packages/abi/src/util/pad.ts#L46)*
 
 Pad a u32 with zeros on the left.
 
 **Parameters:**
 
-| Param | Type | Description |
+| Name | Type | Description |
 | ------ | ------ | ------ |
 | input |  [IntValue](_types_.md#intvalue) &#124; [UintValue](_types_.md#uintvalue)|  The input address to pad. |
 
@@ -134,13 +134,13 @@ ___
 
 ▸ **stringToBytes**(input: *[BytesValue](_types_.md#bytesvalue)*): `number`[]
 
-*Defined in [util/pad.ts:70](https://github.com/paritytech/js-libs/blob/79a5f83/packages/abi/src/util/pad.ts#L70)*
+*Defined in [util/pad.ts:70](https://github.com/paritytech/js-libs/blob/6b72611/packages/abi/src/util/pad.ts#L70)*
 
 Convert an input string to bytes.
 
 **Parameters:**
 
-| Param | Type | Description |
+| Name | Type | Description |
 | ------ | ------ | ------ |
 | input | [BytesValue](_types_.md#bytesvalue) |  The input string to convert. |
 

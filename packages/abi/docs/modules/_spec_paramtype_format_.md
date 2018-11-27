@@ -8,13 +8,13 @@
 
 ▸ **fromParamType**(paramType: *[ParamType](../classes/_spec_paramtype_paramtype_.paramtype.md)*): `string`
 
-*Defined in [spec/paramType/format.ts:72](https://github.com/paritytech/js-libs/blob/79a5f83/packages/abi/src/spec/paramType/format.ts#L72)*
+*Defined in [spec/paramType/format.ts:72](https://github.com/paritytech/js-libs/blob/6b72611/packages/abi/src/spec/paramType/format.ts#L72)*
 
 Convert a ParamType to its string representation.
 
 **Parameters:**
 
-| Param | Type | Description |
+| Name | Type | Description |
 | ------ | ------ | ------ |
 | paramType | [ParamType](../classes/_spec_paramtype_paramtype_.paramtype.md) |  ParamType instance to convert |
 
@@ -25,18 +25,18 @@ ___
 
 ## `<Const>` toParamType
 
-▸ **toParamType**(type: *`string`*, indexed?: *`boolean`*): [ParamType](../classes/_spec_paramtype_paramtype_.paramtype.md)
+▸ **toParamType**(type: *`string`*, indexed?: * `undefined` &#124; `false` &#124; `true`*): [ParamType](../classes/_spec_paramtype_paramtype_.paramtype.md)
 
-*Defined in [spec/paramType/format.ts:15](https://github.com/paritytech/js-libs/blob/79a5f83/packages/abi/src/spec/paramType/format.ts#L15)*
+*Defined in [spec/paramType/format.ts:15](https://github.com/paritytech/js-libs/blob/6b72611/packages/abi/src/spec/paramType/format.ts#L15)*
 
 Convert a string to a ParamType.
 
 **Parameters:**
 
-| Param | Type | Description |
+| Name | Type | Description |
 | ------ | ------ | ------ |
 | type | `string` |  Type to convert. |
-| `Optional` indexed | `boolean` |  Whether the ParamType is indexed or not. |
+| `Optional` indexed |  `undefined` &#124; `false` &#124; `true`|  Whether the ParamType is indexed or not. |
 
 **Returns:** [ParamType](../classes/_spec_paramtype_paramtype_.paramtype.md)
 

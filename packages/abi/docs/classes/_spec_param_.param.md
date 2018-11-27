@@ -10,15 +10,15 @@
 
 ##  constructor
 
-⊕ **new Param**(name: *`string`*, type: *`string`*): [Param](_spec_param_.param.md)
+⊕ **new Param**(name: * `string` &#124; `undefined`*, type: *`string`*): [Param](_spec_param_.param.md)
 
-*Defined in [spec/param.ts:12](https://github.com/paritytech/js-libs/blob/79a5f83/packages/abi/src/spec/param.ts#L12)*
+*Defined in [spec/param.ts:12](https://github.com/paritytech/js-libs/blob/6b72611/packages/abi/src/spec/param.ts#L12)*
 
 **Parameters:**
 
-| Param | Type |
+| Name | Type |
 | ------ | ------ |
-| name | `string` |
+| name |  `string` &#124; `undefined`|
 | type | `string` |
 
 **Returns:** [Param](_spec_param_.param.md)
@@ -33,7 +33,7 @@ ___
 
 getkind(): [ParamType](_spec_paramtype_paramtype_.paramtype.md)
 
-*Defined in [spec/param.ts:33](https://github.com/paritytech/js-libs/blob/79a5f83/packages/abi/src/spec/param.ts#L33)*
+*Defined in [spec/param.ts:33](https://github.com/paritytech/js-libs/blob/6b72611/packages/abi/src/spec/param.ts#L33)*
 
 **Returns:** [ParamType](_spec_paramtype_paramtype_.paramtype.md)
 
@@ -42,11 +42,11 @@ ___
 
 ##  name
 
-getname(): `string`
+getname():  `undefined` &#124; `string`
 
-*Defined in [spec/param.ts:29](https://github.com/paritytech/js-libs/blob/79a5f83/packages/abi/src/spec/param.ts#L29)*
+*Defined in [spec/param.ts:29](https://github.com/paritytech/js-libs/blob/6b72611/packages/abi/src/spec/param.ts#L29)*
 
-**Returns:** `string`
+**Returns:**  `undefined` &#124; `string`
 
 ___
 
@@ -58,11 +58,11 @@ ___
 
 ▸ **toParams**(params: *( [AbiInput](../interfaces/_types_.abiinput.md) &#124; [Param](_spec_param_.param.md))[]*): [Param](_spec_param_.param.md)[]
 
-*Defined in [spec/param.ts:19](https://github.com/paritytech/js-libs/blob/79a5f83/packages/abi/src/spec/param.ts#L19)*
+*Defined in [spec/param.ts:19](https://github.com/paritytech/js-libs/blob/6b72611/packages/abi/src/spec/param.ts#L19)*
 
 **Parameters:**
 
-| Param | Type |
+| Name | Type |
 | ------ | ------ |
 | params | ( [AbiInput](../interfaces/_types_.abiinput.md) &#124; [Param](_spec_param_.param.md))[] |
 

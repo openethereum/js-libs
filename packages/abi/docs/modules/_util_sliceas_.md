@@ -8,13 +8,13 @@
 
 ▸ **asAddress**(slice: *`string`*): `string`
 
-*Defined in [util/sliceAs.ts:46](https://github.com/paritytech/js-libs/blob/79a5f83/packages/abi/src/util/sliceAs.ts#L46)*
+*Defined in [util/sliceAs.ts:46](https://github.com/paritytech/js-libs/blob/6b72611/packages/abi/src/util/sliceAs.ts#L46)*
 
 Convert slice to checksum address.
 
 **Parameters:**
 
-| Param | Type | Description |
+| Name | Type | Description |
 | ------ | ------ | ------ |
 | slice | `string` |  Slice to convert. |
 
@@ -27,13 +27,13 @@ ___
 
 ▸ **asBool**(slice: *`string`*): `boolean`
 
-*Defined in [util/sliceAs.ts:57](https://github.com/paritytech/js-libs/blob/79a5f83/packages/abi/src/util/sliceAs.ts#L57)*
+*Defined in [util/sliceAs.ts:57](https://github.com/paritytech/js-libs/blob/6b72611/packages/abi/src/util/sliceAs.ts#L57)*
 
 Convert slice to boolean.
 
 **Parameters:**
 
-| Param | Type | Description |
+| Name | Type | Description |
 | ------ | ------ | ------ |
 | slice | `string` |  Slice to convert. |
 
@@ -46,13 +46,13 @@ ___
 
 ▸ **asI32**(slice: *`string`*): `BigNumber`
 
-*Defined in [util/sliceAs.ts:26](https://github.com/paritytech/js-libs/blob/79a5f83/packages/abi/src/util/sliceAs.ts#L26)*
+*Defined in [util/sliceAs.ts:26](https://github.com/paritytech/js-libs/blob/6b72611/packages/abi/src/util/sliceAs.ts#L26)*
 
 Convert slice to i32.
 
 **Parameters:**
 
-| Param | Type | Description |
+| Name | Type | Description |
 | ------ | ------ | ------ |
 | slice | `string` |  Slice to convert. |
 
@@ -65,13 +65,13 @@ ___
 
 ▸ **asU32**(slice: *`string`*): `BigNumber`
 
-*Defined in [util/sliceAs.ts:15](https://github.com/paritytech/js-libs/blob/79a5f83/packages/abi/src/util/sliceAs.ts#L15)*
+*Defined in [util/sliceAs.ts:15](https://github.com/paritytech/js-libs/blob/6b72611/packages/abi/src/util/sliceAs.ts#L15)*
 
 Convert slice to u32.
 
 **Parameters:**
 
-| Param | Type | Description |
+| Name | Type | Description |
 | ------ | ------ | ------ |
 | slice | `string` |  Slice to convert. |
 
