@@ -33,7 +33,7 @@ do
     echo "Cloning doc repo."
     PROJECT_DIR=`pwd`
     REMOTE_REPO="https://git:$GH_TOKEN@github.com/parity-js/$SCOPE.git"
-    cd /tmp
+    cd /tmp # Clone that repo in the /tmp folder
     git clone -b gh-pages $REMOTE_REPO new-$SCOPE-docs
     cd new-$SCOPE-docs
     cp -r "$PROJECT_DIR/packages/$SCOPE/docs/_book/." .
