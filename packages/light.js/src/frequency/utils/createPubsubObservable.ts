@@ -15,6 +15,23 @@ import { distinctReplayRefCount } from '../../utils/operators/distinctReplayRefC
 const POLL_INTERVAL = 1000;
 
 /**
+ * Create a polling function.
+ *
+ * @ignore
+ */
+function createPoll<T> (
+  fallback: string,
+  api: any,
+  pollInterval = POLL_INTERVAL
+) {
+  const [fallbackNmespace, fallbackMethod] = fallback.split('_');
+
+  return timer(0, pollInterval).pipe(
+    switchMap(() => api[fallbackNmespace][fallbackMethod]())
+  ) as Observable<T>;
+}
+
+/**
  * Given an api, returns an Observable that emits on each pubsub event.
  * Pure function version of {@link createPubsubObservable}.
  *
@@ -34,14 +51,10 @@ const createPubsubObservableWithApi = memoizee(
       debug('@parity/light.js:api')(
         `Pubsub not available for ${
           api.provider ? api.provider.constructor.name : 'current Api'
-        } provider, polling "${pubsub}" every second.`
+        } provider, polling "${fallback}" every ${POLL_INTERVAL}ms.`
       );
 
-      const [fallbackNmespace, fallbackMethod] = fallback.split('_');
-
-      return timer(0, POLL_INTERVAL).pipe(
-        switchMap(() => api[fallbackNmespace][fallbackMethod]())
-      ) as Observable<T>;
+      return createPoll<T>(fallback, api);
     }
 
     return Observable.create((observer: Observer<T>) => {
@@ -54,7 +67,18 @@ const createPubsubObservableWithApi = memoizee(
             observer.next(result);
           }
         }
-      );
+      ).catch(() => {
+        debug('@parity/light.js:api')(
+          `Pubsub not available for method "${pubsub}", polling "${fallback}" every ${POLL_INTERVAL}ms`
+        );
+
+        createPoll<T>(fallback, api).subscribe(
+          e => observer.next(e),
+          e => observer.error(e),
+          () => observer.complete()
+        );
+      });
+
       return () =>
         subscription.then((subscriptionId: string) =>
           subscriptionId

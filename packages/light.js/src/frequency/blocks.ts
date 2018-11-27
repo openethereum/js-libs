@@ -10,6 +10,7 @@ import { Observable } from 'rxjs';
 import { Block, FrequencyObservableOptions } from '../types';
 import { createApiFromProvider, getApi } from '../api';
 import createPubsubObservable from './utils/createPubsubObservable';
+import { distinctValues } from '../utils/operators';
 import { onSyncingChanged$ } from './health';
 
 /**
@@ -26,7 +27,8 @@ const onEveryBlockWithApi$ = memoizee(
     ).pipe(
       withLatestFrom(onSyncingChanged$(options).pipe(startWith(false))),
       filter(([_, isSyncing]) => isSyncing === false),
-      map(([blockNumber]) => blockNumber)
+      map(([blockNumber]) => blockNumber),
+      distinctValues()
     ) as Observable<Block>,
   { length: 1 } // Only memoize by api
 );

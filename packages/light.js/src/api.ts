@@ -25,11 +25,6 @@ export const createApiFromProvider = memoizee(
  */
 export const setApi = (newApi: any) => {
   api = newApi;
-  if (!api.isPubSub) {
-    console.warn(
-      `Current provider does not support pubsub. @parity/light.js will poll every second to listen to changes.`
-    );
-  }
 };
 
 /**

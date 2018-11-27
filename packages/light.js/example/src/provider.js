@@ -7,10 +7,11 @@ import Api from '@parity/api';
 
 export const currentProvider = window.web3 && window.web3.currentProvider;
 export const localProvider = new Api.Provider.Ws('ws://127.0.0.1:8546');
-export const infuraProvider = new Api.Provider.Ws(
-  'wss://mainnet.infura.io/_ws'
-);
+// Uncomment if you wish to try with Infura
+// export const infuraProvider = new Api.Provider.Ws(
+//   'wss://mainnet.infura.io/_ws'
+// );
 
 const provider = currentProvider || localProvider;
 
-export default infuraProvider;
+export default provider;
