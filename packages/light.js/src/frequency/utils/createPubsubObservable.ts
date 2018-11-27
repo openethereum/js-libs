@@ -24,10 +24,10 @@ function createPoll<T> (
   api: any,
   pollInterval = POLL_INTERVAL
 ) {
-  const [fallbackNmespace, fallbackMethod] = fallback.split('_');
+  const [fallbackNamespace, fallbackMethod] = fallback.split('_');
 
   return timer(0, pollInterval).pipe(
-    switchMap(() => api[fallbackNmespace][fallbackMethod]())
+    switchMap(() => api[fallbackNamespace][fallbackMethod]())
   ) as Observable<T>;
 }
 
@@ -82,7 +82,7 @@ const createPubsubObservableWithApi = memoizee(
       return () =>
         subscription.then((subscriptionId: string) =>
           subscriptionId
-            ? api.pubsub.eth.unsubscribe(subscriptionId)
+            ? api.pubsub.unsubscribe(subscriptionId)
             : Promise.resolve()
         );
     }).pipe(distinctReplayRefCount()) as Observable<T>;
