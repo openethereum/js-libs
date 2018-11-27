@@ -24,6 +24,6 @@
   "dependencies": {
     "@parity/abi": "^3.0.1",
     "@parity/api": "^3.0.1",
-    "bignumber.js": "^7.2.1"
+    "bignumber.js": "^8.0.1"
   }
 }
