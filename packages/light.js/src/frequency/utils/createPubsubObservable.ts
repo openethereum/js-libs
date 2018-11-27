@@ -12,14 +12,19 @@ import { switchMap } from 'rxjs/operators';
 import { createApiFromProvider, getApi } from '../../api';
 import { distinctReplayRefCount } from '../../utils/operators/distinctReplayRefCount';
 
+const POLL_INTERVAL = 1000;
+
 /**
  * Given an api, returns an Observable that emits on each pubsub event.
  * Pure function version of {@link createPubsubObservable}.
  *
  * @ignore
+ * @param pubsub - The pubsub method to subscribe to.
+ * @param fallback - If pubsub doesn't work, poll this method every
+ * POLL_INTERVAL ms.
  */
 const createPubsubObservableWithApi = memoizee(
-  <T>(pubsub: string, api: any) => {
+  <T>(pubsub: string, fallback: string, api: any) => {
     const [namespace, method] = pubsub.split('_');
 
     // There's a chance the provider doesn't support pubsub, for example
@@ -32,8 +37,10 @@ const createPubsubObservableWithApi = memoizee(
         } provider, polling "${pubsub}" every second.`
       );
 
-      return timer(0, 1000).pipe(
-        switchMap(() => api[namespace][method]())
+      const [fallbackNmespace, fallbackMethod] = fallback.split('_');
+
+      return timer(0, POLL_INTERVAL).pipe(
+        switchMap(() => api[fallbackNmespace][fallbackMethod]())
       ) as Observable<T>;
     }
 
@@ -50,7 +57,9 @@ const createPubsubObservableWithApi = memoizee(
       );
       return () =>
         subscription.then((subscriptionId: string) =>
-          api.pubsub.unsubscribe(subscriptionId)
+          subscriptionId
+            ? api.pubsub.eth.unsubscribe(subscriptionId)
+            : Promise.resolve()
         );
     }).pipe(distinctReplayRefCount()) as Observable<T>;
   }
@@ -64,11 +73,12 @@ const createPubsubObservableWithApi = memoizee(
  */
 const createPubsubObservable = <T>(
   pubsub: string,
+  fallback: string,
   { provider }: FrequencyObservableOptions = {}
 ) => {
   const api = provider ? createApiFromProvider(provider) : getApi();
 
-  return createPubsubObservableWithApi<T>(pubsub, api);
+  return createPubsubObservableWithApi<T>(pubsub, fallback, api);
 };
 
 export default createPubsubObservable;

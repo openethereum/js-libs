@@ -17,5 +17,9 @@ import { FrequencyObservableOptions } from '../types';
  * @param options - Options to pass to {@link FrequencyObservable}.
  */
 export function onSyncingChanged$ (options?: FrequencyObservableOptions) {
-  return createPubsubObservable<object | false>('eth_syncing', options);
+  return createPubsubObservable<object | false>(
+    'eth_syncing',
+    'eth_syncing',
+    options
+  );
 }

@@ -26,6 +26,11 @@ export type Address = string;
 // TODO This should be on @parity/api
 export type ApiValue = any;
 
+// TODO This should be on @parity/api
+export type Block = {
+  number: BigNumber;
+};
+
 export interface Metadata<Source, Out> {
   calledWithArgs?: {
     [key: string]: ReplaySubject<Out>;
