@@ -16,7 +16,7 @@
 
 **● abi**: *`any`*
 
-*Defined in [types.ts:55](https://github.com/paritytech/js-libs/blob/6b72611/packages/light.js/src/types.ts#L55)*
+*Defined in [types.ts:55](https://github.com/paritytech/js-libs/blob/fb3abea/packages/light.js/src/types.ts#L55)*
 
 ___
 <a id="address"></a>
@@ -25,7 +25,7 @@ ___
 
 **● address**: *`string`*
 
-*Defined in [types.ts:56](https://github.com/paritytech/js-libs/blob/6b72611/packages/light.js/src/types.ts#L56)*
+*Defined in [types.ts:56](https://github.com/paritytech/js-libs/blob/fb3abea/packages/light.js/src/types.ts#L56)*
 
 ___
 <a id="contractobject"></a>
@@ -34,7 +34,7 @@ ___
 
 **● contractObject**: *`any`*
 
-*Defined in [types.ts:57](https://github.com/paritytech/js-libs/blob/6b72611/packages/light.js/src/types.ts#L57)*
+*Defined in [types.ts:57](https://github.com/paritytech/js-libs/blob/fb3abea/packages/light.js/src/types.ts#L57)*
 
 ___
 
