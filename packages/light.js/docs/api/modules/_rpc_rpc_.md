@@ -8,7 +8,7 @@
 
 **rpc**: *`object`*
 
-*Defined in [rpc/rpc.ts:11](https://github.com/paritytech/js-libs/blob/fb3abea/packages/light.js/src/rpc/rpc.ts#L11)*
+*Defined in [rpc/rpc.ts:11](https://github.com/paritytech/js-libs/blob/0ae0c47/packages/light.js/src/rpc/rpc.ts#L11)*
 
 <a id="rpc.post_"></a>
 
@@ -16,7 +16,7 @@
 
 **● post$**: *[post$](_rpc_other_post_.md#post_)*
 
-*Defined in [rpc/rpc.ts:11](https://github.com/paritytech/js-libs/blob/fb3abea/packages/light.js/src/rpc/rpc.ts#L11)*
+*Defined in [rpc/rpc.ts:11](https://github.com/paritytech/js-libs/blob/0ae0c47/packages/light.js/src/rpc/rpc.ts#L11)*
 
 ___
 

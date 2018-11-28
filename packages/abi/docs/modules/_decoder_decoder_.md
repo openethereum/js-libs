@@ -20,7 +20,7 @@
 
 **● NULL**: *"0000000000000000000000000000000000000000000000000000000000000000"* = "0000000000000000000000000000000000000000000000000000000000000000"
 
-*Defined in [decoder/decoder.ts:17](https://github.com/paritytech/js-libs/blob/fb3abea/packages/abi/src/decoder/decoder.ts#L17)*
+*Defined in [decoder/decoder.ts:17](https://github.com/paritytech/js-libs/blob/0ae0c47/packages/abi/src/decoder/decoder.ts#L17)*
 
 ___
 
