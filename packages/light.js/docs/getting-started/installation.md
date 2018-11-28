@@ -3,7 +3,7 @@
 ## From npm
 
 ```bash
-yarn install rxjs @parity/light.js # Or npm install
+yarn add rxjs @parity/light.js # Or npm install
 ```
 
 RxJS is a needed peer-dependency.
