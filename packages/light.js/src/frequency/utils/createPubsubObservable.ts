@@ -15,7 +15,8 @@ import { distinctReplayRefCount } from '../../utils/operators/distinctReplayRefC
 const POLL_INTERVAL = 1000;
 
 /**
- * Create a polling function.
+ * Create a polling function, calls the `fallback` JSONRPC on each second, or
+ * on previous call's result, whichever comes last.
  *
  * @ignore
  */
