@@ -4,9 +4,9 @@
 // SPDX-License-Identifier: MIT
 
 import * as debug from 'debug';
+import { exhaustMap } from 'rxjs/operators';
 import { FrequencyObservableOptions } from '../../types';
 import * as memoizee from 'memoizee';
-import { exhaustMap } from 'rxjs/operators';
 import { Observable, Observer, timer } from 'rxjs';
 
 import { createApiFromProvider, getApi } from '../../api';
