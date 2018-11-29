@@ -6,9 +6,9 @@
 
 ##  onEveryBlock$
 
-▸ **onEveryBlock$**(options?: *[FrequencyObservableOptions](../interfaces/_types_.frequencyobservableoptions.md)*): `Observable`<`BigNumber`>
+▸ **onEveryBlock$**(options?: *[FrequencyObservableOptions](../interfaces/_types_.frequencyobservableoptions.md)*): `Observable`<`object`>
 
-*Defined in [frequency/blocks.ts:37](https://github.com/paritytech/js-libs/blob/0ae0c47/packages/light.js/src/frequency/blocks.ts#L37)*
+*Defined in [frequency/blocks.ts:42](https://github.com/paritytech/js-libs/blob/e5d602e/packages/light.js/src/frequency/blocks.ts#L42)*
 
 Observable that emits on every new block. Note: this FrequencyObservable won't fire when the light client is syncing.
 
@@ -18,7 +18,7 @@ Observable that emits on every new block. Note: this FrequencyObservable won't f
 | ------ | ------ | ------ |
 | `Optional` options | [FrequencyObservableOptions](../interfaces/_types_.frequencyobservableoptions.md) |  Options to pass to [FrequencyObservable](../interfaces/_types_.frequencyobservable.md). |
 
-**Returns:** `Observable`<`BigNumber`>
+**Returns:** `Observable`<`object`>
 
 ___
 
