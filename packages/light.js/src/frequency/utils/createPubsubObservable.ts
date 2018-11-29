@@ -4,22 +4,45 @@
 // SPDX-License-Identifier: MIT
 
 import * as debug from 'debug';
+import { exhaustMap } from 'rxjs/operators';
 import { FrequencyObservableOptions } from '../../types';
 import * as memoizee from 'memoizee';
 import { Observable, Observer, timer } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
 
 import { createApiFromProvider, getApi } from '../../api';
 import { distinctReplayRefCount } from '../../utils/operators/distinctReplayRefCount';
+
+const POLL_INTERVAL = 1000;
+
+/**
+ * Create a polling function, calls the `fallback` JSONRPC on each second, or
+ * on previous call's result, whichever comes last.
+ *
+ * @ignore
+ */
+function createPoll<T> (
+  fallback: string,
+  api: any,
+  pollInterval = POLL_INTERVAL
+) {
+  const [fallbackNamespace, fallbackMethod] = fallback.split('_');
+
+  return timer(0, pollInterval).pipe(
+    exhaustMap(() => api[fallbackNamespace][fallbackMethod]())
+  ) as Observable<T>;
+}
 
 /**
  * Given an api, returns an Observable that emits on each pubsub event.
  * Pure function version of {@link createPubsubObservable}.
  *
  * @ignore
+ * @param pubsub - The pubsub method to subscribe to.
+ * @param fallback - If pubsub doesn't work, poll this method every
+ * POLL_INTERVAL ms.
  */
 const createPubsubObservableWithApi = memoizee(
-  <T>(pubsub: string, api: any) => {
+  <T>(pubsub: string, fallback: string, api: any) => {
     const [namespace, method] = pubsub.split('_');
 
     // There's a chance the provider doesn't support pubsub, for example
@@ -29,12 +52,10 @@ const createPubsubObservableWithApi = memoizee(
       debug('@parity/light.js:api')(
         `Pubsub not available for ${
           api.provider ? api.provider.constructor.name : 'current Api'
-        } provider, polling "${pubsub}" every second.`
+        } provider, polling "${fallback}" every ${POLL_INTERVAL}ms.`
       );
 
-      return timer(0, 1000).pipe(
-        switchMap(() => api[namespace][method]())
-      ) as Observable<T>;
+      return createPoll<T>(fallback, api);
     }
 
     return Observable.create((observer: Observer<T>) => {
@@ -47,10 +68,25 @@ const createPubsubObservableWithApi = memoizee(
             observer.next(result);
           }
         }
-      );
+      ).catch(() => {
+        // If we get an error during subscription, then default to fallback.
+        // TODO Should this be done on @parity/api?
+        debug('@parity/light.js:api')(
+          `Pubsub not available for method "${pubsub}", polling "${fallback}" every ${POLL_INTERVAL}ms`
+        );
+
+        createPoll<T>(fallback, api).subscribe(
+          e => observer.next(e),
+          e => observer.error(e),
+          () => observer.complete()
+        );
+      });
+
       return () =>
         subscription.then((subscriptionId: string) =>
-          api.pubsub.unsubscribe(subscriptionId)
+          subscriptionId
+            ? api.pubsub.unsubscribe(subscriptionId)
+            : Promise.resolve()
         );
     }).pipe(distinctReplayRefCount()) as Observable<T>;
   }
@@ -64,11 +100,12 @@ const createPubsubObservableWithApi = memoizee(
  */
 const createPubsubObservable = <T>(
   pubsub: string,
+  fallback: string,
   { provider }: FrequencyObservableOptions = {}
 ) => {
   const api = provider ? createApiFromProvider(provider) : getApi();
 
-  return createPubsubObservableWithApi<T>(pubsub, api);
+  return createPubsubObservableWithApi<T>(pubsub, fallback, api);
 };
 
 export default createPubsubObservable;

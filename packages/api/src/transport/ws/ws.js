@@ -212,11 +212,11 @@ class Ws extends JsonRpcBase {
   }
 
   _extract (result) {
-    const { result: res, id, method, params } = result;
+    const { result: res, error, id, method, params } = result;
     const msg = this._messages[id];
 
     // initial pubsub ACK
-    if (id && msg.subscription) {
+    if (id && msg.subscription && !error) {
       // save subscription to map subId -> messageId
       this._subscriptions[msg.subscription] = this._subscriptions[msg.subscription] || {};
       this._subscriptions[msg.subscription][res] = id;

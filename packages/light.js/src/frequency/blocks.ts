@@ -3,14 +3,14 @@
 //
 // SPDX-License-Identifier: MIT
 
-import BigNumber from 'bignumber.js';
-import { filter, map, withLatestFrom } from 'rxjs/operators';
+import { filter, map, startWith, withLatestFrom } from 'rxjs/operators';
 import * as memoizee from 'memoizee';
 import { Observable } from 'rxjs';
 
+import { Block, FrequencyObservableOptions } from '../types';
 import { createApiFromProvider, getApi } from '../api';
 import createPubsubObservable from './utils/createPubsubObservable';
-import { FrequencyObservableOptions } from '../types';
+import { distinctValues } from '../utils/operators';
 import { onSyncingChanged$ } from './health';
 
 /**
@@ -20,11 +20,16 @@ import { onSyncingChanged$ } from './health';
  */
 const onEveryBlockWithApi$ = memoizee(
   (api: any, options?: FrequencyObservableOptions) =>
-    createPubsubObservable('eth_blockNumber', options).pipe(
-      withLatestFrom(onSyncingChanged$(options)),
+    createPubsubObservable(
+      'eth_newHeads',
+      'eth_getBlockByNumber',
+      options
+    ).pipe(
+      withLatestFrom(onSyncingChanged$(options).pipe(startWith(false))),
       filter(([_, isSyncing]) => isSyncing === false),
-      map(([blockNumber]) => blockNumber)
-    ) as Observable<BigNumber>,
+      map(([blockNumber]) => blockNumber),
+      distinctValues()
+    ) as Observable<Block>,
   { length: 1 } // Only memoize by api
 );
 

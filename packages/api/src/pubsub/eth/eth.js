@@ -15,65 +15,84 @@
 // along with Parity.  If not, see <http://www.gnu.org/licenses/>.
 const PubsubBase = require('../pubsubBase');
 
-const { inAddress, inBlockNumber, inHex, inNumber16, inOptions, inFilter } = require('../../format/input');
-const { outAddress, outBlock, outNumber, outTransaction, outSyncing, outReceipt, outLog } = require('../../format/output');
+const {
+  inAddress,
+  inBlockNumber,
+  inHex,
+  inNumber16,
+  inOptions,
+  inFilter
+} = require('../../format/input');
+const {
+  outAddress,
+  outBlock,
+  outNumber,
+  outTransaction,
+  outSyncing,
+  outReceipt,
+  outLog
+} = require('../../format/output');
 
 class Eth extends PubsubBase {
-  constructor (provider) {
+  constructor(provider) {
     super(provider);
     this._api = 'parity';
   }
 
-  newHeads (callback) {
-    return this.addListener('eth', 'newHeads', callback, null);
+  newHeads(callback) {
+    return this.addListener(
+      'eth',
+      'newHeads',
+      (error, data) => {
+        error ? callback(error) : callback(null, outBlock(data));
+      },
+      null
+    );
   }
 
-  logs (callback) {
+  syncing(callback) {
+    return this.addListener(
+      'eth',
+      'syncing',
+      (error, data) => {
+        error ? callback(error) : callback(null, outSyncing(data));
+      },
+      null
+    );
+  }
+
+  logs(callback) {
     throw Error('not supported yet');
   }
 
   //  eth API
-  protocolVersion (callback) {
+  protocolVersion(callback) {
     return this.addListener(this._api, 'eth_protocolVersion', callback);
   }
 
-  syncing (callback) {
-    return this.addListener(this._api, 'eth_syncing', (error, data) => {
-      error
-        ? callback(error)
-        : callback(null, outSyncing(data));
-    });
-  }
-
-  hashrate (callback) {
+  hashrate(callback) {
     return this.addListener(this._api, 'eth_hashrate', (error, data) => {
-      error
-        ? callback(error)
-        : callback(null, outNumber(data));
+      error ? callback(error) : callback(null, outNumber(data));
     });
   }
 
-  coinbase (callback) {
+  coinbase(callback) {
     return this.addListener(this._api, 'eth_coinbase', (error, data) => {
-      error
-        ? callback(error)
-        : callback(null, outAddress(data));
+      error ? callback(error) : callback(null, outAddress(data));
     });
   }
 
-  mining (callback) {
+  mining(callback) {
     return this.addListener(this._api, 'eth_mining', callback);
   }
 
-  gasPrice (callback) {
+  gasPrice(callback) {
     return this.addListener(this._api, 'eth_gasPrice', (error, data) => {
-      error
-        ? callback(error)
-        : callback(null, outNumber(data));
+      error ? callback(error) : callback(null, outNumber(data));
     });
   }
 
-  accounts (callback) {
+  accounts(callback) {
     return this.addListener(this._api, 'eth_accounts', (error, accounts) => {
       error
         ? callback(error)
@@ -81,147 +100,211 @@ class Eth extends PubsubBase {
     });
   }
 
-  blockNumber (callback) {
+  blockNumber(callback) {
     return this.addListener(this._api, 'eth_blockNumber', (error, data) => {
-      error
-        ? callback(error)
-        : callback(null, outNumber(data));
+      error ? callback(error) : callback(null, outNumber(data));
     });
   }
 
-  getBalance (callback, address, blockNumber = 'latest') {
-    return this.addListener(this._api, 'eth_getBalance', (error, data) => {
-      error
-        ? callback(error)
-        : callback(null, outNumber(data));
-    }, [inAddress(address), inBlockNumber(blockNumber)]);
+  getBalance(callback, address, blockNumber = 'latest') {
+    return this.addListener(
+      this._api,
+      'eth_getBalance',
+      (error, data) => {
+        error ? callback(error) : callback(null, outNumber(data));
+      },
+      [inAddress(address), inBlockNumber(blockNumber)]
+    );
   }
 
-  getStorageAt (callback, address, index = 0, blockNumber = 'latest') {
-    return this.addListener(this._api, 'eth_getStorageAt', callback, [inAddress(address), inNumber16(index), inBlockNumber(blockNumber)]);
+  getStorageAt(callback, address, index = 0, blockNumber = 'latest') {
+    return this.addListener(this._api, 'eth_getStorageAt', callback, [
+      inAddress(address),
+      inNumber16(index),
+      inBlockNumber(blockNumber)
+    ]);
   }
 
-  getBlockByHash (callback, hash, full = false) {
-    return this.addListener(this._api, 'eth_getBlockByHash', (error, data) => {
-      error
-        ? callback(error)
-        : callback(null, outBlock(data));
-    }, [inHex(hash), full]);
+  getBlockByHash(callback, hash, full = false) {
+    return this.addListener(
+      this._api,
+      'eth_getBlockByHash',
+      (error, data) => {
+        error ? callback(error) : callback(null, outBlock(data));
+      },
+      [inHex(hash), full]
+    );
   }
 
-  getBlockByNumber (callback, blockNumber = 'latest', full = false) {
-    return this.addListener(this._api, 'eth_getBlockByNumber', (error, data) => {
-      error
-        ? callback(error)
-        : callback(null, outBlock(data));
-    }, [inBlockNumber(blockNumber), full]);
+  getBlockByNumber(callback, blockNumber = 'latest', full = false) {
+    return this.addListener(
+      this._api,
+      'eth_getBlockByNumber',
+      (error, data) => {
+        error ? callback(error) : callback(null, outBlock(data));
+      },
+      [inBlockNumber(blockNumber), full]
+    );
   }
 
-  getTransactionCount (callback, address, blockNumber = 'latest') {
-    return this.addListener(this._api, 'eth_getTransactionCount', (error, data) => {
-      error
-        ? callback(error)
-        : callback(null, outNumber(data));
-    }, [inAddress(address), inBlockNumber(blockNumber)]);
+  getTransactionCount(callback, address, blockNumber = 'latest') {
+    return this.addListener(
+      this._api,
+      'eth_getTransactionCount',
+      (error, data) => {
+        error ? callback(error) : callback(null, outNumber(data));
+      },
+      [inAddress(address), inBlockNumber(blockNumber)]
+    );
   }
 
-  getBlockTransactionCountByHash (callback, hash) {
-    return this.addListener(this._api, 'eth_getBlockTransactionCountByHash', (error, data) => {
-      error
-        ? callback(error)
-        : callback(null, outNumber(data));
-    }, [inHex(hash)]);
+  getBlockTransactionCountByHash(callback, hash) {
+    return this.addListener(
+      this._api,
+      'eth_getBlockTransactionCountByHash',
+      (error, data) => {
+        error ? callback(error) : callback(null, outNumber(data));
+      },
+      [inHex(hash)]
+    );
   }
 
-  getBlockTransactionCountByNumber (callback, blockNumber = 'latest') {
-    return this.addListener(this._api, 'eth_getBlockTransactionCountByNumber', (error, data) => {
-      error
-        ? callback(error)
-        : callback(null, outNumber(data));
-    }, [inBlockNumber(blockNumber)]);
+  getBlockTransactionCountByNumber(callback, blockNumber = 'latest') {
+    return this.addListener(
+      this._api,
+      'eth_getBlockTransactionCountByNumber',
+      (error, data) => {
+        error ? callback(error) : callback(null, outNumber(data));
+      },
+      [inBlockNumber(blockNumber)]
+    );
   }
 
-  getUncleCountByBlockHash (callback, hash) {
-    return this.addListener(this._api, 'eth_getUncleCountByBlockHash', (error, data) => {
-      error
-        ? callback(error)
-        : callback(null, outNumber(data));
-    }, [inHex(hash)]);
+  getUncleCountByBlockHash(callback, hash) {
+    return this.addListener(
+      this._api,
+      'eth_getUncleCountByBlockHash',
+      (error, data) => {
+        error ? callback(error) : callback(null, outNumber(data));
+      },
+      [inHex(hash)]
+    );
   }
 
-  getUncleCountByBlockNumber (callback, blockNumber = 'latest') {
-    return this.addListener(this._api, 'eth_getUncleCountByBlockNumber', (error, data) => {
-      error
-        ? callback(error)
-        : callback(null, outNumber(data));
-    }, [inBlockNumber(blockNumber)]);
+  getUncleCountByBlockNumber(callback, blockNumber = 'latest') {
+    return this.addListener(
+      this._api,
+      'eth_getUncleCountByBlockNumber',
+      (error, data) => {
+        error ? callback(error) : callback(null, outNumber(data));
+      },
+      [inBlockNumber(blockNumber)]
+    );
   }
 
-  getCode (callback, address, blockNumber = 'latest') {
-    return this.addListener(this._api, 'eth_getCode', callback, [inAddress(address), inBlockNumber(blockNumber)]);
+  getCode(callback, address, blockNumber = 'latest') {
+    return this.addListener(this._api, 'eth_getCode', callback, [
+      inAddress(address),
+      inBlockNumber(blockNumber)
+    ]);
   }
 
-  call (callback, options, blockNumber = 'latest') {
-    return this.addListener(this._api, 'eth_call', callback, [inOptions(options), inBlockNumber(blockNumber)]);
+  call(callback, options, blockNumber = 'latest') {
+    return this.addListener(this._api, 'eth_call', callback, [
+      inOptions(options),
+      inBlockNumber(blockNumber)
+    ]);
   }
 
-  estimateGas (callback, options) {
-    return this.addListener(this._api, 'eth_estimateGas', (error, data) => {
-      error
-        ? callback(error)
-        : callback(null, outNumber(data));
-    }, [inOptions(options)]);
+  estimateGas(callback, options) {
+    return this.addListener(
+      this._api,
+      'eth_estimateGas',
+      (error, data) => {
+        error ? callback(error) : callback(null, outNumber(data));
+      },
+      [inOptions(options)]
+    );
   }
 
-  getTransactionByHash (callback, hash) {
-    return this.addListener(this._api, 'eth_getTransactionByHash', (error, data) => {
-      error
-        ? callback(error)
-        : callback(null, outTransaction(data));
-    }, [inHex(hash)]);
+  getTransactionByHash(callback, hash) {
+    return this.addListener(
+      this._api,
+      'eth_getTransactionByHash',
+      (error, data) => {
+        error ? callback(error) : callback(null, outTransaction(data));
+      },
+      [inHex(hash)]
+    );
   }
 
-  getTransactionByBlockHashAndIndex (callback, hash, index = 0) {
-    return this.addListener(this._api, 'eth_getTransactionByBlockHashAndIndex', (error, data) => {
-      error
-        ? callback(error)
-        : callback(null, outTransaction(data));
-    }, [inHex(hash), inNumber16(index)]);
+  getTransactionByBlockHashAndIndex(callback, hash, index = 0) {
+    return this.addListener(
+      this._api,
+      'eth_getTransactionByBlockHashAndIndex',
+      (error, data) => {
+        error ? callback(error) : callback(null, outTransaction(data));
+      },
+      [inHex(hash), inNumber16(index)]
+    );
   }
 
-  getTransactionByBlockNumberAndIndex (callback, blockNumber = 'latest', index = 0) {
-    return this.addListener(this._api, 'eth_getTransactionByBlockNumberAndIndex', (error, data) => {
-      error
-        ? callback(error)
-        : callback(null, outTransaction(data));
-    }, [inBlockNumber(blockNumber), inNumber16(index)]);
+  getTransactionByBlockNumberAndIndex(
+    callback,
+    blockNumber = 'latest',
+    index = 0
+  ) {
+    return this.addListener(
+      this._api,
+      'eth_getTransactionByBlockNumberAndIndex',
+      (error, data) => {
+        error ? callback(error) : callback(null, outTransaction(data));
+      },
+      [inBlockNumber(blockNumber), inNumber16(index)]
+    );
   }
 
-  getTransactionReceipt (callback, txhash) {
-    return this.addListener(this._api, 'eth_getTransactionReceipt', (error, data) => {
-      error
-        ? callback(error)
-        : callback(null, outReceipt(data));
-    }, [inHex(txhash)]);
+  getTransactionReceipt(callback, txhash) {
+    return this.addListener(
+      this._api,
+      'eth_getTransactionReceipt',
+      (error, data) => {
+        error ? callback(error) : callback(null, outReceipt(data));
+      },
+      [inHex(txhash)]
+    );
   }
 
-  getUncleByBlockHashAndIndex (callback, hash, index = 0) {
-    return this.addListener(this._api, 'eth_getUncleByBlockHashAndIndex', callback, [inHex(hash), inNumber16(index)]);
+  getUncleByBlockHashAndIndex(callback, hash, index = 0) {
+    return this.addListener(
+      this._api,
+      'eth_getUncleByBlockHashAndIndex',
+      callback,
+      [inHex(hash), inNumber16(index)]
+    );
   }
 
-  getUncleByBlockNumberAndIndex (callback, blockNumber = 'latest', index = 0) {
-    return this.addListener(this._api, 'eth_getUncleByBlockNumberAndIndex', callback, [inBlockNumber(blockNumber), inNumber16(index)]);
+  getUncleByBlockNumberAndIndex(callback, blockNumber = 'latest', index = 0) {
+    return this.addListener(
+      this._api,
+      'eth_getUncleByBlockNumberAndIndex',
+      callback,
+      [inBlockNumber(blockNumber), inNumber16(index)]
+    );
   }
 
-  getLogs (callback, options) {
-    return this.addListener(this._api, 'eth_getLogs', (error, logs) => {
-      error
-        ? callback(error)
-        : callback(null, (logs) => logs.map(outLog));
-    }, [inFilter(options)]);
+  getLogs(callback, options) {
+    return this.addListener(
+      this._api,
+      'eth_getLogs',
+      (error, logs) => {
+        error ? callback(error) : callback(null, logs => logs.map(outLog));
+      },
+      [inFilter(options)]
+    );
   }
 
-  getWork (callback) {
+  getWork(callback) {
     return this.addListener(this._api, 'eth_getWork', callback);
   }
 }

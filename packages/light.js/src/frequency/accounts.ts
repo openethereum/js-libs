@@ -12,7 +12,11 @@ import createPubsubObservable from './utils/createPubsubObservable';
  * @param options - Options to pass to {@link FrequencyObservable}.
  */
 export function onAccountsChanged$ (options?: FrequencyObservableOptions) {
-  return createPubsubObservable<Address[]>('eth_accounts', options);
+  return createPubsubObservable<Address[]>(
+    'eth_accounts',
+    'eth_accounts',
+    options
+  );
 }
 
 /**
@@ -21,5 +25,9 @@ export function onAccountsChanged$ (options?: FrequencyObservableOptions) {
  * @param options - Options to pass to {@link FrequencyObservable}.
  */
 export function onAccountsInfoChanged$ (options?: FrequencyObservableOptions) {
-  return createPubsubObservable<AccountsInfo>('parity_accountsInfo', options);
+  return createPubsubObservable<AccountsInfo>(
+    'parity_accountsInfo',
+    'parity_accountsInfo',
+    options
+  );
 }

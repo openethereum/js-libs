@@ -52,3 +52,4 @@ testValue(2, 'number');
 testValue('foo', 'string');
 testValue({ foo: 'bar' }, 'object');
 testValue(new BigNumber(2), 'BigNumber');
+testValue({ number: new BigNumber(2) }, 'Block');

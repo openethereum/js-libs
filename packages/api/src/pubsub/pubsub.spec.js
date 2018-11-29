@@ -30,17 +30,25 @@ describe('pubsub/Pubsub', () => {
 
   describe('accountsInfo', () => {
     beforeEach(() => {
-      scope = mockWs([{ method: 'parity_subscribe', reply: 2, subscription: {
-        method: 'parity_subscription',
-        params: {
-          result: {
-            '0x63cf90d3f0410092fc0fca41846f596223979195': {
-              name: 'name', uuid: 'uuid', meta: '{"data":"data"}'
+      scope = mockWs([
+        {
+          method: 'parity_subscribe',
+          reply: 2,
+          subscription: {
+            method: 'parity_subscription',
+            params: {
+              result: {
+                '0x63cf90d3f0410092fc0fca41846f596223979195': {
+                  name: 'name',
+                  uuid: 'uuid',
+                  meta: '{"data":"data"}'
+                }
+              },
+              subscription: 2
             }
-          },
-          subscription: 2
+          }
         }
-      } }]);
+      ]);
       instance = new Pubsub(new WsSecure(TEST_WS_URL));
     });
 
@@ -48,12 +56,14 @@ describe('pubsub/Pubsub', () => {
       scope.stop();
     });
 
-    it('retrieves the available account info', (done) => {
+    it('retrieves the available account info', done => {
       instance.parity.accountsInfo((error, result) => {
         expect(error).to.be.null;
         expect(result).to.deep.equal({
           '0x63Cf90D3f0410092FC0fca41846f596223979195': {
-            name: 'name', uuid: 'uuid', meta: {
+            name: 'name',
+            uuid: 'uuid',
+            meta: {
               data: 'data'
             }
           }
@@ -76,7 +86,7 @@ describe('pubsub/Pubsub', () => {
       scope.stop();
     });
 
-    it('Promise gets resolved on success.', (done) => {
+    it('Promise gets resolved on success.', done => {
       instance.parity.accountsInfo().then(s => {
         instance.parity.unsubscribe(s).then(b => {
           expect(b).to.be.true;
@@ -88,15 +98,21 @@ describe('pubsub/Pubsub', () => {
 
   describe('chainStatus', () => {
     beforeEach(() => {
-      scope = mockWs([{ method: 'parity_subscribe', reply: 2, subscription: {
-        method: 'parity_subscription',
-        params: {
-          result: {
-            'blockGap': [0x123, 0x456]
-          },
-          subscription: 2
+      scope = mockWs([
+        {
+          method: 'parity_subscribe',
+          reply: 2,
+          subscription: {
+            method: 'parity_subscription',
+            params: {
+              result: {
+                blockGap: [0x123, 0x456]
+              },
+              subscription: 2
+            }
+          }
         }
-      } }]);
+      ]);
       instance = new Pubsub(new WsSecure(TEST_WS_URL));
     });
 
@@ -104,11 +120,11 @@ describe('pubsub/Pubsub', () => {
       scope.stop();
     });
 
-    it('retrieves the chain status', (done) => {
+    it('retrieves the chain status', done => {
       instance.parity.chainStatus((error, result) => {
         expect(error).to.be.null;
         expect(result).to.deep.equal({
-          'blockGap': [new BigNumber(0x123), new BigNumber(0x456)]
+          blockGap: [new BigNumber(0x123), new BigNumber(0x456)]
         });
         done();
       });
@@ -117,13 +133,19 @@ describe('pubsub/Pubsub', () => {
 
   describe('gasFloorTarget', () => {
     beforeEach(() => {
-      scope = mockWs([{ method: 'parity_subscribe', reply: 2, subscription: {
-        method: 'parity_subscription',
-        params: {
-          result: '0x123456',
-          subscription: 2
+      scope = mockWs([
+        {
+          method: 'parity_subscribe',
+          reply: 2,
+          subscription: {
+            method: 'parity_subscription',
+            params: {
+              result: '0x123456',
+              subscription: 2
+            }
+          }
         }
-      } }]);
+      ]);
       instance = new Pubsub(new WsSecure(TEST_WS_URL));
     });
 
@@ -131,7 +153,7 @@ describe('pubsub/Pubsub', () => {
       scope.stop();
     });
 
-    it('returns the gasfloor, formatted', (done) => {
+    it('returns the gasfloor, formatted', done => {
       instance.parity.gasFloorTarget((error, result) => {
         expect(error).to.be.null;
         expect(isBigNumber(result)).to.be.true;
@@ -143,13 +165,19 @@ describe('pubsub/Pubsub', () => {
 
   describe('transactionsLimit', () => {
     beforeEach(() => {
-      scope = mockWs([{ method: 'parity_subscribe', reply: 2, subscription: {
-        method: 'parity_subscription',
-        params: {
-          result: 1024,
-          subscription: 2
+      scope = mockWs([
+        {
+          method: 'parity_subscribe',
+          reply: 2,
+          subscription: {
+            method: 'parity_subscription',
+            params: {
+              result: 1024,
+              subscription: 2
+            }
+          }
         }
-      } }]);
+      ]);
       instance = new Pubsub(new WsSecure(TEST_WS_URL));
     });
 
@@ -157,7 +185,7 @@ describe('pubsub/Pubsub', () => {
       scope.stop();
     });
 
-    it('returns the tx limit, formatted', (done) => {
+    it('returns the tx limit, formatted', done => {
       instance.parity.transactionsLimit((error, result) => {
         expect(error).to.be.null;
         expect(isBigNumber(result)).to.be.true;
@@ -169,13 +197,19 @@ describe('pubsub/Pubsub', () => {
 
   describe('minGasPrice', () => {
     beforeEach(() => {
-      scope = mockWs([{ method: 'parity_subscribe', reply: 2, subscription: {
-        method: 'parity_subscription',
-        params: {
-          result: '0x123456',
-          subscription: 2
+      scope = mockWs([
+        {
+          method: 'parity_subscribe',
+          reply: 2,
+          subscription: {
+            method: 'parity_subscription',
+            params: {
+              result: '0x123456',
+              subscription: 2
+            }
+          }
         }
-      } }]);
+      ]);
       instance = new Pubsub(new WsSecure(TEST_WS_URL));
     });
 
@@ -183,7 +217,7 @@ describe('pubsub/Pubsub', () => {
       scope.stop();
     });
 
-    it('returns the min gasprice, formatted', (done) => {
+    it('returns the min gasprice, formatted', done => {
       instance.parity.minGasPrice((error, result) => {
         expect(error).to.be.null;
         expect(isBigNumber(result)).to.be.true;
@@ -195,13 +229,19 @@ describe('pubsub/Pubsub', () => {
 
   describe('netPeers', () => {
     beforeEach(() => {
-      scope = mockWs([{ method: 'parity_subscribe', reply: 2, subscription: {
-        method: 'parity_subscription',
-        params: {
-          result: { active: 123, connected: 456, max: 789, peers: [] },
-          subscription: 2
+      scope = mockWs([
+        {
+          method: 'parity_subscribe',
+          reply: 2,
+          subscription: {
+            method: 'parity_subscription',
+            params: {
+              result: { active: 123, connected: 456, max: 789, peers: [] },
+              subscription: 2
+            }
+          }
         }
-      } }]);
+      ]);
       instance = new Pubsub(new WsSecure(TEST_WS_URL));
     });
 
@@ -209,7 +249,7 @@ describe('pubsub/Pubsub', () => {
       scope.stop();
     });
 
-    it('returns the peer structure, formatted', (done) => {
+    it('returns the peer structure, formatted', done => {
       instance.parity.netPeers((error, peers) => {
         expect(error).to.be.null;
         expect(peers.active.eq(123)).to.be.true;
@@ -222,13 +262,19 @@ describe('pubsub/Pubsub', () => {
 
   describe('netPort', () => {
     beforeEach(() => {
-      scope = mockWs([{ method: 'parity_subscribe', reply: 2, subscription: {
-        method: 'parity_subscription',
-        params: {
-          result: 33030,
-          subscription: 2
+      scope = mockWs([
+        {
+          method: 'parity_subscribe',
+          reply: 2,
+          subscription: {
+            method: 'parity_subscription',
+            params: {
+              result: 33030,
+              subscription: 2
+            }
+          }
         }
-      } }]);
+      ]);
       instance = new Pubsub(new WsSecure(TEST_WS_URL));
     });
 
@@ -236,7 +282,7 @@ describe('pubsub/Pubsub', () => {
       scope.stop();
     });
 
-    it('returns the connected port, formatted', (done) => {
+    it('returns the connected port, formatted', done => {
       instance.parity.netPort((error, count) => {
         expect(error).to.be.null;
         expect(isBigNumber(count)).to.be.true;
@@ -248,13 +294,19 @@ describe('pubsub/Pubsub', () => {
 
   describe('accounts', () => {
     beforeEach(() => {
-      scope = mockWs([{ method: 'parity_subscribe', reply: 2, subscription: {
-        method: 'parity_subscription',
-        params: {
-          result: [address.toLowerCase()],
-          subscription: 2
+      scope = mockWs([
+        {
+          method: 'parity_subscribe',
+          reply: 2,
+          subscription: {
+            method: 'parity_subscription',
+            params: {
+              result: [address.toLowerCase()],
+              subscription: 2
+            }
+          }
         }
-      } }]);
+      ]);
       instance = new Pubsub(new WsSecure(TEST_WS_URL));
     });
 
@@ -262,7 +314,7 @@ describe('pubsub/Pubsub', () => {
       scope.stop();
     });
 
-    it('returns a list of accounts, formatted', (done) => {
+    it('returns a list of accounts, formatted', done => {
       instance.eth.accounts((error, accounts) => {
         expect(error).to.be.null;
         expect(accounts).to.deep.equal([address]);
@@ -273,13 +325,19 @@ describe('pubsub/Pubsub', () => {
 
   describe('newHeads', () => {
     beforeEach(() => {
-      scope = mockWs([{ method: 'eth_subscribe', reply: 2, subscription: {
-        method: 'eth_subscription',
-        params: {
-          result: '0x123456',
-          subscription: 2
+      scope = mockWs([
+        {
+          method: 'eth_subscribe',
+          reply: 2,
+          subscription: {
+            method: 'eth_subscription',
+            params: {
+              result: '0x123456',
+              subscription: 2
+            }
+          }
         }
-      } }]);
+      ]);
       instance = new Pubsub(new WsSecure(TEST_WS_URL));
     });
 
@@ -287,10 +345,10 @@ describe('pubsub/Pubsub', () => {
       scope.stop();
     });
 
-    it('returns newHeads for eth_subscribe', (done) => {
-      instance.eth.newHeads((error, blockNumber) => {
+    it('returns newHeads for eth_subscribe', done => {
+      instance.eth.newHeads((error, block) => {
         expect(error).to.be.null;
-        expect(blockNumber).to.equal('0x123456');
+        expect(block).not.to.be.null;
         done();
       });
     });
@@ -298,13 +356,19 @@ describe('pubsub/Pubsub', () => {
 
   describe('blockNumber', () => {
     beforeEach(() => {
-      scope = mockWs([{ method: 'parity_subscribe', reply: 2, subscription: {
-        method: 'parity_subscription',
-        params: {
-          result: '0x123456',
-          subscription: 2
+      scope = mockWs([
+        {
+          method: 'parity_subscribe',
+          reply: 2,
+          subscription: {
+            method: 'parity_subscription',
+            params: {
+              result: '0x123456',
+              subscription: 2
+            }
+          }
         }
-      } }]);
+      ]);
       instance = new Pubsub(new WsSecure(TEST_WS_URL));
     });
 
@@ -312,7 +376,7 @@ describe('pubsub/Pubsub', () => {
       scope.stop();
     });
 
-    it('returns the current blockNumber, formatted', (done) => {
+    it('returns the current blockNumber, formatted', done => {
       instance.eth.blockNumber((error, blockNumber) => {
         expect(error).to.be.null;
         expect(isBigNumber(blockNumber)).to.be.true;
@@ -324,13 +388,19 @@ describe('pubsub/Pubsub', () => {
 
   describe('call', () => {
     beforeEach(() => {
-      scope = mockWs([{ method: 'parity_subscribe', reply: 2, subscription: {
-        method: 'parity_subscription',
-        params: {
-          result: [],
-          subscription: 2
+      scope = mockWs([
+        {
+          method: 'parity_subscribe',
+          reply: 2,
+          subscription: {
+            method: 'parity_subscription',
+            params: {
+              result: [],
+              subscription: 2
+            }
+          }
         }
-      } }]);
+      ]);
       instance = new Pubsub(new WsSecure(TEST_WS_URL));
     });
 
@@ -338,32 +408,51 @@ describe('pubsub/Pubsub', () => {
       scope.stop();
     });
 
-    it('formats the input options & blockNumber', (done) => {
-      instance.eth.call((error) => {
-        expect(error).to.be.null;
-        expect(scope.body.parity_subscribe.params).to.deep.equal(['eth_call', [{ data: '0x12345678' }, 'earliest']]);
-        done();
-      }, { data: '12345678' }, 'earliest');
+    it('formats the input options & blockNumber', done => {
+      instance.eth.call(
+        error => {
+          expect(error).to.be.null;
+          expect(scope.body.parity_subscribe.params).to.deep.equal([
+            'eth_call',
+            [{ data: '0x12345678' }, 'earliest']
+          ]);
+          done();
+        },
+        { data: '12345678' },
+        'earliest'
+      );
     });
 
-    it('provides a latest blockNumber when not specified', (done) => {
-      instance.eth.call((error) => {
-        expect(error).to.be.null;
-        expect(scope.body.parity_subscribe.params).to.deep.equal(['eth_call', [{ data: '0x12345678' }, 'latest']]);
-        done();
-      }, { data: '12345678' });
+    it('provides a latest blockNumber when not specified', done => {
+      instance.eth.call(
+        error => {
+          expect(error).to.be.null;
+          expect(scope.body.parity_subscribe.params).to.deep.equal([
+            'eth_call',
+            [{ data: '0x12345678' }, 'latest']
+          ]);
+          done();
+        },
+        { data: '12345678' }
+      );
     });
   });
 
   describe('coinbase', () => {
     beforeEach(() => {
-      scope = mockWs([{ method: 'parity_subscribe', reply: 2, subscription: {
-        method: 'parity_subscription',
-        params: {
-          result: address.toLowerCase(),
-          subscription: 2
+      scope = mockWs([
+        {
+          method: 'parity_subscribe',
+          reply: 2,
+          subscription: {
+            method: 'parity_subscription',
+            params: {
+              result: address.toLowerCase(),
+              subscription: 2
+            }
+          }
         }
-      } }]);
+      ]);
       instance = new Pubsub(new WsSecure(TEST_WS_URL));
     });
 
@@ -371,7 +460,7 @@ describe('pubsub/Pubsub', () => {
       scope.stop();
     });
 
-    it('returns the coinbase, formatted', (done) => {
+    it('returns the coinbase, formatted', done => {
       instance.eth.coinbase((error, account) => {
         expect(error).to.be.null;
         expect(account).to.deep.equal(address);
@@ -382,13 +471,19 @@ describe('pubsub/Pubsub', () => {
 
   describe('estimateGas', () => {
     beforeEach(() => {
-      scope = mockWs([{ method: 'parity_subscribe', reply: 2, subscription: {
-        method: 'parity_subscription',
-        params: {
-          result: '0x123',
-          subscription: 2
+      scope = mockWs([
+        {
+          method: 'parity_subscribe',
+          reply: 2,
+          subscription: {
+            method: 'parity_subscription',
+            params: {
+              result: '0x123',
+              subscription: 2
+            }
+          }
         }
-      } }]);
+      ]);
       instance = new Pubsub(new WsSecure(TEST_WS_URL));
     });
 
@@ -396,15 +491,21 @@ describe('pubsub/Pubsub', () => {
       scope.stop();
     });
 
-    it('converts the options correctly', (done) => {
-      instance.eth.estimateGas((error) => {
-        expect(error).to.be.null;
-        expect(scope.body.parity_subscribe.params).to.deep.equal(['eth_estimateGas', [{ gas: '0x5208' }]]);
-        done();
-      }, { gas: 21000 });
+    it('converts the options correctly', done => {
+      instance.eth.estimateGas(
+        error => {
+          expect(error).to.be.null;
+          expect(scope.body.parity_subscribe.params).to.deep.equal([
+            'eth_estimateGas',
+            [{ gas: '0x5208' }]
+          ]);
+          done();
+        },
+        { gas: 21000 }
+      );
     });
 
-    it('returns the gas used, formatted', (done) => {
+    it('returns the gas used, formatted', done => {
       instance.eth.estimateGas((error, gas) => {
         expect(error).to.be.null;
         expect(isBigNumber(gas)).to.be.true;
@@ -416,13 +517,19 @@ describe('pubsub/Pubsub', () => {
 
   describe('gasPrice', () => {
     beforeEach(() => {
-      scope = mockWs([{ method: 'parity_subscribe', reply: 2, subscription: {
-        method: 'parity_subscription',
-        params: {
-          result: '0x123',
-          subscription: 2
+      scope = mockWs([
+        {
+          method: 'parity_subscribe',
+          reply: 2,
+          subscription: {
+            method: 'parity_subscription',
+            params: {
+              result: '0x123',
+              subscription: 2
+            }
+          }
         }
-      } }]);
+      ]);
       instance = new Pubsub(new WsSecure(TEST_WS_URL));
     });
 
@@ -430,7 +537,7 @@ describe('pubsub/Pubsub', () => {
       scope.stop();
     });
 
-    it('returns the gas price, formatted', (done) => {
+    it('returns the gas price, formatted', done => {
       instance.eth.gasPrice((error, price) => {
         expect(error).to.be.null;
         expect(isBigNumber(price)).to.be.true;
@@ -442,13 +549,19 @@ describe('pubsub/Pubsub', () => {
 
   describe('getBalance', () => {
     beforeEach(() => {
-      scope = mockWs([{ method: 'parity_subscribe', reply: 2, subscription: {
-        method: 'parity_subscription',
-        params: {
-          result: '0x123',
-          subscription: 2
+      scope = mockWs([
+        {
+          method: 'parity_subscribe',
+          reply: 2,
+          subscription: {
+            method: 'parity_subscription',
+            params: {
+              result: '0x123',
+              subscription: 2
+            }
+          }
         }
-      } }]);
+      ]);
       instance = new Pubsub(new WsSecure(TEST_WS_URL));
     });
 
@@ -456,23 +569,33 @@ describe('pubsub/Pubsub', () => {
       scope.stop();
     });
 
-    it('passes in the address (default blockNumber)', (done) => {
-      instance.eth.getBalance((error) => {
+    it('passes in the address (default blockNumber)', done => {
+      instance.eth.getBalance(error => {
         expect(error).to.be.null;
-        expect(scope.body.parity_subscribe.params).to.deep.equal(['eth_getBalance', [address.toLowerCase(), 'latest']]);
+        expect(scope.body.parity_subscribe.params).to.deep.equal([
+          'eth_getBalance',
+          [address.toLowerCase(), 'latest']
+        ]);
         done();
       }, address);
     });
 
-    it('passes in the address & blockNumber', (done) => {
-      instance.eth.getBalance((error) => {
-        expect(error).to.be.null;
-        expect(scope.body.parity_subscribe.params).to.deep.equal(['eth_getBalance', [address.toLowerCase(), '0x456']]);
-        done();
-      }, address, 0x456);
+    it('passes in the address & blockNumber', done => {
+      instance.eth.getBalance(
+        error => {
+          expect(error).to.be.null;
+          expect(scope.body.parity_subscribe.params).to.deep.equal([
+            'eth_getBalance',
+            [address.toLowerCase(), '0x456']
+          ]);
+          done();
+        },
+        address,
+        0x456
+      );
     });
 
-    it('returns the balance', (done) => {
+    it('returns the balance', done => {
       instance.eth.getBalance((error, balance) => {
         expect(error).to.be.null;
         expect(isBigNumber(balance)).to.be.true;
@@ -484,13 +607,19 @@ describe('pubsub/Pubsub', () => {
 
   describe('getBlockByHash', () => {
     beforeEach(() => {
-      scope = mockWs([{ method: 'parity_subscribe', reply: 2, subscription: {
-        method: 'parity_subscription',
-        params: {
-          result: { miner: address.toLowerCase() },
-          subscription: 2
+      scope = mockWs([
+        {
+          method: 'parity_subscribe',
+          reply: 2,
+          subscription: {
+            method: 'parity_subscription',
+            params: {
+              result: { miner: address.toLowerCase() },
+              subscription: 2
+            }
+          }
         }
-      } }]);
+      ]);
       instance = new Pubsub(new WsSecure(TEST_WS_URL));
     });
 
@@ -498,23 +627,33 @@ describe('pubsub/Pubsub', () => {
       scope.stop();
     });
 
-    it('formats the input hash as a hash, default full', (done) => {
-      instance.eth.getBlockByHash((error) => {
+    it('formats the input hash as a hash, default full', done => {
+      instance.eth.getBlockByHash(error => {
         expect(error).to.be.null;
-        expect(scope.body.parity_subscribe.params).to.deep.equal(['eth_getBlockByHash', ['0x1234', false]]);
+        expect(scope.body.parity_subscribe.params).to.deep.equal([
+          'eth_getBlockByHash',
+          ['0x1234', false]
+        ]);
         done();
       }, '1234');
     });
 
-    it('formats the input hash as a hash, full true', (done) => {
-      instance.eth.getBlockByHash((error) => {
-        expect(error).to.be.null;
-        expect(scope.body.parity_subscribe.params).to.deep.equal(['eth_getBlockByHash', ['0x1234', true]]);
-        done();
-      }, '1234', true);
+    it('formats the input hash as a hash, full true', done => {
+      instance.eth.getBlockByHash(
+        error => {
+          expect(error).to.be.null;
+          expect(scope.body.parity_subscribe.params).to.deep.equal([
+            'eth_getBlockByHash',
+            ['0x1234', true]
+          ]);
+          done();
+        },
+        '1234',
+        true
+      );
     });
 
-    it('formats the output into block', (done) => {
+    it('formats the output into block', done => {
       instance.eth.getBlockByHash((error, block) => {
         expect(error).to.be.null;
         expect(block.miner).to.equal(address);
@@ -525,13 +664,19 @@ describe('pubsub/Pubsub', () => {
 
   describe('getBlockByNumber', () => {
     beforeEach(() => {
-      scope = mockWs([{ method: 'parity_subscribe', reply: 2, subscription: {
-        method: 'parity_subscription',
-        params: {
-          result: { miner: address.toLowerCase() },
-          subscription: 2
+      scope = mockWs([
+        {
+          method: 'parity_subscribe',
+          reply: 2,
+          subscription: {
+            method: 'parity_subscription',
+            params: {
+              result: { miner: address.toLowerCase() },
+              subscription: 2
+            }
+          }
         }
-      } }]);
+      ]);
       instance = new Pubsub(new WsSecure(TEST_WS_URL));
     });
 
@@ -539,31 +684,44 @@ describe('pubsub/Pubsub', () => {
       scope.stop();
     });
 
-    it('assumes blockNumber latest & full false', (done) => {
-      instance.eth.getBlockByNumber((error) => {
+    it('assumes blockNumber latest & full false', done => {
+      instance.eth.getBlockByNumber(error => {
         expect(error).to.be.null;
-        expect(scope.body.parity_subscribe.params).to.deep.equal(['eth_getBlockByNumber', ['latest', false]]);
+        expect(scope.body.parity_subscribe.params).to.deep.equal([
+          'eth_getBlockByNumber',
+          ['latest', false]
+        ]);
         done();
       });
     });
 
-    it('uses input blockNumber & full false', (done) => {
-      instance.eth.getBlockByNumber((error) => {
+    it('uses input blockNumber & full false', done => {
+      instance.eth.getBlockByNumber(error => {
         expect(error).to.be.null;
-        expect(scope.body.parity_subscribe.params).to.deep.equal(['eth_getBlockByNumber', ['0x1234', false]]);
+        expect(scope.body.parity_subscribe.params).to.deep.equal([
+          'eth_getBlockByNumber',
+          ['0x1234', false]
+        ]);
         done();
       }, '0x1234');
     });
 
-    it('formats the input blockNumber, full true', (done) => {
-      instance.eth.getBlockByNumber((error) => {
-        expect(error).to.be.null;
-        expect(scope.body.parity_subscribe.params).to.deep.equal(['eth_getBlockByNumber', ['0x1234', true]]);
-        done();
-      }, 0x1234, true);
+    it('formats the input blockNumber, full true', done => {
+      instance.eth.getBlockByNumber(
+        error => {
+          expect(error).to.be.null;
+          expect(scope.body.parity_subscribe.params).to.deep.equal([
+            'eth_getBlockByNumber',
+            ['0x1234', true]
+          ]);
+          done();
+        },
+        0x1234,
+        true
+      );
     });
 
-    it('formats the output into block', (done) => {
+    it('formats the output into block', done => {
       instance.eth.getBlockByNumber((error, block) => {
         expect(error).to.be.null;
         expect(block.miner).to.equal(address);
@@ -574,13 +732,19 @@ describe('pubsub/Pubsub', () => {
 
   describe('getTransactionCount', () => {
     beforeEach(() => {
-      scope = mockWs([{ method: 'parity_subscribe', reply: 2, subscription: {
-        method: 'parity_subscription',
-        params: {
-          result: '0x123',
-          subscription: 2
+      scope = mockWs([
+        {
+          method: 'parity_subscribe',
+          reply: 2,
+          subscription: {
+            method: 'parity_subscription',
+            params: {
+              result: '0x123',
+              subscription: 2
+            }
+          }
         }
-      } }]);
+      ]);
       instance = new Pubsub(new WsSecure(TEST_WS_URL));
     });
 
@@ -588,29 +752,43 @@ describe('pubsub/Pubsub', () => {
       scope.stop();
     });
 
-    it('passes in the address (default blockNumber)', (done) => {
-      instance.eth.getTransactionCount((error) => {
+    it('passes in the address (default blockNumber)', done => {
+      instance.eth.getTransactionCount(error => {
         expect(error).to.be.null;
-        expect(scope.body.parity_subscribe.params).to.deep.equal(['eth_getTransactionCount', [address.toLowerCase(), 'latest']]);
+        expect(scope.body.parity_subscribe.params).to.deep.equal([
+          'eth_getTransactionCount',
+          [address.toLowerCase(), 'latest']
+        ]);
         done();
       }, address);
     });
 
-    it('passes in the address & blockNumber', (done) => {
-      instance.eth.getTransactionCount((error) => {
-        expect(error).to.be.null;
-        expect(scope.body.parity_subscribe.params).to.deep.equal(['eth_getTransactionCount', [address.toLowerCase(), '0x456']]);
-        done();
-      }, address, 0x456);
+    it('passes in the address & blockNumber', done => {
+      instance.eth.getTransactionCount(
+        error => {
+          expect(error).to.be.null;
+          expect(scope.body.parity_subscribe.params).to.deep.equal([
+            'eth_getTransactionCount',
+            [address.toLowerCase(), '0x456']
+          ]);
+          done();
+        },
+        address,
+        0x456
+      );
     });
 
-    it('returns the count, formatted', (done) => {
-      instance.eth.getTransactionCount((error, count) => {
-        expect(error).to.be.null;
-        expect(isBigNumber(count)).to.be.true;
-        expect(count.toString(16)).to.equal('123');
-        done();
-      }, address, 0x456);
+    it('returns the count, formatted', done => {
+      instance.eth.getTransactionCount(
+        (error, count) => {
+          expect(error).to.be.null;
+          expect(isBigNumber(count)).to.be.true;
+          expect(count.toString(16)).to.equal('123');
+          done();
+        },
+        address,
+        0x456
+      );
     });
   });
 });

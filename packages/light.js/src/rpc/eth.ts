@@ -7,7 +7,7 @@ import BigNumber from 'bignumber.js';
 import { of } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 
-import { Address, RpcObservableOptions } from '../types';
+import { Address, Block, RpcObservableOptions } from '../types';
 import createRpc$ from './utils/createRpc';
 import frequency from '../frequency';
 import { isNullOrLoading, RPC_LOADING } from '../utils/isLoading';
@@ -66,9 +66,10 @@ export function defaultAccount$ (options?: RpcObservableOptions) {
  * @return {Observable<Number>} - An Observable containing the block height.
  */
 export function blockNumber$ (options?: RpcObservableOptions) {
-  return createRpc$<BigNumber, BigNumber>({
+  return createRpc$<Block, BigNumber>({
     frequency: [frequency.onEveryBlock$],
-    name: 'blockNumber$'
+    name: 'blockNumber$',
+    pipes: () => [map(block => block.number)]
   })(options)();
 }
 
@@ -81,11 +82,10 @@ export function myBalance$ (options?: RpcObservableOptions) {
     dependsOn: defaultAccount$,
     name: 'myBalance$',
     pipes: () => [
-      switchMap(
-        defaultAccount =>
-          isNullOrLoading(defaultAccount)
-            ? of(RPC_LOADING)
-            : balanceOf$(defaultAccount)
+      switchMap(defaultAccount =>
+        isNullOrLoading(defaultAccount)
+          ? of(RPC_LOADING)
+          : balanceOf$(defaultAccount)
       )
     ]
   })(options)();
