@@ -68,6 +68,8 @@ const createPubsubObservableWithApi = memoizee(
           }
         }
       ).catch(() => {
+        // If we get an error during subscription, then default to fallback.
+        // TODO Should this be done on @parity/api?
         debug('@parity/light.js:api')(
           `Pubsub not available for method "${pubsub}", polling "${fallback}" every ${POLL_INTERVAL}ms`
         );
