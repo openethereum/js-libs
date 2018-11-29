@@ -6,7 +6,7 @@
 import * as debug from 'debug';
 import { FrequencyObservableOptions } from '../../types';
 import * as memoizee from 'memoizee';
-import { mergeMap } from 'rxjs/operators';
+import { exhaustMap } from 'rxjs/operators';
 import { Observable, Observer, timer } from 'rxjs';
 
 import { createApiFromProvider, getApi } from '../../api';
@@ -27,7 +27,7 @@ function createPoll<T> (
   const [fallbackNamespace, fallbackMethod] = fallback.split('_');
 
   return timer(0, pollInterval).pipe(
-    mergeMap(() => api[fallbackNamespace][fallbackMethod]())
+    exhaustMap(() => api[fallbackNamespace][fallbackMethod]())
   ) as Observable<T>;
 }
 
