@@ -56,7 +56,7 @@ export const isAddress = (address?: string) => {
  * @param address - The address to convert.
  */
 export const toChecksumAddress = (address: string = '') => {
-  const _address = address.toLowerCase();
+  const _address = (address || '').toLowerCase();
 
   if (!isAddress(_address)) {
     return '';
