@@ -8,7 +8,7 @@
 
 ▸ **isAddress**(address?: * `undefined` &#124; `string`*): `boolean`
 
-*Defined in [util/address.ts:36](https://github.com/paritytech/js-libs/blob/e5d602e/packages/abi/src/util/address.ts#L36)*
+*Defined in [util/address.ts:36](https://github.com/paritytech/js-libs/blob/c2812ab/packages/abi/src/util/address.ts#L36)*
 
 Verify that an address is a valid Ethereum address.
 
@@ -27,7 +27,7 @@ ___
 
 ▸ **isChecksumValid**(address: *`string`*): `boolean`
 
-*Defined in [util/address.ts:13](https://github.com/paritytech/js-libs/blob/e5d602e/packages/abi/src/util/address.ts#L13)*
+*Defined in [util/address.ts:13](https://github.com/paritytech/js-libs/blob/c2812ab/packages/abi/src/util/address.ts#L13)*
 
 Verify that an address has a valid checksum.
 
@@ -44,17 +44,17 @@ ___
 
 ## `<Const>` toChecksumAddress
 
-▸ **toChecksumAddress**(address?: *`string`*): `string`
+▸ **toChecksumAddress**(address?: * `string` &#124; `null`*): `string`
 
-*Defined in [util/address.ts:58](https://github.com/paritytech/js-libs/blob/e5d602e/packages/abi/src/util/address.ts#L58)*
+*Defined in [util/address.ts:58](https://github.com/paritytech/js-libs/blob/c2812ab/packages/abi/src/util/address.ts#L58)*
 
 Convert an Ethereum address to its checksum-valid version.
 
 **Parameters:**
 
-| Name | Type | Default value | Description |
-| ------ | ------ | ------ | ------ |
-| `Default value` address | `string` | &quot;&quot; |  The address to convert. |
+| Name | Type | Description |
+| ------ | ------ | ------ |
+| `Optional` address |  `string` &#124; `null`|  The address to convert. |
 
 **Returns:** `string`
 

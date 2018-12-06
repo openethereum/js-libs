@@ -13,7 +13,7 @@
 **● indexed**: * `undefined` &#124; `false` &#124; `true`
 *
 
-*Defined in [types.ts:11](https://github.com/paritytech/js-libs/blob/e5d602e/packages/abi/src/types.ts#L11)*
+*Defined in [types.ts:11](https://github.com/paritytech/js-libs/blob/c2812ab/packages/abi/src/types.ts#L11)*
 
 ___
 <a id="name"></a>
@@ -23,7 +23,7 @@ ___
 **● name**: * `undefined` &#124; `string`
 *
 
-*Defined in [types.ts:12](https://github.com/paritytech/js-libs/blob/e5d602e/packages/abi/src/types.ts#L12)*
+*Defined in [types.ts:12](https://github.com/paritytech/js-libs/blob/c2812ab/packages/abi/src/types.ts#L12)*
 
 ___
 <a id="type"></a>
@@ -32,7 +32,7 @@ ___
 
 **● type**: *[TokenTypeEnum](../modules/_types_.md#tokentypeenum)*
 
-*Defined in [types.ts:13](https://github.com/paritytech/js-libs/blob/e5d602e/packages/abi/src/types.ts#L13)*
+*Defined in [types.ts:13](https://github.com/paritytech/js-libs/blob/c2812ab/packages/abi/src/types.ts#L13)*
 
 ___
 
