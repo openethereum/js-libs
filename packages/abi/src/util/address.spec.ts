@@ -80,6 +80,10 @@ describe('util/address', () => {
       expect(toChecksumAddress(undefined)).toEqual('');
     });
 
+    it('returns empty when null address specified', () => {
+      expect(toChecksumAddress(null)).toEqual('');
+    });
+
     it('returns empty on invalid address structure', () => {
       expect(toChecksumAddress('0xnotaddress')).toEqual('');
     });
