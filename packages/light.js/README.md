@@ -13,7 +13,7 @@ A high-level reactive JS library optimized for light clients.
 ## Getting Started
 
 ```bash
-yarn install @parity/light.js rxjs # RxJS is a needed peer-dependency
+yarn add @parity/light.js rxjs # RxJS is a needed peer-dependency
 ```
 
 ## Usage
