@@ -6,6 +6,7 @@ before_install:
   - curl -o- -L https://yarnpkg.com/install.sh | bash # Travis's default version is 1.3.2, we need 1.4.2 for nohoist
   - export PATH=$HOME/.yarn/bin:$PATH
   - npm install --global coveralls
+  - 'if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then export NPM_TOKEN=fake_token; fi' # So that PRs from external contributors work https://docs.travis-ci.com/user/pull-requests/#Pull-Requests-and-Security-Restrictions
 install:
   - yarn install
 language: node_js
