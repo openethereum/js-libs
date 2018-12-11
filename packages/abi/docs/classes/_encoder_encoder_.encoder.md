@@ -12,7 +12,7 @@
 
 ▸ **encode**(tokens: *[Token](_token_token_.token.md)[]*): `string`
 
-*Defined in [encoder/encoder.ts:27](https://github.com/paritytech/js-libs/blob/8df9422/packages/abi/src/encoder/encoder.ts#L27)*
+*Defined in [encoder/encoder.ts:27](https://github.com/paritytech/js-libs/blob/83ff883/packages/abi/src/encoder/encoder.ts#L27)*
 
 **Parameters:**
 
@@ -29,7 +29,7 @@ ___
 
 ▸ **encodeToken**(token: *[Token](_token_token_.token.md)*, index?: *`number`*): [Mediate](_encoder_mediate_.mediate.md)
 
-*Defined in [encoder/encoder.ts:47](https://github.com/paritytech/js-libs/blob/8df9422/packages/abi/src/encoder/encoder.ts#L47)*
+*Defined in [encoder/encoder.ts:47](https://github.com/paritytech/js-libs/blob/83ff883/packages/abi/src/encoder/encoder.ts#L47)*
 
 **Parameters:**
 
