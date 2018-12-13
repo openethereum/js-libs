@@ -75,7 +75,7 @@ class Ws extends JsonRpcBase {
     }
 
     if (this._reconnectTimeoutId) {
-      window.clearTimeout(this._reconnectTimeoutId);
+      clearTimeout(this._reconnectTimeoutId);
       this._reconnectTimeoutId = null;
     }
 
@@ -118,7 +118,7 @@ class Ws extends JsonRpcBase {
         count: 0
       };
 
-      window.setInterval(() => {
+      setInterval(() => {
         const n = this._count - this._lastCount.count;
         const t = (Date.now() - this._lastCount.timestamp) / 1000;
         const s = Math.round(1000 * n / t) / 1000;
@@ -133,7 +133,9 @@ class Ws extends JsonRpcBase {
         };
       }, 5000);
 
-      window._parityWS = this;
+      if(typeof window !== 'undefined') {
+        window._parityWS = this;
+      }
     }
 
     this._connectPromise = new Promise((resolve, reject) => {
@@ -194,7 +196,7 @@ class Ws extends JsonRpcBase {
   _onError (event) {
     // Only print error if the WS is connected
     // ie. don't print if error == closed
-    window.setTimeout(() => {
+    setTimeout(() => {
       if (this._connected) {
         console.error('ws:onError');
 
