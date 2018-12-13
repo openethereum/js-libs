@@ -12,7 +12,7 @@
 
 ⊕ **new Constructor**(abi: *[AbiItem](../interfaces/_types_.abiitem.md)*): [Constructor](_spec_constructor_.constructor.md)
 
-*Defined in [spec/constructor.ts:12](https://github.com/paritytech/js-libs/blob/83ff883/packages/abi/src/spec/constructor.ts#L12)*
+*Defined in [spec/constructor.ts:12](https://github.com/paritytech/js-libs/blob/9bb8d04/packages/abi/src/spec/constructor.ts#L12)*
 
 **Parameters:**
 
@@ -32,7 +32,7 @@ ___
 
 getinputs(): [Param](_spec_param_.param.md)[]
 
-*Defined in [spec/constructor.ts:18](https://github.com/paritytech/js-libs/blob/83ff883/packages/abi/src/spec/constructor.ts#L18)*
+*Defined in [spec/constructor.ts:18](https://github.com/paritytech/js-libs/blob/9bb8d04/packages/abi/src/spec/constructor.ts#L18)*
 
 **Returns:** [Param](_spec_param_.param.md)[]
 
@@ -46,7 +46,7 @@ ___
 
 ▸ **encodeCall**(tokens: *[Token](_token_token_.token.md)[]*): `string`
 
-*Defined in [spec/constructor.ts:26](https://github.com/paritytech/js-libs/blob/83ff883/packages/abi/src/spec/constructor.ts#L26)*
+*Defined in [spec/constructor.ts:26](https://github.com/paritytech/js-libs/blob/9bb8d04/packages/abi/src/spec/constructor.ts#L26)*
 
 **Parameters:**
 
@@ -63,7 +63,7 @@ ___
 
 ▸ **inputParamTypes**(): [ParamType](_spec_paramtype_paramtype_.paramtype.md)[]
 
-*Defined in [spec/constructor.ts:22](https://github.com/paritytech/js-libs/blob/83ff883/packages/abi/src/spec/constructor.ts#L22)*
+*Defined in [spec/constructor.ts:22](https://github.com/paritytech/js-libs/blob/9bb8d04/packages/abi/src/spec/constructor.ts#L22)*
 
 **Returns:** [ParamType](_spec_paramtype_paramtype_.paramtype.md)[]
 
