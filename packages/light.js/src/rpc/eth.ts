@@ -46,6 +46,22 @@ export function balanceOf$ (address: Address, options?: RpcObservableOptions) {
 }
 
 /**
+ * Get the transaction count of a given account. Calls `eth_getTransactionCount`
+ *
+ * @param address - Address of the account whose transaction count we want to query.
+ * @param options - Options to pass to {@link RpcObservableOptions}.
+ * @return - An Observable containing the transaction count.
+ */
+export function transactionCountOf$ (address: Address, options?: RpcObservableOptions) {
+  return createRpc$<any, BigNumber | Symbol>({
+    calls: ['eth_getTransactionCount'],
+    frequency: [frequency.onEveryBlock$, frequency.onStartup$],
+    name: 'transactionCountOf$',
+    pipes: api => [switchMapPromise(() => api.eth.getTransactionCount(address).then(Number))]
+  })(options)(address);
+}
+
+/**
  * Get the default account managed by the light client.
  *
  * @param options - Options to pass to {@link RpcObservableOptions}.

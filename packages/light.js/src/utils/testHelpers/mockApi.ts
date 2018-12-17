@@ -22,7 +22,7 @@ export class MockProvider extends EventEmitter {
 
 // List of JSONRPCs we want to mock
 const listOfMockRps: { [index: string]: string[] } = {
-  eth: ['accounts', 'blockNumber', 'getBalance', 'newHeads', 'syncing'],
+  eth: ['accounts', 'blockNumber', 'getBalance', 'getTransactionCount', 'newHeads', 'syncing'],
   fake: ['method'],
   net: ['peerCount'],
   parity: ['accountsInfo', 'chain', 'postTransaction']
