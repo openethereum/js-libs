@@ -53,7 +53,7 @@ export function balanceOf$ (address: Address, options?: RpcObservableOptions) {
  * @return - An Observable containing the transaction count.
  */
 export function transactionCountOf$ (address: Address, options?: RpcObservableOptions) {
-  return createRpc$<any, BigNumber | Symbol>({
+  return createRpc$<any, number | Symbol>({
     calls: ['eth_getTransactionCount'],
     frequency: [frequency.onEveryBlock$, frequency.onStartup$],
     name: 'transactionCountOf$',
