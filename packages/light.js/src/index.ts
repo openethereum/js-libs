@@ -17,6 +17,7 @@ export const {
   accounts$,
   accountsInfo$,
   balanceOf$,
+  transactionCountOf$,
   blockNumber$,
   chainName$,
   defaultAccount$,
