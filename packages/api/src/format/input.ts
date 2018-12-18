@@ -137,7 +137,7 @@ export const inNumber10 = (n?: BlockNumber) => {
   return new BigNumber(n || 0).toNumber();
 };
 
-export const inNumber16 = (n?: BlockNumber) => {
+export const inNumber16 = (n?: BigNumber | string | number) => {
   const bn = isInstanceOf(n, BigNumber)
     ? (n as BigNumber)
     : new BigNumber(n || 0);
