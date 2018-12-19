@@ -53,11 +53,11 @@ export function balanceOf$ (address: Address, options?: RpcObservableOptions) {
  * @return - An Observable containing the transaction count.
  */
 export function transactionCountOf$ (address: Address, options?: RpcObservableOptions) {
-  return createRpc$<any, number | Symbol>({
+  return createRpc$<any, BigNumber | Symbol>({
     calls: ['eth_getTransactionCount'],
     frequency: [frequency.onEveryBlock$, frequency.onStartup$],
     name: 'transactionCountOf$',
-    pipes: api => [switchMapPromise(() => api.eth.getTransactionCount(address).then(Number))]
+    pipes: api => [switchMapPromise(() => api.eth.getTransactionCount(address))]
   })(options)(address);
 }
 
