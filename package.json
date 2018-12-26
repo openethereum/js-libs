@@ -6,6 +6,7 @@
     "Amaury Martiny"
   ],
   "license": "MIT",
+  "version": "v3.0.13",
   "private": true,
   "repository": "https://github.com/paritytech/js-libs",
   "homepage": "https://github.com/paritytech/js-libs",
@@ -16,6 +17,10 @@
     "packages": [
       "packages/*"
     ]
+  },
+  "engines": {
+    "node": ">=10.11.0",
+    "yarn": "^1.4.2"
   },
   "scripts": {
     "build": "lerna exec yarn build --stream",
