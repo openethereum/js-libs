@@ -49,7 +49,7 @@ const testRpc = (name: string, rpc$: RpcObservable<any, any>) =>
     });
 
     // Memoization tests don't concern post$
-    if (name === 'post$') {
+    if (name === 'post$' || name === 'postRaw$') {
       return;
     }
 
