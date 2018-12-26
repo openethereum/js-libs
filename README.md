@@ -62,11 +62,10 @@ export NPM_TOKEN=''; yarn build
 git clone https://github.com/<INSERT_YOUR_GITHUB_USERNAME>/js-libs
 ```
 
-3. Install and run NPM check.
+3. Check outdated dependencies
 
 ```
-npm install -g npm-check;
-npm-check
+npm outdated
 ```
 
 4. Create a branch and update any dependencies that it indicates are out of date.
