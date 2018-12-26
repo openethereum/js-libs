@@ -25,5 +25,8 @@
     "@parity/abi": "^3.0.13",
     "@parity/api": "^3.0.13",
     "bignumber.js": "^8.0.1"
+  },
+  "devDependencies": {
+    "typescript": "^3.1.6"
   }
 }
