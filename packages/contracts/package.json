@@ -18,7 +18,7 @@
   "scripts": {
     "docs": "typedoc && rimraf docs/README.md",
     "prebuild": "rimraf lib",
-    "build": "tsc",
+    "build": "./node_modules/.bin/tsc",
     "test": "jest"
   },
   "dependencies": {
