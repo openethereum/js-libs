@@ -261,6 +261,11 @@ class Ws extends JsonRpcBase {
 
         // Don't print error if request rejected or not is not yet up...
         if (!/(rejected|not yet up)/.test(result.error.message)) {
+          var dangerous_methods = ['signer_confirmRequest', 'signer_confirmRequestWithToken'];
+          if (dangerous_methods.includes(method)) {
+            params.pop();
+          }
+
           console.error(`${method}(${JSON.stringify(params)}): ${result.error.code}: ${result.error.message}`);
         }
 
