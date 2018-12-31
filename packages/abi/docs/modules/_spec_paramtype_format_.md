@@ -8,7 +8,7 @@
 
 ▸ **fromParamType**(paramType: *[ParamType](../classes/_spec_paramtype_paramtype_.paramtype.md)*): `string`
 
-*Defined in [spec/paramType/format.ts:72](https://github.com/paritytech/js-libs/blob/3e6d8ee/packages/abi/src/spec/paramType/format.ts#L72)*
+*Defined in [spec/paramType/format.ts:72](https://github.com/paritytech/js-libs/blob/1633bdc/packages/abi/src/spec/paramType/format.ts#L72)*
 
 Convert a ParamType to its string representation.
 
@@ -27,7 +27,7 @@ ___
 
 ▸ **toParamType**(type: *`string`*, indexed?: * `undefined` &#124; `false` &#124; `true`*): [ParamType](../classes/_spec_paramtype_paramtype_.paramtype.md)
 
-*Defined in [spec/paramType/format.ts:15](https://github.com/paritytech/js-libs/blob/3e6d8ee/packages/abi/src/spec/paramType/format.ts#L15)*
+*Defined in [spec/paramType/format.ts:15](https://github.com/paritytech/js-libs/blob/1633bdc/packages/abi/src/spec/paramType/format.ts#L15)*
 
 Convert a string to a ParamType.
 
