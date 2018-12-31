@@ -40,7 +40,7 @@ See the [docs/](docs) folder to see the properties of each of those contracts.
 ### Import ABIs
 
 ```javascript
-import { eip20 } from '@parity/abi/lib/abi';
+import { eip20 } from '@parity/contracts/lib/abi';
 ```
 
 The list of available ABIs is in the [src/abi/](src/abi) folder.
