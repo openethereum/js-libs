@@ -8,7 +8,7 @@
 
 **Ƭ AccountsInfo**: *`object`*
 
-*Defined in [types.ts:19](https://github.com/paritytech/js-libs/blob/059d368/packages/light.js/src/types.ts#L19)*
+*Defined in [types.ts:19](https://github.com/paritytech/js-libs/blob/a22b427/packages/light.js/src/types.ts#L19)*
 
 #### Type declaration
 
@@ -21,7 +21,7 @@ ___
 
 **Ƭ Address**: *`string`*
 
-*Defined in [types.ts:24](https://github.com/paritytech/js-libs/blob/059d368/packages/light.js/src/types.ts#L24)*
+*Defined in [types.ts:24](https://github.com/paritytech/js-libs/blob/a22b427/packages/light.js/src/types.ts#L24)*
 
 ___
 <a id="apivalue"></a>
@@ -30,7 +30,7 @@ ___
 
 **Ƭ ApiValue**: *`any`*
 
-*Defined in [types.ts:27](https://github.com/paritytech/js-libs/blob/059d368/packages/light.js/src/types.ts#L27)*
+*Defined in [types.ts:27](https://github.com/paritytech/js-libs/blob/a22b427/packages/light.js/src/types.ts#L27)*
 
 ___
 <a id="block"></a>
@@ -39,7 +39,7 @@ ___
 
 **Ƭ Block**: *`object`*
 
-*Defined in [types.ts:30](https://github.com/paritytech/js-libs/blob/059d368/packages/light.js/src/types.ts#L30)*
+*Defined in [types.ts:30](https://github.com/paritytech/js-libs/blob/a22b427/packages/light.js/src/types.ts#L30)*
 
 #### Type declaration
 
@@ -52,7 +52,7 @@ ___
 
 **Ƭ FrequencyKey**: *`keyof object`*
 
-*Defined in [types.ts:45](https://github.com/paritytech/js-libs/blob/059d368/packages/light.js/src/types.ts#L45)*
+*Defined in [types.ts:45](https://github.com/paritytech/js-libs/blob/a22b427/packages/light.js/src/types.ts#L45)*
 
 ___
 <a id="frequencymap"></a>
@@ -61,7 +61,7 @@ ___
 
 **Ƭ FrequencyMap**: *`object`*
 
-*Defined in [types.ts:55](https://github.com/paritytech/js-libs/blob/059d368/packages/light.js/src/types.ts#L55)*
+*Defined in [types.ts:55](https://github.com/paritytech/js-libs/blob/a22b427/packages/light.js/src/types.ts#L55)*
 
 #### Type declaration
 
@@ -72,7 +72,7 @@ ___
 
 **Ƭ RpcKey**: *`keyof object`*
 
-*Defined in [types.ts:66](https://github.com/paritytech/js-libs/blob/059d368/packages/light.js/src/types.ts#L66)*
+*Defined in [types.ts:66](https://github.com/paritytech/js-libs/blob/a22b427/packages/light.js/src/types.ts#L66)*
 
 ___
 <a id="rpcmap"></a>
@@ -81,7 +81,7 @@ ___
 
 **Ƭ RpcMap**: *`object`*
 
-*Defined in [types.ts:74](https://github.com/paritytech/js-libs/blob/059d368/packages/light.js/src/types.ts#L74)*
+*Defined in [types.ts:74](https://github.com/paritytech/js-libs/blob/a22b427/packages/light.js/src/types.ts#L74)*
 
 #### Type declaration
 
@@ -92,7 +92,7 @@ ___
 
 **Ƭ Tx**: *`object`*
 
-*Defined in [types.ts:81](https://github.com/paritytech/js-libs/blob/059d368/packages/light.js/src/types.ts#L81)*
+*Defined in [types.ts:81](https://github.com/paritytech/js-libs/blob/a22b427/packages/light.js/src/types.ts#L81)*
 
 #### Type declaration
 
