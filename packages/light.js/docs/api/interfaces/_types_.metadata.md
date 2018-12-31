@@ -16,7 +16,7 @@
 **● calledWithArgs**: * `undefined` &#124; `object`
 *
 
-*Defined in [types.ts:35](https://github.com/paritytech/js-libs/blob/a97fd02/packages/light.js/src/types.ts#L35)*
+*Defined in [types.ts:35](https://github.com/paritytech/js-libs/blob/059d368/packages/light.js/src/types.ts#L35)*
 
 ___
 <a id="calls"></a>
@@ -25,7 +25,7 @@ ___
 
 **● calls**: *`string`[]*
 
-*Defined in [types.ts:38](https://github.com/paritytech/js-libs/blob/a97fd02/packages/light.js/src/types.ts#L38)*
+*Defined in [types.ts:38](https://github.com/paritytech/js-libs/blob/059d368/packages/light.js/src/types.ts#L38)*
 
 ___
 <a id="dependson"></a>
@@ -34,7 +34,7 @@ ___
 
 **● dependsOn**: *[RpcObservable](_types_.rpcobservable.md)<`any`, `Source`>*
 
-*Defined in [types.ts:39](https://github.com/paritytech/js-libs/blob/a97fd02/packages/light.js/src/types.ts#L39)*
+*Defined in [types.ts:39](https://github.com/paritytech/js-libs/blob/059d368/packages/light.js/src/types.ts#L39)*
 
 ___
 <a id="frequency"></a>
@@ -43,7 +43,7 @@ ___
 
 **● frequency**: *[FrequencyObservable](_types_.frequencyobservable.md)<`Source`>[]*
 
-*Defined in [types.ts:40](https://github.com/paritytech/js-libs/blob/a97fd02/packages/light.js/src/types.ts#L40)*
+*Defined in [types.ts:40](https://github.com/paritytech/js-libs/blob/059d368/packages/light.js/src/types.ts#L40)*
 
 ___
 <a id="name"></a>
@@ -53,7 +53,7 @@ ___
 **● name**: * `undefined` &#124; `string`
 *
 
-*Defined in [types.ts:41](https://github.com/paritytech/js-libs/blob/a97fd02/packages/light.js/src/types.ts#L41)*
+*Defined in [types.ts:41](https://github.com/paritytech/js-libs/blob/059d368/packages/light.js/src/types.ts#L41)*
 
 ___
 <a id="pipes"></a>
@@ -63,7 +63,7 @@ ___
 **● pipes**: * `undefined` &#124; `function`
 *
 
-*Defined in [types.ts:42](https://github.com/paritytech/js-libs/blob/a97fd02/packages/light.js/src/types.ts#L42)*
+*Defined in [types.ts:42](https://github.com/paritytech/js-libs/blob/059d368/packages/light.js/src/types.ts#L42)*
 
 ___
 
