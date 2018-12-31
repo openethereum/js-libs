@@ -8,7 +8,7 @@
 
 **● POLL_INTERVAL**: *`1000`* = 1000
 
-*Defined in [frequency/utils/createPubsubObservable.ts:15](https://github.com/paritytech/js-libs/blob/397e610/packages/light.js/src/frequency/utils/createPubsubObservable.ts#L15)*
+*Defined in [frequency/utils/createPubsubObservable.ts:15](https://github.com/paritytech/js-libs/blob/a97fd02/packages/light.js/src/frequency/utils/createPubsubObservable.ts#L15)*
 
 ___
 
