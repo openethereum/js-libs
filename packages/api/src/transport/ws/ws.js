@@ -268,7 +268,7 @@ class Ws extends JsonRpcBase {
             safe_params[params.length - 1] = '***';
           }
 
-          console.error(`${method}(${JSON.stringify(`${safe_params || params}`)}): ${result.error.code}: ${result.error.message}`);
+          console.error(`${method}(${JSON.stringify(safe_params || params)}): ${result.error.code}: ${result.error.message}`);
         }
 
         const error = new TransportError(method, result.error.code, result.error.message);
