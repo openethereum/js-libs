@@ -17,7 +17,7 @@ script:
   - yarn test --silent --coverage --coverageReporters=text-lcov | coveralls ; test ${PIPESTATUS[0]} -eq 0
 before_deploy:
   - npm install --global gitbook-cli lerna
-  - npm set registry "https://registry.npmjs.org/:_authToken=\${NPM_TOKEN}"
+  - echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" > .npmrc 2> /dev/null
 deploy:
   provider: script
   skip_cleanup: true
