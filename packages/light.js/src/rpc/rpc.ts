@@ -5,9 +5,9 @@
 
 import * as eth from './eth';
 import * as net from './net';
-import { post$ } from './other';
+import { post$, postRaw$ } from './other';
 import * as parity from './parity';
 
-const rpc = { ...eth, ...net, ...parity, post$ };
+const rpc = { ...eth, ...net, ...parity, post$, postRaw$ };
 
 export default rpc;
