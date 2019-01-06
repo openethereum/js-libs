@@ -41,7 +41,8 @@ class Eth {
 
   chainId () {
     return this._provider
-      .send('eth_chainId');
+      .send('eth_chainId')
+      .then(outNumber);
   }
 
   coinbase () {
