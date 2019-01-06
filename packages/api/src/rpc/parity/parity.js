@@ -15,7 +15,7 @@
 // along with Parity.  If not, see <http://www.gnu.org/licenses/>.
 
 const { inAddress, inAddresses, inBlockNumber, inData, inDeriveHash, inDeriveIndex, inHex, inNumber16, inOptions } = require('../../format/input');
-const { outAccountInfo, outAddress, outAddresses, outBlock, outChainStatus, outHistogram, outHwAccountInfo, outNodeKind, outNumber, outPeers, outRecentDapps, outTransaction, outVaultMeta } = require('../../format/output');
+const { outAccountInfo, outAddress, outAddresses, outBlock, outBlockReceipts, outChainStatus, outHistogram, outHwAccountInfo, outNodeKind, outNumber, outPeers, outRecentDapps, outTransaction, outVaultMeta } = require('../../format/output');
 
 class Parity {
   constructor (provider) {
@@ -220,6 +220,12 @@ class Parity {
     return this._provider
       .send('parity_getBlockHeaderByNumber', inBlockNumber(blockNumber))
       .then(outBlock);
+  }
+
+  getBlockReceipts (blockNumber = 'latest') {
+    return this._provider
+      .send('parity_getBlockReceipts', inBlockNumber(blockNumber))
+      .then(outBlockReceipts)
   }
 
   getDappAddresses (dappId) {
