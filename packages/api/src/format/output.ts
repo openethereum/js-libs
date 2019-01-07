@@ -119,6 +119,14 @@ export function outBlock (block: SerializedBlock) {
   return result;
 }
 
+export function outBlockReceipts (receipts: SerializedReceipt[]) {
+  if (receipts) {
+    return receipts.map(outReceipt);
+  }
+
+  return receipts;
+}
+
 export function outChainStatus (status?: SerializedChainStatus) {
   const result: ChainStatus = {};
   if (status) {
