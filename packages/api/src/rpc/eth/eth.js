@@ -39,6 +39,12 @@ class Eth {
       .send('eth_call', inOptions(options), inBlockNumber(blockNumber));
   }
 
+  chainId () {
+    return this._provider
+      .send('eth_chainId')
+      .then(outNumber);
+  }
+
   coinbase () {
     return this._provider
       .send('eth_coinbase')

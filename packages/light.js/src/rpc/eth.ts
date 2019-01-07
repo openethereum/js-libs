@@ -14,6 +14,22 @@ import { isNullOrLoading, RPC_LOADING } from '../utils/isLoading';
 import { switchMapPromise } from '../utils/operators';
 
 /**
+ * Observable containing the EIP155 chain ID used for transaction signing.
+ * Calls `eth_chainId`
+ *
+ * @param options - Options to pass to {@link RpcObservableOptions}.
+ * @return - An Observable containing the chain ID.
+ */
+export function chainId$ (options?: RpcObservableOptions) {
+  return createRpc$<any, BigNumber | Symbol>({
+    calls: ['eth_chainId'],
+    frequency: [frequency.onStartup$],
+    name: 'chainId$',
+    pipes: api => [switchMapPromise(() => api.eth.chainId())]
+  })(options)();
+}
+
+/**
  * Observable which contains the array of all addresses managed by the light
  * client.
  *
