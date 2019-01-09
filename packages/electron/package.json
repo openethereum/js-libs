@@ -21,21 +21,21 @@
     "test": "jest"
   },
   "dependencies": {
-    "async-retry": "^1.2.1",
+    "async-retry": "^1.2.3",
     "axios": "^0.18.0",
     "checksum": "^0.1.1",
-    "command-exists": "^1.2.6",
-    "debug": "^4.1.0",
-    "electron-dl": "^1.11.0",
+    "command-exists": "^1.2.8",
+    "debug": "^4.1.1",
+    "electron-dl": "^1.12.0",
     "promise-any": "^0.2.0",
-    "sntp": "^3.0.1"
+    "sntp": "^3.0.2"
   },
   "devDependencies": {
     "@types/async-retry": "^1.2.1",
     "@types/checksum": "^0.1.30",
-    "electron": "^2.0.2"
+    "electron": "^3.1.0"
   },
   "peerDependencies": {
-    "electron": "^2.0.3"
+    "electron": "^3.1.0"
   }
 }
