@@ -18,7 +18,7 @@
   },
   "scripts": {
     "prebuild": "rimraf lib",
-    "build": "tsc",
+    "build": "yarn && ./node_modules/.bin/tsc",
     "test": "cross-env NODE_ENV=test mocha -r ts-node/register 'src/*.spec.js' 'src/**/*.spec.js'"
   },
   "devDependencies": {
@@ -35,7 +35,8 @@
     "sinon": "1.17.7",
     "sinon-as-promised": "4.0.2",
     "sinon-chai": "2.8.0",
-    "ts-node": "^7.0.1"
+    "ts-node": "^7.0.1",
+    "typescript": "^3.1.6"
   },
   "dependencies": {
     "@parity/abi": "^3.0.25",

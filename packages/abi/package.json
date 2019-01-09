@@ -17,11 +17,12 @@
   "scripts": {
     "docs": "typedoc",
     "prebuild": "rimraf lib",
-    "build": "tsc",
+    "build": "yarn && ./node_modules/.bin/tsc",
     "test": "jest"
   },
   "devDependencies": {
-    "@types/utf8": "^2.1.6"
+    "@types/utf8": "^2.1.6",
+    "typescript": "^3.1.6"
   },
   "dependencies": {
     "bignumber.js": "^8.0.1",
