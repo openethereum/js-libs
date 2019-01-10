@@ -6,7 +6,7 @@
     "Amaury Martiny"
   ],
   "license": "MIT",
-  "version": "v3.0.13",
+  "version": "v3.0.26",
   "private": true,
   "repository": "https://github.com/paritytech/js-libs",
   "homepage": "https://github.com/paritytech/js-libs",
@@ -19,7 +19,7 @@
     ]
   },
   "engines": {
-    "node": ">=10.11.0",
+    "node": ">=10.10.0",
     "yarn": "^1.4.2"
   },
   "scripts": {
