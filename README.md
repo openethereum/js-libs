@@ -35,7 +35,7 @@ And below are the lower-level packages, used internally, or by advanced users.
 
 #### Dependencies
 
-Install at least `yarn` version 1.4.2 and [Node.js >=10.11.0](https://nodejs.org/en/)
+Install at least `yarn` version 1.4.2 and [Node.js >=10.10.0](https://nodejs.org/en/)
 
 ```
 yarn --version // Should be at least 1.4.2
@@ -44,13 +44,13 @@ yarn --version // Should be at least 1.4.2
 #### Tests
 
 ```
-export NPM_TOKEN=''; yarn test
+yarn test
 ```
 
 #### Build
 
 ```
-export NPM_TOKEN=''; yarn build
+yarn build
 ```
 
 #### Maintenance
@@ -65,10 +65,10 @@ git clone https://github.com/<INSERT_YOUR_GITHUB_USERNAME>/js-libs
 3. Check outdated dependencies
 
 ```
-npm outdated
+yarn outdated
 ```
 
-4. Create a branch and update any dependencies that it indicates are out of date.
+4. Create a branch
 
 ```
 git checkout -b <INSERT_YOUR_BRANCH_NAME>
@@ -77,7 +77,7 @@ git checkout -b <INSERT_YOUR_BRANCH_NAME>
 5. Run tests, linting, and build
 
 ```
-export NPM_TOKEN=''; yarn test; yarn lint; yarn build
+yarn test; yarn lint; yarn build
 ```
 
 6. Push the branch to your fork of the repo
