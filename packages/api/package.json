@@ -18,7 +18,7 @@
   },
   "scripts": {
     "prebuild": "rimraf lib",
-    "build": "yarn && ./node_modules/.bin/tsc",
+    "build": "tsc",
     "test": "cross-env NODE_ENV=test mocha -r ts-node/register 'src/*.spec.js' 'src/**/*.spec.js'"
   },
   "devDependencies": {
