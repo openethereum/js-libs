@@ -82,10 +82,13 @@ yarn test; yarn lint; yarn build
 
 6. Push the branch to your fork of the repo
 
-7. Integrate the updated library as a dependency. Example: If you are using the 'electron' package in another project, then update the package.json file to temporarily use your branch instead of the public NPM registry version
+7. Integrate the updated library as a dependency. Example: If you want to test a branch of one of the js-lib packages in another project like Fether temporarily, then build js-libs and replace the /lib directory where it's a dependency on the Fether project. Then run Fether to use it:
 
-```
-yarn add https://github.com/<INSERT_YOUR_GITHUB_USERNAME>/js-libs.git#<INSERT_YOUR_BRANCH_NAME>
+```bash
+~/paritytech/js-libs [my-branch-name] $ yarn build
+~/paritytech/js-libs [my-branch-name] $ cp -r packages/my-package/lib ../fether/node_modules/@parity/my-package/lib
+~/paritytech/js-libs [my-branch-name] $ cd ../fether
+~/paritytech/fether [master] $ yarn start
 ```
 
 8. Create a pull request from your fork of the repo to the upstream master branch
