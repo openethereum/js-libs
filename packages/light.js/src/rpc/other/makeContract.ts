@@ -39,19 +39,20 @@ const getContract = memoizee(
 );
 
 /**
- * Create a contract, givan an api object.
+ * Create a contract, given an api object.
  * Pure function version of {@link makeContract}.
  *
  * @ignore
  * @param address - The contract address.
  * @param abiJson - The contract abi.
+ * @param passphrase - Passphrase of the account creating the contract
  * @param api - The api Object.
  * @return - An object whose keys are all the functions of the
  * contract, and each function returns an Observable which will fire when the
  * function resolves.
  */
 const makeContractWithApi = memoizee(
-  (address: Address, abiJson: any[], api: any) => {
+  (address: Address, abiJson: any[], passphrase: string, api: any) => {
     const abi = new Abi(abiJson); // use types from @parity/abi
 
     // Variable result will hold the final object to return
@@ -97,7 +98,7 @@ const makeContractWithApi = memoizee(
               args
             ),
             ...options
-          });
+          }, passphrase);
         }
       };
     });
@@ -111,6 +112,7 @@ const makeContractWithApi = memoizee(
  *
  * @param address - The contract address.
  * @param abiJson - The contract abi.
+ * @param passphrase - Passphrase of the account creating the contract
  * @param options - The options to pass in when creating the contract.
  * @return - An object whose keys are all the functions of the
  * contract, and each function return an Observable which will fire when the
@@ -119,10 +121,11 @@ const makeContractWithApi = memoizee(
 export const makeContract = (
   address: Address,
   abiJson: any[],
+  passphrase: string,
   options: { provider?: any } = {}
 ) => {
   const { provider } = options;
   const api = provider ? createApiFromProvider(provider) : getApi();
 
-  return makeContractWithApi(address, abiJson, api);
+  return makeContractWithApi(address, abiJson, passphrase, api);
 };
