@@ -17,6 +17,7 @@ export const {
   accounts$,
   accountsInfo$,
   balanceOf$,
+  chainId$,
   transactionCountOf$,
   blockNumber$,
   chainName$,
@@ -24,6 +25,7 @@ export const {
   myBalance$,
   peerCount$,
   post$,
+  postRaw$,
   syncStatus$
 } = rpc;
 export default { setApi, setProvider };

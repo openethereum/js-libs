@@ -1,7 +1,7 @@
 {
   "name": "@parity/contracts",
   "description": "Parity's contracts as ES6 classes.",
-  "version": "3.0.13",
+  "version": "3.0.25",
   "author": "Parity Team <admin@parity.io>",
   "license": "MIT",
   "repository": "https://github.com/paritytech/js-libs/tree/master/packages/contracts",
@@ -18,12 +18,12 @@
   "scripts": {
     "docs": "typedoc && rimraf docs/README.md",
     "prebuild": "rimraf lib",
-    "build": "tsc",
+    "build": "yarn && ./node_modules/.bin/tsc",
     "test": "jest"
   },
   "dependencies": {
-    "@parity/abi": "^3.0.13",
-    "@parity/api": "^3.0.13",
+    "@parity/abi": "^3.0.25",
+    "@parity/api": "^3.0.25",
     "bignumber.js": "^8.0.1"
   },
   "devDependencies": {

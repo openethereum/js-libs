@@ -17,7 +17,7 @@
   "scripts": {
     "docs": "typedoc",
     "prebuild": "rimraf lib",
-    "build": "tsc",
+    "build": "yarn && ./node_modules/.bin/tsc",
     "test": "jest"
   },
   "dependencies": {

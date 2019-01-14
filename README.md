@@ -58,25 +58,25 @@ yarn build
 1. Fork the repo
 
 2. Clone your fork
-```
+```bash
 git clone https://github.com/<INSERT_YOUR_GITHUB_USERNAME>/js-libs
 ```
 
 3. Check outdated dependencies
 
-```
+```bash
 yarn outdated
 ```
 
 4. Create a branch
 
-```
+```bash
 git checkout -b <INSERT_YOUR_BRANCH_NAME>
 ```
 
 5. Run tests, linting, and build
 
-```
+```bash
 yarn test; yarn lint; yarn build
 ```
 

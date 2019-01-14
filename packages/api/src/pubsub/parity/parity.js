@@ -16,7 +16,7 @@
 
 const PubsubBase = require('../pubsubBase');
 const { inAddress, inBlockNumber, inData, inHex, inDeriveHash, inDeriveIndex } = require('../../format/input');
-const { outAccountInfo, outAddress, outBlock, outChainStatus, outHistogram, outHwAccountInfo, outNodeKind, outNumber, outPeers, outTransaction, outAddresses, outRecentDapps, outVaultMeta } = require('../../format/output');
+const { outAccountInfo, outAddress, outBlock, outBlockReceipts, outChainStatus, outHistogram, outHwAccountInfo, outNodeKind, outNumber, outPeers, outTransaction, outAddresses, outRecentDapps, outVaultMeta } = require('../../format/output');
 
 class Parity extends PubsubBase {
   constructor (provider) {
@@ -267,6 +267,14 @@ class Parity extends PubsubBase {
       error
         ? callback(error)
         : callback(null, outBlock(data));
+    }, [inBlockNumber(blockNumber)]);
+  }
+
+  getBlockReceipts (callback, blockNumber = 'latest') {
+    return this.addListener(this._api, 'parity_getBlockReceipts', (error, data) => {
+      error
+        ? callback(error)
+        : callback(null, outBlockReceipts(data));
     }, [inBlockNumber(blockNumber)]);
   }
 

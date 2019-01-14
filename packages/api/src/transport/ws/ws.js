@@ -261,7 +261,17 @@ class Ws extends JsonRpcBase {
 
         // Don't print error if request rejected or not is not yet up...
         if (!/(rejected|not yet up)/.test(result.error.message)) {
-          console.error(`${method}(${JSON.stringify(params)}): ${result.error.code}: ${result.error.message}`);
+          // fether Issue #317
+          // js-libs Issue #77 Masks the password param when logging error to console on methods that contain it as a param.
+          // e.g. ["0x2",{},"myincorrectpassword"] -> ["0x2",{},"***"]
+          const dangerous_methods = ['signer_confirmRequest', 'signer_confirmRequestWithToken'];
+          let safe_params;
+          if (dangerous_methods.includes(method)) {
+            safe_params = params.slice();
+            safe_params[params.length - 1] = '***';
+          }
+
+          console.error(`${method}(${JSON.stringify(safe_params || params)}): ${result.error.code}: ${result.error.message}`);
         }
 
         const error = new TransportError(method, result.error.code, result.error.message);
