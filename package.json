@@ -17,6 +17,10 @@
       "packages/*"
     ]
   },
+  "engines": {
+    "node": ">=10.10.0",
+    "yarn": "^1.4.2"
+  },
   "scripts": {
     "build": "lerna exec yarn build --stream",
     "lint": "tslint 'packages/**/*.ts'",
