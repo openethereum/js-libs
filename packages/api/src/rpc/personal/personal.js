@@ -34,6 +34,11 @@ class Personal {
       .then(outAddress);
   }
 
+  signTransaction(options, password) {
+    return this._provider
+      .send('personal_signTransaction', inOptions(options), password);
+  }
+
   sendTransaction (options, password) {
     return this._provider
       .send('personal_sendTransaction', inOptions(options), password);
