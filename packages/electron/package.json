@@ -33,7 +33,7 @@
   "devDependencies": {
     "@types/async-retry": "^1.2.1",
     "@types/checksum": "^0.1.30",
-    "electron": "^2.0.2 | ^3.1.0 | ^4.0.1",
+    "electron": "^4.0.1",
     "typescript": "^3.1.6"
   },
   "peerDependencies": {
