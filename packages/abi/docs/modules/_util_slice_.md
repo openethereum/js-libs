@@ -6,9 +6,9 @@
 
 ## `<Const>` sliceData
 
-▸ **sliceData**(data?: * `undefined` &#124; `string`*):  `string`[] &#124; `null`
+▸ **sliceData**(data?: *`undefined` | `string`*): `string`[] | `null`
 
-*Defined in [util/slice.ts:13](https://github.com/paritytech/js-libs/blob/5475020/packages/abi/src/util/slice.ts#L13)*
+*Defined in [util/slice.ts:13](https://github.com/paritytech/js-libs/blob/fd69e11/packages/abi/src/util/slice.ts#L13)*
 
 Slice data.
 
@@ -16,9 +16,9 @@ Slice data.
 
 | Name | Type | Description |
 | ------ | ------ | ------ |
-| `Optional` data |  `undefined` &#124; `string`|  Data to slice. |
+| `Optional` data | `undefined` | `string` |  Data to slice. |
 
-**Returns:**  `string`[] &#124; `null`
+**Returns:** `string`[] | `null`
 
 ___
 

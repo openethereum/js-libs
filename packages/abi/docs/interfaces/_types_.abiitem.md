@@ -10,20 +10,18 @@
 
 ## `<Optional>` anonymous
 
-**● anonymous**: * `undefined` &#124; `false` &#124; `true`
-*
+**● anonymous**: *`undefined` | `false` | `true`*
 
-*Defined in [types.ts:101](https://github.com/paritytech/js-libs/blob/5475020/packages/abi/src/types.ts#L101)*
+*Defined in [types.ts:101](https://github.com/paritytech/js-libs/blob/fd69e11/packages/abi/src/types.ts#L101)*
 
 ___
 <a id="constant"></a>
 
 ## `<Optional>` constant
 
-**● constant**: * `undefined` &#124; `false` &#124; `true`
-*
+**● constant**: *`undefined` | `false` | `true`*
 
-*Defined in [types.ts:102](https://github.com/paritytech/js-libs/blob/5475020/packages/abi/src/types.ts#L102)*
+*Defined in [types.ts:102](https://github.com/paritytech/js-libs/blob/fd69e11/packages/abi/src/types.ts#L102)*
 
 ___
 <a id="inputs"></a>
@@ -32,17 +30,16 @@ ___
 
 **● inputs**: *[AbiInput](_types_.abiinput.md)[]*
 
-*Defined in [types.ts:103](https://github.com/paritytech/js-libs/blob/5475020/packages/abi/src/types.ts#L103)*
+*Defined in [types.ts:103](https://github.com/paritytech/js-libs/blob/fd69e11/packages/abi/src/types.ts#L103)*
 
 ___
 <a id="name"></a>
 
 ## `<Optional>` name
 
-**● name**: * `undefined` &#124; `string`
-*
+**● name**: *`undefined` | `string`*
 
-*Defined in [types.ts:104](https://github.com/paritytech/js-libs/blob/5475020/packages/abi/src/types.ts#L104)*
+*Defined in [types.ts:104](https://github.com/paritytech/js-libs/blob/fd69e11/packages/abi/src/types.ts#L104)*
 
 ___
 <a id="outputs"></a>
@@ -51,17 +48,16 @@ ___
 
 **● outputs**: *[AbiInput](_types_.abiinput.md)[]*
 
-*Defined in [types.ts:106](https://github.com/paritytech/js-libs/blob/5475020/packages/abi/src/types.ts#L106)*
+*Defined in [types.ts:106](https://github.com/paritytech/js-libs/blob/fd69e11/packages/abi/src/types.ts#L106)*
 
 ___
 <a id="payable"></a>
 
 ## `<Optional>` payable
 
-**● payable**: * `undefined` &#124; `false` &#124; `true`
-*
+**● payable**: *`undefined` | `false` | `true`*
 
-*Defined in [types.ts:105](https://github.com/paritytech/js-libs/blob/5475020/packages/abi/src/types.ts#L105)*
+*Defined in [types.ts:105](https://github.com/paritytech/js-libs/blob/fd69e11/packages/abi/src/types.ts#L105)*
 
 ___
 <a id="type"></a>
@@ -70,7 +66,7 @@ ___
 
 **● type**: *[AbiItemType](../modules/_types_.md#abiitemtype)*
 
-*Defined in [types.ts:107](https://github.com/paritytech/js-libs/blob/5475020/packages/abi/src/types.ts#L107)*
+*Defined in [types.ts:107](https://github.com/paritytech/js-libs/blob/fd69e11/packages/abi/src/types.ts#L107)*
 
 ___
 
