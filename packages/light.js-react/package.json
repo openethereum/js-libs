@@ -22,7 +22,7 @@
   },
   "scripts": {
     "prebuild": "rimraf lib",
-    "build": "yarn && ./node_modules/.bin/tsc",
+    "build": "tsc",
     "test": "jest"
   },
   "dependencies": {
