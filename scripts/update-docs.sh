@@ -15,13 +15,13 @@ fi
 # Find all scopes, separated by comma
 IFS=',' read -r -a ARRAY <<< "$SCOPES"
 
+TMPDIR=$(mktemp -d)
+
 # Generate docs in the SCOPE folder
 for SCOPE in "${ARRAY[@]}"
 do
-    echo "Docs for $SCOPE."
-
     # Generate latest version of docs
-    echo "Generating docs."
+    echo "Generating docs for $SCOPE."
     pushd . # We're in the root folder
     cd "packages/$SCOPE"
     yarn docs
@@ -29,20 +29,15 @@ do
     gitbook build
 
     # Copy these docs temporarily in a temp folder
-    TMPDIR=$(mktemp -d)
-    cp -r "_book/." $TMPDIR
+    cp -r "_book" "$TMPDIR/$SCOPE"
     popd # Go back to root folder
-
-    # Copy these docs back to the gh-pages branch
-    git reset --hard HEAD
-    git checkout gh-pages
-    rm -rf $SCOPE
-    cp -r $TMPDIR $SCOPE
-
-    # Return to original branch
-    git checkout master
 done
 
-# Docs are updated, we commit back to repo
+# Copy docs to gh-pages folder
+git checkout gh-pages
+echo $SCOPES | tr ',' ' ' | rm -rf # Replace "abi,light.js" with "abi light.js"
+cp -r "$TMPDIR/*" .
+
+# Docs are updated, we commit back to repo on gh-pages
 git add .
 git commit -m "[ci skip] Update docs"
