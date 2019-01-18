@@ -17,7 +17,7 @@ script:
   - yarn test --silent --coverage --coverageReporters=text-lcov | coveralls ; test ${PIPESTATUS[0]} -eq 0
 before_deploy:
   - echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" > .npmrc 2> /dev/null
-  - yarn install --global gitbook-cli
+  - yarn global add gitbook-cli
   - yarn update-docs --scope=abi,light.js
 deploy:
   - provider: script
