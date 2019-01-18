@@ -39,5 +39,13 @@ git commit -m "[ci skip] Update docs"
 
 # Copy the generated html files in gh-pages
 git checkout gh-pages
-echo $SCOPES | tr ',' ' ' | rm -rf # Replace "abi,light.js" with "abi light.js"
-cp -r "$TMPDIR/*" .
+for SCOPE in "${ARRAY[@]}"
+do
+  rm -rf $SCOPE
+  cp -r "$TMPDIR/$SCOPE" .
+done
+git add .
+git commit -m "[ci skip] Update docs"
+git push
+
+git checkout master
