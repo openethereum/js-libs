@@ -19,6 +19,7 @@ lib
 
 # generated gitbook
 _book
+gitbook
 
 # npm
 .npmrc
