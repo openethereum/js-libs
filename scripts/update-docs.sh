@@ -27,31 +27,23 @@ do
     yarn docs
     cd docs
     gitbook build
+
+    # Copy these docs temporarily in a temp folder
+    TMPDIR=$(mktemp -d)
+    cp -r "_book/." $TMPDIR
     popd
 
-    # Push docs to parity-js, on gh-pages branch
-    echo "Cloning doc repo."
-    PROJECT_DIR=`pwd`
-    REMOTE_REPO="https://git:$GH_TOKEN@github.com/parity-js/$SCOPE.git"
-    cd /tmp # Clone that repo in the /tmp folder
-    git clone -b gh-pages $REMOTE_REPO new-$SCOPE-docs
-    cd new-$SCOPE-docs
-    cp -r "$PROJECT_DIR/packages/$SCOPE/docs/_book/." .
-    git add .
+    # Copy these docs back to the gh-pages branch
+    git reset --hard HEAD
+    git checkout gh-pages
+    rm -rf $SCOPE
+    cp -r $TMPDIR $SCOPE
 
-    echo "Pushing to doc repo."
-    set +e # Don't catch errors in the next lines
-    git commit -m "Update docs"
-    git push
-    set -e
-    cd ..
-    rm -rf new-$SCOPE-docs
-
-    # Go back to root
-    cd $PROJECT_DIR
+    # Return to original branch
+    git checkout master
 done
 
 # Docs are updated, we commit back to repo
-git checkout master
-git add .
-git commit -m "[ci skip] Update docs"
+# git checkout master
+# git add .
+# git commit -m "[ci skip] Update docs"
