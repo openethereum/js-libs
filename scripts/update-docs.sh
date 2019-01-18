@@ -38,6 +38,7 @@ git add .
 git commit -m "[ci skip] Update docs"
 
 # Copy the generated html files in gh-pages
+git fetch
 git checkout --track origin/gh-pages
 for SCOPE in "${ARRAY[@]}"
 do
