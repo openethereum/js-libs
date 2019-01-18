@@ -16,11 +16,19 @@ script:
   - yarn test:api
   - yarn test --silent --coverage --coverageReporters=text-lcov | coveralls ; test ${PIPESTATUS[0]} -eq 0
 before_deploy:
-  - npm install --global gitbook-cli lerna
   - echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" > .npmrc 2> /dev/null
+  - yarn install --global gitbook-cli
+  - yarn update-docs --scope=abi,light.js
 deploy:
-  provider: script
-  skip_cleanup: true
-  script: yarn update-docs --scope=abi,light.js && ./scripts/lerna-publish.sh
-  on:
-    branch: master
+  - provider: script
+    skip_cleanup: true
+    script: ./scripts/lerna-publish.sh
+    on:
+      branch: master
+  - provider: pages
+    github-token: $GH_TOKEN
+    keep-history: true
+    local-dir: gitbook # The directory to be pushed to gh-pages branch
+    skip-cleanup: true
+    on:
+      branch: master

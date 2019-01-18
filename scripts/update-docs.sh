@@ -15,7 +15,8 @@ fi
 # Find all scopes, separated by comma
 IFS=',' read -r -a ARRAY <<< "$SCOPES"
 
-TMPDIR=$(mktemp -d)
+# The directory of generated gitbook html files to be pushed to gh-pages
+GITBOOKDIR="$(pwd)/gitbook"
 
 # Generate docs in the SCOPE folder
 for SCOPE in "${ARRAY[@]}"
@@ -26,27 +27,13 @@ do
     cd "packages/$SCOPE"
     yarn docs
     cd docs
-    gitbook build
+    gitbook build # Outputs inside a local `_book` folder
 
     # Copy these generated html docs temporarily in a temp folder
-    cp -r "_book" "$TMPDIR/$SCOPE"
+    cp -r "_book" "$GITBOOKDIR/$SCOPE"
     popd # Go back to root folder
 done
 
 # Docs are updated on master, we commit back
 git add .
 git commit -m "[ci skip] Update docs"
-
-# Copy the generated html files in gh-pages
-git fetch
-git checkout --track origin/gh-pages
-for SCOPE in "${ARRAY[@]}"
-do
-  rm -rf $SCOPE
-  cp -r "$TMPDIR/$SCOPE" .
-done
-git add .
-git commit -m "[ci skip] Update docs"
-git push
-
-git checkout master
