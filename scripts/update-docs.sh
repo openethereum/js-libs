@@ -17,7 +17,7 @@ IFS=',' read -r -a ARRAY <<< "$SCOPES"
 
 # The directory of generated gitbook html files to be pushed to gh-pages
 GITBOOKDIR="$(pwd)/gitbook"
-mkdir GITBOOKDIR
+mkdir $GITBOOKDIR
 
 # Generate docs in the SCOPE folder
 for SCOPE in "${ARRAY[@]}"
