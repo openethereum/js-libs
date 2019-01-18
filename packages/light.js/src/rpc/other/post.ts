@@ -59,6 +59,7 @@ export function post$ (tx: Tx, passphrase: string, options: PostOptions = {}) {
       }
 
       const signedTransaction = await api.personal.signTransaction(tx, passphrase);
+      observer.next({ signed: signedTransaction.raw });
       postRaw$(signedTransaction.raw).subscribe(observer);
 
     } catch (error) {
@@ -88,7 +89,7 @@ export function postRaw$ (rawTx: string, options: PostOptions = {}) {
   const source$ = Observable.create(async (observer: Observer<TxStatus>) => {
     try {
       const transactionHash = await api.eth.sendRawTransaction(rawTx);
-      observer.next({ signed: transactionHash });
+      observer.next({ sent: transactionHash });
 
       const receipt = await getTransactionReceipt(transactionHash, api);
       observer.next({ confirmed: receipt });
