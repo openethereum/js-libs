@@ -15,43 +15,37 @@ fi
 # Find all scopes, separated by comma
 IFS=',' read -r -a ARRAY <<< "$SCOPES"
 
+TMPDIR=$(mktemp -d)
+
 # Generate docs in the SCOPE folder
 for SCOPE in "${ARRAY[@]}"
 do
-    echo "Docs for $SCOPE."
-
     # Generate latest version of docs
-    echo "Generating docs."
-    pushd .
+    echo "Generating docs for $SCOPE"
+    pushd . # We're in the root folder
     cd "packages/$SCOPE"
     yarn docs
     cd docs
     gitbook build
-    popd
 
-    # Push docs to parity-js, on gh-pages branch
-    echo "Cloning doc repo."
-    PROJECT_DIR=`pwd`
-    REMOTE_REPO="https://git:$GH_TOKEN@github.com/parity-js/$SCOPE.git"
-    cd /tmp # Clone that repo in the /tmp folder
-    git clone -b gh-pages $REMOTE_REPO new-$SCOPE-docs
-    cd new-$SCOPE-docs
-    cp -r "$PROJECT_DIR/packages/$SCOPE/docs/_book/." .
-    git add .
-
-    echo "Pushing to doc repo."
-    set +e # Don't catch errors in the next lines
-    git commit -m "Update docs"
-    git push
-    set -e
-    cd ..
-    rm -rf new-$SCOPE-docs
-
-    # Go back to root
-    cd $PROJECT_DIR
+    # Copy these generated html docs temporarily in a temp folder
+    cp -r "_book" "$TMPDIR/$SCOPE"
+    popd # Go back to root folder
 done
 
-# Docs are updated, we commit back to repo
-git checkout master
+# Docs are updated on master, we commit back
 git add .
 git commit -m "[ci skip] Update docs"
+
+# Copy the generated html files in gh-pages
+git checkout gh-pages
+for SCOPE in "${ARRAY[@]}"
+do
+  rm -rf $SCOPE
+  cp -r "$TMPDIR/$SCOPE" .
+done
+git add .
+git commit -m "[ci skip] Update docs"
+git push
+
+git checkout master
