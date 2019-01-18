@@ -22,7 +22,7 @@ do
 
     # Generate latest version of docs
     echo "Generating docs."
-    pushd .
+    pushd . # We're in the root folder
     cd "packages/$SCOPE"
     yarn docs
     cd docs
@@ -31,7 +31,7 @@ do
     # Copy these docs temporarily in a temp folder
     TMPDIR=$(mktemp -d)
     cp -r "_book/." $TMPDIR
-    popd
+    popd # Go back to root folder
 
     # Copy these docs back to the gh-pages branch
     git reset --hard HEAD
@@ -44,6 +44,5 @@ do
 done
 
 # Docs are updated, we commit back to repo
-# git checkout master
-# git add .
-# git commit -m "[ci skip] Update docs"
+git add .
+git commit -m "[ci skip] Update docs"
