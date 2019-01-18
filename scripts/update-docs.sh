@@ -21,23 +21,23 @@ TMPDIR=$(mktemp -d)
 for SCOPE in "${ARRAY[@]}"
 do
     # Generate latest version of docs
-    echo "Generating docs for $SCOPE."
+    echo "Generating docs for $SCOPE"
     pushd . # We're in the root folder
     cd "packages/$SCOPE"
     yarn docs
     cd docs
     gitbook build
 
-    # Copy these docs temporarily in a temp folder
+    # Copy these generated html docs temporarily in a temp folder
     cp -r "_book" "$TMPDIR/$SCOPE"
     popd # Go back to root folder
 done
 
-# Copy docs to gh-pages folder
+# Docs are updated on master, we commit back
+git add .
+git commit -m "[ci skip] Update docs"
+
+# Copy the generated html files in gh-pages
 git checkout gh-pages
 echo $SCOPES | tr ',' ' ' | rm -rf # Replace "abi,light.js" with "abi light.js"
 cp -r "$TMPDIR/*" .
-
-# Docs are updated, we commit back to repo on gh-pages
-git add .
-git commit -m "[ci skip] Update docs"
