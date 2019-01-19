@@ -1,0 +1,1058 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Tutorial Part 3: Manipulating RpcObservables · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="tutorial4-send-a-transaction.html" />
+    
+    
+    <link rel="prev" href="tutorial2-our-first-rpcobservable.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" >
+            
+                <span>
+            
+                    
+                    Getting started
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="../getting-started/installation.html">
+            
+                <a href="../getting-started/installation.html">
+            
+                    
+                    Installation
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="../getting-started/does-it-work-with-a-full-node.html">
+            
+                <a href="../getting-started/does-it-work-with-a-full-node.html">
+            
+                    
+                    Does this work with a full node?
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" >
+            
+                <span>
+            
+                    
+                    Guides
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="tutorial1-set-up-a-light-client.html">
+            
+                <a href="tutorial1-set-up-a-light-client.html">
+            
+                    
+                    Tutorial Part 1: Set up a Light Client
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="tutorial2-our-first-rpcobservable.html">
+            
+                <a href="tutorial2-our-first-rpcobservable.html">
+            
+                    
+                    Tutorial Part 2: Our First RpcObservable
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.3.3" data-path="tutorial3-manipulating-rpcobservables.html">
+            
+                <a href="tutorial3-manipulating-rpcobservables.html">
+            
+                    
+                    Tutorial Part 3: Manipulating RpcObservables
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4" data-path="tutorial4-send-a-transaction.html">
+            
+                <a href="tutorial4-send-a-transaction.html">
+            
+                    
+                    Tutorial Part 4: Send a Transaction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.5" data-path="tutorial5-work-with-contracts.html">
+            
+                <a href="tutorial5-work-with-contracts.html">
+            
+                    
+                    Tutorial Part 5: Work with Contracts
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.6" data-path="tutorial6-integrate-with-react.html">
+            
+                <a href="tutorial6-integrate-with-react.html">
+            
+                    
+                    Tutorial Part 6: Integrate with React
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.7" data-path="redux-integration.md">
+            
+                <span>
+            
+                    
+                    Redux Integration
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.8" data-path="angular-integration.md">
+            
+                <span>
+            
+                    
+                    Angular Integration
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" >
+            
+                <span>
+            
+                    
+                    Concepts
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="../concepts/light-client-development.html">
+            
+                <a href="../concepts/light-client-development.html">
+            
+                    
+                    Light Client Development
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="../concepts/reactive-programming.html">
+            
+                <a href="../concepts/reactive-programming.html">
+            
+                    
+                    Reactive Programming
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="../concepts/rpc-observables.html">
+            
+                <a href="../concepts/rpc-observables.html">
+            
+                    
+                    RpcObservables
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4" data-path="../concepts/rpc-observables-properties.html">
+            
+                <a href="../concepts/rpc-observables-properties.html">
+            
+                    
+                    RpcObservables Properties
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" >
+            
+                <span>
+            
+                    
+                    API
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="../api/modules/_api_.html">
+            
+                <a href="../api/modules/_api_.html">
+            
+                    
+                    api
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2" >
+            
+                <span>
+            
+                    
+                    FrequencyObservables
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.2.1" data-path="../api/modules/_frequency_accounts_.html">
+            
+                <a href="../api/modules/_frequency_accounts_.html">
+            
+                    
+                    frequency/accounts
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.2" data-path="../api/modules/_frequency_blocks_.html">
+            
+                <a href="../api/modules/_frequency_blocks_.html">
+            
+                    
+                    frequency/blocks
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.3" data-path="../api/modules/_frequency_frequency_.html">
+            
+                <a href="../api/modules/_frequency_frequency_.html">
+            
+                    
+                    frequency/frequency
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.4" data-path="../api/modules/_frequency_health_.html">
+            
+                <a href="../api/modules/_frequency_health_.html">
+            
+                    
+                    frequency/health
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.5" data-path="../api/modules/_frequency_other_.html">
+            
+                <a href="../api/modules/_frequency_other_.html">
+            
+                    
+                    frequency/other
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.6" data-path="../api/modules/_frequency_time_.html">
+            
+                <a href="../api/modules/_frequency_time_.html">
+            
+                    
+                    frequency/time
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.7" data-path="../api/modules/_frequency_utils_createpubsubobservable_.html">
+            
+                <a href="../api/modules/_frequency_utils_createpubsubobservable_.html">
+            
+                    
+                    frequency/utils/createPubsubObservable
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3" >
+            
+                <span>
+            
+                    
+                    RpcObservables
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.3.1" data-path="../api/modules/_rpc_eth_.html">
+            
+                <a href="../api/modules/_rpc_eth_.html">
+            
+                    
+                    rpc/eth
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3.2" data-path="../api/modules/_rpc_net_.html">
+            
+                <a href="../api/modules/_rpc_net_.html">
+            
+                    
+                    rpc/net
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3.3" data-path="../api/modules/_rpc_other_makecontract_.html">
+            
+                <a href="../api/modules/_rpc_other_makecontract_.html">
+            
+                    
+                    rpc/other/makeContract
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.3.3.1" data-path="../api/interfaces/_rpc_other_makecontract_.makecontract.html">
+            
+                <a href="../api/interfaces/_rpc_other_makecontract_.makecontract.html">
+            
+                    
+                    MakeContract
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3.4" data-path="../api/modules/_rpc_other_post_.html">
+            
+                <a href="../api/modules/_rpc_other_post_.html">
+            
+                    
+                    rpc/other/post
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.3.4.1" data-path="../api/interfaces/_rpc_other_post_.postoptions.html">
+            
+                <a href="../api/interfaces/_rpc_other_post_.postoptions.html">
+            
+                    
+                    PostOptions
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3.5" data-path="../api/modules/_rpc_parity_.html">
+            
+                <a href="../api/modules/_rpc_parity_.html">
+            
+                    
+                    rpc/parity
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3.6" data-path="../api/modules/_rpc_rpc_.html">
+            
+                <a href="../api/modules/_rpc_rpc_.html">
+            
+                    
+                    rpc/rpc
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3.7" data-path="../api/modules/_rpc_utils_createrpc_.html">
+            
+                <a href="../api/modules/_rpc_utils_createrpc_.html">
+            
+                    
+                    rpc/utils/createRpc
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.4" data-path="../api/modules/_types_.html">
+            
+                <a href="../api/modules/_types_.html">
+            
+                    
+                    Types
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.4.1" data-path="../api/interfaces/_types_.frequencyobservable.html">
+            
+                <a href="../api/interfaces/_types_.frequencyobservable.html">
+            
+                    
+                    FrequencyObservable
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.4.2" data-path="../api/interfaces/_types_.frequencyobservableoptions.html">
+            
+                <a href="../api/interfaces/_types_.frequencyobservableoptions.html">
+            
+                    
+                    FrequencyObservableOptions
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.4.3" data-path="../api/interfaces/_types_.makecontract.html">
+            
+                <a href="../api/interfaces/_types_.makecontract.html">
+            
+                    
+                    MakeContract
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.4.4" data-path="../api/interfaces/_types_.metadata.html">
+            
+                <a href="../api/interfaces/_types_.metadata.html">
+            
+                    
+                    Metadata
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.4.5" data-path="../api/interfaces/_types_.rpcobservable.html">
+            
+                <a href="../api/interfaces/_types_.rpcobservable.html">
+            
+                    
+                    RpcObservable
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.4.6" data-path="../api/interfaces/_types_.rpcobservableoptions.html">
+            
+                <a href="../api/interfaces/_types_.rpcobservableoptions.html">
+            
+                    
+                    RpcObservableOptions
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.4.7" data-path="../api/interfaces/_types_.txstatus.html">
+            
+                <a href="../api/interfaces/_types_.txstatus.html">
+            
+                    
+                    TxStatus
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.5" >
+            
+                <span>
+            
+                    
+                    Utils
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.5.1" data-path="../api/modules/_utils_isloading_.html">
+            
+                <a href="../api/modules/_utils_isloading_.html">
+            
+                    
+                    utils/isLoading
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.5.2" data-path="../api/modules/_utils_isobservable_.html">
+            
+                <a href="../api/modules/_utils_isobservable_.html">
+            
+                    
+                    utils/isObservable
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.5.3" data-path="../api/modules/_utils_operators_distinctreplayrefcount_.html">
+            
+                <a href="../api/modules/_utils_operators_distinctreplayrefcount_.html">
+            
+                    
+                    utils/operators/distinctReplayRefCount
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.5.4" data-path="../api/modules/_utils_operators_distinctvalues_.html">
+            
+                <a href="../api/modules/_utils_operators_distinctvalues_.html">
+            
+                    
+                    utils/operators/distinctValues
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.5.5" data-path="../api/modules/_utils_operators_switchmappromise_.html">
+            
+                <a href="../api/modules/_utils_operators_switchmappromise_.html">
+            
+                    
+                    utils/operators/switchMapPromise
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.5.6" data-path="../api/modules/_utils_operators_withoutloading_.html">
+            
+                <a href="../api/modules/_utils_operators_withoutloading_.html">
+            
+                    
+                    utils/operators/withoutLoading
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.5.7" data-path="../api/modules/_utils_testhelpers_mockapi_.html">
+            
+                <a href="../api/modules/_utils_testhelpers_mockapi_.html">
+            
+                    
+                    utils/testHelpers/mockApi
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.5.8" data-path="../api/modules/_utils_testhelpers_mockrpc_.html">
+            
+                <a href="../api/modules/_utils_testhelpers_mockrpc_.html">
+            
+                    
+                    utils/testHelpers/mockRpc
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >Tutorial Part 3: Manipulating RpcObservables</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="tutorial-part-3-manipulating-rpcobservables">Tutorial Part 3: Manipulating RpcObservables</h1>
+<h2 id="loading-state-of-a-rpcobservable">Loading state of a RpcObservable</h2>
+<p>In the <a href="https://codesandbox.io/s/wk7y9n77wl" target="_blank">previous live demo</a>, you may have noticed that when fetching balance, the console logs <code>Symbol(Fetching RPC...)</code>, whereas <code>blockNumber$</code> doesn&apos;t.</p>
+<p>This is because <code>balanceOf$</code> is a RpcObservable that needs to make a <em>network call</em>. The Light Client constantly listens to new headers from its peers, so it holds the &quot;latest block number&quot; information in its database, and can directly transfer this information to the dapp. However, if the Light Client wants to know the balance of an account (or anything that lives in the state), then it needs to make a network requests to ask its peers for this piece of information.</p>
+<p>This is what happens with <code>balanceOf$</code>. On every new block, <code>balanceOf$</code> makes a JSONRPC request (<code>eth_getBalance</code>), and the Light Client relays this request to the network. This call has some latency, and the latency is shown with <code>Symbol(Fetching RPC...)</code>.</p>
+<p>Concretely, in your app, a possible UX would be to show a loading spinner while we receive <code>Symbol(Fetching RPC...)</code> from the RpcObservable.</p>
+<h3 id="removing-the-loading-state">Removing the loading state</h3>
+<p>However, if this behavior is not desirable for you, the you can add the <code>withoutLoading</code> operator:</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">import</span> { withoutLoading } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@parity/light.js&apos;</span>;
+
+balanceOf$(<span class="hljs-string">&apos;0x407d73d8a49eeb85d32cf465507dd71d507100c1&apos;</span>)
+  .pipe(withoutLoading())
+  .subscribe(balance =&gt; <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;balance&apos;</span>, balance));
+</code></pre>
+<p>In this case, the <code>Symbol(Fetching RPC...)</code> will never be logged, and you will only be notified when the balance actually changes.</p>
+<p>See here for a working example: <a href="https://codesandbox.io/s/z6549wqm5l" target="_blank">https://codesandbox.io/s/z6549wqm5l</a>.</p>
+<p><code>withoutLoading()</code> here is what we call a RxJS <em>operator</em>. It modifies the result each time an Observable fires. Let&apos;s see some other operators.</p>
+<h2 id="operators-on-observables">Operators on Observables</h2>
+<p>Since <code>@parity/light.js</code> relies heavily on RxJS Observables, all the tools for playing with Observables are available for you to use.</p>
+<h3 id="format-the-balance-nicely">Format the balance nicely</h3>
+<pre><code class="lang-javascript"><span class="hljs-keyword">import</span> { map } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;rxjs/operators&apos;</span>;
+<span class="hljs-keyword">import</span> { withoutLoading } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@parity/light.js&apos;</span>;
+
+balanceOf$(<span class="hljs-string">&apos;0x407d73d8a49eeb85d32cf465507dd71d507100c1&apos;</span>)
+  .pipe(
+    withoutLoading(), <span class="hljs-comment">// We can chain operators</span>
+    map(balance =&gt; balance.toFormat(<span class="hljs-number">2</span>)), <span class="hljs-comment">// Format the number nicely</span>
+    map(balance =&gt; <span class="hljs-string">`<span class="hljs-subst">${balance}</span> ETH`</span>) <span class="hljs-comment">// Append &apos;ETH&apos;</span>
+  )
+  .subscribe(balance =&gt; <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;balance&apos;</span>, balance));
+
+<span class="hljs-comment">// Logs:</span>
+<span class="hljs-comment">// balance 2,000.00 ETH</span>
+<span class="hljs-comment">// ...</span>
+</code></pre>
+<p>See <a href="https://codesandbox.io/s/xp87z0xjmo" target="_blank">https://codesandbox.io/s/xp87z0xjmo</a>.</p>
+<h3 id="only-log-pair-block-numbers">Only log pair block numbers</h3>
+<pre><code class="lang-javascript"><span class="hljs-keyword">import</span> { map, filter } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;rxjs/operators&apos;</span>;
+
+blockNumber$()
+  .pipe(
+    map(v =&gt; +v), <span class="hljs-comment">// Convert BigNumber to number</span>
+    filter(blockNumber =&gt; blockNumber % <span class="hljs-number">2</span> === <span class="hljs-number">0</span>) <span class="hljs-comment">// Filter out pair numbers</span>
+  )
+  .subscribe(blockNumber =&gt; <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;blockNumber&apos;</span>, blockNumber)); <span class="hljs-comment">// Same as before, log the result</span>
+
+<span class="hljs-comment">// Logs:</span>
+<span class="hljs-comment">// blockNumber 8548408</span>
+<span class="hljs-comment">// blockNumber 8548410</span>
+<span class="hljs-comment">// ...</span>
+</code></pre>
+<p>See <a href="https://codesandbox.io/s/v37j38o38y" target="_blank">https://codesandbox.io/s/v37j38o38y</a>.</p>
+<h3 id="get-the-balance-of-the-current-account">Get the balance of the current account</h3>
+<pre><code class="lang-javascript">defaultAccount$()
+  .pipe(
+    switchMap(publicAddress =&gt; balanceOf$(publicAddress)),
+    withoutLoading(),
+    map(value =&gt; +value) <span class="hljs-comment">// Return number instead of BigNumber</span>
+  )
+  .subscribe(<span class="hljs-built_in">console</span>.log);
+
+<span class="hljs-comment">// Logs:</span>
+<span class="hljs-comment">// 2</span>
+<span class="hljs-comment">// ...</span>
+</code></pre>
+<h3 id="conclusion">Conclusion</h3>
+<p>RxJS has <a href="http://reactivex.io/documentation/operators.html" target="_blank">a lot of operators</a> which you can use to combine the RpcObservables to build your app&apos;s logic. <code>@parity/light.js</code> provides the basic RpcObservables, and we let you combine them.</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="tutorial2-our-first-rpcobservable.html" class="navigation navigation-prev " aria-label="Previous page: Tutorial Part 2: Our First RpcObservable">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="tutorial4-send-a-transaction.html" class="navigation navigation-next " aria-label="Next page: Tutorial Part 4: Send a Transaction">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Tutorial Part 3: Manipulating RpcObservables","level":"1.3.3","depth":2,"next":{"title":"Tutorial Part 4: Send a Transaction","level":"1.3.4","depth":2,"path":"guides/tutorial4-send-a-transaction.md","ref":"guides/tutorial4-send-a-transaction.md","articles":[]},"previous":{"title":"Tutorial Part 2: Our First RpcObservable","level":"1.3.2","depth":2,"path":"guides/tutorial2-our-first-rpcobservable.md","ref":"guides/tutorial2-our-first-rpcobservable.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"guides/tutorial3-manipulating-rpcobservables.md","mtime":"2019-01-19T11:27:03.152Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-01-19T11:33:08.423Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
