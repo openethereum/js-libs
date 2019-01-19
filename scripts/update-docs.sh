@@ -36,5 +36,6 @@ do
 done
 
 # Docs are updated on master, we commit back
+git checkout master
 git add .
 git commit -m "[ci skip] Update docs"
