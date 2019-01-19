@@ -20,11 +20,11 @@ before_deploy:
   - yarn global add gitbook-cli
   - yarn update-docs --scope=abi,light.js
 deploy:
-  - provider: script
-    skip_cleanup: true
-    script: ./scripts/lerna-publish.sh
-    on:
-      branch: master
+  # - provider: script
+  #   skip_cleanup: true
+  #   script: ./scripts/lerna-publish.sh
+  #   on:
+  #     branch: master
   - provider: pages
     github-token: $GH_TOKEN
     keep-history: true
