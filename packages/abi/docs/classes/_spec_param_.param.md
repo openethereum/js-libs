@@ -12,7 +12,7 @@
 
 ⊕ **new Param**(name: *`string` | `undefined`*, type: *`string`*): [Param](_spec_param_.param.md)
 
-*Defined in [spec/param.ts:12](https://github.com/paritytech/js-libs/blob/fdf36ef/packages/abi/src/spec/param.ts#L12)*
+*Defined in [spec/param.ts:12](https://github.com/paritytech/js-libs/blob/7d26465/packages/abi/src/spec/param.ts#L12)*
 
 **Parameters:**
 
@@ -33,7 +33,7 @@ ___
 
 getkind(): [ParamType](_spec_paramtype_paramtype_.paramtype.md)
 
-*Defined in [spec/param.ts:33](https://github.com/paritytech/js-libs/blob/fdf36ef/packages/abi/src/spec/param.ts#L33)*
+*Defined in [spec/param.ts:33](https://github.com/paritytech/js-libs/blob/7d26465/packages/abi/src/spec/param.ts#L33)*
 
 **Returns:** [ParamType](_spec_paramtype_paramtype_.paramtype.md)
 
@@ -44,7 +44,7 @@ ___
 
 getname(): `undefined` | `string`
 
-*Defined in [spec/param.ts:29](https://github.com/paritytech/js-libs/blob/fdf36ef/packages/abi/src/spec/param.ts#L29)*
+*Defined in [spec/param.ts:29](https://github.com/paritytech/js-libs/blob/7d26465/packages/abi/src/spec/param.ts#L29)*
 
 **Returns:** `undefined` | `string`
 
@@ -58,7 +58,7 @@ ___
 
 ▸ **toParams**(params: *([AbiInput](../interfaces/_types_.abiinput.md) | [Param](_spec_param_.param.md))[]*): [Param](_spec_param_.param.md)[]
 
-*Defined in [spec/param.ts:19](https://github.com/paritytech/js-libs/blob/fdf36ef/packages/abi/src/spec/param.ts#L19)*
+*Defined in [spec/param.ts:19](https://github.com/paritytech/js-libs/blob/7d26465/packages/abi/src/spec/param.ts#L19)*
 
 **Parameters:**
 
