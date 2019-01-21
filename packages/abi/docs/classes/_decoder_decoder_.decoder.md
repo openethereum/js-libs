@@ -12,7 +12,7 @@
 
 ▸ **decode**(params: *[ParamType](_spec_paramtype_paramtype_.paramtype.md)[] | `undefined`*, data?: *`undefined` | `string`*): [Token](_token_token_.token.md)[]
 
-*Defined in [decoder/decoder.ts:20](https://github.com/paritytech/js-libs/blob/3946ccd/packages/abi/src/decoder/decoder.ts#L20)*
+*Defined in [decoder/decoder.ts:20](https://github.com/paritytech/js-libs/blob/6116e90/packages/abi/src/decoder/decoder.ts#L20)*
 
 **Parameters:**
 
@@ -30,7 +30,7 @@ ___
 
 ▸ **decodeParam**(param: *[ParamType](_spec_paramtype_paramtype_.paramtype.md)*, slices: *[Slices](../modules/_types_.md#slices)*, offset?: *`number`*): [DecodeResult](_decoder_decoderesult_.decoderesult.md)
 
-*Defined in [decoder/decoder.ts:59](https://github.com/paritytech/js-libs/blob/3946ccd/packages/abi/src/decoder/decoder.ts#L59)*
+*Defined in [decoder/decoder.ts:59](https://github.com/paritytech/js-libs/blob/6116e90/packages/abi/src/decoder/decoder.ts#L59)*
 
 **Parameters:**
 
@@ -49,7 +49,7 @@ ___
 
 ▸ **peek**(slices: *[Slices](../modules/_types_.md#slices)*, position: *`number`*): `string`
 
-*Defined in [decoder/decoder.ts:36](https://github.com/paritytech/js-libs/blob/3946ccd/packages/abi/src/decoder/decoder.ts#L36)*
+*Defined in [decoder/decoder.ts:36](https://github.com/paritytech/js-libs/blob/6116e90/packages/abi/src/decoder/decoder.ts#L36)*
 
 **Parameters:**
 
@@ -67,7 +67,7 @@ ___
 
 ▸ **takeBytes**(slices: *[Slices](../modules/_types_.md#slices)*, position: *`number`*, length: *`number`*): [BytesTaken](_decoder_bytestaken_.bytestaken.md)
 
-*Defined in [decoder/decoder.ts:44](https://github.com/paritytech/js-libs/blob/3946ccd/packages/abi/src/decoder/decoder.ts#L44)*
+*Defined in [decoder/decoder.ts:44](https://github.com/paritytech/js-libs/blob/6116e90/packages/abi/src/decoder/decoder.ts#L44)*
 
 **Parameters:**
 
