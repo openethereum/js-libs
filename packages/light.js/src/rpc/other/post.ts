@@ -48,11 +48,11 @@ function getTransactionReceipt (transactionHash: string, api: any) {
  * @return - The status of the transaction: (estimated), signed, sent, confirmed
  */
 export function post$ (tx: Tx, options: PostOptions) {
-  const { estimate, passphrase, provider } = options;
-  if (!passphrase) {
+  if (!options || !options.passphrase) {
     throw new Error('The passphrase is missing from the options');
   }
 
+  const { estimate, passphrase, provider } = options;
   const api = provider ? createApiFromProvider(provider) : getApi();
 
   const source$ = Observable.create(async (observer: Observer<TxStatus>) => {

@@ -29,20 +29,22 @@ const testRpc = (name: string, rpc$: RpcObservable<any, any>) =>
       setApi(resolveApi());
     });
 
+    const options = name === 'post$' ? { passphrase: 'passphrase' } : {};
+
     it('should be a function', () => {
       expect(typeof rpc$).toBe('function');
     });
 
     it('should return an Observable', () => {
-      expect(isObservable(rpc$({}))).toBe(true);
+      expect(isObservable(rpc$({}, options))).toBe(true);
     });
 
     it('result Observable should be subscribable', () => {
-      expect(() => rpc$({}).subscribe()).not.toThrow();
+      expect(() => rpc$({}, options).subscribe()).not.toThrow();
     });
 
     it('result Observable should return values', done => {
-      rpc$({}).subscribe(data => {
+      rpc$({}, options).subscribe(data => {
         expect(data).not.toBeNull();
         done();
       });
