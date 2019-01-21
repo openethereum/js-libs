@@ -13,6 +13,7 @@ import { RpcObservableOptions, Tx, TxStatus } from '../../types';
 
 interface PostOptions extends RpcObservableOptions {
   estimate?: boolean;
+  passphrase: String;
 }
 
 function getTransactionReceipt (transactionHash: string, api: any) {
@@ -42,12 +43,16 @@ function getTransactionReceipt (transactionHash: string, api: any) {
  * the transaction.
  *
  * @param tx - Transaction object
- * @param passphrase - Passphrase of the account
- * @param options? - Options to pass to the {@link RpcObservable}.
- * @return - The status of the transaction.
+ * @param options - Options to pass to the {@link RpcObservable}.
+ * @param options.passphrase - Passphrase of the account
+ * @return - The status of the transaction: (estimated), signed, sent, confirmed
  */
-export function post$ (tx: Tx, passphrase: string, options: PostOptions = {}) {
-  const { estimate, provider } = options;
+export function post$ (tx: Tx, options: PostOptions) {
+  const { estimate, passphrase, provider } = options;
+  if (!passphrase) {
+    throw new Error('The passphrase is missing from the options');
+  }
+
   const api = provider ? createApiFromProvider(provider) : getApi();
 
   const source$ = Observable.create(async (observer: Observer<TxStatus>) => {
@@ -80,9 +85,9 @@ export function post$ (tx: Tx, passphrase: string, options: PostOptions = {}) {
  *
  * @param rawTx - Raw transaction
  * @param options? - Options to pass to the {@link RpcObservable}.
- * @return - The status of the transaction.
+ * @return - The status of the transaction: sent, confirmed
  */
-export function postRaw$ (rawTx: string, options: PostOptions = {}) {
+export function postRaw$ (rawTx: string, options: RpcObservableOptions = {}) {
   const { provider } = options;
   const api = provider ? createApiFromProvider(provider) : getApi();
 

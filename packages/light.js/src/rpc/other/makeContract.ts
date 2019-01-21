@@ -45,14 +45,13 @@ const getContract = memoizee(
  * @ignore
  * @param address - The contract address.
  * @param abiJson - The contract abi.
- * @param passphrase - Passphrase of the account creating the contract
  * @param api - The api Object.
  * @return - An object whose keys are all the functions of the
  * contract, and each function returns an Observable which will fire when the
  * function resolves.
  */
 const makeContractWithApi = memoizee(
-  (address: Address, abiJson: any[], passphrase: string, api: any) => {
+  (address: Address, abiJson: any[], api: any) => {
     const abi = new Abi(abiJson); // use types from @parity/abi
 
     // Variable result will hold the final object to return
@@ -90,6 +89,8 @@ const makeContractWithApi = memoizee(
             ]
           })({ provider: api.provider })(...args);
         } else {
+          const { estimate, passphrase, ...txFields } = options;
+
           return post$({
             to: address,
             data: abiEncode(
@@ -97,8 +98,8 @@ const makeContractWithApi = memoizee(
               method.inputs.map(({ kind: { type } }: any) => type), // TODO Use @parity/api types
               args
             ),
-            ...options
-          }, passphrase);
+            ...txFields
+          }, { estimate, passphrase });
         }
       };
     });
@@ -112,7 +113,6 @@ const makeContractWithApi = memoizee(
  *
  * @param address - The contract address.
  * @param abiJson - The contract abi.
- * @param passphrase - Passphrase of the account creating the contract
  * @param options - The options to pass in when creating the contract.
  * @return - An object whose keys are all the functions of the
  * contract, and each function return an Observable which will fire when the
@@ -121,11 +121,10 @@ const makeContractWithApi = memoizee(
 export const makeContract = (
   address: Address,
   abiJson: any[],
-  passphrase: string,
   options: { provider?: any } = {}
 ) => {
   const { provider } = options;
   const api = provider ? createApiFromProvider(provider) : getApi();
 
-  return makeContractWithApi(address, abiJson, passphrase, api);
+  return makeContractWithApi(address, abiJson, api);
 };
