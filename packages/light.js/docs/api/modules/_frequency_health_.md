@@ -8,7 +8,7 @@
 
 ▸ **onSyncingChanged$**(options?: *[FrequencyObservableOptions](../interfaces/_types_.frequencyobservableoptions.md)*): `Observable`<`false` | `object`>
 
-*Defined in [frequency/health.ts:19](https://github.com/paritytech/js-libs/blob/6116e90/packages/light.js/src/frequency/health.ts#L19)*
+*Defined in [frequency/health.ts:19](https://github.com/paritytech/js-libs/blob/4f9b60d/packages/light.js/src/frequency/health.ts#L19)*
 
 Observable that emits when syncing status changes.
 
