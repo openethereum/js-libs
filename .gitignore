@@ -17,9 +17,9 @@ lib
 # os-generated files
 .DS_Store
 
-# generated gitbook
+# generated docs
 _book
-gitbook
+gh_pages
 
 # npm
 .npmrc

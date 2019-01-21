@@ -18,7 +18,7 @@ script:
 before_deploy:
   - echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" > .npmrc 2> /dev/null
   - yarn global add gitbook-cli
-  - yarn update-docs --scope=abi,light.js
+  - yarn update-docs
 deploy:
   - provider: script
     skip_cleanup: true
@@ -28,7 +28,7 @@ deploy:
   - provider: pages
     github-token: $GH_TOKEN
     keep-history: true
-    local-dir: gitbook # The directory to be pushed to gh-pages branch
+    local-dir: gh_pages # The directory to be pushed to gh-pages branch
     skip-cleanup: true
     on:
       branch: master
