@@ -740,10 +740,10 @@
     "@types/prop-types" "*"
     csstype "^2.2.0"
 
-"@types/recompose@^0.26.4":
-  version "0.26.5"
-  resolved "https://registry.yarnpkg.com/@types/recompose/-/recompose-0.26.5.tgz#8496b63c535a60c3584b8b0aca54bfb86679ed70"
-  integrity sha512-Il5stz/Z3pVIMl48pyggl6nnhRLQ8N8YN8hi0Anm0M5UjVh2uMSY0ah2vzwZZKxnca4NzyJArloSjsJ9fL2vWw==
+"@types/recompose@^0.30.2":
+  version "0.30.2"
+  resolved "https://registry.yarnpkg.com/@types/recompose/-/recompose-0.30.2.tgz#3bdb7fd37460242ef82f6d6a7428e3c96d3a1b9a"
+  integrity sha512-O22WmEWoA2z2nbGmX4LqZ9zKzInN+KoyN0Stks9PMhj4GqDDwy2x3Gh0apNhCMzy3HLrCPkb+mH2QxZNtK5grw==
   dependencies:
     "@types/react" "*"
 
