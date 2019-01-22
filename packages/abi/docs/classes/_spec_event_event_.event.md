@@ -12,7 +12,7 @@
 
 ⊕ **new Event**(abi: *[AbiItem](../interfaces/_types_.abiitem.md)*): [Event](_spec_event_event_.event.md)
 
-*Defined in [spec/event/event.ts:20](https://github.com/paritytech/js-libs/blob/872d566/packages/abi/src/spec/event/event.ts#L20)*
+*Defined in [spec/event/event.ts:20](https://github.com/paritytech/js-libs/blob/ad78d68/packages/abi/src/spec/event/event.ts#L20)*
 
 **Parameters:**
 
@@ -32,7 +32,7 @@ ___
 
 getanonymous(): `boolean`
 
-*Defined in [spec/event/event.ts:36](https://github.com/paritytech/js-libs/blob/872d566/packages/abi/src/spec/event/event.ts#L36)*
+*Defined in [spec/event/event.ts:36](https://github.com/paritytech/js-libs/blob/ad78d68/packages/abi/src/spec/event/event.ts#L36)*
 
 **Returns:** `boolean`
 
@@ -43,7 +43,7 @@ ___
 
 getid(): `string`
 
-*Defined in [spec/event/event.ts:40](https://github.com/paritytech/js-libs/blob/872d566/packages/abi/src/spec/event/event.ts#L40)*
+*Defined in [spec/event/event.ts:40](https://github.com/paritytech/js-libs/blob/ad78d68/packages/abi/src/spec/event/event.ts#L40)*
 
 **Returns:** `string`
 
@@ -54,7 +54,7 @@ ___
 
 getinputs(): [EventParam](_spec_event_eventparam_.eventparam.md)[]
 
-*Defined in [spec/event/event.ts:44](https://github.com/paritytech/js-libs/blob/872d566/packages/abi/src/spec/event/event.ts#L44)*
+*Defined in [spec/event/event.ts:44](https://github.com/paritytech/js-libs/blob/ad78d68/packages/abi/src/spec/event/event.ts#L44)*
 
 **Returns:** [EventParam](_spec_event_eventparam_.eventparam.md)[]
 
@@ -65,7 +65,7 @@ ___
 
 getname(): `undefined` | `string`
 
-*Defined in [spec/event/event.ts:48](https://github.com/paritytech/js-libs/blob/872d566/packages/abi/src/spec/event/event.ts#L48)*
+*Defined in [spec/event/event.ts:48](https://github.com/paritytech/js-libs/blob/ad78d68/packages/abi/src/spec/event/event.ts#L48)*
 
 **Returns:** `undefined` | `string`
 
@@ -76,7 +76,7 @@ ___
 
 getsignature(): `string`
 
-*Defined in [spec/event/event.ts:52](https://github.com/paritytech/js-libs/blob/872d566/packages/abi/src/spec/event/event.ts#L52)*
+*Defined in [spec/event/event.ts:52](https://github.com/paritytech/js-libs/blob/ad78d68/packages/abi/src/spec/event/event.ts#L52)*
 
 **Returns:** `string`
 
@@ -90,7 +90,7 @@ ___
 
 ▸ **decodeLog**(topics: *`string`[]*, data: *`string`*): [DecodedLog](_spec_event_decodedlog_.decodedlog.md)
 
-*Defined in [spec/event/event.ts:68](https://github.com/paritytech/js-libs/blob/872d566/packages/abi/src/spec/event/event.ts#L68)*
+*Defined in [spec/event/event.ts:68](https://github.com/paritytech/js-libs/blob/ad78d68/packages/abi/src/spec/event/event.ts#L68)*
 
 **Parameters:**
 
@@ -108,7 +108,7 @@ ___
 
 ▸ **indexedParams**(indexed: *`boolean`*): [EventParam](_spec_event_eventparam_.eventparam.md)[]
 
-*Defined in [spec/event/event.ts:64](https://github.com/paritytech/js-libs/blob/872d566/packages/abi/src/spec/event/event.ts#L64)*
+*Defined in [spec/event/event.ts:64](https://github.com/paritytech/js-libs/blob/ad78d68/packages/abi/src/spec/event/event.ts#L64)*
 
 **Parameters:**
 
@@ -125,7 +125,7 @@ ___
 
 ▸ **inputParamNames**(): (`undefined` | `string`)[]
 
-*Defined in [spec/event/event.ts:60](https://github.com/paritytech/js-libs/blob/872d566/packages/abi/src/spec/event/event.ts#L60)*
+*Defined in [spec/event/event.ts:60](https://github.com/paritytech/js-libs/blob/ad78d68/packages/abi/src/spec/event/event.ts#L60)*
 
 **Returns:** (`undefined` | `string`)[]
 
@@ -136,7 +136,7 @@ ___
 
 ▸ **inputParamTypes**(): [ParamType](_spec_paramtype_paramtype_.paramtype.md)[]
 
-*Defined in [spec/event/event.ts:56](https://github.com/paritytech/js-libs/blob/872d566/packages/abi/src/spec/event/event.ts#L56)*
+*Defined in [spec/event/event.ts:56](https://github.com/paritytech/js-libs/blob/ad78d68/packages/abi/src/spec/event/event.ts#L56)*
 
 **Returns:** [ParamType](_spec_paramtype_paramtype_.paramtype.md)[]
 
