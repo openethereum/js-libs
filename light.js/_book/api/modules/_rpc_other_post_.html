@@ -925,7 +925,7 @@
 <p><a id="gettransactionreceipt"></a></p>
 <h2 id="gettransactionreceipt">getTransactionReceipt</h2>
 <p>&#x25B8; <strong>getTransactionReceipt</strong>(transactionHash: <em><code>string</code></em>, api: <em><code>any</code></em>): <code>Promise</code>&lt;<code>any</code>&gt;</p>
-<p><em>Defined in <a href="https://github.com/paritytech/js-libs/blob/7641688/packages/light.js/src/rpc/other/post.ts#L18" target="_blank">rpc/other/post.ts:18</a></em></p>
+<p><em>Defined in <a href="https://github.com/paritytech/js-libs/blob/79aecff/packages/light.js/src/rpc/other/post.ts#L19" target="_blank">rpc/other/post.ts:19</a></em></p>
 <p><strong>Parameters:</strong></p>
 <table>
 <thead>
@@ -949,41 +949,41 @@
 <hr>
 <p><a id="post_"></a></p>
 <h2 id="post">post$</h2>
-<p>&#x25B8; <strong>post$</strong>(tx: <em><a href="_types_.html#tx">Tx</a></em>, options?: <em><a href="../interfaces/_rpc_other_post_.postoptions.html">PostOptions</a></em>): <code>Observable</code>&lt;<a href="../interfaces/_types_.txstatus.html">TxStatus</a>&gt;</p>
-<p><em>Defined in <a href="https://github.com/paritytech/js-libs/blob/7641688/packages/light.js/src/rpc/other/post.ts#L47" target="_blank">rpc/other/post.ts:47</a></em></p>
+<p>&#x25B8; <strong>post$</strong>(tx: <em><a href="_types_.html#tx">Tx</a></em>, options: <em><a href="../interfaces/_rpc_other_post_.postoptions.html">PostOptions</a></em>): <code>Observable</code>&lt;<a href="../interfaces/_types_.txstatus.html">TxStatus</a>&gt;</p>
+<p><em>Defined in <a href="https://github.com/paritytech/js-libs/blob/79aecff/packages/light.js/src/rpc/other/post.ts#L50" target="_blank">rpc/other/post.ts:50</a></em></p>
 <p>Post a transaction to the network.</p>
-<p>Calls, in this order, <code>eth_estimateGas</code>, <code>parity_postTransaction</code>, <code>parity_checkRequest</code> and <code>eth_getTransactionReceipt</code> to get the status of the transaction.</p>
+<p>Calls, in this order, <code>eth_estimateGas</code>, <code>personal_signTransaction</code>, <code>eth_sendRawTransaction</code> and <code>eth_getTransactionReceipt</code> to get the status of the transaction.</p>
 <p><strong>Parameters:</strong></p>
 <table>
 <thead>
 <tr>
 <th>Name</th>
 <th>Type</th>
-<th>Default value</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>tx</td>
 <td><a href="_types_.html#tx">Tx</a></td>
-<td>-</td>
+<td>Transaction object</td>
 </tr>
 <tr>
-<td><code>Default value</code> options</td>
+<td>options</td>
 <td><a href="../interfaces/_rpc_other_post_.postoptions.html">PostOptions</a></td>
-<td>{}</td>
+<td>Options to pass to the <a href="../interfaces/_types_.rpcobservable.html">RpcObservable</a>.</td>
 </tr>
 </tbody>
 </table>
 <p><strong>Returns:</strong> <code>Observable</code>&lt;<a href="../interfaces/_types_.txstatus.html">TxStatus</a>&gt;</p>
 <ul>
-<li>The status of the transaction.</li>
+<li>The status of the transaction: (estimated), signed, sent, confirmed</li>
 </ul>
 <hr>
 <p><a id="postraw_"></a></p>
 <h2 id="postraw">postRaw$</h2>
-<p>&#x25B8; <strong>postRaw$</strong>(tx: <em><code>string</code></em>, options?: <em><a href="../interfaces/_rpc_other_post_.postoptions.html">PostOptions</a></em>): <code>Observable</code>&lt;<a href="../interfaces/_types_.txstatus.html">TxStatus</a>&gt;</p>
-<p><em>Defined in <a href="https://github.com/paritytech/js-libs/blob/7641688/packages/light.js/src/rpc/other/post.ts#L93" target="_blank">rpc/other/post.ts:93</a></em></p>
+<p>&#x25B8; <strong>postRaw$</strong>(rawTx: <em><code>string</code></em>, options?: <em><a href="../interfaces/_types_.rpcobservableoptions.html">RpcObservableOptions</a></em>): <code>Observable</code>&lt;<a href="../interfaces/_types_.txstatus.html">TxStatus</a>&gt;</p>
+<p><em>Defined in <a href="https://github.com/paritytech/js-libs/blob/79aecff/packages/light.js/src/rpc/other/post.ts#L90" target="_blank">rpc/other/post.ts:90</a></em></p>
 <p>Post a raw (signed) transaction to the network.</p>
 <p>Calls, in this order, <code>eth_sendRawTransaction</code> and <code>eth_getTransactionReceipt</code> to get the status of the transaction.</p>
 <p><strong>Parameters:</strong></p>
@@ -993,24 +993,26 @@
 <th>Name</th>
 <th>Type</th>
 <th>Default value</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>tx</td>
+<td>rawTx</td>
 <td><code>string</code></td>
 <td>-</td>
+<td>Raw transaction</td>
 </tr>
 <tr>
 <td><code>Default value</code> options</td>
-<td><a href="../interfaces/_rpc_other_post_.postoptions.html">PostOptions</a></td>
+<td><a href="../interfaces/_types_.rpcobservableoptions.html">RpcObservableOptions</a></td>
 <td>{}</td>
 </tr>
 </tbody>
 </table>
 <p><strong>Returns:</strong> <code>Observable</code>&lt;<a href="../interfaces/_types_.txstatus.html">TxStatus</a>&gt;</p>
 <ul>
-<li>The status of the transaction.</li>
+<li>The status of the transaction: sent, confirmed</li>
 </ul>
 <hr>
 
@@ -1056,7 +1058,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"rpc/other/post","level":"1.5.3.4","depth":3,"next":{"title":"PostOptions","level":"1.5.3.4.1","depth":4,"path":"api/interfaces/_rpc_other_post_.postoptions.md","ref":"api/interfaces/_rpc_other_post_.postoptions.md","articles":[]},"previous":{"title":"MakeContract","level":"1.5.3.3.1","depth":4,"path":"api/interfaces/_rpc_other_makecontract_.makecontract.md","ref":"api/interfaces/_rpc_other_makecontract_.makecontract.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"api/modules/_rpc_other_post_.md","mtime":"2019-01-21T14:08:45.389Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-01-21T14:08:46.515Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"rpc/other/post","level":"1.5.3.4","depth":3,"next":{"title":"PostOptions","level":"1.5.3.4.1","depth":4,"path":"api/interfaces/_rpc_other_post_.postoptions.md","ref":"api/interfaces/_rpc_other_post_.postoptions.md","articles":[]},"previous":{"title":"MakeContract","level":"1.5.3.3.1","depth":4,"path":"api/interfaces/_rpc_other_makecontract_.makecontract.md","ref":"api/interfaces/_rpc_other_makecontract_.makecontract.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"api/modules/_rpc_other_post_.md","mtime":"2019-01-22T15:16:49.041Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-01-22T15:16:50.202Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

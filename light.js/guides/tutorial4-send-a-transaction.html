@@ -923,17 +923,18 @@
 <li><code>gasPrice</code> The price (in Wei) per unit of gas. Will default to something sensible (in Parity&apos;s case, this is the median of the distribution formed from the last several hundred transactions).</li>
 <li><code>nonce</code> The sender nonce of the transaction. Will default to the latest known value.</li>
 </ul>
-<p>The second (optional) argument describes options to pass to this function. It is an object with the following keys:</p>
+<p>The second argument describes options to pass to this function. It is an object with the following keys:</p>
 <ul>
-<li><code>estimate</code>: Will estimate the amount of gas required for this transaction first.</li>
+<li><code>passphrase</code>: The Parity Ethereum passphrase for your <code>from</code> account. If you prefer to sign the transaction yourself, you can use the <code>postRaw$</code> function instead.</li>
+<li><code>estimate</code> (optional): Will estimate the amount of gas required for this transaction first.</li>
 </ul>
 <h3 id="return-value">Return Value</h3>
 <p>The value to which the RpcObservable evaluates reflects the ongoing status of the transaction as it moves through the process of getting finalised. It is always an object with a single key/value. It can be:</p>
 <ul>
 <li><code>{&quot;estimating&quot;: true}</code> The amount of gas required for this transaction to execute is being determined (only fired if <code>estimate</code> is set to <code>true</code>).</li>
 <li><code>{&quot;estimated&quot;: value}</code> The amount of gas required for this transaction to execute has been determined as value; the user is about to be asked (only fired if <code>estimate</code> is set to <code>true</code>).</li>
-<li><code>{&quot;requested&quot;: id}</code> The user has been asked for approval of the transaction; id is the (numeric) identity of the request.</li>
-<li><code>{&quot;signed&quot;: hash}</code> The user has approved the transaction and the transaction has been signed to form a final transaction hash of hash. It is now ready to be sent to the network for inclusion in a new block.</li>
+<li><code>{&quot;signed&quot;: hash}</code> The transaction has been signed with the given passphrase. It is now ready to be sent to the network for inclusion in a new block.</li>
+<li><code>{&quot;sent&quot;: hash}</code> This is the hash of the transaction.</li>
 <li><code>{&quot;confirmed&quot;: receipt}</code> The transaction has been confirmed into a block. The receipt of the transaction is provided as receipt, giving information concerning its operation, including any logs.</li>
 <li><code>{&quot;failed&quot;: error}</code> The transaction has failed. Generally this is because the user did not approve the transaction or otherwise signing could not take place. error is a string which contains any details regarding the situation.</li>
 </ul>
@@ -941,13 +942,16 @@
 <pre><code class="lang-javascript"><span class="hljs-keyword">import</span> { post$ } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@parity/light.js&apos;</span>;
 
 post$({
+  <span class="hljs-keyword">from</span>: <span class="hljs-string">&apos;0x921ceff422ef827110ac9dde154fbae2ac4eec9d&apos;</span>,
   to: <span class="hljs-string">&apos;0x180fbce524fd79b4af8dccf83809acd9bc95fd1a&apos;</span>,
   value: <span class="hljs-number">100</span> * <span class="hljs-number">1e15</span> <span class="hljs-comment">// value in wei</span>
+}, {
+  passphrase: <span class="hljs-string">&apos;mypassphrase&apos;</span>
 }).subscribe(<span class="hljs-built_in">console</span>.log);
 
 <span class="hljs-comment">// Logs:</span>
-<span class="hljs-comment">// { requested: &apos;0x1&apos; }</span>
 <span class="hljs-comment">// { signed: &apos;0x123...ff&apos; }</span>
+<span class="hljs-comment">// { sent: &apos;0x456...ff&apos; }</span>
 <span class="hljs-comment">// { confirmed: {/* receipt object */} }</span>
 </code></pre>
 
@@ -993,7 +997,7 @@ post$({
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Tutorial Part 4: Send a Transaction","level":"1.3.4","depth":2,"next":{"title":"Tutorial Part 5: Work with Contracts","level":"1.3.5","depth":2,"path":"guides/tutorial5-work-with-contracts.md","ref":"guides/tutorial5-work-with-contracts.md","articles":[]},"previous":{"title":"Tutorial Part 3: Manipulating RpcObservables","level":"1.3.3","depth":2,"path":"guides/tutorial3-manipulating-rpcobservables.md","ref":"guides/tutorial3-manipulating-rpcobservables.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"guides/tutorial4-send-a-transaction.md","mtime":"2019-01-21T14:02:47.804Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-01-21T14:07:38.556Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Tutorial Part 4: Send a Transaction","level":"1.3.4","depth":2,"next":{"title":"Tutorial Part 5: Work with Contracts","level":"1.3.5","depth":2,"path":"guides/tutorial5-work-with-contracts.md","ref":"guides/tutorial5-work-with-contracts.md","articles":[]},"previous":{"title":"Tutorial Part 3: Manipulating RpcObservables","level":"1.3.3","depth":2,"path":"guides/tutorial3-manipulating-rpcobservables.md","ref":"guides/tutorial3-manipulating-rpcobservables.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"guides/tutorial4-send-a-transaction.md","mtime":"2019-01-22T15:10:54.389Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-01-22T15:15:43.483Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
