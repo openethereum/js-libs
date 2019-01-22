@@ -22,7 +22,7 @@
 
 ▸ **getTransactionReceipt**(transactionHash: *`string`*, api: *`any`*): `Promise`<`any`>
 
-*Defined in [rpc/other/post.ts:18](https://github.com/paritytech/js-libs/blob/4f9b60d/packages/light.js/src/rpc/other/post.ts#L18)*
+*Defined in [rpc/other/post.ts:19](https://github.com/paritytech/js-libs/blob/689ae52/packages/light.js/src/rpc/other/post.ts#L19)*
 
 **Parameters:**
 
@@ -38,32 +38,32 @@ ___
 
 ##  post$
 
-▸ **post$**(tx: *[Tx](_types_.md#tx)*, options?: *[PostOptions](../interfaces/_rpc_other_post_.postoptions.md)*): `Observable`<[TxStatus](../interfaces/_types_.txstatus.md)>
+▸ **post$**(tx: *[Tx](_types_.md#tx)*, options: *[PostOptions](../interfaces/_rpc_other_post_.postoptions.md)*): `Observable`<[TxStatus](../interfaces/_types_.txstatus.md)>
 
-*Defined in [rpc/other/post.ts:47](https://github.com/paritytech/js-libs/blob/4f9b60d/packages/light.js/src/rpc/other/post.ts#L47)*
+*Defined in [rpc/other/post.ts:50](https://github.com/paritytech/js-libs/blob/689ae52/packages/light.js/src/rpc/other/post.ts#L50)*
 
 Post a transaction to the network.
 
-Calls, in this order, `eth_estimateGas`, `parity_postTransaction`, `parity_checkRequest` and `eth_getTransactionReceipt` to get the status of the transaction.
+Calls, in this order, `eth_estimateGas`, `personal_signTransaction`, `eth_sendRawTransaction` and `eth_getTransactionReceipt` to get the status of the transaction.
 
 **Parameters:**
 
-| Name | Type | Default value |
+| Name | Type | Description |
 | ------ | ------ | ------ |
-| tx | [Tx](_types_.md#tx) | - |
-| `Default value` options | [PostOptions](../interfaces/_rpc_other_post_.postoptions.md) |  {} |
+| tx | [Tx](_types_.md#tx) |  Transaction object |
+| options | [PostOptions](../interfaces/_rpc_other_post_.postoptions.md) |  Options to pass to the [RpcObservable](../interfaces/_types_.rpcobservable.md). |
 
 **Returns:** `Observable`<[TxStatus](../interfaces/_types_.txstatus.md)>
-- The status of the transaction.
+- The status of the transaction: (estimated), signed, sent, confirmed
 
 ___
 <a id="postraw_"></a>
 
 ##  postRaw$
 
-▸ **postRaw$**(tx: *`string`*, options?: *[PostOptions](../interfaces/_rpc_other_post_.postoptions.md)*): `Observable`<[TxStatus](../interfaces/_types_.txstatus.md)>
+▸ **postRaw$**(rawTx: *`string`*, options?: *[RpcObservableOptions](../interfaces/_types_.rpcobservableoptions.md)*): `Observable`<[TxStatus](../interfaces/_types_.txstatus.md)>
 
-*Defined in [rpc/other/post.ts:93](https://github.com/paritytech/js-libs/blob/4f9b60d/packages/light.js/src/rpc/other/post.ts#L93)*
+*Defined in [rpc/other/post.ts:90](https://github.com/paritytech/js-libs/blob/689ae52/packages/light.js/src/rpc/other/post.ts#L90)*
 
 Post a raw (signed) transaction to the network.
 
@@ -71,13 +71,13 @@ Calls, in this order, `eth_sendRawTransaction` and `eth_getTransactionReceipt` t
 
 **Parameters:**
 
-| Name | Type | Default value |
-| ------ | ------ | ------ |
-| tx | `string` | - |
-| `Default value` options | [PostOptions](../interfaces/_rpc_other_post_.postoptions.md) |  {} |
+| Name | Type | Default value | Description |
+| ------ | ------ | ------ | ------ |
+| rawTx | `string` | - |  Raw transaction |
+| `Default value` options | [RpcObservableOptions](../interfaces/_types_.rpcobservableoptions.md) |  {} |
 
 **Returns:** `Observable`<[TxStatus](../interfaces/_types_.txstatus.md)>
-- The status of the transaction.
+- The status of the transaction: sent, confirmed
 
 ___
 
