@@ -13,6 +13,7 @@ import { RpcObservableOptions, Tx, TxStatus } from '../../types';
 
 interface PostOptions extends RpcObservableOptions {
   estimate?: boolean;
+  passphrase: String;
 }
 
 function getTransactionReceipt (transactionHash: string, api: any) {
@@ -37,15 +38,21 @@ function getTransactionReceipt (transactionHash: string, api: any) {
 /**
  * Post a transaction to the network.
  *
- * Calls, in this order, `eth_estimateGas`, `parity_postTransaction`,
- * `parity_checkRequest` and `eth_getTransactionReceipt` to get the status of
+ * Calls, in this order, `eth_estimateGas`, `personal_signTransaction`,
+ * `eth_sendRawTransaction` and `eth_getTransactionReceipt` to get the status of
  * the transaction.
  *
- * @param options? - Options to pass to the {@link RpcObservable}.
- * @return - The status of the transaction.
+ * @param tx - Transaction object
+ * @param options - Options to pass to the {@link RpcObservable}.
+ * @param options.passphrase - Passphrase of the account
+ * @return - The status of the transaction: (estimated), signed, sent, confirmed
  */
-export function post$ (tx: Tx, options: PostOptions = {}) {
-  const { estimate, provider } = options;
+export function post$ (tx: Tx, options: PostOptions) {
+  if (!options || !options.passphrase) {
+    throw new Error('The passphrase is missing from the options');
+  }
+
+  const { estimate, passphrase, provider } = options;
   const api = provider ? createApiFromProvider(provider) : getApi();
 
   const source$ = Observable.create(async (observer: Observer<TxStatus>) => {
@@ -55,22 +62,11 @@ export function post$ (tx: Tx, options: PostOptions = {}) {
         const gas = await api.eth.estimateGas(tx);
         observer.next({ estimated: gas });
       }
-      const signerRequestId = await api.parity.postTransaction(tx);
-      observer.next({ requested: signerRequestId });
-      const transactionHash = await api.pollMethod(
-        'parity_checkRequest',
-        signerRequestId
-      );
-      if (tx.condition) {
-        observer.next({ signed: transactionHash, schedule: tx.condition });
-      } else {
-        observer.next({ signed: transactionHash });
 
-        const receipt = await getTransactionReceipt(transactionHash, api);
-        observer.next({ confirmed: receipt });
-      }
+      const signedTransaction = await api.personal.signTransaction(tx, passphrase);
+      observer.next({ signed: signedTransaction.raw });
+      postRaw$(signedTransaction.raw).subscribe(observer);
 
-      observer.complete();
     } catch (error) {
       observer.next({ failed: error });
       observer.error(error);
@@ -87,17 +83,18 @@ export function post$ (tx: Tx, options: PostOptions = {}) {
  * Calls, in this order, `eth_sendRawTransaction` and
  * `eth_getTransactionReceipt` to get the status of the transaction.
  *
+ * @param rawTx - Raw transaction
  * @param options? - Options to pass to the {@link RpcObservable}.
- * @return - The status of the transaction.
+ * @return - The status of the transaction: sent, confirmed
  */
-export function postRaw$ (tx: string, options: PostOptions = {}) {
+export function postRaw$ (rawTx: string, options: RpcObservableOptions = {}) {
   const { provider } = options;
   const api = provider ? createApiFromProvider(provider) : getApi();
 
   const source$ = Observable.create(async (observer: Observer<TxStatus>) => {
     try {
-      const transactionHash = await api.eth.sendRawTransaction(tx);
-      observer.next({ signed: transactionHash });
+      const transactionHash = await api.eth.sendRawTransaction(rawTx);
+      observer.next({ sent: transactionHash });
 
       const receipt = await getTransactionReceipt(transactionHash, api);
       observer.next({ confirmed: receipt });

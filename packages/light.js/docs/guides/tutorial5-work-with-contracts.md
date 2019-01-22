@@ -67,15 +67,17 @@ gavcoinContract
       '0x407d73d8a49eeb85d32cf465507dd71d507100c1', // The "to" address
       new BigNumber(2.01) // The amount to transfer
     ],
-    // This 2nd argument is optional, and is an options object containing the following fields:
+    // This 2nd argument is an options object containing the following fields:
     {
+      from: "0x...",
+      passphrase: "mypassphrase",
       gasPrice: ...
     }
   )
   .subscribe(transfer => console.log('transfer$', transfer));
 
 // Logs:
-// transfer$ { requested: '0x2' }
 // transfer$ { signed: '0x123...ff' }
+// transfer$ { sent: '0x456...ff' }
 // transfer$ { confirmed: {/* receipt object */} }
 ```

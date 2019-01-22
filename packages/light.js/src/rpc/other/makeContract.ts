@@ -39,7 +39,7 @@ const getContract = memoizee(
 );
 
 /**
- * Create a contract, givan an api object.
+ * Create a contract, given an api object.
  * Pure function version of {@link makeContract}.
  *
  * @ignore
@@ -89,6 +89,8 @@ const makeContractWithApi = memoizee(
             ]
           })({ provider: api.provider })(...args);
         } else {
+          const { estimate, passphrase, ...txFields } = options;
+
           return post$({
             to: address,
             data: abiEncode(
@@ -96,8 +98,8 @@ const makeContractWithApi = memoizee(
               method.inputs.map(({ kind: { type } }: any) => type), // TODO Use @parity/api types
               args
             ),
-            ...options
-          });
+            ...txFields
+          }, { estimate, passphrase });
         }
       };
     });

@@ -89,7 +89,6 @@ export interface TxStatus {
   estimating?: boolean;
   estimated?: BigNumber;
   failed?: Error;
-  requested?: string;
-  schedule?: any;
   signed?: string;
+  sent?: string;
 }
