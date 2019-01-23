@@ -6658,10 +6658,10 @@ single-line-log@^1.1.2:
   dependencies:
     string-width "^1.0.1"
 
-sinon-as-promised@4.0.2:
-  version "4.0.2"
-  resolved "https://registry.yarnpkg.com/sinon-as-promised/-/sinon-as-promised-4.0.2.tgz#120e9ce033daa39648dc429062fe660be1b5b412"
-  integrity sha1-Eg6c4DPao5ZI3EKQYv5mC+G1tBI=
+sinon-as-promised@4.0.3:
+  version "4.0.3"
+  resolved "https://registry.yarnpkg.com/sinon-as-promised/-/sinon-as-promised-4.0.3.tgz#c0545b1685fd813588a4ed697012487ed11d151b"
+  integrity sha1-wFRbFoX9gTWIpO1pcBJIftEdFRs=
   dependencies:
     create-thenable "~1.0.0"
     native-promise-only "~0.8.1"
