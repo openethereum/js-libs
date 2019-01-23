@@ -28,7 +28,7 @@
     "cross-env": "^5.1.1",
     "jsdom": "^11.1.0",
     "mocha": "^3.4.2",
-    "mock-local-storage": "1.0.2",
+    "mock-local-storage": "1.1.8",
     "mock-socket": "6.0.4",
     "nock": "10.0.6",
     "rimraf": "^2.6.2",
