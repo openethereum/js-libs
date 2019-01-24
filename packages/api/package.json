@@ -29,7 +29,7 @@
     "jsdom": "^11.1.0",
     "mocha": "^3.4.2",
     "mock-local-storage": "1.1.8",
-    "mock-socket": "6.0.4",
+    "mock-socket": "8.0.5",
     "nock": "10.0.6",
     "rimraf": "^2.6.2",
     "sinon": "1.17.7",
