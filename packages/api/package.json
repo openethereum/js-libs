@@ -22,7 +22,7 @@
     "test": "cross-env NODE_ENV=test mocha -r ts-node/register 'src/*.spec.js' 'src/**/*.spec.js'"
   },
   "devDependencies": {
-    "chai": "3.5.0",
+    "chai": "4.2.0",
     "chai-as-promised": "6.0.0",
     "coveralls": "^3.0.0",
     "cross-env": "^5.1.1",
