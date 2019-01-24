@@ -6,9 +6,9 @@ A high-level reactive JS library optimized for light clients.
 [![npm (scoped)](https://img.shields.io/npm/v/@parity/light.js.svg)](https://www.npmjs.com/package/@parity/light.js)
 [![npm](https://img.shields.io/npm/dw/@parity/light.js.svg)](https://www.npmjs.com/package/@parity/light.js)
 [![dependencies Status](https://david-dm.org/paritytech/js-libs/status.svg?path=packages/light.js)](https://david-dm.org/paritytech/js-libs?path=packages/light.js)
-[![docs](https://img.shields.io/badge/docs-passing-green.svg)](https://parity-js.github.io/light.js/)
+[![docs](https://img.shields.io/badge/docs-passing-green.svg)](https://paritytech.github.io/js-libs/light.js/)
 
-## [Full Documentation](https://parity-js.github.io/light.js/)
+## [Full Documentation](https://paritytech.github.io/js-libs/light.js/)
 
 ## Getting Started
 
@@ -70,7 +70,7 @@ defaultAccount$()
   .subscribe(console.log); // Will log the result, and everytime the result changes
 ```
 
-All available methods are documented [in the docs](https://parity-js.github.io/light.js/).
+All available methods are documented [in the docs](https://paritytech.github.io/js-libs/light.js/).
 
 ## Usage with React
 
