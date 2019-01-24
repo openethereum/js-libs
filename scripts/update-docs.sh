@@ -44,4 +44,4 @@ cp README.md $GHPAGES_DIR
 # Docs are updated on master, we commit back
 git checkout master
 git add .
-git commit -m "[ci skip] Update docs"
+git commit -m "docs: update docs [ci skip]"
