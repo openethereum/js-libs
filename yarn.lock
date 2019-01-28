@@ -740,9 +740,9 @@
     csstype "^2.2.0"
 
 "@types/recompose@^0.30.2":
-  version "0.30.2"
-  resolved "https://registry.yarnpkg.com/@types/recompose/-/recompose-0.30.2.tgz#3bdb7fd37460242ef82f6d6a7428e3c96d3a1b9a"
-  integrity sha512-O22WmEWoA2z2nbGmX4LqZ9zKzInN+KoyN0Stks9PMhj4GqDDwy2x3Gh0apNhCMzy3HLrCPkb+mH2QxZNtK5grw==
+  version "0.30.3"
+  resolved "https://registry.yarnpkg.com/@types/recompose/-/recompose-0.30.3.tgz#74dfa5c505f432dc4ea5509a49814b70ff58bf5e"
+  integrity sha512-sxD7+lXO/eZRfMhJeDwqrx7Kwjm89FXc8g7O/muJ//qCN/q498C6pq9jhaoMhkbNxN3YpoW6RFZprK2VYLUKRQ==
   dependencies:
     "@types/react" "*"
 
