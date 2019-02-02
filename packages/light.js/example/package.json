@@ -10,17 +10,17 @@
   },
   "dependencies": {
     "@parity/api": "../../",
-    "@parity/light.js": "../../",
+    "@parity/light.js": "../",
     "@parity/light.js-react": "../../",
-    "react": "^16.3.2",
-    "react-dom": "^16.3.2",
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0",
     "react-router-dom": "^4.3.1",
-    "react-scripts": "1.1.4",
+    "react-scripts": "1.1.5",
     "rxjs": "~6.2.2",
     "symbol-observable": "^1.2.0"
   },
   "devDependencies": {
-    "react-app-rewire-mobx": "^1.0.8",
+    "react-app-rewire-mobx": "^1.0.9",
     "react-app-rewired": "^1.5.2"
   }
 }
