@@ -3,17 +3,20 @@
  *
  * SPDX-License-Identifier: MIT */
 
-.App-logo {
+ .App-logo {
   animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+  height: 40vmin;
 }
 
 .App-header {
-  background-color: #222;
+  background-color: #282c34;
   height: 150px;
-  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
   color: white;
-  text-align: center;
 }
 
 .App-nav li {

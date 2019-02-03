@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@parity/api": "../../",
+    "@parity/api": "../../api",
     "@parity/light.js": "../",
-    "@parity/light.js-react": "../../",
+    "@parity/light.js-react": "../../light.js-react",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "react-router-dom": "^4.3.1",
