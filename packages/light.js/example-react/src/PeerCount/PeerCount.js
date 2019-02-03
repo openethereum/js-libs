@@ -7,6 +7,8 @@ import React, { Component } from 'react';
 import { peerCount$, withoutLoading } from '@parity/light.js';
 import light from '@parity/light.js-react';
 
+// NOTE: with the right Babel configuration (or TypeScript), 
+// you can use use `light` as a decorator:
 // @light({
 //   peerCount: () => peerCount$().pipe(withoutLoading())
 // })

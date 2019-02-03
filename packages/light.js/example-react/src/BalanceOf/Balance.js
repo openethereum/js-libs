@@ -9,6 +9,8 @@ import light from '@parity/light.js-react';
 
 import BalanceOfAddress from './BalanceOfAddress';
 
+// NOTE: with the right Babel configuration (or TypeScript), 
+// you can use use `light` as a decorator:
 // @light({
 //   defaultAccount: defaultAccount$
 // })
