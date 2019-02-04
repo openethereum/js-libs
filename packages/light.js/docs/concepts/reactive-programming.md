@@ -11,7 +11,7 @@ Reactive programming is a programming mindset where you deal with data streams. 
 - tweets in your Twitter feed
 - new blocks on the Ethereum blockchain
 
-Reactive programming is the idea that you application is defined by a bunch of streams, and you combine those streams together to build the app's logic. For instance, making an API call on button click is managed by combining the first two streams described above: each time the button-click stream fires, we "plug in" the API-call stream.
+Reactive programming is the idea that your application is defined by a bunch of streams, and you combine those streams together to build the app's logic. For instance, making an API call on button click is managed by combining the first two streams described above: each time the button-click stream fires, we "plug in" the API-call stream.
 
 The combination of streams is defined declaratively, which makes the code easy to read and test.
 
@@ -21,7 +21,7 @@ Streams are represented by **Observables**. They emit the data once, multiple ti
 
 On the other side, we have **Observers**. They consume the data emitted by Observables, by subscribing to them, and imperatively doing some operations on each received value, like printing the value to the console.
 
-In a nutshell, you define you app's logic by declaratively combining Observables, and eventually, an Observer subscribes to the resulting Observable. This Observer prints the value or updated a React component.
+In a nutshell, you define you app's logic by declaratively combining Observables, and eventually, an Observer subscribes to the resulting Observable. This Observer prints the value or updates a React component.
 
 # RxJS
 
