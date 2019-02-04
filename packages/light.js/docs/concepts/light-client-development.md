@@ -114,7 +114,7 @@ Our long-term vision at Parity is to embed the Light Client a little bit everywh
 
 In order to do this, we plan to compile Parity to WASM, and embed it into a browser environment. This part is out of scope of this documentation, but if you are interested, please refer to this Github thread: https://github.com/paritytech/parity-ethereum/issues/7915.
 
-For example, if we embed it into a browser extension (Chrome Extension, Firefox Add-On), then the Light Client will continously run in your browser. Similarly to MetaMask, it will inject in authorized websites an Ethereum provider object, which will allow dapps to communicate with the Ethereum network via theextension's Light Client.
+For example, if we embed it into a browser extension (Chrome Extension, Firefox Add-On), then the Light Client will continously run in your browser. Similarly to MetaMask, it will inject in authorized websites an Ethereum provider object, which will allow dapps to communicate with the Ethereum network via the extension's Light Client.
 
 If we embed it into a web app directly, it should be as simple as:
 
