@@ -6,9 +6,9 @@
 
 ##  onSyncingChanged$
 
-▸ **onSyncingChanged$**(options?: *[FrequencyObservableOptions](../interfaces/_types_.frequencyobservableoptions.md)*): `Observable`<`false` | `object`>
+▸ **onSyncingChanged$**(options?: *[FrequencyObservableOptions](../interfaces/_types_.frequencyobservableoptions.md)*): `Observable`<`false` \| `object`>
 
-*Defined in [frequency/health.ts:19](https://github.com/paritytech/js-libs/blob/ad78d68/packages/light.js/src/frequency/health.ts#L19)*
+*Defined in [frequency/health.ts:19](https://github.com/paritytech/js-libs/blob/0b729df/packages/light.js/src/frequency/health.ts#L19)*
 
 Observable that emits when syncing status changes.
 
@@ -18,7 +18,7 @@ Observable that emits when syncing status changes.
 | ------ | ------ | ------ |
 | `Optional` options | [FrequencyObservableOptions](../interfaces/_types_.frequencyobservableoptions.md) |  Options to pass to [FrequencyObservable](../interfaces/_types_.frequencyobservable.md). |
 
-**Returns:** `Observable`<`false` | `object`>
+**Returns:** `Observable`<`false` \| `object`>
 
 ___
 

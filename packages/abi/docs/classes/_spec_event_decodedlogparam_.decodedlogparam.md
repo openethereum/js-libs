@@ -10,15 +10,15 @@
 
 ##  constructor
 
-⊕ **new DecodedLogParam**(name: *`string` | `undefined`*, kind: *[ParamType](_spec_paramtype_paramtype_.paramtype.md)*, token: *[Token](_token_token_.token.md)*): [DecodedLogParam](_spec_event_decodedlogparam_.decodedlogparam.md)
+⊕ **new DecodedLogParam**(name: *`string` \| `undefined`*, kind: *[ParamType](_spec_paramtype_paramtype_.paramtype.md)*, token: *[Token](_token_token_.token.md)*): [DecodedLogParam](_spec_event_decodedlogparam_.decodedlogparam.md)
 
-*Defined in [spec/event/decodedLogParam.ts:13](https://github.com/paritytech/js-libs/blob/ad78d68/packages/abi/src/spec/event/decodedLogParam.ts#L13)*
+*Defined in [spec/event/decodedLogParam.ts:13](https://github.com/paritytech/js-libs/blob/0b729df/packages/abi/src/spec/event/decodedLogParam.ts#L13)*
 
 **Parameters:**
 
 | Name | Type |
 | ------ | ------ |
-| name | `string` | `undefined` |
+| name | `string` \| `undefined` |
 | kind | [ParamType](_spec_paramtype_paramtype_.paramtype.md) |
 | token | [Token](_token_token_.token.md) |
 
@@ -34,7 +34,7 @@ ___
 
 getkind(): [ParamType](_spec_paramtype_paramtype_.paramtype.md)
 
-*Defined in [spec/event/decodedLogParam.ts:31](https://github.com/paritytech/js-libs/blob/ad78d68/packages/abi/src/spec/event/decodedLogParam.ts#L31)*
+*Defined in [spec/event/decodedLogParam.ts:31](https://github.com/paritytech/js-libs/blob/0b729df/packages/abi/src/spec/event/decodedLogParam.ts#L31)*
 
 **Returns:** [ParamType](_spec_paramtype_paramtype_.paramtype.md)
 
@@ -43,11 +43,11 @@ ___
 
 ##  name
 
-getname(): `undefined` | `string`
+getname(): `undefined` \| `string`
 
-*Defined in [spec/event/decodedLogParam.ts:27](https://github.com/paritytech/js-libs/blob/ad78d68/packages/abi/src/spec/event/decodedLogParam.ts#L27)*
+*Defined in [spec/event/decodedLogParam.ts:27](https://github.com/paritytech/js-libs/blob/0b729df/packages/abi/src/spec/event/decodedLogParam.ts#L27)*
 
-**Returns:** `undefined` | `string`
+**Returns:** `undefined` \| `string`
 
 ___
 <a id="token"></a>
@@ -56,7 +56,7 @@ ___
 
 gettoken(): [Token](_token_token_.token.md)
 
-*Defined in [spec/event/decodedLogParam.ts:35](https://github.com/paritytech/js-libs/blob/ad78d68/packages/abi/src/spec/event/decodedLogParam.ts#L35)*
+*Defined in [spec/event/decodedLogParam.ts:35](https://github.com/paritytech/js-libs/blob/0b729df/packages/abi/src/spec/event/decodedLogParam.ts#L35)*
 
 **Returns:** [Token](_token_token_.token.md)
 

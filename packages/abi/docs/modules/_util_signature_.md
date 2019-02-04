@@ -6,9 +6,9 @@
 
 ## `<Const>` eventSignature
 
-▸ **eventSignature**(eventName: *`string` | `undefined`*, params?: *[ParamType](../classes/_spec_paramtype_paramtype_.paramtype.md)[]*): `object`
+▸ **eventSignature**(eventName: *`string` \| `undefined`*, params?: *[ParamType](../classes/_spec_paramtype_paramtype_.paramtype.md)[]*): `object`
 
-*Defined in [util/signature.ts:14](https://github.com/paritytech/js-libs/blob/ad78d68/packages/abi/src/util/signature.ts#L14)*
+*Defined in [util/signature.ts:14](https://github.com/paritytech/js-libs/blob/0b729df/packages/abi/src/util/signature.ts#L14)*
 
 Get event signature.
 
@@ -16,7 +16,7 @@ Get event signature.
 
 | Name | Type | Default value |
 | ------ | ------ | ------ |
-| eventName | `string` | `undefined` | - |
+| eventName | `string` \| `undefined` | - |
 | `Default value` params | [ParamType](../classes/_spec_paramtype_paramtype_.paramtype.md)[] |  [] |
 
 **Returns:** `object`
@@ -26,9 +26,9 @@ ___
 
 ## `<Const>` methodSignature
 
-▸ **methodSignature**(methodName: *`string` | `undefined`*, params?: *[ParamType](../classes/_spec_paramtype_paramtype_.paramtype.md)[]*): `object`
+▸ **methodSignature**(methodName: *`string` \| `undefined`*, params?: *[ParamType](../classes/_spec_paramtype_paramtype_.paramtype.md)[]*): `object`
 
-*Defined in [util/signature.ts:32](https://github.com/paritytech/js-libs/blob/ad78d68/packages/abi/src/util/signature.ts#L32)*
+*Defined in [util/signature.ts:32](https://github.com/paritytech/js-libs/blob/0b729df/packages/abi/src/util/signature.ts#L32)*
 
 Get method signature.
 
@@ -36,7 +36,7 @@ Get method signature.
 
 | Name | Type | Default value | Description |
 | ------ | ------ | ------ | ------ |
-| methodName | `string` | `undefined` | - |  The method name. |
+| methodName | `string` \| `undefined` | - |  The method name. |
 | `Default value` params | [ParamType](../classes/_spec_paramtype_paramtype_.paramtype.md)[] |  [] |  The list of params |
 
 **Returns:** `object`
@@ -46,9 +46,9 @@ ___
 
 ## `<Const>` parseName
 
-▸ **parseName**(name: *`string` | `undefined`*): `object`
+▸ **parseName**(name: *`string` \| `undefined`*): `object`
 
-*Defined in [util/signature.ts:46](https://github.com/paritytech/js-libs/blob/ad78d68/packages/abi/src/util/signature.ts#L46)*
+*Defined in [util/signature.ts:46](https://github.com/paritytech/js-libs/blob/0b729df/packages/abi/src/util/signature.ts#L46)*
 
 Parse name.
 
@@ -56,7 +56,7 @@ Parse name.
 
 | Name | Type | Description |
 | ------ | ------ | ------ |
-| name | `string` | `undefined` |  Name to parse. |
+| name | `string` \| `undefined` |  Name to parse. |
 
 **Returns:** `object`
 
