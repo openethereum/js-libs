@@ -55,7 +55,7 @@ const obs3$ = balanceOf$('0x456');
 console.log(obs1$ === obs3$); // false
 ```
 
-### Underlying API calls are not unnessarily repeated
+### Underlying API calls are not unnecessarily repeated
 
 ```javascript
 const obs1$ = balanceOf$('0x123');
