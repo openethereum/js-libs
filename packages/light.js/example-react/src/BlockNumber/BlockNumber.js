@@ -7,9 +7,11 @@ import React, { Component } from 'react';
 import { blockNumber$ } from '@parity/light.js';
 import light from '@parity/light.js-react';
 
-@light({
-  blockNumber: blockNumber$
-})
+// NOTE: with the right Babel configuration (or TypeScript), 
+// you can use use `light` as a decorator:
+// @light({
+//   blockNumber: blockNumber$
+// })
 class BlockNumber extends Component {
   render() {
     const { blockNumber } = this.props;
@@ -24,5 +26,9 @@ class BlockNumber extends Component {
     );
   }
 }
+
+BlockNumber = light({
+  blockNumber: blockNumber$
+})(BlockNumber);
 
 export default BlockNumber;

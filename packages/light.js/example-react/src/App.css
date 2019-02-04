@@ -3,6 +3,10 @@
  *
  * SPDX-License-Identifier: MIT */
 
+.App {
+  text-align: center;
+}
+
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 80px;
@@ -16,18 +20,8 @@
   text-align: center;
 }
 
-.App-nav li {
-  float: left;
-  list-style: none;
-  margin-right: 20px;
-}
-
-.App-title {
-  font-size: 1.5em;
-}
-
-.App-intro {
-  font-size: large;
+.App-link {
+  color: #61dafb;
 }
 
 @keyframes App-logo-spin {

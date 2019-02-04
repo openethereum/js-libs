@@ -8,13 +8,15 @@ import { map } from 'rxjs/operators';
 import { balanceOf$, withoutLoading } from '@parity/light.js';
 import light from '@parity/light.js-react';
 
-@light({
-  balance: ownProps =>
-    balanceOf$(ownProps.address).pipe(
-      withoutLoading(),
-      map(_ => +_)
-    )
-})
+// NOTE: with the right Babel configuration (or TypeScript), 
+// you can use use `light` as a decorator:
+// @light({
+//   balance: ownProps =>
+//     balanceOf$(ownProps.address).pipe(
+//       withoutLoading(),
+//       map(_ => +_)
+//     )
+// })
 class BalanceOfAddress extends Component {
   render() {
     const { address, balance } = this.props;
@@ -25,5 +27,13 @@ class BalanceOfAddress extends Component {
     );
   }
 }
+
+BalanceOfAddress = light({
+  balance: ownProps =>
+    balanceOf$(ownProps.address).pipe(
+      withoutLoading(),
+      map(_ => +_)
+    )
+})(BalanceOfAddress);
 
 export default BalanceOfAddress;

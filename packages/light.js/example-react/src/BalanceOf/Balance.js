@@ -9,9 +9,11 @@ import light from '@parity/light.js-react';
 
 import BalanceOfAddress from './BalanceOfAddress';
 
-@light({
-  defaultAccount: defaultAccount$
-})
+// NOTE: with the right Babel configuration (or TypeScript), 
+// you can use use `light` as a decorator:
+// @light({
+//   defaultAccount: defaultAccount$
+// })
 class Balance extends Component {
   state = { currentAccount: '0x005d98ddB660F40F3a226A3F67b7831A0d8Dfe85' };
 
@@ -47,5 +49,9 @@ class Balance extends Component {
     );
   }
 }
+
+Balance = light({
+  defaultAccount: defaultAccount$
+})(Balance);
 
 export default Balance;
