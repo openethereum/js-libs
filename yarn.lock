@@ -2307,9 +2307,9 @@ ecc-jsbn@~0.1.1:
     safer-buffer "^2.1.0"
 
 electron-dl@^1.12.0:
-  version "1.12.0"
-  resolved "https://registry.yarnpkg.com/electron-dl/-/electron-dl-1.12.0.tgz#328c7f12d3e458ed4ddc773d8ffc28d59ab35d2e"
-  integrity sha512-UMc2CL45Ybpvu66LDPYzwmDRmYK4Ivz+wdnTM0eXcNMztvQwhixAk2UPme1c7McqG8bAlKEkQpZn3epmQy4EWg==
+  version "1.13.0"
+  resolved "https://registry.yarnpkg.com/electron-dl/-/electron-dl-1.13.0.tgz#410981363fcee6909860acfd2b376f31ce0faa59"
+  integrity sha512-0sg/g7zOuH5TABWSgsqFB275jbRCkIxYq6Nz1lFqMQP/Z93EF2mOo+RPNL1CyFH0dEZLFOvPgwmSMqiPICVOyQ==
   dependencies:
     ext-name "^5.0.0"
     pupa "^1.0.0"
