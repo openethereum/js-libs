@@ -808,9 +808,9 @@
     csstype "^2.2.0"
 
 "@types/recompose@^0.30.2":
-  version "0.30.3"
-  resolved "https://registry.yarnpkg.com/@types/recompose/-/recompose-0.30.3.tgz#74dfa5c505f432dc4ea5509a49814b70ff58bf5e"
-  integrity sha512-sxD7+lXO/eZRfMhJeDwqrx7Kwjm89FXc8g7O/muJ//qCN/q498C6pq9jhaoMhkbNxN3YpoW6RFZprK2VYLUKRQ==
+  version "0.30.4"
+  resolved "https://registry.yarnpkg.com/@types/recompose/-/recompose-0.30.4.tgz#f5fd767ba3d90397be765db20e96a0aeecea1d3a"
+  integrity sha512-DYJ6oTqg5nqJ9UxWqVPEO9oW4iXhtwu5fdxTV5eR7MJ6lKm9BoEHX+ceWpB1/+3MgPT/otVbDlD/+G5+QjULDg==
   dependencies:
     "@types/react" "*"
 
