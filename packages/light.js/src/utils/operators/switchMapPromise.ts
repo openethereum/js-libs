@@ -4,7 +4,7 @@
 // SPDX-License-Identifier: MIT
 
 import { catchError, switchMap } from 'rxjs/operators';
-import { empty, from, Observable } from 'rxjs';
+import { from, Observable, throwError } from 'rxjs';
 
 /**
  * SwitchMap to an Observable.from. The Observable.from will return an empty
@@ -36,7 +36,7 @@ export const switchMapPromise = <T,U>(promise: () => Promise<U>) => (
             )
           );
           console.groupEnd();
-          return empty();
+          return throwError(err) as Observable<U>;
         })
       )
     )

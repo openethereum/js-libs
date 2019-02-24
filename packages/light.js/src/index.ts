@@ -24,6 +24,7 @@ export const {
   peerCount$,
   post$,
   postRaw$,
-  syncStatus$
+  syncStatus$,
+  versionInfo$
 } = rpc;
 export default { setApi, setProvider };
