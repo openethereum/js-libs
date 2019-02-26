@@ -764,10 +764,17 @@
   resolved "https://registry.yarnpkg.com/@types/highlight.js/-/highlight.js-9.12.3.tgz#b672cfaac25cbbc634a0fd92c515f66faa18dbca"
   integrity sha512-pGF/zvYOACZ/gLGWdQH8zSwteQS1epp68yRcVLJMgUck/MjEn/FBYmPub9pXT8C1e4a8YZfHo1CKyV8q1vKUnQ==
 
+"@types/jest-diff@*":
+  version "20.0.1"
+  resolved "https://registry.yarnpkg.com/@types/jest-diff/-/jest-diff-20.0.1.tgz#35cc15b9c4f30a18ef21852e255fdb02f6d59b89"
+  integrity sha512-yALhelO3i0hqZwhjtcr6dYyaLoCHbAMshwtj6cGxTvHZAKXHsYGdff6E8EPw3xLKY0ELUTQ69Q1rQiJENnccMA==
+
 "@types/jest@^24.0.0":
-  version "24.0.3"
-  resolved "https://registry.yarnpkg.com/@types/jest/-/jest-24.0.3.tgz#df8dc56565bd2d27fcbd099434f04f9891e16ab7"
-  integrity sha512-keRxrIwZZ/Ml83cGl3G0OjGlBO4UFQCCa5QlBPz2pY+ZvSnoeUvMJw0vmL4JU6g4vbpIW5H4qSq1xv9h8naAfg==
+  version "24.0.8"
+  resolved "https://registry.yarnpkg.com/@types/jest/-/jest-24.0.8.tgz#98cc1bb1ba8bb46402289c5ef58709de0aec3881"
+  integrity sha512-J9s1185W175UQ0Amyb1AhH4+qzGXNTxEHdeXESKIs/EFHC9aLMZwDPtdH8YkimuKVt+aSb8vO0GC1guO50sbBw==
+  dependencies:
+    "@types/jest-diff" "*"
 
 "@types/lodash@^4.14.110":
   version "4.14.119"
