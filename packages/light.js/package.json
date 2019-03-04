@@ -23,7 +23,7 @@
     "docs": "typedoc",
     "prebuild": "rimraf lib",
     "build": "tsc",
-    "test": "jest"
+    "test": "jest --runInBand"
   },
   "dependencies": {
     "@parity/abi": "^4.0.3",
@@ -31,7 +31,8 @@
     "async-retry": "^1.2.3",
     "bignumber.js": "^8.0.1",
     "debug": "^4.1.0",
-    "memoizee": "^0.4.12"
+    "memoizee": "^0.4.12",
+    "rxjs-etc": "^9.4.0"
   },
   "devDependencies": {
     "@types/debug": "^4.1.0",

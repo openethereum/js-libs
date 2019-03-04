@@ -11,7 +11,7 @@ import light from '@parity/light.js-react';
 import PropTypes from 'prop-types';
 
 @light({
-  myBalance: ({ myAddress }) => balanceOf(myAddress, { withouLoading: true }) // myAddress here is a prop passed directly to MyComponent
+  myBalance: ({ myAddress }) => balanceOf(myAddress, { withoutLoading: true }) // myAddress here is a prop passed directly to MyComponent
 })
 class MyComponent extends React.Component {
   static propTypes = {
@@ -43,7 +43,7 @@ export default light({
 })(MyComponent);
 ```
 
-You can of course let your component subscribe to multiple RpcObservablse:
+You can of course let your component subscribe to multiple RpcObservables:
 
 ```javascript
 import React from 'react';

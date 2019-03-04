@@ -14,7 +14,19 @@ import {
 import rpc from './rpc';
 import { RpcKey, RpcMap, RpcObservable } from '../types';
 import { setApi } from '../api';
+import sleep from '../utils/testHelpers/sleep';
 
+/*
+ * Mock the Api of the RPC dependencies' observables
+ *
+ * Needed because the RPC observable passes the provider of the api (set e.g.
+ * using setApi) to its RPC dependencies (e.g. frequency), which in turn call
+ * createApiFromProvider to create a new Api based on that provider. Even if
+ * the Api of the initial RPC observable is mocked, the Api from the dependency
+ * observable isn't mocked as it is created from the provider, using @parity/api
+ * Since we want to mock the Api and not just the provider for the dependencies,
+ * we have to mock @parity/api
+ * */
 jest.mock('@parity/api');
 Api.mockImplementation(() => resolveApi());
 
@@ -26,6 +38,8 @@ Api.mockImplementation(() => resolveApi());
 const testRpc = (name: string, rpc$: RpcObservable<any, any>) =>
   describe(`${name} rpc`, () => {
     beforeEach(() => {
+      // Mock the Api of the RPC observables (however, doesn't mock the Api of
+      // their dependencies' observables)
       setApi(resolveApi());
     });
 
@@ -54,28 +68,6 @@ const testRpc = (name: string, rpc$: RpcObservable<any, any>) =>
     if (name === 'post$' || name === 'postRaw$') {
       return;
     }
-
-    it('should return the same Observable upon re-running (memoization)', () => {
-      const initial$ = rpc$();
-      expect(rpc$()).toBe(initial$);
-    });
-
-    it('should not return the same Observable if we change Api', () => {
-      const initial$ = rpc$();
-      setApi(rejectApi());
-      expect(rpc$()).not.toBe(initial$);
-    });
-
-    it('should not return the same Observable if options are passed', () => {
-      const initial$ = rpc$();
-      expect(rpc$({ provider: new MockProvider() })).not.toBe(initial$);
-    });
-
-    it('should return the same Observable if same options are passed', () => {
-      const provider = new MockProvider();
-      const initial$ = rpc$({ provider });
-      expect(rpc$({ provider })).toBe(initial$);
-    });
   });
 
 Object.keys(rpc).forEach(key => testRpc(key, (rpc as RpcMap)[key as RpcKey]));

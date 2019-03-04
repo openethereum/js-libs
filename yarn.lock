@@ -769,7 +769,7 @@
   resolved "https://registry.yarnpkg.com/@types/jest-diff/-/jest-diff-20.0.1.tgz#35cc15b9c4f30a18ef21852e255fdb02f6d59b89"
   integrity sha512-yALhelO3i0hqZwhjtcr6dYyaLoCHbAMshwtj6cGxTvHZAKXHsYGdff6E8EPw3xLKY0ELUTQ69Q1rQiJENnccMA==
 
-"@types/jest@^24.0.0":
+"@types/jest@^24.0.9":
   version "24.0.9"
   resolved "https://registry.yarnpkg.com/@types/jest/-/jest-24.0.9.tgz#74ce9cf337f25e189aa18f76ab3d65e8669b55f2"
   integrity sha512-k3OOeevcBYLR5pdsOv5g3OP94h3mrJmLPHFEPWgbbVy2tGv0TZ/TlygiC848ogXhK8NL0I5up7YYtwpCp8xCJA==
@@ -6687,6 +6687,11 @@ run-queue@^1.0.0, run-queue@^1.0.3:
   integrity sha1-6Eg5bwV9Ij8kOGkkYY4laUFh7Ec=
   dependencies:
     aproba "^1.1.1"
+
+rxjs-etc@^9.4.0:
+  version "9.4.0"
+  resolved "https://registry.yarnpkg.com/rxjs-etc/-/rxjs-etc-9.4.0.tgz#53f613d4840feb6d244aeb47dbbcf57ea3562401"
+  integrity sha512-5wsZRkAYYFXoci40bQgYKi6Dqmu8eczx/JHuut98sOV9PJeE9xBKrwf0bLgG6a/ip9UWvbTT35HiGh16x7akJA==
 
 rxjs@^6.1.0:
   version "6.3.3"
