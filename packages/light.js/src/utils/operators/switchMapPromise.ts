@@ -13,9 +13,9 @@ import { empty, from, Observable } from 'rxjs';
  *
  * @ignore
  */
-export const switchMapPromise = <T>(promise: () => Promise<T>) => (
+export const switchMapPromise = <T,U>(promise: () => Promise<U>) => (
   source$: Observable<T>
-) =>
+): Observable<U> =>
   source$.pipe(
     switchMap(() =>
       from(
