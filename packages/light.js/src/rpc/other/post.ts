@@ -71,10 +71,9 @@ export function post$ (tx: Tx, options: PostOptions) {
       observer.next({ failed: error });
       observer.error(error);
     }
-  }).pipe(distinctReplayRefCountDelay());
+  });
 
-  source$.subscribe(); // Run this Observable immediately;
-  return source$ as Observable<TxStatus>;
+  return source$;
 }
 
 /**
@@ -104,8 +103,7 @@ export function postRaw$ (rawTx: string, options: RpcObservableOptions = {}) {
       observer.next({ failed: error });
       observer.error(error);
     }
-  }).pipe(distinctReplayRefCountDelay());
+  });
 
-  source$.subscribe(); // Run this Observable immediately;
-  return source$ as Observable<TxStatus>;
+  return source$;
 }
