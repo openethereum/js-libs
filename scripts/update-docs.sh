@@ -41,6 +41,10 @@ done
 # Finally, copy the main README into $GHPAGES_DIR
 cp README.md $GHPAGES_DIR
 
+# Add a .nojekyll file to bypass Jekyll on Github Pages
+# See https://github.com/paritytech/js-libs/issues/146
+touch "$GHPAGES_DIR/.nojekyll"
+
 # Docs are updated on master, we commit back
 git checkout master
 git add .
