@@ -4,9 +4,8 @@
 // SPDX-License-Identifier: MIT
 
 import createRpc$, { UNSUB_DELAY } from './createRpc';
-import { MockProvider } from '../../utils/testHelpers/mockApi';
+import { MockProvider, resolveApi } from '../../utils/testHelpers/mockApi';
 import { Observable } from 'rxjs';
-import { resolveApi } from '../../utils/testHelpers/mockApi';
 import { RpcObservableOptions } from '../../types';
 import { setApi } from '../../api';
 import sleep from '../../utils/testHelpers/sleep';
