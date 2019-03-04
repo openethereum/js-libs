@@ -11,7 +11,7 @@ import light from '@parity/light.js-react';
 import PropTypes from 'prop-types';
 
 @light({
-  myBalance: ({ myAddress }) => balanceOf(myAddress, { withouLoading: true }) // myAddress here is a prop passed directly to MyComponent
+  myBalance: ({ myAddress }) => balanceOf(myAddress) // myAddress here is a prop passed directly to MyComponent
 })
 class MyComponent extends React.Component {
   static propTypes = {
@@ -49,9 +49,7 @@ You can of course let your component subscribe to multiple RpcObservablse:
 import React from 'react';
 import {
   blockNumber$,
-  isNullOrLoading,
   makeContract,
-  withoutLoading
 } from '@parity/light.js';
 import erc20Abi from '@parity/contracts/lib/abi/eip20';
 import { filter } from 'rxjs/operators';
@@ -75,7 +73,6 @@ export default light({
   myGavcoinBalance: ({ myAddress }) =>
     makeContract('0x4733659a5cB7896A65c918Add6f59C5148FB5ffa', erc20Abi)
       .balanceOf$(myAddress)
-      .pipe(withoutLoading())
 })(MyComponent);
 ```
 

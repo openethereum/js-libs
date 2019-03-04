@@ -10,7 +10,6 @@ import rpc from './rpc';
 
 export * from './utils/isLoading';
 export * from './types';
-export { withoutLoading } from './utils/operators/withoutLoading';
 
 export { frequency, makeContract }; // makeContract is a bit special, because it's not a RpcObservable
 export const {

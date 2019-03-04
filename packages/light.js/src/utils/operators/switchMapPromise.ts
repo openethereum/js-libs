@@ -3,10 +3,8 @@
 //
 // SPDX-License-Identifier: MIT
 
-import { catchError, startWith, switchMap } from 'rxjs/operators';
+import { catchError, switchMap } from 'rxjs/operators';
 import { empty, from, Observable } from 'rxjs';
-
-import { RPC_LOADING } from '../isLoading';
 
 /**
  * SwitchMap to an Observable.from. The Observable.from will return an empty
@@ -29,7 +27,6 @@ export const switchMapPromise = <T>(promise: () => Promise<T>) => (
           return Promise.resolve(result);
         })
       ).pipe(
-        startWith(RPC_LOADING as any),
         catchError(err => {
           console.group();
           console.error({ call: promise.toString(), err });

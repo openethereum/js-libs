@@ -28,6 +28,5 @@
 * [&quot;utils/operators/distinctReplayRefCount&quot;](modules/_utils_operators_distinctreplayrefcount_.md)
 * [&quot;utils/operators/distinctValues&quot;](modules/_utils_operators_distinctvalues_.md)
 * [&quot;utils/operators/switchMapPromise&quot;](modules/_utils_operators_switchmappromise_.md)
-* [&quot;utils/operators/withoutLoading&quot;](modules/_utils_operators_withoutloading_.md)
 * [&quot;utils/testHelpers/mockApi&quot;](modules/_utils_testhelpers_mockapi_.md)
 * [&quot;utils/testHelpers/mockRpc&quot;](modules/_utils_testhelpers_mockrpc_.md)

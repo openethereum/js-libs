@@ -4,13 +4,11 @@
 // SPDX-License-Identifier: MIT
 
 import BigNumber from 'bignumber.js';
-import { of } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 
 import { Address, Block, RpcObservableOptions } from '../types';
 import createRpc$ from './utils/createRpc';
 import frequency from '../frequency';
-import { isNullOrLoading, RPC_LOADING } from '../utils/isLoading';
 import { switchMapPromise } from '../utils/operators';
 
 /**
@@ -115,9 +113,7 @@ export function myBalance$ (options?: RpcObservableOptions) {
     name: 'myBalance$',
     pipes: () => [
       switchMap(defaultAccount =>
-        isNullOrLoading(defaultAccount)
-          ? of(RPC_LOADING)
-          : balanceOf$(defaultAccount)
+        balanceOf$(defaultAccount)
       )
     ]
   })(options)();

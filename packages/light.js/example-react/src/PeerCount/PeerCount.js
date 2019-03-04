@@ -4,13 +4,13 @@
 // SPDX-License-Identifier: MIT
 
 import React, { Component } from 'react';
-import { peerCount$, withoutLoading } from '@parity/light.js';
+import { peerCount$ } from '@parity/light.js';
 import light from '@parity/light.js-react';
 
 // NOTE: with the right Babel configuration (or TypeScript), 
 // you can use use `light` as a decorator:
 // @light({
-//   peerCount: () => peerCount$().pipe(withoutLoading())
+//   peerCount: peerCount$
 // })
 class PeerCount extends Component {
   render() {
@@ -28,7 +28,7 @@ class PeerCount extends Component {
 }
 
 PeerCount = light({
-  peerCount: () => peerCount$().pipe(withoutLoading())
+  peerCount: peerCount$
 })(PeerCount);
 
 export default PeerCount;

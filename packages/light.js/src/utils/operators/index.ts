@@ -6,4 +6,3 @@
 export * from './distinctReplayRefCount';
 export * from './distinctValues';
 export * from './switchMapPromise';
-export * from './withoutLoading';

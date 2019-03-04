@@ -7,7 +7,6 @@ import { skip, take } from 'rxjs/operators';
 
 import mockRpc$ from '../testHelpers/mockRpc';
 import { rejectApi, resolveApi } from '../testHelpers/mockApi';
-import { RPC_LOADING } from '../isLoading';
 import { switchMapPromise } from './switchMapPromise';
 
 it('should not error when the promise resolves with an error', done => {
@@ -30,23 +29,10 @@ it('should not error when the promise rejects', done => {
   setTimeout(done, 100);
 });
 
-it('should fire a loading state frist', done => {
-  mockRpc$()
-    .pipe(
-      switchMapPromise(resolveApi().fake.method),
-      take(1)
-    )
-    .subscribe(data => {
-      expect(data).toBe(RPC_LOADING);
-      done();
-    });
-});
-
 it('should fire the correct value when the promise resolves', done => {
   mockRpc$()
     .pipe(
-      switchMapPromise(resolveApi().fake.method),
-      skip(1) // Skip the RPC_LOADING
+      switchMapPromise(resolveApi().fake.method)
     )
     .subscribe(data => {
       expect(data).toBe('foo');

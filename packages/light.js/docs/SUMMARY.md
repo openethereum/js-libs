@@ -49,6 +49,5 @@
     - [utils/operators/distinctReplayRefCount](api/modules/_utils_operators_distinctreplayrefcount_.md)
     - [utils/operators/distinctValues](api/modules/_utils_operators_distinctvalues_.md)
     - [utils/operators/switchMapPromise](api/modules/_utils_operators_switchmappromise_.md)
-    - [utils/operators/withoutLoading](api/modules/_utils_operators_withoutloading_.md)
     - [utils/testHelpers/mockApi](api/modules/_utils_testhelpers_mockapi_.md)
     - [utils/testHelpers/mockRpc](api/modules/_utils_testhelpers_mockrpc_.md)
