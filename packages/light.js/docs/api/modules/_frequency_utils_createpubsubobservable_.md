@@ -8,7 +8,16 @@
 
 **● POLL_INTERVAL**: *`1000`* = 1000
 
-*Defined in [frequency/utils/createPubsubObservable.ts:15](https://github.com/paritytech/js-libs/blob/0b729df/packages/light.js/src/frequency/utils/createPubsubObservable.ts#L15)*
+*Defined in [frequency/utils/createPubsubObservable.ts:16](https://github.com/paritytech/js-libs/blob/1e0790d/packages/light.js/src/frequency/utils/createPubsubObservable.ts#L16)*
+
+___
+<a id="unsub_delay"></a>
+
+## `<Const>` UNSUB_DELAY
+
+**● UNSUB_DELAY**: *`2000`* = 2000
+
+*Defined in [frequency/utils/createPubsubObservable.ts:19](https://github.com/paritytech/js-libs/blob/1e0790d/packages/light.js/src/frequency/utils/createPubsubObservable.ts#L19)*
 
 ___
 

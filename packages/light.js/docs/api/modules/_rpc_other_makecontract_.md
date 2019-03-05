@@ -20,7 +20,7 @@
 
 ▸ **makeContract**(address: *[Address](_types_.md#address)*, abiJson: *`any`[]*, options?: *`object`*): [MakeContract](../interfaces/_rpc_other_makecontract_.makecontract.md)
 
-*Defined in [rpc/other/makeContract.ts:121](https://github.com/paritytech/js-libs/blob/0b729df/packages/light.js/src/rpc/other/makeContract.ts#L121)*
+*Defined in [rpc/other/makeContract.ts:121](https://github.com/paritytech/js-libs/blob/1e0790d/packages/light.js/src/rpc/other/makeContract.ts#L121)*
 
 Create a contract.
 
