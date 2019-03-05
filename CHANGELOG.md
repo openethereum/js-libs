@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.1.1](https://github.com/paritytech/js-libs/compare/v4.1.0...v4.1.1) (2019-03-05)
+
+
+### Bug Fixes
+
+* fix light.js docs not clickable ([#202](https://github.com/paritytech/js-libs/issues/202)) ([87b4d1f](https://github.com/paritytech/js-libs/commit/87b4d1f)), closes [#146](https://github.com/paritytech/js-libs/issues/146)
+
+
+
+
+
 # [4.1.0](https://github.com/paritytech/js-libs/compare/v4.0.3...v4.1.0) (2019-03-05)
 
 
