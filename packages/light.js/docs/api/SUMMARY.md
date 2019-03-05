@@ -23,7 +23,6 @@
   * [RpcObservable](interfaces/_types_.rpcobservable.md)
   * [RpcObservableOptions](interfaces/_types_.rpcobservableoptions.md)
   * [TxStatus](interfaces/_types_.txstatus.md)
-* [&quot;utils/isLoading&quot;](modules/_utils_isloading_.md)
 * [&quot;utils/isObservable&quot;](modules/_utils_isobservable_.md)
 * [&quot;utils/operators/distinctReplayRefCountDelay&quot;](modules/_utils_operators_distinctreplayrefcountdelay_.md)
 * [&quot;utils/operators/distinctValues&quot;](modules/_utils_operators_distinctvalues_.md)
