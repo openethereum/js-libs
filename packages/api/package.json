@@ -1,7 +1,7 @@
 {
   "name": "@parity/api",
   "description": "The Parity Promise-based API library for interfacing with Ethereum over RPC",
-  "version": "4.1.1",
+  "version": "5.0.0",
   "author": "Parity Team <admin@parity.io>",
   "license": "MIT",
   "repository": "https://github.com/paritytech/js-libs/tree/master/packages/api",
@@ -39,7 +39,7 @@
     "typescript": "^3.1.6"
   },
   "dependencies": {
-    "@parity/abi": "^4.1.1",
+    "@parity/abi": "^5.0.0",
     "bignumber.js": "^8.0.1",
     "blockies": "0.0.2",
     "es6-error": "4.1.1",

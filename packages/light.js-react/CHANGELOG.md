@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.0.0](https://github.com/paritytech/js-libs/tree/master/packages/light.js-react/compare/v4.1.1...v5.0.0) (2019-03-05)
+
+**Note:** Version bump only for package @parity/light.js-react
+
+
+
+
+
 ## [4.1.1](https://github.com/paritytech/js-libs/tree/master/packages/light.js-react/compare/v4.1.0...v4.1.1) (2019-03-05)
 
 **Note:** Version bump only for package @parity/light.js-react

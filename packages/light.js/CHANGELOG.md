@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.0.0](https://github.com/paritytech/js-libs/tree/master/packages/light.js/compare/v4.1.1...v5.0.0) (2019-03-05)
+
+
+### Code Refactoring
+
+* Remove RPC_LOADING/withoutLoading ([#200](https://github.com/paritytech/js-libs/tree/master/packages/light.js/issues/200)) ([ae9ea03](https://github.com/paritytech/js-libs/tree/master/packages/light.js/commit/ae9ea03))
+
+
+### BREAKING CHANGES
+
+* Observables do not emit the symbol RPC_LOADING anymore. They will
+only emit once a value is available. The operator withoutLoading
+has been removed as this is now the default behaviour.
+
+* refactor: Remove RPC_LOADING/withoutLoading
+
+* Fix error
+
+switchMapPromise source and output can differ (number => BigNumber)
+
+
+
+
+
 ## [4.1.1](https://github.com/paritytech/js-libs/tree/master/packages/light.js/compare/v4.1.0...v4.1.1) (2019-03-05)
 
 **Note:** Version bump only for package @parity/light.js
