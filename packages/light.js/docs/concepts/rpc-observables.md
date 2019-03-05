@@ -39,7 +39,7 @@ import { from } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 
 // Observable that makes a JSONRPC request
-const fetchBalance = () => from(api.eth.getBalance('0x12..ff');
+const fetchBalance = () => from(api.eth.getBalance('0x12..ff'));
 
 // On every block, we make that JSONRPC request
 onEveryBlock$.pipe(switchMap(fetchBalance)));
@@ -52,7 +52,7 @@ import { from } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 
 // Observable that makes a JSONRPC request
-const checkPeerCount = () => from(api.net.peerCount();
+const checkPeerCount = () => from(api.net.peerCount());
 
 // On every block, we make that JSONRPC request
 onEvery5Seconds$.pipe(switchMap(checkPeerCount)));

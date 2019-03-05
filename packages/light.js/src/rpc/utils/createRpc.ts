@@ -3,18 +3,21 @@
 //
 // SPDX-License-Identifier: MIT
 
+import { defer, merge, Observable, of, OperatorFunction } from 'rxjs';
 import { isFunction } from '@parity/api/lib/util/types';
 // @ts-ignore Unfortunately no types for memoizee/weak.
 import * as memoizeeWeak from 'memoizee/weak';
-import { merge, Observable, OperatorFunction } from 'rxjs';
 
 import { createApiFromProvider, getApi } from '../../api';
-import { distinctReplayRefCount } from '../../utils/operators';
 import {
   FrequencyObservable,
   Metadata,
   RpcObservableOptions
 } from '../../types';
+import { distinctReplayRefCountDelay } from '../../utils/operators';
+
+// Unsubscribe to the frequency/dependsOn observable after 2s with no subscriber
+export const UNSUB_DELAY = 2000;
 
 /**
  * Add metadata to an RpcObservable, and transform it into a ReplaySubject(1).
@@ -38,7 +41,7 @@ const createRpcWithApi = memoizeeWeak(
     }
 
     // The source Observable can either be another RpcObservable (in the
-    // `dependsOn` field), or anObservable built by merging all the
+    // `dependsOn` field), or an Observable built by merging all the
     // FrequencyObservables
     const source$ = metadata.dependsOn
       ? metadata.dependsOn(...args, { provider: api.provider })
@@ -53,7 +56,8 @@ const createRpcWithApi = memoizeeWeak(
     if (metadata.pipes && isFunction(metadata.pipes)) {
       pipes.push(...metadata.pipes(api));
     }
-    pipes.push(distinctReplayRefCount());
+
+    pipes.push(distinctReplayRefCountDelay(UNSUB_DELAY));
 
     return source$.pipe(...pipes) as Observable<Out>;
   },
@@ -80,15 +84,17 @@ const createRpcWithApi = memoizeeWeak(
  * createRpc(metadata)(options) returns a RpcObservable.
  * createRpc(metadata)(options)(someArgs) returns an Observable.
  */
-const createRpc = <Source, Out>(metadata: Metadata<Source, Out>) => (
+const createRpc = <Source, Out> (metadata: Metadata<Source, Out>) => (
   options: RpcObservableOptions = {}
 ) => (...args: any[]) => {
-  const { provider } = options;
-  const api = provider ? createApiFromProvider(provider) : getApi();
-
-  return createRpcWithApi<Source, Out>(api, metadata, ...args) as Observable<
-    Out
-  >;
+  // Evaluate api only once we subscribe
+  return defer(() => {
+    const { provider } = options;
+    const api = provider ? createApiFromProvider(provider) : getApi();
+    return createRpcWithApi<Source, Out>(api, metadata, ...args) as Observable<
+      Out
+    >;
+  });
 };
 
 export default createRpc;

@@ -43,7 +43,7 @@ export default light({
 })(MyComponent);
 ```
 
-You can of course let your component subscribe to multiple RpcObservablse:
+You can of course let your component subscribe to multiple RpcObservables:
 
 ```javascript
 import React from 'react';

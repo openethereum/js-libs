@@ -42,11 +42,6 @@ const testFrequency = (
       expect(() => frequency$().subscribe()).not.toThrow();
     });
 
-    it('should return the same Observable upon re-running (memoization)', () => {
-      const initial$ = frequency$();
-      expect(frequency$()).toBe(initial$);
-    });
-
     it('should return values', done => {
       frequency$()
         .pipe(take(1))
@@ -55,33 +50,6 @@ const testFrequency = (
           done();
         });
     });
-
-    // Only the following FrequencyObservables are concerned with API changing
-    if (
-      [
-        'onAccountsChanged',
-        'onAccountsInfoChanged',
-        'onEveryBlock$',
-        'onSyncingChanged'
-      ].includes(name)
-    ) {
-      it('should not return the same Observable if we change Api in between', () => {
-        const initial$ = frequency$();
-        setApi(rejectApi());
-        expect(frequency$()).not.toBe(initial$);
-      });
-
-      it('should not return the same Observable if options are passed', () => {
-        const initial$ = frequency$();
-        expect(frequency$({ provider: new MockProvider() })).not.toBe(initial$);
-      });
-
-      it('should return the same Observable if same options are passed', () => {
-        const provider = new MockProvider();
-        const initial$ = frequency$({ provider });
-        expect(frequency$({ provider })).toBe(initial$);
-      });
-    }
   });
 
 Object.keys(frequency).forEach(key =>

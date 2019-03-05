@@ -44,17 +44,6 @@ subscriber3:    --------------------------^--|
 
 But Observables in this library are PublishReplay(1). [Read more](https://blog.angularindepth.com/rxjs-how-to-use-refcount-73a0c6619a4e) about PublishReplay.
 
-## Observables are memoized
-
-```javascript
-const obs1$ = balanceOf$('0x123');
-const obs2$ = balanceOf$('0x123');
-console.log(obs1$ === obs2$); // true
-
-const obs3$ = balanceOf$('0x456');
-console.log(obs1$ === obs3$); // false
-```
-
 ### Underlying API calls are not unnecessarily repeated
 
 ```javascript
@@ -71,7 +60,7 @@ const obs3$ = balanceOf$('0x456');
 // Logs a new balance, another call to `eth_getBalance` is made
 ```
 
-## Underlying PubSub subscriptions are dropped when there's no subscriber
+## Underlying PubSub subscriptions are dropped after 2 seconds with no subscribers
 
 ```javascript
 import { blockNumber$ } from '@parity/light.js';
@@ -86,5 +75,5 @@ const subscription = myObs$.subscribe(console.log);
 // Some other code...
 
 subscription.unsubscribe();
-// Drops the pubsub subscription
+// Pubsub subscription is dropped if the observable remains without subscribers for two seconds
 ```
