@@ -40,7 +40,9 @@ const createApi = (
 ) => {
 
   const getResolveValue = () =>
-    (typeof resolveValueOrFunction === 'function' ? resolveValueOrFunction() : resolveValueOrFunction);
+    // TODO Casting as Function manually, or else we get:
+    // "Cannot invoke an expression whose type lacks a call signature. Type 'Function | (() => any)' has no compatible call signatures."
+    (typeof resolveValueOrFunction === 'function' ? (resolveValueOrFunction as Function)() : resolveValueOrFunction);
 
   const result = Object.keys(listOfMockRps).reduce(
     (apiObject, namespace: string) => {
