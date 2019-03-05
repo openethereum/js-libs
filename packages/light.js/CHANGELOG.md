@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.1.0](https://github.com/paritytech/js-libs/tree/master/packages/light.js/compare/v4.0.3...v4.1.0) (2019-03-05)
+
+
+### Features
+
+* createRpc & createPubSub: defer getApi & delay unsubscription ([#197](https://github.com/paritytech/js-libs/tree/master/packages/light.js/issues/197)) ([191f1d2](https://github.com/paritytech/js-libs/tree/master/packages/light.js/commit/191f1d2))
+* fix build errored in [#197](https://github.com/paritytech/js-libs/tree/master/packages/light.js/issues/197) ([#201](https://github.com/paritytech/js-libs/tree/master/packages/light.js/issues/201)) ([1e0790d](https://github.com/paritytech/js-libs/tree/master/packages/light.js/commit/1e0790d))
+
+
+
+
+
 ## [4.0.3](https://github.com/paritytech/js-libs/tree/master/packages/light.js/compare/v4.0.2...v4.0.3) (2019-02-04)
 
 **Note:** Version bump only for package @parity/light.js
