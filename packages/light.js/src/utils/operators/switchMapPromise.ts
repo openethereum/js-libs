@@ -4,19 +4,23 @@
 // SPDX-License-Identifier: MIT
 
 import { catchError, switchMap } from 'rxjs/operators';
-import { from, Observable, throwError } from 'rxjs';
+import { empty, from, Observable, throwError, OperatorFunction } from 'rxjs';
+
+interface SwitchMapPromiseOptions {
+  emitErrors: boolean;
+}
 
 /**
- * SwitchMap to an Observable.from. The Observable.from will return an empty
- * Observable if the Promise throws an error, will log an error in the console
- * on error.
+ * RxJs operator that takes a promise as argument and switches the source
+ * observable to the promise converted as an observable.
+ *
+ * @param options.emitErrors In case the promise errors, the observable will
+ * error out (throw and abort) if emitErrors is `true`; otherwise the error will
+ * just be logged.
  *
  * @ignore
  */
-export const switchMapPromise = <T,U>(promise: () => Promise<U>) => (
-  source$: Observable<T>
-): Observable<U> =>
-  source$.pipe(
+export const switchMapPromise = <T,U>(promise: () => Promise<U>, options: SwitchMapPromiseOptions = { emitErrors: false }): OperatorFunction<T, U> =>
     switchMap(() =>
       from(
         promise().then(result => {
@@ -36,8 +40,12 @@ export const switchMapPromise = <T,U>(promise: () => Promise<U>) => (
             )
           );
           console.groupEnd();
-          return throwError(err) as Observable<U>;
+
+          if (options.emitErrors) {
+            return throwError(err);
+          } else {
+            return empty();
+          }
         })
       )
-    )
   );

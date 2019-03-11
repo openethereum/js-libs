@@ -48,6 +48,6 @@ export function versionInfo$ (options?: RpcObservableOptions) {
     calls: ['parity_versionInfo'],
     frequency: [frequency.onStartup$],
     name: 'versionInfo$',
-    pipes: api => [switchMapPromise(() => api.parity.versionInfo())]
+    pipes: api => [switchMapPromise(() => api.parity.versionInfo(), { emitErrors: true })]
   })(options)();
 }
