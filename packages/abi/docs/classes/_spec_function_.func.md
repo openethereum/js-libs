@@ -12,7 +12,7 @@
 
 ⊕ **new Func**(abi: *[AbiItem](../interfaces/_types_.abiitem.md)*): [Func](_spec_function_.func.md)
 
-*Defined in [spec/function.ts:21](https://github.com/paritytech/js-libs/blob/be2fdbd/packages/abi/src/spec/function.ts#L21)*
+*Defined in [spec/function.ts:21](https://github.com/paritytech/js-libs/blob/e18d839/packages/abi/src/spec/function.ts#L21)*
 
 **Parameters:**
 
@@ -30,9 +30,9 @@ ___
 
 ##  abi
 
-getabi(): [AbiItem](../interfaces/_types_.abiitem.md)
+**get abi**(): [AbiItem](../interfaces/_types_.abiitem.md)
 
-*Defined in [spec/function.ts:40](https://github.com/paritytech/js-libs/blob/be2fdbd/packages/abi/src/spec/function.ts#L40)*
+*Defined in [spec/function.ts:40](https://github.com/paritytech/js-libs/blob/e18d839/packages/abi/src/spec/function.ts#L40)*
 
 **Returns:** [AbiItem](../interfaces/_types_.abiitem.md)
 
@@ -41,9 +41,9 @@ ___
 
 ##  constant
 
-getconstant(): `boolean`
+**get constant**(): `boolean`
 
-*Defined in [spec/function.ts:44](https://github.com/paritytech/js-libs/blob/be2fdbd/packages/abi/src/spec/function.ts#L44)*
+*Defined in [spec/function.ts:44](https://github.com/paritytech/js-libs/blob/e18d839/packages/abi/src/spec/function.ts#L44)*
 
 **Returns:** `boolean`
 
@@ -52,9 +52,9 @@ ___
 
 ##  id
 
-getid(): `string`
+**get id**(): `string`
 
-*Defined in [spec/function.ts:48](https://github.com/paritytech/js-libs/blob/be2fdbd/packages/abi/src/spec/function.ts#L48)*
+*Defined in [spec/function.ts:48](https://github.com/paritytech/js-libs/blob/e18d839/packages/abi/src/spec/function.ts#L48)*
 
 **Returns:** `string`
 
@@ -63,9 +63,9 @@ ___
 
 ##  inputs
 
-getinputs(): [Param](_spec_param_.param.md)[]
+**get inputs**(): [Param](_spec_param_.param.md)[]
 
-*Defined in [spec/function.ts:52](https://github.com/paritytech/js-libs/blob/be2fdbd/packages/abi/src/spec/function.ts#L52)*
+*Defined in [spec/function.ts:52](https://github.com/paritytech/js-libs/blob/e18d839/packages/abi/src/spec/function.ts#L52)*
 
 **Returns:** [Param](_spec_param_.param.md)[]
 
@@ -74,9 +74,9 @@ ___
 
 ##  name
 
-getname(): `undefined` \| `string`
+**get name**(): `undefined` \| `string`
 
-*Defined in [spec/function.ts:56](https://github.com/paritytech/js-libs/blob/be2fdbd/packages/abi/src/spec/function.ts#L56)*
+*Defined in [spec/function.ts:56](https://github.com/paritytech/js-libs/blob/e18d839/packages/abi/src/spec/function.ts#L56)*
 
 **Returns:** `undefined` \| `string`
 
@@ -85,9 +85,9 @@ ___
 
 ##  outputs
 
-getoutputs(): [Param](_spec_param_.param.md)[]
+**get outputs**(): [Param](_spec_param_.param.md)[]
 
-*Defined in [spec/function.ts:60](https://github.com/paritytech/js-libs/blob/be2fdbd/packages/abi/src/spec/function.ts#L60)*
+*Defined in [spec/function.ts:60](https://github.com/paritytech/js-libs/blob/e18d839/packages/abi/src/spec/function.ts#L60)*
 
 **Returns:** [Param](_spec_param_.param.md)[]
 
@@ -96,9 +96,9 @@ ___
 
 ##  payable
 
-getpayable(): `boolean`
+**get payable**(): `boolean`
 
-*Defined in [spec/function.ts:64](https://github.com/paritytech/js-libs/blob/be2fdbd/packages/abi/src/spec/function.ts#L64)*
+*Defined in [spec/function.ts:64](https://github.com/paritytech/js-libs/blob/e18d839/packages/abi/src/spec/function.ts#L64)*
 
 **Returns:** `boolean`
 
@@ -107,9 +107,9 @@ ___
 
 ##  signature
 
-getsignature(): `string`
+**get signature**(): `string`
 
-*Defined in [spec/function.ts:68](https://github.com/paritytech/js-libs/blob/be2fdbd/packages/abi/src/spec/function.ts#L68)*
+*Defined in [spec/function.ts:68](https://github.com/paritytech/js-libs/blob/e18d839/packages/abi/src/spec/function.ts#L68)*
 
 **Returns:** `string`
 
@@ -123,7 +123,7 @@ ___
 
 ▸ **decodeInput**(data?: *`undefined` \| `string`*): [Token](_token_token_.token.md)[]
 
-*Defined in [spec/function.ts:72](https://github.com/paritytech/js-libs/blob/be2fdbd/packages/abi/src/spec/function.ts#L72)*
+*Defined in [spec/function.ts:72](https://github.com/paritytech/js-libs/blob/e18d839/packages/abi/src/spec/function.ts#L72)*
 
 **Parameters:**
 
@@ -140,7 +140,7 @@ ___
 
 ▸ **decodeOutput**(data?: *`undefined` \| `string`*): [Token](_token_token_.token.md)[]
 
-*Defined in [spec/function.ts:76](https://github.com/paritytech/js-libs/blob/be2fdbd/packages/abi/src/spec/function.ts#L76)*
+*Defined in [spec/function.ts:76](https://github.com/paritytech/js-libs/blob/e18d839/packages/abi/src/spec/function.ts#L76)*
 
 **Parameters:**
 
@@ -157,7 +157,7 @@ ___
 
 ▸ **encodeCall**(tokens: *[Token](_token_token_.token.md)[]*): `string`
 
-*Defined in [spec/function.ts:80](https://github.com/paritytech/js-libs/blob/be2fdbd/packages/abi/src/spec/function.ts#L80)*
+*Defined in [spec/function.ts:80](https://github.com/paritytech/js-libs/blob/e18d839/packages/abi/src/spec/function.ts#L80)*
 
 **Parameters:**
 
@@ -174,7 +174,7 @@ ___
 
 ▸ **inputParamTypes**(): [ParamType](_spec_paramtype_paramtype_.paramtype.md)[]
 
-*Defined in [spec/function.ts:84](https://github.com/paritytech/js-libs/blob/be2fdbd/packages/abi/src/spec/function.ts#L84)*
+*Defined in [spec/function.ts:84](https://github.com/paritytech/js-libs/blob/e18d839/packages/abi/src/spec/function.ts#L84)*
 
 **Returns:** [ParamType](_spec_paramtype_paramtype_.paramtype.md)[]
 
@@ -185,7 +185,7 @@ ___
 
 ▸ **outputParamTypes**(): [ParamType](_spec_paramtype_paramtype_.paramtype.md)[]
 
-*Defined in [spec/function.ts:88](https://github.com/paritytech/js-libs/blob/be2fdbd/packages/abi/src/spec/function.ts#L88)*
+*Defined in [spec/function.ts:88](https://github.com/paritytech/js-libs/blob/e18d839/packages/abi/src/spec/function.ts#L88)*
 
 **Returns:** [ParamType](_spec_paramtype_paramtype_.paramtype.md)[]
 

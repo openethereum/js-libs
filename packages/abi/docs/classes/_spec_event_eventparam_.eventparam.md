@@ -12,7 +12,7 @@
 
 ⊕ **new EventParam**(name: *`string` \| `undefined`*, type: *[TokenTypeEnum](../modules/_types_.md#tokentypeenum)*, indexed?: *`boolean`*): [EventParam](_spec_event_eventparam_.eventparam.md)
 
-*Defined in [spec/event/eventParam.ts:27](https://github.com/paritytech/js-libs/blob/be2fdbd/packages/abi/src/spec/event/eventParam.ts#L27)*
+*Defined in [spec/event/eventParam.ts:27](https://github.com/paritytech/js-libs/blob/e18d839/packages/abi/src/spec/event/eventParam.ts#L27)*
 
 **Parameters:**
 
@@ -32,9 +32,9 @@ ___
 
 ##  indexed
 
-getindexed(): `boolean`
+**get indexed**(): `boolean`
 
-*Defined in [spec/event/eventParam.ts:43](https://github.com/paritytech/js-libs/blob/be2fdbd/packages/abi/src/spec/event/eventParam.ts#L43)*
+*Defined in [spec/event/eventParam.ts:43](https://github.com/paritytech/js-libs/blob/e18d839/packages/abi/src/spec/event/eventParam.ts#L43)*
 
 **Returns:** `boolean`
 
@@ -43,9 +43,9 @@ ___
 
 ##  kind
 
-getkind(): [ParamType](_spec_paramtype_paramtype_.paramtype.md)
+**get kind**(): [ParamType](_spec_paramtype_paramtype_.paramtype.md)
 
-*Defined in [spec/event/eventParam.ts:39](https://github.com/paritytech/js-libs/blob/be2fdbd/packages/abi/src/spec/event/eventParam.ts#L39)*
+*Defined in [spec/event/eventParam.ts:39](https://github.com/paritytech/js-libs/blob/e18d839/packages/abi/src/spec/event/eventParam.ts#L39)*
 
 **Returns:** [ParamType](_spec_paramtype_paramtype_.paramtype.md)
 
@@ -54,9 +54,9 @@ ___
 
 ##  name
 
-getname(): `undefined` \| `string`
+**get name**(): `undefined` \| `string`
 
-*Defined in [spec/event/eventParam.ts:35](https://github.com/paritytech/js-libs/blob/be2fdbd/packages/abi/src/spec/event/eventParam.ts#L35)*
+*Defined in [spec/event/eventParam.ts:35](https://github.com/paritytech/js-libs/blob/e18d839/packages/abi/src/spec/event/eventParam.ts#L35)*
 
 **Returns:** `undefined` \| `string`
 
@@ -70,7 +70,7 @@ ___
 
 ▸ **toEventParams**(params: *([AbiInput](../interfaces/_types_.abiinput.md) \| [Param](_spec_param_.param.md))[]*): [EventParam](_spec_event_eventparam_.eventparam.md)[]
 
-*Defined in [spec/event/eventParam.ts:16](https://github.com/paritytech/js-libs/blob/be2fdbd/packages/abi/src/spec/event/eventParam.ts#L16)*
+*Defined in [spec/event/eventParam.ts:16](https://github.com/paritytech/js-libs/blob/e18d839/packages/abi/src/spec/event/eventParam.ts#L16)*
 
 **Parameters:**
 

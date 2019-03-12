@@ -16,7 +16,7 @@
 
 *Inherited from [Interface](_spec_interface_.interface.md).[constructor](_spec_interface_.interface.md#constructor)*
 
-*Defined in [spec/interface.ts:14](https://github.com/paritytech/js-libs/blob/be2fdbd/packages/abi/src/spec/interface.ts#L14)*
+*Defined in [spec/interface.ts:14](https://github.com/paritytech/js-libs/blob/e18d839/packages/abi/src/spec/interface.ts#L14)*
 
 **Parameters:**
 
@@ -34,11 +34,11 @@ ___
 
 ##  constructors
 
-getconstructors(): ([Constructor](_spec_constructor_.constructor.md) \| [Event](_spec_event_event_.event.md) \| [Func](_spec_function_.func.md))[]
+**get constructors**(): ([Constructor](_spec_constructor_.constructor.md) \| [Event](_spec_event_event_.event.md) \| [Func](_spec_function_.func.md))[]
 
 *Inherited from [Interface](_spec_interface_.interface.md).[constructors](_spec_interface_.interface.md#constructors)*
 
-*Defined in [spec/interface.ts:62](https://github.com/paritytech/js-libs/blob/be2fdbd/packages/abi/src/spec/interface.ts#L62)*
+*Defined in [spec/interface.ts:62](https://github.com/paritytech/js-libs/blob/e18d839/packages/abi/src/spec/interface.ts#L62)*
 
 **Returns:** ([Constructor](_spec_constructor_.constructor.md) \| [Event](_spec_event_event_.event.md) \| [Func](_spec_function_.func.md))[]
 
@@ -47,11 +47,11 @@ ___
 
 ##  events
 
-getevents(): ([Constructor](_spec_constructor_.constructor.md) \| [Event](_spec_event_event_.event.md) \| [Func](_spec_function_.func.md))[]
+**get events**(): ([Constructor](_spec_constructor_.constructor.md) \| [Event](_spec_event_event_.event.md) \| [Func](_spec_function_.func.md))[]
 
 *Inherited from [Interface](_spec_interface_.interface.md).[events](_spec_interface_.interface.md#events)*
 
-*Defined in [spec/interface.ts:66](https://github.com/paritytech/js-libs/blob/be2fdbd/packages/abi/src/spec/interface.ts#L66)*
+*Defined in [spec/interface.ts:66](https://github.com/paritytech/js-libs/blob/e18d839/packages/abi/src/spec/interface.ts#L66)*
 
 **Returns:** ([Constructor](_spec_constructor_.constructor.md) \| [Event](_spec_event_event_.event.md) \| [Func](_spec_function_.func.md))[]
 
@@ -60,11 +60,11 @@ ___
 
 ##  functions
 
-getfunctions(): ([Constructor](_spec_constructor_.constructor.md) \| [Event](_spec_event_event_.event.md) \| [Func](_spec_function_.func.md))[]
+**get functions**(): ([Constructor](_spec_constructor_.constructor.md) \| [Event](_spec_event_event_.event.md) \| [Func](_spec_function_.func.md))[]
 
 *Inherited from [Interface](_spec_interface_.interface.md).[functions](_spec_interface_.interface.md#functions)*
 
-*Defined in [spec/interface.ts:70](https://github.com/paritytech/js-libs/blob/be2fdbd/packages/abi/src/spec/interface.ts#L70)*
+*Defined in [spec/interface.ts:70](https://github.com/paritytech/js-libs/blob/e18d839/packages/abi/src/spec/interface.ts#L70)*
 
 **Returns:** ([Constructor](_spec_constructor_.constructor.md) \| [Event](_spec_event_event_.event.md) \| [Func](_spec_function_.func.md))[]
 
@@ -73,11 +73,11 @@ ___
 
 ##  interface
 
-getinterface(): ([Constructor](_spec_constructor_.constructor.md) \| [Event](_spec_event_event_.event.md) \| [Func](_spec_function_.func.md))[]
+**get interface**(): ([Constructor](_spec_constructor_.constructor.md) \| [Event](_spec_event_event_.event.md) \| [Func](_spec_function_.func.md))[]
 
 *Inherited from [Interface](_spec_interface_.interface.md).[interface](_spec_interface_.interface.md#interface)*
 
-*Defined in [spec/interface.ts:58](https://github.com/paritytech/js-libs/blob/be2fdbd/packages/abi/src/spec/interface.ts#L58)*
+*Defined in [spec/interface.ts:58](https://github.com/paritytech/js-libs/blob/e18d839/packages/abi/src/spec/interface.ts#L58)*
 
 **Returns:** ([Constructor](_spec_constructor_.constructor.md) \| [Event](_spec_event_event_.event.md) \| [Func](_spec_function_.func.md))[]
 
@@ -93,7 +93,7 @@ ___
 
 *Inherited from [Interface](_spec_interface_.interface.md).[encodeTokens](_spec_interface_.interface.md#encodetokens)*
 
-*Defined in [spec/interface.ts:74](https://github.com/paritytech/js-libs/blob/be2fdbd/packages/abi/src/spec/interface.ts#L74)*
+*Defined in [spec/interface.ts:74](https://github.com/paritytech/js-libs/blob/e18d839/packages/abi/src/spec/interface.ts#L74)*
 
 **Parameters:**
 
@@ -113,7 +113,7 @@ ___
 
 *Inherited from [Interface](_spec_interface_.interface.md).[encodeTokens](_spec_interface_.interface.md#encodetokens-1)*
 
-*Defined in [spec/interface.ts:20](https://github.com/paritytech/js-libs/blob/be2fdbd/packages/abi/src/spec/interface.ts#L20)*
+*Defined in [spec/interface.ts:20](https://github.com/paritytech/js-libs/blob/e18d839/packages/abi/src/spec/interface.ts#L20)*
 
 **Parameters:**
 
@@ -133,7 +133,7 @@ ___
 
 *Inherited from [Interface](_spec_interface_.interface.md).[parseABI](_spec_interface_.interface.md#parseabi)*
 
-*Defined in [spec/interface.ts:39](https://github.com/paritytech/js-libs/blob/be2fdbd/packages/abi/src/spec/interface.ts#L39)*
+*Defined in [spec/interface.ts:39](https://github.com/paritytech/js-libs/blob/e18d839/packages/abi/src/spec/interface.ts#L39)*
 
 **Parameters:**
 

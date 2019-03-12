@@ -12,7 +12,7 @@
 
 ⊕ **new BytesTaken**(bytes: *`number`[]*, newOffset: *`number`*): [BytesTaken](_decoder_bytestaken_.bytestaken.md)
 
-*Defined in [decoder/bytesTaken.ts:8](https://github.com/paritytech/js-libs/blob/be2fdbd/packages/abi/src/decoder/bytesTaken.ts#L8)*
+*Defined in [decoder/bytesTaken.ts:8](https://github.com/paritytech/js-libs/blob/e18d839/packages/abi/src/decoder/bytesTaken.ts#L8)*
 
 **Parameters:**
 
@@ -31,9 +31,9 @@ ___
 
 ##  bytes
 
-getbytes(): `number`[]
+**get bytes**(): `number`[]
 
-*Defined in [decoder/bytesTaken.ts:15](https://github.com/paritytech/js-libs/blob/be2fdbd/packages/abi/src/decoder/bytesTaken.ts#L15)*
+*Defined in [decoder/bytesTaken.ts:15](https://github.com/paritytech/js-libs/blob/e18d839/packages/abi/src/decoder/bytesTaken.ts#L15)*
 
 **Returns:** `number`[]
 
@@ -42,9 +42,9 @@ ___
 
 ##  newOffset
 
-getnewOffset(): `number`
+**get newOffset**(): `number`
 
-*Defined in [decoder/bytesTaken.ts:19](https://github.com/paritytech/js-libs/blob/be2fdbd/packages/abi/src/decoder/bytesTaken.ts#L19)*
+*Defined in [decoder/bytesTaken.ts:19](https://github.com/paritytech/js-libs/blob/e18d839/packages/abi/src/decoder/bytesTaken.ts#L19)*
 
 **Returns:** `number`
 

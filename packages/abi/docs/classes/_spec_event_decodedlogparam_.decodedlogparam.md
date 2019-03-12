@@ -12,7 +12,7 @@
 
 ⊕ **new DecodedLogParam**(name: *`string` \| `undefined`*, kind: *[ParamType](_spec_paramtype_paramtype_.paramtype.md)*, token: *[Token](_token_token_.token.md)*): [DecodedLogParam](_spec_event_decodedlogparam_.decodedlogparam.md)
 
-*Defined in [spec/event/decodedLogParam.ts:13](https://github.com/paritytech/js-libs/blob/be2fdbd/packages/abi/src/spec/event/decodedLogParam.ts#L13)*
+*Defined in [spec/event/decodedLogParam.ts:13](https://github.com/paritytech/js-libs/blob/e18d839/packages/abi/src/spec/event/decodedLogParam.ts#L13)*
 
 **Parameters:**
 
@@ -32,9 +32,9 @@ ___
 
 ##  kind
 
-getkind(): [ParamType](_spec_paramtype_paramtype_.paramtype.md)
+**get kind**(): [ParamType](_spec_paramtype_paramtype_.paramtype.md)
 
-*Defined in [spec/event/decodedLogParam.ts:31](https://github.com/paritytech/js-libs/blob/be2fdbd/packages/abi/src/spec/event/decodedLogParam.ts#L31)*
+*Defined in [spec/event/decodedLogParam.ts:31](https://github.com/paritytech/js-libs/blob/e18d839/packages/abi/src/spec/event/decodedLogParam.ts#L31)*
 
 **Returns:** [ParamType](_spec_paramtype_paramtype_.paramtype.md)
 
@@ -43,9 +43,9 @@ ___
 
 ##  name
 
-getname(): `undefined` \| `string`
+**get name**(): `undefined` \| `string`
 
-*Defined in [spec/event/decodedLogParam.ts:27](https://github.com/paritytech/js-libs/blob/be2fdbd/packages/abi/src/spec/event/decodedLogParam.ts#L27)*
+*Defined in [spec/event/decodedLogParam.ts:27](https://github.com/paritytech/js-libs/blob/e18d839/packages/abi/src/spec/event/decodedLogParam.ts#L27)*
 
 **Returns:** `undefined` \| `string`
 
@@ -54,9 +54,9 @@ ___
 
 ##  token
 
-gettoken(): [Token](_token_token_.token.md)
+**get token**(): [Token](_token_token_.token.md)
 
-*Defined in [spec/event/decodedLogParam.ts:35](https://github.com/paritytech/js-libs/blob/be2fdbd/packages/abi/src/spec/event/decodedLogParam.ts#L35)*
+*Defined in [spec/event/decodedLogParam.ts:35](https://github.com/paritytech/js-libs/blob/e18d839/packages/abi/src/spec/event/decodedLogParam.ts#L35)*
 
 **Returns:** [Token](_token_token_.token.md)
 

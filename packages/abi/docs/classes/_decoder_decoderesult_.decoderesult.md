@@ -12,7 +12,7 @@
 
 ⊕ **new DecodeResult**(token: *[Token](_token_token_.token.md)*, newOffset: *`number`*): [DecodeResult](_decoder_decoderesult_.decoderesult.md)
 
-*Defined in [decoder/decodeResult.ts:10](https://github.com/paritytech/js-libs/blob/be2fdbd/packages/abi/src/decoder/decodeResult.ts#L10)*
+*Defined in [decoder/decodeResult.ts:10](https://github.com/paritytech/js-libs/blob/e18d839/packages/abi/src/decoder/decodeResult.ts#L10)*
 
 **Parameters:**
 
@@ -33,7 +33,7 @@ ___
 
 **● _newOffset**: *`number`*
 
-*Defined in [decoder/decodeResult.ts:10](https://github.com/paritytech/js-libs/blob/be2fdbd/packages/abi/src/decoder/decodeResult.ts#L10)*
+*Defined in [decoder/decodeResult.ts:10](https://github.com/paritytech/js-libs/blob/e18d839/packages/abi/src/decoder/decodeResult.ts#L10)*
 
 ___
 <a id="_token"></a>
@@ -42,7 +42,7 @@ ___
 
 **● _token**: *[Token](_token_token_.token.md)*
 
-*Defined in [decoder/decodeResult.ts:9](https://github.com/paritytech/js-libs/blob/be2fdbd/packages/abi/src/decoder/decodeResult.ts#L9)*
+*Defined in [decoder/decodeResult.ts:9](https://github.com/paritytech/js-libs/blob/e18d839/packages/abi/src/decoder/decodeResult.ts#L9)*
 
 ___
 
@@ -52,9 +52,9 @@ ___
 
 ##  newOffset
 
-getnewOffset(): `number`
+**get newOffset**(): `number`
 
-*Defined in [decoder/decodeResult.ts:21](https://github.com/paritytech/js-libs/blob/be2fdbd/packages/abi/src/decoder/decodeResult.ts#L21)*
+*Defined in [decoder/decodeResult.ts:21](https://github.com/paritytech/js-libs/blob/e18d839/packages/abi/src/decoder/decodeResult.ts#L21)*
 
 **Returns:** `number`
 
@@ -63,9 +63,9 @@ ___
 
 ##  token
 
-gettoken(): [Token](_token_token_.token.md)
+**get token**(): [Token](_token_token_.token.md)
 
-*Defined in [decoder/decodeResult.ts:17](https://github.com/paritytech/js-libs/blob/be2fdbd/packages/abi/src/decoder/decodeResult.ts#L17)*
+*Defined in [decoder/decodeResult.ts:17](https://github.com/paritytech/js-libs/blob/e18d839/packages/abi/src/decoder/decodeResult.ts#L17)*
 
 **Returns:** [Token](_token_token_.token.md)
 
