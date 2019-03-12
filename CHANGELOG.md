@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.1.0](https://github.com/paritytech/js-libs/compare/v5.0.1...v5.1.0) (2019-03-12)
+
+
+### Features
+
+* add versionInfo$ ([#205](https://github.com/paritytech/js-libs/issues/205)) ([e18d839](https://github.com/paritytech/js-libs/commit/e18d839))
+
+
+
+
+
 ## [5.0.1](https://github.com/paritytech/js-libs/compare/v5.0.0...v5.0.1) (2019-03-07)
 
 **Note:** Version bump only for package js-libs

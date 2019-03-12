@@ -1,7 +1,7 @@
 {
   "name": "@parity/light.js",
   "description": "A high-level reactive JS library optimized for light clients",
-  "version": "5.0.1",
+  "version": "5.1.0",
   "author": "Parity Team <admin@parity.io>",
   "license": "MIT",
   "repository": "https://github.com/paritytech/js-libs/tree/master/packages/light.js",
@@ -26,8 +26,8 @@
     "test": "jest --runInBand"
   },
   "dependencies": {
-    "@parity/abi": "^5.0.1",
-    "@parity/api": "^5.0.1",
+    "@parity/abi": "^5.1.0",
+    "@parity/api": "^5.1.0",
     "async-retry": "^1.2.3",
     "bignumber.js": "^8.0.1",
     "debug": "^4.1.0",
