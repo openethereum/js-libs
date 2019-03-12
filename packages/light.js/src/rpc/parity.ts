@@ -37,3 +37,17 @@ export function chainName$ (options?: RpcObservableOptions) {
     pipes: api => [switchMapPromise(() => api.parity.chain())]
   })(options)();
 }
+
+/**
+ * Get the version info of Parity Ethereum. Calls `parity_versionInfo`.
+ *
+ * @return - An Observable containing the version object: {major, minor, patch}
+ */
+export function versionInfo$ (options?: RpcObservableOptions) {
+  return createRpc$<any, string>({
+    calls: ['parity_versionInfo'],
+    frequency: [frequency.onStartup$],
+    name: 'versionInfo$',
+    pipes: api => [switchMapPromise(() => api.parity.versionInfo(), { emitErrors: true })]
+  })(options)();
+}

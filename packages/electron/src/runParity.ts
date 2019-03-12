@@ -12,6 +12,7 @@ import logCommand from './utils/logCommand';
 import logger from './utils/logger';
 
 interface RunParityOptions {
+  parityPath?: string;
   flags: string[];
   onParityError: (error: Error) => void;
 }
@@ -56,7 +57,7 @@ export async function runParity (
     },
     ...options
   };
-  const parityPath = await getParityPath();
+  const parityPath = options.parityPath || await getParityPath();
 
   // Some users somehow had no +x on the parity binary after downloading
   // it. We try to set it here (no guarantee it will work, we might not

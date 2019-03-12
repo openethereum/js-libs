@@ -7,14 +7,11 @@ import * as Api from '@parity/api';
 
 import isObservable from '../utils/isObservable';
 import {
-  MockProvider,
-  rejectApi,
   resolveApi
 } from '../utils/testHelpers/mockApi';
 import rpc from './rpc';
 import { RpcKey, RpcMap, RpcObservable } from '../types';
 import { setApi } from '../api';
-import sleep from '../utils/testHelpers/sleep';
 
 /*
  * Mock the Api of the RPC dependencies' observables

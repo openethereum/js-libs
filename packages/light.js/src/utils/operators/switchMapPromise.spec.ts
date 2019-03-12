@@ -29,6 +29,28 @@ it('should not error when the promise rejects', done => {
   setTimeout(done, 100);
 });
 
+it('should fire an error when the promise resolves with an error', done => {
+  mockRpc$()
+    .pipe(
+      switchMapPromise(rejectApi(new Error('boo')).fake.method, { emitErrors: true })
+    )
+    .subscribe(undefined, err => {
+      expect(err).toEqual(new Error('boo'));
+      done();
+    });
+});
+
+it('should fire an error when the promise rejects', done => {
+  mockRpc$()
+    .pipe(
+      switchMapPromise(rejectApi(new Error('boo')).fake.method, { emitErrors: true })
+    )
+    .subscribe(undefined, err => {
+      expect(err).toEqual(new Error('boo'));
+      done();
+    });
+});
+
 it('should fire the correct value when the promise resolves', done => {
   mockRpc$()
     .pipe(
