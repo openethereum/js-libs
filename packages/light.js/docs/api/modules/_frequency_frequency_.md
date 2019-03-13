@@ -8,7 +8,7 @@
 
 **frequency**: *`object`*
 
-*Defined in [frequency/frequency.ts:12](https://github.com/paritytech/js-libs/blob/e18d839/packages/light.js/src/frequency/frequency.ts#L12)*
+*Defined in [frequency/frequency.ts:12](https://github.com/paritytech/js-libs/blob/5d4b704/packages/light.js/src/frequency/frequency.ts#L12)*
 
 ___
 
