@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.1.1](https://github.com/paritytech/js-libs/compare/v5.1.0...v5.1.1) (2019-03-13)
+
+
+### Bug Fixes
+
+* downgrade es6-error ([#208](https://github.com/paritytech/js-libs/issues/208)) ([5d4b704](https://github.com/paritytech/js-libs/commit/5d4b704))
+
+
+
+
+
 # [5.1.0](https://github.com/paritytech/js-libs/compare/v5.0.1...v5.1.0) (2019-03-12)
 
 
