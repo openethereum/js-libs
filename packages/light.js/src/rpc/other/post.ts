@@ -16,18 +16,19 @@ interface PostOptions extends RpcObservableOptions {
   passphrase: String;
 }
 
-function getTransactionReceipt (transactionHash: string, api: any) {
-  // We poll `eth_getTransactionReceipt` 20 times, until we get a valid receipt
+function getTransactionByHash (transactionHash: string, api: any) {
+  // We poll `eth_getTransactionByHash` 20 times, until we get a valid
+  // transaction included in a block.
   return asyncRetry(
     async (_, attempt) => {
-      debug('@parity/light.js:getTransactionReceipt')(
-        `Attempt #${attempt} to eth_getTransactionReceipt.`
+      debug('@parity/light.js:getTransactionByHash')(
+        `Attempt #${attempt} to eth_getTransactionByHash.`
       );
-      const rcpt = await api.eth.getTransactionReceipt(transactionHash);
-      if (!rcpt || !rcpt.blockNumber || rcpt.blockNumber.eq(0)) {
-        throw new Error('Receipt is invalid.');
+      const tx = await api.eth.getTransactionByHash(transactionHash);
+      if (!tx || !tx.blockNumber || tx.blockNumber.eq(0)) {
+        throw new Error('Transaction did not go through');
       }
-      return rcpt;
+      return tx;
     },
     {
       retries: 20
@@ -39,7 +40,7 @@ function getTransactionReceipt (transactionHash: string, api: any) {
  * Post a transaction to the network.
  *
  * Calls, in this order, `eth_estimateGas`, `personal_signTransaction`,
- * `eth_sendRawTransaction` and `eth_getTransactionReceipt` to get the status of
+ * `eth_sendRawTransaction` and `eth_getTransactionByHash` to get the status of
  * the transaction.
  *
  * @param tx - Transaction object
@@ -80,7 +81,7 @@ export function post$ (tx: Tx, options: PostOptions) {
  * Post a raw (signed) transaction to the network.
  *
  * Calls, in this order, `eth_sendRawTransaction` and
- * `eth_getTransactionReceipt` to get the status of the transaction.
+ * `eth_getTransactionByHash` to get the status of the transaction.
  *
  * @param rawTx - Raw transaction
  * @param options? - Options to pass to the {@link RpcObservable}.
@@ -95,7 +96,7 @@ export function postRaw$ (rawTx: string, options: RpcObservableOptions = {}) {
       const transactionHash = await api.eth.sendRawTransaction(rawTx);
       observer.next({ sent: transactionHash });
 
-      const receipt = await getTransactionReceipt(transactionHash, api);
+      const receipt = await getTransactionByHash(transactionHash, api);
       observer.next({ confirmed: receipt });
 
       observer.complete();
