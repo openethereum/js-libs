@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.1.2](https://github.com/paritytech/js-libs/tree/master/packages/api/compare/v5.1.1...v5.1.2) (2019-03-20)
+
+
+### Bug Fixes
+
+* Hide incorrect password from logs (parity_exportAccount) ([#209](https://github.com/paritytech/js-libs/tree/master/packages/api/issues/209)) ([43c9624](https://github.com/paritytech/js-libs/tree/master/packages/api/commit/43c9624))
+
+
+
+
+
 ## [5.1.1](https://github.com/paritytech/js-libs/tree/master/packages/api/compare/v5.1.0...v5.1.1) (2019-03-13)
 
 
