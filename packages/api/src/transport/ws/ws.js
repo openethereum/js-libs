@@ -264,7 +264,7 @@ class Ws extends JsonRpcBase {
           // fether Issue #317
           // js-libs Issue #77 Masks the password param when logging error to console on methods that contain it as a param.
           // e.g. ["0x2",{},"myincorrectpassword"] -> ["0x2",{},"***"]
-          const dangerous_methods = ['signer_confirmRequest', 'signer_confirmRequestWithToken'];
+          const dangerous_methods = ['signer_confirmRequest', 'signer_confirmRequestWithToken', 'parity_exportAccount'];
           let safe_params;
           if (dangerous_methods.includes(method)) {
             safe_params = params.slice();
