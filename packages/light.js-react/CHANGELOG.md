@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.1.3](https://github.com/paritytech/js-libs/tree/master/packages/light.js-react/compare/v5.1.2...v5.1.3) (2019-04-05)
+
+
+### Performance Improvements
+
+* **light.js:** Use getTransactionByHash instead of getTransactionReceipt ([#213](https://github.com/paritytech/js-libs/tree/master/packages/light.js-react/issues/213)) ([9a82e16](https://github.com/paritytech/js-libs/tree/master/packages/light.js-react/commit/9a82e16))
+
+
+
+
+
 ## [5.1.2](https://github.com/paritytech/js-libs/tree/master/packages/light.js-react/compare/v5.1.1...v5.1.2) (2019-03-20)
 
 **Note:** Version bump only for package @parity/light.js-react

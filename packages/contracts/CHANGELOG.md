@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.1.3](https://github.com/paritytech/js-libs/tree/master/packages/contracts/compare/v5.1.2...v5.1.3) (2019-04-05)
+
+**Note:** Version bump only for package @parity/contracts
+
+
+
+
+
 ## [5.1.2](https://github.com/paritytech/js-libs/tree/master/packages/contracts/compare/v5.1.1...v5.1.2) (2019-03-20)
 
 **Note:** Version bump only for package @parity/contracts
