@@ -8,7 +8,7 @@
 
 ### Functions
 
-* [getTransactionReceipt](_rpc_other_post_.md#gettransactionreceipt)
+* [getTransactionByHash](_rpc_other_post_.md#gettransactionbyhash)
 * [post$](_rpc_other_post_.md#post_)
 * [postRaw$](_rpc_other_post_.md#postraw_)
 
@@ -16,13 +16,13 @@
 
 # Functions
 
-<a id="gettransactionreceipt"></a>
+<a id="gettransactionbyhash"></a>
 
-##  getTransactionReceipt
+##  getTransactionByHash
 
-▸ **getTransactionReceipt**(transactionHash: *`string`*, api: *`any`*): `Promise`<`any`>
+▸ **getTransactionByHash**(transactionHash: *`string`*, api: *`any`*): `Promise`<`any`>
 
-*Defined in [rpc/other/post.ts:19](https://github.com/paritytech/js-libs/blob/43c9624/packages/light.js/src/rpc/other/post.ts#L19)*
+*Defined in [rpc/other/post.ts:19](https://github.com/paritytech/js-libs/blob/9a82e16/packages/light.js/src/rpc/other/post.ts#L19)*
 
 **Parameters:**
 
@@ -40,11 +40,11 @@ ___
 
 ▸ **post$**(tx: *[Tx](_types_.md#tx)*, options: *[PostOptions](../interfaces/_rpc_other_post_.postoptions.md)*): `any`
 
-*Defined in [rpc/other/post.ts:50](https://github.com/paritytech/js-libs/blob/43c9624/packages/light.js/src/rpc/other/post.ts#L50)*
+*Defined in [rpc/other/post.ts:51](https://github.com/paritytech/js-libs/blob/9a82e16/packages/light.js/src/rpc/other/post.ts#L51)*
 
 Post a transaction to the network.
 
-Calls, in this order, `eth_estimateGas`, `personal_signTransaction`, `eth_sendRawTransaction` and `eth_getTransactionReceipt` to get the status of the transaction.
+Calls, in this order, `eth_estimateGas`, `personal_signTransaction`, `eth_sendRawTransaction` and `eth_getTransactionByHash` to get the status of the transaction.
 
 **Parameters:**
 
@@ -63,11 +63,15 @@ ___
 
 ▸ **postRaw$**(rawTx: *`string`*, options?: *[RpcObservableOptions](../interfaces/_types_.rpcobservableoptions.md)*): `any`
 
-*Defined in [rpc/other/post.ts:89](https://github.com/paritytech/js-libs/blob/43c9624/packages/light.js/src/rpc/other/post.ts#L89)*
+*Defined in [rpc/other/post.ts:94](https://github.com/paritytech/js-libs/blob/9a82e16/packages/light.js/src/rpc/other/post.ts#L94)*
 
 Post a raw (signed) transaction to the network.
 
-Calls, in this order, `eth_sendRawTransaction` and `eth_getTransactionReceipt` to get the status of the transaction.
+Calls, in this order, `eth_sendRawTransaction` and `eth_getTransactionByHash` to get the status of the transaction.
+
+Note: if using parity-ethereum light client, this method only works with
+
+> \=v2.5.0. See [https://github.com/paritytech/parity-ethereum/pull/10559](https://github.com/paritytech/parity-ethereum/pull/10559) for more info.
 
 **Parameters:**
 
