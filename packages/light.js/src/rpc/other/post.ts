@@ -83,6 +83,10 @@ export function post$ (tx: Tx, options: PostOptions) {
  * Calls, in this order, `eth_sendRawTransaction` and
  * `eth_getTransactionByHash` to get the status of the transaction.
  *
+ * Note: if using parity-ethereum light client, this method only works with
+ * >=v2.5.0. See https://github.com/paritytech/parity-ethereum/pull/10559 for
+ * more info.
+ *
  * @param rawTx - Raw transaction
  * @param options? - Options to pass to the {@link RpcObservable}.
  * @return - The status of the transaction: sent, confirmed
