@@ -10,7 +10,7 @@
 # Callable
 ▸ **__call**(...args: *`any`[]*): `Observable`<`Out`>
 
-*Defined in [types.ts:68](https://github.com/paritytech/js-libs/blob/9a82e16/packages/light.js/src/types.ts#L68)*
+*Defined in [types.ts:68](https://github.com/paritytech/js-libs/blob/e1a17c9/packages/light.js/src/types.ts#L68)*
 
 **Parameters:**
 
@@ -28,7 +28,7 @@
 
 **● metadata**: *[Metadata](_types_.metadata.md)<`Source`, `Out`>*
 
-*Defined in [types.ts:70](https://github.com/paritytech/js-libs/blob/9a82e16/packages/light.js/src/types.ts#L70)*
+*Defined in [types.ts:70](https://github.com/paritytech/js-libs/blob/e1a17c9/packages/light.js/src/types.ts#L70)*
 
 ___
 
@@ -40,7 +40,7 @@ ___
 
 ▸ **setFrequency**(frequency: *[FrequencyObservable](_types_.frequencyobservable.md)<`Source`>[]*): `void`
 
-*Defined in [types.ts:71](https://github.com/paritytech/js-libs/blob/9a82e16/packages/light.js/src/types.ts#L71)*
+*Defined in [types.ts:71](https://github.com/paritytech/js-libs/blob/e1a17c9/packages/light.js/src/types.ts#L71)*
 
 **Parameters:**
 
