@@ -18,7 +18,7 @@
   'fixedArray'
 ]
 
-*Defined in [spec/paramType/types.ts:8](https://github.com/paritytech/js-libs/blob/e1a17c9/packages/abi/src/spec/paramType/types.ts#L8)*
+*Defined in [spec/paramType/types.ts:8](https://github.com/paritytech/js-libs/blob/1c7cf48/packages/abi/src/spec/paramType/types.ts#L8)*
 
 ___
 
