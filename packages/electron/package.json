@@ -22,7 +22,7 @@
   },
   "dependencies": {
     "async-retry": "^1.2.3",
-    "axios": "^0.18.0",
+    "axios": "^0.19.0",
     "checksum": "^0.1.1",
     "command-exists": "^1.2.8",
     "debug": "^4.1.1",
