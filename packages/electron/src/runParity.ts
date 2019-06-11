@@ -91,8 +91,9 @@ export async function runParity (
       }
       logger()('@parity/parity')(data.toString());
     };
-    parity.stdout.on('data', callback);
-    parity.stderr.on('data', callback);
+
+    parity.stdout && parity.stdout.on('data', callback);
+    parity.stderr && parity.stderr.on('data', callback);
 
     parity.on('error', err => {
       onParityError(err);

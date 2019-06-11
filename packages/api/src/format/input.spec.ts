@@ -129,6 +129,7 @@ describe('format/input', () => {
       it(`formats ${input} address as address`, () => {
         const block: FilterOptions = {};
 
+        // @ts-ignore
         block[input] = address;
         const formatted = inFilter(block)[input];
 
@@ -141,6 +142,7 @@ describe('format/input', () => {
       it(`formats ${input} number as blockNumber`, () => {
         const block: FilterOptions = {};
 
+        // @ts-ignore
         block[input] = 0x123;
         const formatted = inFilter(block)[input];
 

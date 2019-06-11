@@ -16,7 +16,7 @@ import light, { withOneObservable } from './';
 Enzyme.configure({ adapter: new Adapter() });
 const { mount } = Enzyme;
 
-const MockComponent = toClass(props => <div>{JSON.stringify(props)}</div>);
+const MockComponent = toClass(props => <div>{JSON.stringify(props)}</div>) as any;
 const mockRpc$ = () => of('bar');
 
 describe('withOneObservable', () => {
