@@ -20,7 +20,7 @@
 
 ▸ **makeContract**(address: *[Address](_types_.md#address)*, abiJson: *`any`[]*, options?: *`object`*): [MakeContract](../interfaces/_rpc_other_makecontract_.makecontract.md)
 
-*Defined in [rpc/other/makeContract.ts:121](https://github.com/paritytech/js-libs/blob/1c7cf48/packages/light.js/src/rpc/other/makeContract.ts#L121)*
+*Defined in [rpc/other/makeContract.ts:121](https://github.com/paritytech/js-libs/blob/fed24c5/packages/light.js/src/rpc/other/makeContract.ts#L121)*
 
 Create a contract.
 
@@ -43,9 +43,7 @@ The options to pass in when creating the contract.
 | `Optional` provider | `any` |
 
 **Returns:** [MakeContract](../interfaces/_rpc_other_makecontract_.makecontract.md)
-- An object whose keys are all the functions of the
-contract, and each function return an Observable which will fire when the
-function resolves.
+*   An object whose keys are all the functions of the contract, and each function return an Observable which will fire when the function resolves.
 
 ___
 

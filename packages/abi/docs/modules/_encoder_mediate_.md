@@ -24,7 +24,7 @@
 
 **Ƭ MediateValue**: *[TokenValue](_types_.md#tokenvalue) \| [Mediate](../classes/_encoder_mediate_.mediate.md)[]*
 
-*Defined in [encoder/mediate.ts:11](https://github.com/paritytech/js-libs/blob/1c7cf48/packages/abi/src/encoder/mediate.ts#L11)*
+*Defined in [encoder/mediate.ts:11](https://github.com/paritytech/js-libs/blob/fed24c5/packages/abi/src/encoder/mediate.ts#L11)*
 
 ___
 
@@ -36,7 +36,7 @@ ___
 
 **● TYPES**: *[MediateType](_types_.md#mediatetype)[]* =  ['raw', 'prefixed', 'fixedArray', 'array']
 
-*Defined in [encoder/mediate.ts:9](https://github.com/paritytech/js-libs/blob/1c7cf48/packages/abi/src/encoder/mediate.ts#L9)*
+*Defined in [encoder/mediate.ts:9](https://github.com/paritytech/js-libs/blob/fed24c5/packages/abi/src/encoder/mediate.ts#L9)*
 
 ___
 

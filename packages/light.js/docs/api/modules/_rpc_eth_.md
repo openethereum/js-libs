@@ -8,7 +8,7 @@
 
 ▸ **accounts$**(options?: *[RpcObservableOptions](../interfaces/_types_.rpcobservableoptions.md)*): `Observable`<`string`[]>
 
-*Defined in [rpc/eth.ts:39](https://github.com/paritytech/js-libs/blob/1c7cf48/packages/light.js/src/rpc/eth.ts#L39)*
+*Defined in [rpc/eth.ts:39](https://github.com/paritytech/js-libs/blob/fed24c5/packages/light.js/src/rpc/eth.ts#L39)*
 
 Observable which contains the array of all addresses managed by the light client.
 
@@ -21,7 +21,7 @@ Calls eth\_accounts.
 | `Optional` options | [RpcObservableOptions](../interfaces/_types_.rpcobservableoptions.md) |  Options to pass to [RpcObservableOptions](../interfaces/_types_.rpcobservableoptions.md). |
 
 **Returns:** `Observable`<`string`[]>
-- An Observable containing the list of public addresses.
+*   An Observable containing the list of public addresses.
 
 ___
 <a id="balanceof_"></a>
@@ -30,7 +30,7 @@ ___
 
 ▸ **balanceOf$**(address: *[Address](_types_.md#address)*, options?: *[RpcObservableOptions](../interfaces/_types_.rpcobservableoptions.md)*): `Observable`<`BigNumber` \| `Symbol`>
 
-*Defined in [rpc/eth.ts:53](https://github.com/paritytech/js-libs/blob/1c7cf48/packages/light.js/src/rpc/eth.ts#L53)*
+*Defined in [rpc/eth.ts:53](https://github.com/paritytech/js-libs/blob/fed24c5/packages/light.js/src/rpc/eth.ts#L53)*
 
 Get the balance of a given account. Calls `eth_getBalance`.
 
@@ -42,7 +42,7 @@ Get the balance of a given account. Calls `eth_getBalance`.
 | `Optional` options | [RpcObservableOptions](../interfaces/_types_.rpcobservableoptions.md) |  Options to pass to [RpcObservableOptions](../interfaces/_types_.rpcobservableoptions.md). |
 
 **Returns:** `Observable`<`BigNumber` \| `Symbol`>
-- An Observable containing the balance.
+*   An Observable containing the balance.
 
 ___
 <a id="blocknumber_"></a>
@@ -51,7 +51,7 @@ ___
 
 ▸ **blockNumber$**(options?: *[RpcObservableOptions](../interfaces/_types_.rpcobservableoptions.md)*): `Observable`<`BigNumber`>
 
-*Defined in [rpc/eth.ts:98](https://github.com/paritytech/js-libs/blob/1c7cf48/packages/light.js/src/rpc/eth.ts#L98)*
+*Defined in [rpc/eth.ts:98](https://github.com/paritytech/js-libs/blob/fed24c5/packages/light.js/src/rpc/eth.ts#L98)*
 
 Get the current block number.
 
@@ -62,7 +62,7 @@ Get the current block number.
 | `Optional` options | [RpcObservableOptions](../interfaces/_types_.rpcobservableoptions.md) |
 
 **Returns:** `Observable`<`BigNumber`>
-- An Observable containing the block height.
+*   An Observable containing the block height.
 
 ___
 <a id="chainid_"></a>
@@ -71,7 +71,7 @@ ___
 
 ▸ **chainId$**(options?: *[RpcObservableOptions](../interfaces/_types_.rpcobservableoptions.md)*): `Observable`<`BigNumber` \| `Symbol`>
 
-*Defined in [rpc/eth.ts:21](https://github.com/paritytech/js-libs/blob/1c7cf48/packages/light.js/src/rpc/eth.ts#L21)*
+*Defined in [rpc/eth.ts:21](https://github.com/paritytech/js-libs/blob/fed24c5/packages/light.js/src/rpc/eth.ts#L21)*
 
 Observable containing the EIP155 chain ID used for transaction signing. Calls `eth_chainId`
 
@@ -82,7 +82,7 @@ Observable containing the EIP155 chain ID used for transaction signing. Calls `e
 | `Optional` options | [RpcObservableOptions](../interfaces/_types_.rpcobservableoptions.md) |  Options to pass to [RpcObservableOptions](../interfaces/_types_.rpcobservableoptions.md). |
 
 **Returns:** `Observable`<`BigNumber` \| `Symbol`>
-- An Observable containing the chain ID.
+*   An Observable containing the chain ID.
 
 ___
 <a id="defaultaccount_"></a>
@@ -91,7 +91,7 @@ ___
 
 ▸ **defaultAccount$**(options?: *[RpcObservableOptions](../interfaces/_types_.rpcobservableoptions.md)*): `Observable`<`string`>
 
-*Defined in [rpc/eth.ts:85](https://github.com/paritytech/js-libs/blob/1c7cf48/packages/light.js/src/rpc/eth.ts#L85)*
+*Defined in [rpc/eth.ts:85](https://github.com/paritytech/js-libs/blob/fed24c5/packages/light.js/src/rpc/eth.ts#L85)*
 
 Get the default account managed by the light client.
 
@@ -102,8 +102,7 @@ Get the default account managed by the light client.
 | `Optional` options | [RpcObservableOptions](../interfaces/_types_.rpcobservableoptions.md) |  Options to pass to [RpcObservableOptions](../interfaces/_types_.rpcobservableoptions.md). |
 
 **Returns:** `Observable`<`string`>
-- An Observable containing the public address
-of the default account.
+*   An Observable containing the public address of the default account.
 
 ___
 <a id="mybalance_"></a>
@@ -112,7 +111,7 @@ ___
 
 ▸ **myBalance$**(options?: *[RpcObservableOptions](../interfaces/_types_.rpcobservableoptions.md)*): `Observable`<`BigNumber` \| `Symbol`>
 
-*Defined in [rpc/eth.ts:109](https://github.com/paritytech/js-libs/blob/1c7cf48/packages/light.js/src/rpc/eth.ts#L109)*
+*Defined in [rpc/eth.ts:109](https://github.com/paritytech/js-libs/blob/fed24c5/packages/light.js/src/rpc/eth.ts#L109)*
 
 Shorthand for fetching the current account's balance.
 
@@ -131,7 +130,7 @@ ___
 
 ▸ **syncStatus$**(options?: *[RpcObservableOptions](../interfaces/_types_.rpcobservableoptions.md)*): `Observable`<`false` \| `true` \| `object`>
 
-*Defined in [rpc/eth.ts:127](https://github.com/paritytech/js-libs/blob/1c7cf48/packages/light.js/src/rpc/eth.ts#L127)*
+*Defined in [rpc/eth.ts:127](https://github.com/paritytech/js-libs/blob/fed24c5/packages/light.js/src/rpc/eth.ts#L127)*
 
 Get the syncStatus state.
 
@@ -142,7 +141,7 @@ Get the syncStatus state.
 | `Optional` options | [RpcObservableOptions](../interfaces/_types_.rpcobservableoptions.md) |
 
 **Returns:** `Observable`<`false` \| `true` \| `object`>
-- An Observable containing the syncing state object, or false.
+*   An Observable containing the syncing state object, or false.
 
 ___
 <a id="transactioncountof_"></a>
@@ -151,7 +150,7 @@ ___
 
 ▸ **transactionCountOf$**(address: *[Address](_types_.md#address)*, options?: *[RpcObservableOptions](../interfaces/_types_.rpcobservableoptions.md)*): `Observable`<`BigNumber` \| `Symbol`>
 
-*Defined in [rpc/eth.ts:69](https://github.com/paritytech/js-libs/blob/1c7cf48/packages/light.js/src/rpc/eth.ts#L69)*
+*Defined in [rpc/eth.ts:69](https://github.com/paritytech/js-libs/blob/fed24c5/packages/light.js/src/rpc/eth.ts#L69)*
 
 Get the transaction count of a given account. Calls `eth_getTransactionCount`
 
@@ -163,7 +162,7 @@ Get the transaction count of a given account. Calls `eth_getTransactionCount`
 | `Optional` options | [RpcObservableOptions](../interfaces/_types_.rpcobservableoptions.md) |  Options to pass to [RpcObservableOptions](../interfaces/_types_.rpcobservableoptions.md). |
 
 **Returns:** `Observable`<`BigNumber` \| `Symbol`>
-- An Observable containing the transaction count.
+*   An Observable containing the transaction count.
 
 ___
 
