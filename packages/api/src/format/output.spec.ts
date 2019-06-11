@@ -100,6 +100,7 @@ describe('format/output', () => {
       it(`formats ${input} number as hexnumber`, () => {
         const block: SerializedBlock = {};
 
+        // @ts-ignore
         block[input as keyof SerializedBlock] = 0x123;
         const formatted = outBlock(block)[input as keyof Block];
 
@@ -113,6 +114,7 @@ describe('format/output', () => {
       it(`formats ${input} number as Date`, () => {
         const block: SerializedBlock = {};
 
+        // @ts-ignore
         block[input as keyof SerializedBlock] = 0x57513668;
         const formatted = outBlock(block)[input as keyof Block];
 
@@ -375,6 +377,7 @@ describe('format/output', () => {
       it(`formats ${input} number as hexnumber`, () => {
         const block: SerializedReceipt = {};
 
+        // @ts-ignore
         block[input as keyof SerializedReceipt] = 0x123;
         const formatted = outReceipt(block)[input as keyof Receipt];
 
@@ -460,6 +463,7 @@ describe('format/output', () => {
       it(`formats ${input} number as hexnumber`, () => {
         const block: SerializedTransaction = {};
 
+        // @ts-ignore
         block[input as keyof SerializedTransaction] = 0x123;
         const formatted = outTransaction(block)[
           input as keyof SerializedTransaction
