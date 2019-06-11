@@ -89,9 +89,9 @@ class Mediate {
       case 'fixedArray':
         return (this._value as Mediate[])
           .map((mediate, index) =>
-            // @ts-ignore toString doesn't take any args
             mediate
               .init(Mediate.offsetFor(this._value as Mediate[], index))
+              // @ts-ignore toString doesn't take any args
               .toString(16)
           )
           .join('');
@@ -113,9 +113,9 @@ class Mediate {
       case 'fixedArray':
         return (this._value as Mediate[])
           .map((mediate: Mediate, index: number) =>
-            // @ts-ignore toString doesn't take any args
             mediate
               .closing(Mediate.offsetFor(this._value as Mediate[], index))
+              // @ts-ignore toString doesn't take any args
               .toString(16)
           )
           .join('');
@@ -124,21 +124,21 @@ class Mediate {
         const prefix = padU32((this._value as Mediate[]).length);
         const inits = (this._value as Mediate[])
           .map((mediate: Mediate, index: number) =>
-            // @ts-ignore toString doesn't take any args
             mediate
               .init(
                 offset + Mediate.offsetFor(this._value as Mediate[], index) + 32
               )
+              // @ts-ignore toString doesn't take any args
               .toString(16)
           )
           .join('');
         const closings = (this._value as Mediate[])
           .map((mediate: Mediate, index: number) =>
-            // @ts-ignore toString doesn't take any args
             mediate
               .closing(
                 offset + Mediate.offsetFor(this._value as Mediate[], index)
               )
+              // @ts-ignore toString doesn't take any args
               .toString(16)
           )
           .join('');
