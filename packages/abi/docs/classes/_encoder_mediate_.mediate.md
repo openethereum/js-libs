@@ -12,7 +12,7 @@
 
 ⊕ **new Mediate**(type: *[MediateType](../modules/_types_.md#mediatetype)*, value: *[MediateValue](../modules/_encoder_mediate_.md#mediatevalue)*): [Mediate](_encoder_mediate_.mediate.md)
 
-*Defined in [encoder/mediate.ts:15](https://github.com/paritytech/js-libs/blob/fed24c5/packages/abi/src/encoder/mediate.ts#L15)*
+*Defined in [encoder/mediate.ts:15](https://github.com/paritytech/js-libs/blob/e961645/packages/abi/src/encoder/mediate.ts#L15)*
 
 **Parameters:**
 
@@ -33,7 +33,7 @@ ___
 
 **get type**(): "fixedArray" \| "array" \| "raw" \| "prefixed"
 
-*Defined in [encoder/mediate.ts:154](https://github.com/paritytech/js-libs/blob/fed24c5/packages/abi/src/encoder/mediate.ts#L154)*
+*Defined in [encoder/mediate.ts:154](https://github.com/paritytech/js-libs/blob/e961645/packages/abi/src/encoder/mediate.ts#L154)*
 
 **Returns:** "fixedArray" \| "array" \| "raw" \| "prefixed"
 
@@ -44,7 +44,7 @@ ___
 
 **get value**(): `string` \| `number` \| `Boolean` \| `number`[] \| `BigNumber` \| (`string` \| `number` \| `false` \| `true` \| `BigNumber` \| [Token](_token_token_.token.md))[] \| (`string` \| `number` \| `false` \| `true` \| `BigNumber` \| [Token](_token_token_.token.md))[][] \| [Mediate](_encoder_mediate_.mediate.md)[]
 
-*Defined in [encoder/mediate.ts:158](https://github.com/paritytech/js-libs/blob/fed24c5/packages/abi/src/encoder/mediate.ts#L158)*
+*Defined in [encoder/mediate.ts:158](https://github.com/paritytech/js-libs/blob/e961645/packages/abi/src/encoder/mediate.ts#L158)*
 
 **Returns:** `string` \| `number` \| `Boolean` \| `number`[] \| `BigNumber` \| (`string` \| `number` \| `false` \| `true` \| `BigNumber` \| [Token](_token_token_.token.md))[] \| (`string` \| `number` \| `false` \| `true` \| `BigNumber` \| [Token](_token_token_.token.md))[][] \| [Mediate](_encoder_mediate_.mediate.md)[]
 
@@ -58,7 +58,7 @@ ___
 
 ▸ **closing**(offset: *`number`*): `string`
 
-*Defined in [encoder/mediate.ts:106](https://github.com/paritytech/js-libs/blob/fed24c5/packages/abi/src/encoder/mediate.ts#L106)*
+*Defined in [encoder/mediate.ts:106](https://github.com/paritytech/js-libs/blob/e961645/packages/abi/src/encoder/mediate.ts#L106)*
 
 **Parameters:**
 
@@ -75,7 +75,7 @@ ___
 
 ▸ **closingLength**(): `number`
 
-*Defined in [encoder/mediate.ts:64](https://github.com/paritytech/js-libs/blob/fed24c5/packages/abi/src/encoder/mediate.ts#L64)*
+*Defined in [encoder/mediate.ts:64](https://github.com/paritytech/js-libs/blob/e961645/packages/abi/src/encoder/mediate.ts#L64)*
 
 **Returns:** `number`
 
@@ -86,7 +86,7 @@ ___
 
 ▸ **init**(suffixOffset: *`number`*): `string`
 
-*Defined in [encoder/mediate.ts:84](https://github.com/paritytech/js-libs/blob/fed24c5/packages/abi/src/encoder/mediate.ts#L84)*
+*Defined in [encoder/mediate.ts:84](https://github.com/paritytech/js-libs/blob/e961645/packages/abi/src/encoder/mediate.ts#L84)*
 
 **Parameters:**
 
@@ -103,7 +103,7 @@ ___
 
 ▸ **initLength**(): `number`
 
-*Defined in [encoder/mediate.ts:48](https://github.com/paritytech/js-libs/blob/fed24c5/packages/abi/src/encoder/mediate.ts#L48)*
+*Defined in [encoder/mediate.ts:48](https://github.com/paritytech/js-libs/blob/e961645/packages/abi/src/encoder/mediate.ts#L48)*
 
 **Returns:** `number`
 
@@ -114,7 +114,7 @@ ___
 
 ▸ **offsetFor**(mediates: *[Mediate](_encoder_mediate_.mediate.md)[]*, position: *`number`*): `number`
 
-*Defined in [encoder/mediate.ts:24](https://github.com/paritytech/js-libs/blob/fed24c5/packages/abi/src/encoder/mediate.ts#L24)*
+*Defined in [encoder/mediate.ts:24](https://github.com/paritytech/js-libs/blob/e961645/packages/abi/src/encoder/mediate.ts#L24)*
 
 **Parameters:**
 
@@ -132,7 +132,7 @@ ___
 
 ▸ **validateType**(type: *[MediateType](../modules/_types_.md#mediatetype)*): `boolean`
 
-*Defined in [encoder/mediate.ts:40](https://github.com/paritytech/js-libs/blob/fed24c5/packages/abi/src/encoder/mediate.ts#L40)*
+*Defined in [encoder/mediate.ts:40](https://github.com/paritytech/js-libs/blob/e961645/packages/abi/src/encoder/mediate.ts#L40)*
 
 **Parameters:**
 
