@@ -1,7 +1,7 @@
 {
   "name": "@parity/abi",
   "description": "Ethereum ABI encoder and decoder",
-  "version": "5.1.8",
+  "version": "5.1.9",
   "author": "Parity Team <admin@parity.io>",
   "license": "MIT",
   "repository": "https://github.com/paritytech/js-libs/tree/master/packages/abi",
