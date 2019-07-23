@@ -8,7 +8,7 @@
 
 **● UNSUB_DELAY**: *`2000`* = 2000
 
-*Defined in [rpc/utils/createRpc.ts:20](https://github.com/paritytech/js-libs/blob/5287f0f/packages/light.js/src/rpc/utils/createRpc.ts#L20)*
+*Defined in [rpc/utils/createRpc.ts:20](https://github.com/paritytech/js-libs/blob/a0ca184/packages/light.js/src/rpc/utils/createRpc.ts#L20)*
 
 ___
 
