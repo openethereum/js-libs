@@ -8,7 +8,7 @@
 
 ▸ **isAddress**(address?: *`undefined` \| `string`*): `boolean`
 
-*Defined in [util/address.ts:36](https://github.com/paritytech/js-libs/blob/a0ca184/packages/abi/src/util/address.ts#L36)*
+*Defined in [util/address.ts:36](https://github.com/paritytech/js-libs/blob/477f827/packages/abi/src/util/address.ts#L36)*
 
 Verify that an address is a valid Ethereum address.
 
@@ -27,7 +27,7 @@ ___
 
 ▸ **isChecksumValid**(address: *`string`*): `boolean`
 
-*Defined in [util/address.ts:13](https://github.com/paritytech/js-libs/blob/a0ca184/packages/abi/src/util/address.ts#L13)*
+*Defined in [util/address.ts:13](https://github.com/paritytech/js-libs/blob/477f827/packages/abi/src/util/address.ts#L13)*
 
 Verify that an address has a valid checksum.
 
@@ -46,7 +46,7 @@ ___
 
 ▸ **toChecksumAddress**(address?: *`string` \| `null`*): `string`
 
-*Defined in [util/address.ts:58](https://github.com/paritytech/js-libs/blob/a0ca184/packages/abi/src/util/address.ts#L58)*
+*Defined in [util/address.ts:58](https://github.com/paritytech/js-libs/blob/477f827/packages/abi/src/util/address.ts#L58)*
 
 Convert an Ethereum address to its checksum-valid version.
 

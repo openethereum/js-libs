@@ -12,7 +12,7 @@
 
 ⊕ **new DecodedLog**(params: *[DecodedLogParam](_spec_event_decodedlogparam_.decodedlogparam.md)[]*, address: *`string`*): [DecodedLog](_spec_event_decodedlog_.decodedlog.md)
 
-*Defined in [spec/event/decodedLog.ts:10](https://github.com/paritytech/js-libs/blob/a0ca184/packages/abi/src/spec/event/decodedLog.ts#L10)*
+*Defined in [spec/event/decodedLog.ts:10](https://github.com/paritytech/js-libs/blob/477f827/packages/abi/src/spec/event/decodedLog.ts#L10)*
 
 **Parameters:**
 
@@ -33,7 +33,7 @@ ___
 
 **get address**(): `string`
 
-*Defined in [spec/event/decodedLog.ts:17](https://github.com/paritytech/js-libs/blob/a0ca184/packages/abi/src/spec/event/decodedLog.ts#L17)*
+*Defined in [spec/event/decodedLog.ts:17](https://github.com/paritytech/js-libs/blob/477f827/packages/abi/src/spec/event/decodedLog.ts#L17)*
 
 **Returns:** `string`
 
@@ -44,7 +44,7 @@ ___
 
 **get params**(): [DecodedLogParam](_spec_event_decodedlogparam_.decodedlogparam.md)[]
 
-*Defined in [spec/event/decodedLog.ts:21](https://github.com/paritytech/js-libs/blob/a0ca184/packages/abi/src/spec/event/decodedLog.ts#L21)*
+*Defined in [spec/event/decodedLog.ts:21](https://github.com/paritytech/js-libs/blob/477f827/packages/abi/src/spec/event/decodedLog.ts#L21)*
 
 **Returns:** [DecodedLogParam](_spec_event_decodedlogparam_.decodedlogparam.md)[]
 
