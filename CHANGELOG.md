@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.1.12](https://github.com/paritytech/js-libs/compare/v5.1.11...v5.1.12) (2019-09-02)
+
+
+### Bug Fixes
+
+* Regenerate yarn lock (security patch) ([#226](https://github.com/paritytech/js-libs/issues/226)) ([852e67c](https://github.com/paritytech/js-libs/commit/852e67c))
+
+
+
+
+
 ## [5.1.11](https://github.com/paritytech/js-libs/compare/v5.1.10...v5.1.11) (2019-07-23)
 
 **Note:** Version bump only for package js-libs
