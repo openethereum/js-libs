@@ -3,6 +3,8 @@
 //
 // SPDX-License-Identifier: MIT
 
+/* eslint-disable @typescript-eslint/no-unused-vars */
+
 import { of } from 'rxjs';
 import * as memoizee from 'memoizee';
 
@@ -17,6 +19,7 @@ function onStartup$ (options?: FrequencyObservableOptions) {
   return of(0);
 }
 // @ts-ignore
+// eslint-disable-next-line no-func-assign
 onStartup$ = memoizee(onStartup$);
 
 export { onStartup$ };

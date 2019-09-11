@@ -12,7 +12,7 @@ import {
   isObject,
   isString
 } from './types';
-const Eth = require('../rpc/eth');
+import * as Eth from '../rpc/eth';
 
 describe('util/types', () => {
   describe('isArray', () => {
@@ -71,6 +71,7 @@ describe('util/types', () => {
 
   describe('isInstanceOf', () => {
     it('correctly identifies build-in instanceof', () => {
+      // eslint-disable-next-line no-new-wrappers
       expect(isInstanceOf(new String('123'), String)).toBe(true);
     });
 

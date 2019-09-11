@@ -3,7 +3,10 @@
 //
 // SPDX-License-Identifier: MIT
 
-import createPubsubObservable, { POLL_INTERVAL, UNSUB_DELAY } from './createPubsubObservable';
+import createPubsubObservable, {
+  POLL_INTERVAL,
+  UNSUB_DELAY
+} from './createPubsubObservable';
 import isObservable from '../../utils/isObservable';
 import { rejectApi, resolveApi } from '../../utils/testHelpers/mockApi';
 import { setApi } from '../../api';
@@ -90,14 +93,20 @@ describe('should manage polling sparingly', () => {
   });
 
   it('should emit values and re-emit previous value on observable subscription', async () => {
-    setApi(resolveApi(() => {
-      return called++;
-    }, false));
+    setApi(
+      resolveApi(() => {
+        return called++;
+      }, false)
+    );
 
-    sub1 = initial$.subscribe(i => { sub1received.push(i as number); });
+    sub1 = initial$.subscribe(i => {
+      sub1received.push(i as number);
+    });
 
     await sleep(POLL_INTERVAL - 5);
-    sub2 = copy$.subscribe(i => { sub2Received.push(i as number); });
+    sub2 = copy$.subscribe(i => {
+      sub2Received.push(i as number);
+    });
 
     await sleep(10);
     expect(sub1received).toEqual([0, 1]);
@@ -109,7 +118,7 @@ describe('should manage polling sparingly', () => {
     sub2.unsubscribe();
 
     await sleep(UNSUB_DELAY);
-    let previousCalled = called;
+    const previousCalled = called;
 
     await sleep(POLL_INTERVAL + 5);
     expect(called).toBe(previousCalled);
@@ -120,16 +129,16 @@ describe('should manage pubsub connection sparingly', () => {
   let blockNumber = 10442873;
   const api = {
     isPubSub: true,
-    pubsub:
-    {
+    pubsub: {
       eth: {
         blockNumber: async (next: any) => {
+          // eslint-disable-next-line @typescript-eslint/no-use-before-define
           expect(subscription).not.toBeUndefined();
           next(null, blockNumber++);
           return 5;
         }
       },
-      unsubscribe: (_subscriptionId: any) => { return; }
+      unsubscribe: (_subscriptionId: any) => {}
     }
   };
   const pubsubUnsubSpy = jest.spyOn(api.pubsub, 'unsubscribe');
@@ -158,7 +167,7 @@ describe('should manage pubsub connection sparingly', () => {
   });
 
   it('should re-emit previous value on observable subscription', async () => {
-    let values: number[] = [];
+    const values: number[] = [];
     subscription = obs.subscribe(x => values.push(x));
 
     await sleep(5);
@@ -166,9 +175,12 @@ describe('should manage pubsub connection sparingly', () => {
   });
 
   it('should re-use the same pubsub when used twice', async () => {
-    const obs2: Observable<number> = createPubsubObservable('eth_blockNumber', 'eth_blockNumber');
+    const obs2: Observable<number> = createPubsubObservable(
+      'eth_blockNumber',
+      'eth_blockNumber'
+    );
 
-    let values: number[] = [];
+    const values: number[] = [];
     obs2.subscribe(x => values.push(x));
     expect(values).toEqual([10442874]);
   });

@@ -15,6 +15,7 @@ export const eventSignature = (
   eventName: string | undefined,
   params: ParamType[] = []
 ) => {
+  // eslint-disable-next-line @typescript-eslint/no-use-before-define
   const { strName, name } = parseName(eventName);
   const types = (params || []).map(fromParamType).join(',');
   const id = `${strName}(${types})`;

@@ -57,7 +57,7 @@ const createPubsubObservableWithApi = memoizee(
     if (!api.isPubSub) {
       debug('@parity/light.js:api')(
         `Pubsub not available for ${
-        api.provider ? api.provider.constructor.name : 'current Api'
+          api.provider ? api.provider.constructor.name : 'current Api'
         } provider, polling "${fallback}" every ${POLL_INTERVAL}ms.`
       );
 
@@ -96,7 +96,9 @@ const createPubsubObservableWithApi = memoizee(
       });
     }
 
-    return observable.pipe(distinctReplayRefCountDelay(UNSUB_DELAY)) as Observable<T>;
+    return observable.pipe(
+      distinctReplayRefCountDelay(UNSUB_DELAY)
+    ) as Observable<T>;
   }
 );
 

@@ -59,7 +59,7 @@ class Decoder {
   static decodeParam (
     param: ParamType,
     slices: Slices,
-    offset: number = 0
+    offset = 0
   ): DecodeResult {
     if (!isInstanceOf(param, ParamType)) {
       throw new Error('param should be instanceof ParamType');

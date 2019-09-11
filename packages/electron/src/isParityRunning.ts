@@ -24,7 +24,7 @@ export async function isParityRunning (
     wsPort: '8546'
   }
 ) {
-  return new Promise((resolve, reject) => {
+  return new Promise(resolve => {
     const { wsInterface, wsPort } = {
       wsInterface: '127.0.0.1',
       wsPort: '8546',

@@ -22,6 +22,7 @@
   },
   "scripts": {
     "prebuild": "rimraf lib",
+    "typecheck": "tsc --noEmit",
     "build": "tsc",
     "test": "jest"
   },

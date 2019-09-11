@@ -91,6 +91,7 @@ export const stringToBytes = (input: BytesValue) => {
 export const padBytes = (input: BytesValue) => {
   const inputBytes = stringToBytes(input);
 
+  // eslint-disable-next-line @typescript-eslint/no-use-before-define
   return `${padU32(inputBytes.length)}${padFixedBytes(inputBytes)}`;
 };
 

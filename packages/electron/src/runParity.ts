@@ -57,7 +57,7 @@ export async function runParity (
     },
     ...options
   };
-  const parityPath = options.parityPath || await getParityPath();
+  const parityPath = options.parityPath || (await getParityPath());
 
   // Some users somehow had no +x on the parity binary after downloading
   // it. We try to set it here (no guarantee it will work, we might not
@@ -68,7 +68,7 @@ export async function runParity (
     /* Do nothing if error. */
   }
 
-  return new Promise((resolve, reject) => {
+  return new Promise(resolve => {
     let logLastLine = ''; // Always contains last line of the Parity logs
 
     // Run an instance of parity with the correct flags

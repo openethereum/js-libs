@@ -3,7 +3,7 @@
 //
 // SPDX-License-Identifier: MIT
 
-import { defer, merge, Observable, of, OperatorFunction } from 'rxjs';
+import { defer, merge, Observable, OperatorFunction } from 'rxjs';
 import { isFunction } from '@parity/api/lib/util/types';
 // @ts-ignore Unfortunately no types for memoizee/weak.
 import * as memoizeeWeak from 'memoizee/weak';
@@ -34,9 +34,7 @@ const createRpcWithApi = memoizeeWeak(
   <Source, Out>(api: any, metadata: Metadata<Source, Out>, ...args: any[]) => {
     if (!metadata.dependsOn && !metadata.frequency) {
       throw new Error(
-        `Rpc$ '${
-          metadata.name
-        }' needs either a 'dependsOn' or a 'frequency' field.`
+        `Rpc$ '${metadata.name}' needs either a 'dependsOn' or a 'frequency' field.`
       );
     }
 
@@ -46,10 +44,10 @@ const createRpcWithApi = memoizeeWeak(
     const source$ = metadata.dependsOn
       ? metadata.dependsOn(...args, { provider: api.provider })
       : merge(
-          ...(metadata.frequency as FrequencyObservable<Source>[]).map(f =>
-            f({ provider: api.provider })
-          )
-        );
+        ...(metadata.frequency as FrequencyObservable<Source>[]).map(f =>
+          f({ provider: api.provider })
+        )
+      );
 
     // The pipes to add
     const pipes: OperatorFunction<any, any>[] = [];
@@ -84,7 +82,7 @@ const createRpcWithApi = memoizeeWeak(
  * createRpc(metadata)(options) returns a RpcObservable.
  * createRpc(metadata)(options)(someArgs) returns an Observable.
  */
-const createRpc = <Source, Out> (metadata: Metadata<Source, Out>) => (
+const createRpc = <Source, Out>(metadata: Metadata<Source, Out>) => (
   options: RpcObservableOptions = {}
 ) => (...args: any[]) => {
   // Evaluate api only once we subscribe

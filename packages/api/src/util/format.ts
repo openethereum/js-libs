@@ -61,6 +61,7 @@ export const cleanupValue = (value: string | number | Bytes, type: string) => {
  * @param hex - The hex string to convert.
  */
 export const hexToBytes = (hex: string) => {
+  // eslint-disable-next-line @typescript-eslint/no-use-before-define
   const raw = toHex(hex).slice(2);
   const bytes = [];
 
@@ -114,6 +115,7 @@ export const asciiToHex = (baseString: string) => {
  */
 export const padRight = (input: string, length: number) => {
   const hexLength = length * 2;
+  // eslint-disable-next-line @typescript-eslint/no-use-before-define
   const value = toHex(input).substr(2, hexLength);
 
   return (
@@ -133,6 +135,7 @@ export const padRight = (input: string, length: number) => {
  */
 export const padLeft = (input: string | undefined, length: number) => {
   const hexLength = length * 2;
+  // eslint-disable-next-line @typescript-eslint/no-use-before-define
   const value = toHex(input).substr(2, hexLength);
 
   return (

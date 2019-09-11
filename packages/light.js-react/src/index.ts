@@ -24,16 +24,16 @@ export const withOneObservable = <OwnProps, T>(
   key: string,
   rpc$: RpcObservable<any, T>
 ) =>
-  mapPropsStreamWithConfig({
+    mapPropsStreamWithConfig({
     // Converts a plain ES observable to an RxJS 6 observable
-    fromESObservable: from,
-    toESObservable: stream$ => stream$
-  })(props$ =>
-    combineLatest(
-      props$,
-      (props$ as Observable<OwnProps>).pipe(switchMap(rpc$))
-    ).pipe(map(([props, value]) => ({ ...props, [key]: value })))
-  );
+      fromESObservable: from,
+      toESObservable: stream$ => stream$
+    })(props$ =>
+      combineLatest(
+        props$,
+        (props$ as Observable<OwnProps>).pipe(switchMap(rpc$))
+      ).pipe(map(([props, value]) => ({ ...props, [key]: value })))
+    );
 
 /**
  * HOC which listens to multiple Observables, and injects those emitted values

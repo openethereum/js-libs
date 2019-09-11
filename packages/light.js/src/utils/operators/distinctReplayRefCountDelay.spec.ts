@@ -6,8 +6,9 @@
 import { distinctReplayRefCountDelay } from './distinctReplayRefCountDelay';
 import isObservable from '../isObservable';
 import mockRpc$ from '../testHelpers/mockRpc';
-import { Observable } from 'rxjs';
 
 it('should return an Observable', () => {
-  expect(isObservable(mockRpc$().pipe(distinctReplayRefCountDelay(2000)))).toBe(true);
+  expect(isObservable(mockRpc$().pipe(distinctReplayRefCountDelay(2000)))).toBe(
+    true
+  );
 });

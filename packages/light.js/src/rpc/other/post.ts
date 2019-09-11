@@ -8,12 +8,11 @@ import * as debug from 'debug';
 import { Observable, Observer } from 'rxjs';
 
 import { createApiFromProvider, getApi } from '../../api';
-import { distinctReplayRefCountDelay } from '../../utils/operators';
 import { RpcObservableOptions, Tx, TxStatus } from '../../types';
 
 interface PostOptions extends RpcObservableOptions {
   estimate?: boolean;
-  passphrase: String;
+  passphrase: string;
 }
 
 function getTransactionByHash (transactionHash: string, api: any) {
@@ -64,10 +63,13 @@ export function post$ (tx: Tx, options: PostOptions) {
         observer.next({ estimated: gas });
       }
 
-      const signedTransaction = await api.personal.signTransaction(tx, passphrase);
+      const signedTransaction = await api.personal.signTransaction(
+        tx,
+        passphrase
+      );
       observer.next({ signed: signedTransaction.raw });
+      // eslint-disable-next-line @typescript-eslint/no-use-before-define
       postRaw$(signedTransaction.raw).subscribe(observer);
-
     } catch (error) {
       observer.next({ failed: error });
       observer.error(error);

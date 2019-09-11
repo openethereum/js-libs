@@ -6,9 +6,7 @@
 import * as Api from '@parity/api';
 
 import isObservable from '../utils/isObservable';
-import {
-  resolveApi
-} from '../utils/testHelpers/mockApi';
+import { resolveApi } from '../utils/testHelpers/mockApi';
 import rpc from './rpc';
 import { RpcKey, RpcMap, RpcObservable } from '../types';
 import { setApi } from '../api';
@@ -63,7 +61,6 @@ const testRpc = (name: string, rpc$: RpcObservable<any, any>) =>
 
     // Memoization tests don't concern post$
     if (name === 'post$' || name === 'postRaw$') {
-      return;
     }
   });
 

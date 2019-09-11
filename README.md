@@ -75,10 +75,10 @@ yarn outdated
 git checkout -b <INSERT_YOUR_BRANCH_NAME>
 ```
 
-5. Run tests, linting, and build
+5. Run tests, type checking, linting, and build
 
 ```bash
-yarn test; yarn lint; yarn build
+yarn test; yarn typecheck; yarn lint; yarn build
 ```
 
 6. Push the branch to your fork of the repo

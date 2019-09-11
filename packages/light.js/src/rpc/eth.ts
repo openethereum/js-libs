@@ -19,7 +19,7 @@ import { switchMapPromise } from '../utils/operators';
  * @return - An Observable containing the chain ID.
  */
 export function chainId$ (options?: RpcObservableOptions) {
-  return createRpc$<any, BigNumber | Symbol>({
+  return createRpc$<any, BigNumber | symbol>({
     calls: ['eth_chainId'],
     frequency: [frequency.onStartup$],
     name: 'chainId$',
@@ -51,7 +51,7 @@ export function accounts$ (options?: RpcObservableOptions) {
  * @return - An Observable containing the balance.
  */
 export function balanceOf$ (address: Address, options?: RpcObservableOptions) {
-  return createRpc$<any, BigNumber | Symbol>({
+  return createRpc$<any, BigNumber | symbol>({
     calls: ['eth_getBalance'],
     frequency: [frequency.onEveryBlock$, frequency.onStartup$],
     name: 'balanceOf$',
@@ -66,12 +66,17 @@ export function balanceOf$ (address: Address, options?: RpcObservableOptions) {
  * @param options - Options to pass to {@link RpcObservableOptions}.
  * @return - An Observable containing the transaction count.
  */
-export function transactionCountOf$ (address: Address, options?: RpcObservableOptions) {
-  return createRpc$<any, BigNumber | Symbol>({
+export function transactionCountOf$ (
+  address: Address,
+  options?: RpcObservableOptions
+) {
+  return createRpc$<any, BigNumber | symbol>({
     calls: ['eth_getTransactionCount'],
     frequency: [frequency.onEveryBlock$, frequency.onStartup$],
     name: 'transactionCountOf$',
-    pipes: api => [switchMapPromise(() => api.eth.getTransactionCount(address))]
+    pipes: api => [
+      switchMapPromise(() => api.eth.getTransactionCount(address))
+    ]
   })(options)(address);
 }
 
@@ -107,15 +112,11 @@ export function blockNumber$ (options?: RpcObservableOptions) {
  * Shorthand for fetching the current account's balance.
  */
 export function myBalance$ (options?: RpcObservableOptions) {
-  return createRpc$<Address, BigNumber | Symbol>({
-    calls: [`eth_getBalance`],
+  return createRpc$<Address, BigNumber | symbol>({
+    calls: ['eth_getBalance'],
     dependsOn: defaultAccount$,
     name: 'myBalance$',
-    pipes: () => [
-      switchMap(defaultAccount =>
-        balanceOf$(defaultAccount)
-      )
-    ]
+    pipes: () => [switchMap(defaultAccount => balanceOf$(defaultAccount))]
   })(options)();
 }
 

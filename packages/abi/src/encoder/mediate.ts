@@ -123,6 +123,7 @@ class Mediate {
           .join('');
 
       case 'array':
+        /* eslint-disable no-case-declarations */
         const prefix = padU32((this._value as Mediate[]).length);
         const inits = (this._value as Mediate[])
           .map((mediate: Mediate, index: number) =>
@@ -146,6 +147,7 @@ class Mediate {
               .toString(16)
           )
           .join('');
+        /* eslint-enable no-case-declarations */
 
         return `${prefix}${inits}${closings}`;
     }

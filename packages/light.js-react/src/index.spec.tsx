@@ -5,6 +5,7 @@
 
 import 'symbol-observable'; // TODO Remove this once https://github.com/acdlite/recompose/pull/660 is merged
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import * as React from 'react';
 import * as Adapter from 'enzyme-adapter-react-16';
 import * as Enzyme from 'enzyme';
@@ -16,7 +17,9 @@ import light, { withOneObservable } from './';
 Enzyme.configure({ adapter: new Adapter() });
 const { mount } = Enzyme;
 
-const MockComponent = toClass(props => <div>{JSON.stringify(props)}</div>) as any;
+const MockComponent = toClass(props => (
+  <div>{JSON.stringify(props)}</div>
+)) as any;
 const mockRpc$ = () => of('bar');
 
 describe('withOneObservable', () => {
@@ -25,6 +28,7 @@ describe('withOneObservable', () => {
   });
 
   test('it should give the wrapped component the correct props', () => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const EnhancedComponent = withOneObservable('foo', mockRpc$)(MockComponent);
     const wrapper = mount(<EnhancedComponent />);
     const div = wrapper.find('div');
@@ -42,6 +46,7 @@ describe('light', () => {
   });
 
   test('it should give the wrapped component the correct props', () => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const EnhancedComponent = light({ foo: mockRpc$, baz: mockRpc$ })(
       MockComponent
     );

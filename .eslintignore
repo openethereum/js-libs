@@ -1,0 +1,4 @@
+**/node_modules/**
+**/lib/**
+**/example/**
+packages/light.js/example-react

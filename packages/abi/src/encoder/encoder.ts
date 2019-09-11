@@ -83,9 +83,7 @@ class Encoder {
       }
     } catch (e) {
       throw new Error(
-        `Cannot encode token #${index} [${token.type}: ${token.value}]. ${
-          e.message
-        }`
+        `Cannot encode token #${index} [${token.type}: ${token.value}]. ${e.message}`
       );
     }
 

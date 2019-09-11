@@ -88,7 +88,7 @@ export type ArrayValue = FixedArrayValue[];
 
 export type TokenValue =
   | AddressValue
-  | Boolean
+  | boolean
   | BytesValue
   | StringValue
   | IntValue
