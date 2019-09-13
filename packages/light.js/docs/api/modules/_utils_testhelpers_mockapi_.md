@@ -8,7 +8,7 @@
 
 **● providerCount**: *`number`* = 0
 
-*Defined in [utils/testHelpers/mockApi.ts:10](https://github.com/paritytech/js-libs/blob/852e67c/packages/light.js/src/utils/testHelpers/mockApi.ts#L10)*
+*Defined in [utils/testHelpers/mockApi.ts:10](https://github.com/paritytech/js-libs/blob/e0c2d92/packages/light.js/src/utils/testHelpers/mockApi.ts#L10)*
 
 ___
 
@@ -20,15 +20,23 @@ ___
 
 **listOfMockRps**: *`object`*
 
-*Defined in [utils/testHelpers/mockApi.ts:24](https://github.com/paritytech/js-libs/blob/852e67c/packages/light.js/src/utils/testHelpers/mockApi.ts#L24)*
+*Defined in [utils/testHelpers/mockApi.ts:24](https://github.com/paritytech/js-libs/blob/e0c2d92/packages/light.js/src/utils/testHelpers/mockApi.ts#L24)*
 
 <a id="listofmockrps.eth"></a>
 
 ###  eth
 
-**● eth**: *`string`[]* =  ['accounts', 'blockNumber', 'chainId', 'getBalance', 'getTransactionCount', 'newHeads', 'syncing']
+**● eth**: *`string`[]* =  [
+    'accounts',
+    'blockNumber',
+    'chainId',
+    'getBalance',
+    'getTransactionCount',
+    'newHeads',
+    'syncing'
+  ]
 
-*Defined in [utils/testHelpers/mockApi.ts:25](https://github.com/paritytech/js-libs/blob/852e67c/packages/light.js/src/utils/testHelpers/mockApi.ts#L25)*
+*Defined in [utils/testHelpers/mockApi.ts:25](https://github.com/paritytech/js-libs/blob/e0c2d92/packages/light.js/src/utils/testHelpers/mockApi.ts#L25)*
 
 ___
 <a id="listofmockrps.fake"></a>
@@ -37,7 +45,7 @@ ___
 
 **● fake**: *`string`[]* =  ['method']
 
-*Defined in [utils/testHelpers/mockApi.ts:26](https://github.com/paritytech/js-libs/blob/852e67c/packages/light.js/src/utils/testHelpers/mockApi.ts#L26)*
+*Defined in [utils/testHelpers/mockApi.ts:34](https://github.com/paritytech/js-libs/blob/e0c2d92/packages/light.js/src/utils/testHelpers/mockApi.ts#L34)*
 
 ___
 <a id="listofmockrps.net"></a>
@@ -46,7 +54,7 @@ ___
 
 **● net**: *`string`[]* =  ['peerCount']
 
-*Defined in [utils/testHelpers/mockApi.ts:27](https://github.com/paritytech/js-libs/blob/852e67c/packages/light.js/src/utils/testHelpers/mockApi.ts#L27)*
+*Defined in [utils/testHelpers/mockApi.ts:35](https://github.com/paritytech/js-libs/blob/e0c2d92/packages/light.js/src/utils/testHelpers/mockApi.ts#L35)*
 
 ___
 <a id="listofmockrps.parity"></a>
@@ -55,7 +63,7 @@ ___
 
 **● parity**: *`string`[]* =  ['accountsInfo', 'chain', 'postTransaction', 'versionInfo']
 
-*Defined in [utils/testHelpers/mockApi.ts:28](https://github.com/paritytech/js-libs/blob/852e67c/packages/light.js/src/utils/testHelpers/mockApi.ts#L28)*
+*Defined in [utils/testHelpers/mockApi.ts:36](https://github.com/paritytech/js-libs/blob/e0c2d92/packages/light.js/src/utils/testHelpers/mockApi.ts#L36)*
 
 ___
 

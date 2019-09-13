@@ -14,16 +14,16 @@
 
 **● estimate**: *`undefined` \| `false` \| `true`*
 
-*Defined in [rpc/other/post.ts:15](https://github.com/paritytech/js-libs/blob/852e67c/packages/light.js/src/rpc/other/post.ts#L15)*
+*Defined in [rpc/other/post.ts:14](https://github.com/paritytech/js-libs/blob/e0c2d92/packages/light.js/src/rpc/other/post.ts#L14)*
 
 ___
 <a id="passphrase"></a>
 
 ##  passphrase
 
-**● passphrase**: *`String`*
+**● passphrase**: *`string`*
 
-*Defined in [rpc/other/post.ts:16](https://github.com/paritytech/js-libs/blob/852e67c/packages/light.js/src/rpc/other/post.ts#L16)*
+*Defined in [rpc/other/post.ts:15](https://github.com/paritytech/js-libs/blob/e0c2d92/packages/light.js/src/rpc/other/post.ts#L15)*
 
 ___
 <a id="provider"></a>
@@ -34,7 +34,7 @@ ___
 
 *Inherited from [RpcObservableOptions](_types_.rpcobservableoptions.md).[provider](_types_.rpcobservableoptions.md#provider)*
 
-*Defined in [types.ts:77](https://github.com/paritytech/js-libs/blob/852e67c/packages/light.js/src/types.ts#L77)*
+*Defined in [types.ts:77](https://github.com/paritytech/js-libs/blob/e0c2d92/packages/light.js/src/types.ts#L77)*
 
 ___
 
