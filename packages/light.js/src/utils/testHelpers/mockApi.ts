@@ -22,7 +22,15 @@ export class MockProvider extends EventEmitter {
 
 // List of JSONRPCs we want to mock
 const listOfMockRps: { [index: string]: string[] } = {
-  eth: ['accounts', 'blockNumber', 'chainId', 'getBalance', 'getTransactionCount', 'newHeads', 'syncing'],
+  eth: [
+    'accounts',
+    'blockNumber',
+    'chainId',
+    'getBalance',
+    'getTransactionCount',
+    'newHeads',
+    'syncing'
+  ],
   fake: ['method'],
   net: ['peerCount'],
   parity: ['accountsInfo', 'chain', 'postTransaction', 'versionInfo']
@@ -34,15 +42,21 @@ const listOfMockRps: { [index: string]: string[] } = {
  * @ignore
  */
 const createApi = (
-  resolveValueOrFunction: string | object | (() => any) | { error: string } | Error,
+  resolveValueOrFunction:
+    | string
+    | object
+    | (() => any)
+    | { error: string }
+    | Error,
   isPubSub: boolean,
   isError: boolean
 ) => {
-
   const getResolveValue = () =>
     // TODO Casting as Function manually, or else we get:
     // "Cannot invoke an expression whose type lacks a call signature. Type 'Function | (() => any)' has no compatible call signatures."
-    (typeof resolveValueOrFunction === 'function' ? (resolveValueOrFunction as Function)() : resolveValueOrFunction);
+    typeof resolveValueOrFunction === 'function'
+      ? (resolveValueOrFunction as Function)()
+      : resolveValueOrFunction;
 
   const result = Object.keys(listOfMockRps).reduce(
     (apiObject, namespace: string) => {
@@ -110,7 +124,7 @@ const createApi = (
  */
 export const rejectApi = (
   resolveValueOrFunction = new Error('bar'),
-  isPubsub: boolean = true
+  isPubsub = true
 ) => createApi(resolveValueOrFunction, isPubsub, true);
 
 /**
@@ -119,6 +133,10 @@ export const rejectApi = (
  * @ignore
  */
 export const resolveApi = (
-  resolveValueOrFunction: string | object | (() => any) | { error: string } = 'foo',
-  isPubsub: boolean = true
+  resolveValueOrFunction:
+    | string
+    | object
+    | (() => any)
+    | { error: string } = 'foo',
+  isPubsub = true
 ) => createApi(resolveValueOrFunction, isPubsub, false);

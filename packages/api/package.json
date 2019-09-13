@@ -18,6 +18,7 @@
   },
   "scripts": {
     "prebuild": "rimraf lib",
+    "typecheck": "tsc --noEmit",
     "build": "tsc",
     "test": "cross-env NODE_ENV=test mocha -r ts-node/register 'src/*.spec.js' 'src/**/*.spec.js'"
   },

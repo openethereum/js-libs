@@ -115,7 +115,7 @@ export async function getParityPath () {
     );
     return path;
   } catch (err) {
-    logger()('@parity/electron:main')(`Parity not found on machine.`);
+    logger()('@parity/electron:main')('Parity not found on machine.');
     throw err;
   }
 }

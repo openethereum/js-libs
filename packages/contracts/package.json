@@ -18,6 +18,7 @@
   "scripts": {
     "docs": "typedoc && rimraf docs/README.md",
     "prebuild": "rimraf lib",
+    "typecheck": "tsc --noEmit",
     "build": "tsc",
     "test": "jest"
   },

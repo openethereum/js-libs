@@ -3,7 +3,7 @@
 //
 // SPDX-License-Identifier: MIT
 
-import { publishReplay, refCount } from 'rxjs/operators';
+import { publishReplay } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { operators } from 'rxjs-etc';
 
@@ -19,13 +19,13 @@ const { refCountDelay } = operators;
 export const distinctReplayRefCountDelay = (delay: number) => <T>(
   source$: Observable<T>
 ): Observable<T> =>
-  source$.pipe(
-    distinctValues(),
+    source$.pipe(
+      distinctValues(),
 
-    // Note: uses a single subject, so the previous value might come from a
-    // previous dropped subscription to the source observable
-    publishReplay(1),
+      // Note: uses a single subject, so the previous value might come from a
+      // previous dropped subscription to the source observable
+      publishReplay(1),
 
-    // Unsubscribe to the source observable only after 2 seconds with no subscribers
-    refCountDelay(delay)
-  );
+      // Unsubscribe to the source observable only after 2 seconds with no subscribers
+      refCountDelay(delay)
+    );

@@ -3,6 +3,8 @@
 //
 // SPDX-License-Identifier: MIT
 
+/* eslint-disable @typescript-eslint/no-use-before-define */
+
 import BigNumber from 'bignumber.js';
 
 import {
@@ -90,7 +92,7 @@ export const inTopics = (topics?: (Topic | Topic[])[]): (string | null)[] => {
 
 export const inFilter = (options: FilterOptions) => {
   const result: {
-    [key in keyof FilterOptions]: number | string | string[] | Topic[]
+    [key in keyof FilterOptions]: number | string | string[] | Topic[];
   } = {};
 
   if (options) {
@@ -232,7 +234,7 @@ export const inTraceFilter = (filterObject: FilterObject) => {
 
         default:
           // @ts-ignore Here, we explicitly pass down extra keys, if they exist
-          result[key] = options[key];
+          result[key] = filterObject[key];
       }
     });
   }

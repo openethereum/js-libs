@@ -4,6 +4,7 @@
 // SPDX-License-Identifier: MIT
 
 // TODO Use fake timers instead
-export default (duration: number) => new Promise((resolve, reject) => {
-  setTimeout(resolve, duration);
-});
+export default (duration: number) =>
+  new Promise(resolve => {
+    setTimeout(resolve, duration);
+  });

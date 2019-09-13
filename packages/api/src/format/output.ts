@@ -3,6 +3,8 @@
 //
 // SPDX-License-Identifier: MIT
 
+/* eslint-disable @typescript-eslint/no-use-before-define */
+
 import BigNumber from 'bignumber.js';
 import { isString } from '@parity/abi/lib/util/types';
 import { toChecksumAddress } from '@parity/abi/lib/util/address';
@@ -343,10 +345,12 @@ export function outSignerRequest (request: SerializedSignerRequest) {
           break;
 
         case 'origin':
+          /* eslint-disable no-case-declarations */
           // @ts-ignore "Object is possibly 'undefined'." No it's not.
           const type = Object.keys(result[key])[0];
           // @ts-ignore "Object is possibly 'undefined'." No it's not.
           const details = result[key][type];
+          /* eslint-enable no-case-declarations */
 
           request[key] = { type, details };
           break;

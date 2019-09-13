@@ -49,6 +49,7 @@ describe('util/types', () => {
 
   describe('isInstanceOf', () => {
     it('correctly identifies build-in instanceof', () => {
+      // eslint-disable-next-line no-new-wrappers
       expect(isInstanceOf(new String('123'), String)).toBe(true);
     });
 

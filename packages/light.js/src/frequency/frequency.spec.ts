@@ -9,11 +9,7 @@ import { take } from 'rxjs/operators';
 import frequency from './frequency';
 import { FrequencyObservable, FrequencyKey, FrequencyMap } from '../types';
 import isObservable from '../utils/isObservable';
-import {
-  MockProvider,
-  rejectApi,
-  resolveApi
-} from '../utils/testHelpers/mockApi';
+import { resolveApi } from '../utils/testHelpers/mockApi';
 import { setApi } from '@parity/light.js/src/api';
 
 jest.mock('@parity/api');

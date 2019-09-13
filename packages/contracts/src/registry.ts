@@ -7,7 +7,7 @@ import * as abis from './abi';
 import { Api, Contract, ContractInstance } from './types';
 
 interface QueueItem {
-  resolve (...args: any[]): void;
+  resolve(...args: any[]): void;
 }
 
 const REGISTRY_V1_HASHES = [
@@ -20,11 +20,13 @@ export default class Registry {
   private _contracts: {
     [key: string]: Contract;
   } = {};
+
   private _fetching = false;
   private _instance: ContractInstance = null;
   private _pendingContracts: {
     [key: string]: Promise<Contract>;
   } = {};
+
   private _queue: QueueItem[] = [];
   private _registryContract: Contract | null = null;
 

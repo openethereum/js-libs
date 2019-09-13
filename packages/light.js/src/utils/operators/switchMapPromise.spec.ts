@@ -3,8 +3,6 @@
 //
 // SPDX-License-Identifier: MIT
 
-import { skip, take } from 'rxjs/operators';
-
 import mockRpc$ from '../testHelpers/mockRpc';
 import { rejectApi, resolveApi } from '../testHelpers/mockApi';
 import { switchMapPromise } from './switchMapPromise';
@@ -32,7 +30,9 @@ it('should not error when the promise rejects', done => {
 it('should fire an error when the promise resolves with an error', done => {
   mockRpc$()
     .pipe(
-      switchMapPromise(rejectApi(new Error('boo')).fake.method, { emitErrors: true })
+      switchMapPromise(rejectApi(new Error('boo')).fake.method, {
+        emitErrors: true
+      })
     )
     .subscribe(undefined, err => {
       expect(err).toEqual(new Error('boo'));
@@ -43,7 +43,9 @@ it('should fire an error when the promise resolves with an error', done => {
 it('should fire an error when the promise rejects', done => {
   mockRpc$()
     .pipe(
-      switchMapPromise(rejectApi(new Error('boo')).fake.method, { emitErrors: true })
+      switchMapPromise(rejectApi(new Error('boo')).fake.method, {
+        emitErrors: true
+      })
     )
     .subscribe(undefined, err => {
       expect(err).toEqual(new Error('boo'));
@@ -53,9 +55,7 @@ it('should fire an error when the promise rejects', done => {
 
 it('should fire the correct value when the promise resolves', done => {
   mockRpc$()
-    .pipe(
-      switchMapPromise(resolveApi().fake.method)
-    )
+    .pipe(switchMapPromise(resolveApi().fake.method))
     .subscribe(data => {
       expect(data).toBe('foo');
       done();

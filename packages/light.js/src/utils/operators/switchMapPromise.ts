@@ -4,7 +4,7 @@
 // SPDX-License-Identifier: MIT
 
 import { catchError, switchMap } from 'rxjs/operators';
-import { empty, from, Observable, throwError, OperatorFunction } from 'rxjs';
+import { empty, from, throwError, OperatorFunction } from 'rxjs';
 
 interface SwitchMapPromiseOptions {
   emitErrors: boolean;
@@ -20,11 +20,14 @@ interface SwitchMapPromiseOptions {
  *
  * @ignore
  */
-export const switchMapPromise = <T,U>(promise: () => Promise<U>, options: SwitchMapPromiseOptions = { emitErrors: false }): OperatorFunction<T, U> =>
+export const switchMapPromise = <T, U>(
+  promise: () => Promise<U>,
+  options: SwitchMapPromiseOptions = { emitErrors: false }
+): OperatorFunction<T, U> =>
     switchMap(() =>
       from(
         promise().then(result => {
-          // The result can sometimes be {id: 2, jsonrpc: "2.0", error: {...}}
+        // The result can sometimes be {id: 2, jsonrpc: "2.0", error: {...}}
           if ((result as any).error) {
             return Promise.reject(result);
           }
@@ -48,4 +51,4 @@ export const switchMapPromise = <T,U>(promise: () => Promise<U>, options: Switch
           }
         })
       )
-  );
+    );

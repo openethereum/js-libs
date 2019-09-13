@@ -13,6 +13,7 @@ node_js:
   - '10'
 script:
   - yarn lint
+  - yarn typecheck
   - yarn test:api
   - yarn test --silent --coverage --coverageReporters=text-lcov | coveralls ; test ${PIPESTATUS[0]} -eq 0
 before_deploy:

@@ -11,26 +11,27 @@ import { setApi } from '../../api';
 import sleep from '../../utils/testHelpers/sleep';
 
 describe('should manage source observable sparingly', () => {
-
   let unsubscribe = 0;
 
   // Returns an observable
   function rpc (options?: RpcObservableOptions) {
     return createRpc$<any, number>({
-      frequency: [() => {
-        return new Observable(subscriber => {
-          let i = 0;
-          subscriber.next(i++);
-          const itl = setInterval(() => {
+      frequency: [
+        () => {
+          return new Observable(subscriber => {
+            let i = 0;
             subscriber.next(i++);
-          }, 1000);
-          return () => {
-            clearInterval(itl);
-            unsubscribe++;
-          };
-        });
-      }],
-      pipes: api => []
+            const itl = setInterval(() => {
+              subscriber.next(i++);
+            }, 1000);
+            return () => {
+              clearInterval(itl);
+              unsubscribe++;
+            };
+          });
+        }
+      ],
+      pipes: () => []
     })(options)();
   }
 
@@ -62,7 +63,7 @@ describe('should manage source observable sparingly', () => {
   });
 
   it('should re-emit previous value on observable subscription', async () => {
-    let values: number[] = [];
+    const values: number[] = [];
     subscription = obs.subscribe(x => {
       values.push(x);
     });
@@ -74,7 +75,7 @@ describe('should manage source observable sparingly', () => {
   it('should use the same source observable when used twice', async () => {
     const obs2: Observable<number> = rpc();
 
-    let values: number[] = [];
+    const values: number[] = [];
 
     await sleep(1000);
 
@@ -86,7 +87,7 @@ describe('should manage source observable sparingly', () => {
     setApi(resolveApi('foo'));
     const obs2: Observable<number> = rpc();
 
-    let values: number[] = [];
+    const values: number[] = [];
     obs2.subscribe(x => values.push(x));
 
     await sleep(5);
@@ -94,11 +95,11 @@ describe('should manage source observable sparingly', () => {
   });
 
   let obs3: Observable<number>;
-  let provider = new MockProvider();
+  const provider = new MockProvider();
   it('should not use the same source observable if options are passed', async () => {
     obs3 = rpc({ provider });
 
-    let values: number[] = [];
+    const values: number[] = [];
     obs3.subscribe(x => values.push(x));
 
     await sleep(5);
@@ -109,7 +110,7 @@ describe('should manage source observable sparingly', () => {
     const obs4: Observable<number> = rpc({ provider });
 
     await sleep(1000);
-    let values: number[] = [];
+    const values: number[] = [];
     obs4.subscribe(x => values.push(x));
 
     expect(values).toEqual([1]);

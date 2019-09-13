@@ -35,6 +35,7 @@ export function isFunction (input?: any): input is Function {
 }
 
 export function isHex (input?: any): boolean {
+  // eslint-disable-next-line @typescript-eslint/no-use-before-define
   if (!isString(input)) {
     return false;
   }

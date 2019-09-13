@@ -70,6 +70,7 @@ export const abiUnencode = (abi: AbiObject, data: string) => {
     return (
       field.type === 'function' &&
       !!field.inputs &&
+      // eslint-disable-next-line @typescript-eslint/no-use-before-define
       abiSignature(field.name, field.inputs.map(input => input.type)).substr(
         2,
         8
@@ -93,9 +94,7 @@ export const abiUnencode = (abi: AbiObject, data: string) => {
     (result, field, index) => {
       if (!field.name) {
         throw new Error(
-          `abiUnencode: input at index ${index} with type ${
-            field.type
-          } doesn't have a name.`
+          `abiUnencode: input at index ${index} with type ${field.type} doesn't have a name.`
         );
       }
       result[field.name] = argsByIndex[index];

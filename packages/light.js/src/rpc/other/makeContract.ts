@@ -91,15 +91,18 @@ const makeContractWithApi = memoizee(
         } else {
           const { estimate, passphrase, ...txFields } = options;
 
-          return post$({
-            to: address,
-            data: abiEncode(
-              method.name,
-              method.inputs.map(({ kind: { type } }: any) => type), // TODO Use @parity/api types
-              args
-            ),
-            ...txFields
-          }, { estimate, passphrase });
+          return post$(
+            {
+              to: address,
+              data: abiEncode(
+                method.name,
+                method.inputs.map(({ kind: { type } }: any) => type), // TODO Use @parity/api types
+                args
+              ),
+              ...txFields
+            },
+            { estimate, passphrase }
+          );
         }
       };
     });
