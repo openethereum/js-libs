@@ -12,7 +12,7 @@
 
 **● emitErrors**: *`boolean`*
 
-*Defined in [utils/operators/switchMapPromise.ts:10](https://github.com/paritytech/js-libs/blob/e2ec3f1/packages/light.js/src/utils/operators/switchMapPromise.ts#L10)*
+*Defined in [utils/operators/switchMapPromise.ts:10](https://github.com/paritytech/js-libs/blob/6cb07a7/packages/light.js/src/utils/operators/switchMapPromise.ts#L10)*
 
 ___
 
