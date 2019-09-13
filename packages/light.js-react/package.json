@@ -1,7 +1,7 @@
 {
   "name": "@parity/light.js-react",
   "description": "A HOC to easily use @parity/light.js with React.",
-  "version": "5.1.12",
+  "version": "5.1.13",
   "author": "Parity Team <admin@parity.io>",
   "license": "MIT",
   "repository": "https://github.com/paritytech/js-libs/tree/master/packages/light.js-react",
@@ -31,7 +31,7 @@
     "symbol-observable": "^1.2.0"
   },
   "devDependencies": {
-    "@parity/light.js": "^5.1.12",
+    "@parity/light.js": "^5.1.13",
     "@types/enzyme": "^3.1.13",
     "@types/enzyme-adapter-react-16": "^1.0.3",
     "@types/recompose": "^0.30.2",

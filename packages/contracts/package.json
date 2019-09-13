@@ -1,7 +1,7 @@
 {
   "name": "@parity/contracts",
   "description": "Parity's contracts as ES6 classes.",
-  "version": "5.1.12",
+  "version": "5.1.13",
   "author": "Parity Team <admin@parity.io>",
   "license": "MIT",
   "repository": "https://github.com/paritytech/js-libs/tree/master/packages/contracts",
@@ -23,8 +23,8 @@
     "test": "jest"
   },
   "dependencies": {
-    "@parity/abi": "^5.1.12",
-    "@parity/api": "^5.1.12",
+    "@parity/abi": "^5.1.13",
+    "@parity/api": "^5.1.13",
     "bignumber.js": "^8.0.1"
   },
   "devDependencies": {
