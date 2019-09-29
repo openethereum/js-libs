@@ -51,6 +51,7 @@ class Http extends JsonRpcBase {
     const request = this._encodeOptions(method, params);
     return Promise.race([
       fetch(this._url, request),
+      
       new Promise((_, reject) =>
         setTimeout(() => reject(new Error('timeout')), 10000)
       )
