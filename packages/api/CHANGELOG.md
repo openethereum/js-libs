@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.1.14](https://github.com/paritytech/js-libs/tree/master/packages/api/compare/v5.1.13...v5.1.14) (2019-09-30)
+
+
+### Bug Fixes
+
+* **api:** Add 10s timeout handle for fetch in HttpProvider ([#229](https://github.com/paritytech/js-libs/tree/master/packages/api/issues/229)) ([aea9973](https://github.com/paritytech/js-libs/tree/master/packages/api/commit/aea9973))
+
+
+
+
+
 ## [5.1.13](https://github.com/paritytech/js-libs/tree/master/packages/api/compare/v5.1.12...v5.1.13) (2019-09-13)
 
 **Note:** Version bump only for package @parity/api
