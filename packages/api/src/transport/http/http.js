@@ -49,12 +49,16 @@ class Http extends JsonRpcBase {
 
   _execute (method, params) {
     const request = this._encodeOptions(method, params);
-
-    return fetch(this._url, request)
-      .catch((error) => {
-        this._setDisconnected();
-        throw error;
-      })
+    return Promise.race([
+      fetch(this._url, request),
+      
+      new Promise((_, reject) =>
+        setTimeout(() => reject(new Error('timeout')), 10000)
+      )
+    ]).catch((error) => {
+      this._setDisconnected();
+      throw error;
+    })
       .then((response) => {
         this._setConnected();
 
