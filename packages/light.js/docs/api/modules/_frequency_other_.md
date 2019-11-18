@@ -8,7 +8,7 @@
 
 ▸ **onStartup$**(options?: *[FrequencyObservableOptions](../interfaces/_types_.frequencyobservableoptions.md)*): `Observable`<`number`>
 
-*Defined in [frequency/other.ts:18](https://github.com/paritytech/js-libs/blob/aea9973/packages/light.js/src/frequency/other.ts#L18)*
+*Defined in [frequency/other.ts:18](https://github.com/paritytech/js-libs/blob/4ca2ba2/packages/light.js/src/frequency/other.ts#L18)*
 
 Observable that emits only once.
 

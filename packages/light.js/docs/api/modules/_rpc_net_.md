@@ -8,7 +8,7 @@
 
 ▸ **peerCount$**(options?: *[RpcObservableOptions](../interfaces/_types_.rpcobservableoptions.md)*): `Observable`<`BigNumber`>
 
-*Defined in [rpc/net.ts:21](https://github.com/paritytech/js-libs/blob/aea9973/packages/light.js/src/rpc/net.ts#L21)*
+*Defined in [rpc/net.ts:21](https://github.com/paritytech/js-libs/blob/4ca2ba2/packages/light.js/src/rpc/net.ts#L21)*
 
 Get the amount of peers.
 
