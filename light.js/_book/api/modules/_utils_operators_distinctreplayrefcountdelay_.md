@@ -8,7 +8,7 @@
 
 **● refCountDelay**: *`refCountDelay`*
 
-*Defined in [utils/operators/distinctReplayRefCountDelay.ts:12](https://github.com/paritytech/js-libs/blob/1586b74/packages/light.js/src/utils/operators/distinctReplayRefCountDelay.ts#L12)*
+*Defined in [utils/operators/distinctReplayRefCountDelay.ts:12](https://github.com/paritytech/js-libs/blob/927053f/packages/light.js/src/utils/operators/distinctReplayRefCountDelay.ts#L12)*
 
 ___
 
