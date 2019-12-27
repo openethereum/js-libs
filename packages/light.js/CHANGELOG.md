@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.1.16](https://github.com/paritytech/js-libs/tree/master/packages/light.js/compare/v5.1.15...v5.1.16) (2019-12-27)
+
+**Note:** Version bump only for package @parity/light.js
+
+
+
+
+
 ## [5.1.15](https://github.com/paritytech/js-libs/tree/master/packages/light.js/compare/v5.1.14...v5.1.15) (2019-11-18)
 
 **Note:** Version bump only for package @parity/light.js
