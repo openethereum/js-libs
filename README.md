@@ -15,7 +15,7 @@
 
 ## Packages
 
-This repository is a monorepo that we manage using [Lerna](https://lernajs.io). That means that we publish [several packages](/packages) to npm from the same codebase. If you are a dapp developer, we recommend you start with the following three high-level packages:
+This repository is a monorepo that we manage using [Lerna](https://lerna.js.org/). That means that we publish [several packages](/packages) to npm from the same codebase. If you are a dapp developer, we recommend you start with the following three high-level packages:
 
 | Package                                                                                               | Version                                                                                                                          | Docs                                                                                                                                              | Description                                                                                        |
 | ----------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
