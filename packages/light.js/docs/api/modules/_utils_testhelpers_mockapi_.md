@@ -8,7 +8,7 @@
 
 **● providerCount**: *`number`* = 0
 
-*Defined in [utils/testHelpers/mockApi.ts:10](https://github.com/paritytech/js-libs/blob/4349c53/packages/light.js/src/utils/testHelpers/mockApi.ts#L10)*
+*Defined in [utils/testHelpers/mockApi.ts:10](https://github.com/paritytech/js-libs/blob/ba46f0d/packages/light.js/src/utils/testHelpers/mockApi.ts#L10)*
 
 ___
 
@@ -20,7 +20,7 @@ ___
 
 **listOfMockRps**: *`object`*
 
-*Defined in [utils/testHelpers/mockApi.ts:24](https://github.com/paritytech/js-libs/blob/4349c53/packages/light.js/src/utils/testHelpers/mockApi.ts#L24)*
+*Defined in [utils/testHelpers/mockApi.ts:24](https://github.com/paritytech/js-libs/blob/ba46f0d/packages/light.js/src/utils/testHelpers/mockApi.ts#L24)*
 
 <a id="listofmockrps.eth"></a>
 
@@ -36,7 +36,7 @@ ___
     'syncing'
   ]
 
-*Defined in [utils/testHelpers/mockApi.ts:25](https://github.com/paritytech/js-libs/blob/4349c53/packages/light.js/src/utils/testHelpers/mockApi.ts#L25)*
+*Defined in [utils/testHelpers/mockApi.ts:25](https://github.com/paritytech/js-libs/blob/ba46f0d/packages/light.js/src/utils/testHelpers/mockApi.ts#L25)*
 
 ___
 <a id="listofmockrps.fake"></a>
@@ -45,7 +45,7 @@ ___
 
 **● fake**: *`string`[]* =  ['method']
 
-*Defined in [utils/testHelpers/mockApi.ts:34](https://github.com/paritytech/js-libs/blob/4349c53/packages/light.js/src/utils/testHelpers/mockApi.ts#L34)*
+*Defined in [utils/testHelpers/mockApi.ts:34](https://github.com/paritytech/js-libs/blob/ba46f0d/packages/light.js/src/utils/testHelpers/mockApi.ts#L34)*
 
 ___
 <a id="listofmockrps.net"></a>
@@ -54,7 +54,7 @@ ___
 
 **● net**: *`string`[]* =  ['peerCount']
 
-*Defined in [utils/testHelpers/mockApi.ts:35](https://github.com/paritytech/js-libs/blob/4349c53/packages/light.js/src/utils/testHelpers/mockApi.ts#L35)*
+*Defined in [utils/testHelpers/mockApi.ts:35](https://github.com/paritytech/js-libs/blob/ba46f0d/packages/light.js/src/utils/testHelpers/mockApi.ts#L35)*
 
 ___
 <a id="listofmockrps.parity"></a>
@@ -63,7 +63,7 @@ ___
 
 **● parity**: *`string`[]* =  ['accountsInfo', 'chain', 'postTransaction', 'versionInfo']
 
-*Defined in [utils/testHelpers/mockApi.ts:36](https://github.com/paritytech/js-libs/blob/4349c53/packages/light.js/src/utils/testHelpers/mockApi.ts#L36)*
+*Defined in [utils/testHelpers/mockApi.ts:36](https://github.com/paritytech/js-libs/blob/ba46f0d/packages/light.js/src/utils/testHelpers/mockApi.ts#L36)*
 
 ___
 
