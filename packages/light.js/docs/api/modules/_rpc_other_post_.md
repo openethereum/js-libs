@@ -22,7 +22,7 @@
 
 ▸ **getTransactionByHash**(transactionHash: *`string`*, api: *`any`*): `Promise`<`any`>
 
-*Defined in [rpc/other/post.ts:18](https://github.com/paritytech/js-libs/blob/ba46f0d/packages/light.js/src/rpc/other/post.ts#L18)*
+*Defined in [rpc/other/post.ts:18](https://github.com/paritytech/js-libs/blob/66e2091/packages/light.js/src/rpc/other/post.ts#L18)*
 
 **Parameters:**
 
@@ -40,7 +40,7 @@ ___
 
 ▸ **post$**(tx: *[Tx](_types_.md#tx)*, options: *[PostOptions](../interfaces/_rpc_other_post_.postoptions.md)*): `any`
 
-*Defined in [rpc/other/post.ts:50](https://github.com/paritytech/js-libs/blob/ba46f0d/packages/light.js/src/rpc/other/post.ts#L50)*
+*Defined in [rpc/other/post.ts:50](https://github.com/paritytech/js-libs/blob/66e2091/packages/light.js/src/rpc/other/post.ts#L50)*
 
 Post a transaction to the network.
 
@@ -63,7 +63,7 @@ ___
 
 ▸ **postRaw$**(rawTx: *`string`*, options?: *[RpcObservableOptions](../interfaces/_types_.rpcobservableoptions.md)*): `any`
 
-*Defined in [rpc/other/post.ts:96](https://github.com/paritytech/js-libs/blob/ba46f0d/packages/light.js/src/rpc/other/post.ts#L96)*
+*Defined in [rpc/other/post.ts:96](https://github.com/paritytech/js-libs/blob/66e2091/packages/light.js/src/rpc/other/post.ts#L96)*
 
 Post a raw (signed) transaction to the network.
 
